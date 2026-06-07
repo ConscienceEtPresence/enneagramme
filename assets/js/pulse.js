@@ -38,16 +38,28 @@ function getVisitorId() {
   } catch { return null; }
 }
 
+// Normalise le chemin pour la clef Firestore (pas de slash, pas de point)
+function normalizePath(p) {
+  let s = (p || '/').split('?')[0].split('#')[0];
+  if (s === '/') return 'home';
+  // retirer leading/trailing slash, remplacer / et . par _
+  s = s.replace(/^\/+|\/+$/g, '').replace(/\.html?$/, '').replace(/[\/\.]/g, '_');
+  return s.substring(0, 80) || 'home';
+}
+
 async function pulse() {
-  // ignorer les bots évidents
   if (/bot|spider|crawler|preview|headless/i.test(navigator.userAgent || '')) return;
 
   const date = todayKey();
   const ref = doc(db, 'analytics', SITE, 'jours', date);
-  const updates = { pageviews: increment(1), lastSeen: serverTimestamp() };
+  const pathKey = normalizePath(location.pathname);
+  const updates = {
+    pageviews: increment(1),
+    lastSeen: serverTimestamp()
+  };
+  // Compteur par page (champ pages.{path} incrémenté)
+  updates[`pages.${pathKey}`] = increment(1);
 
-  // unique par jour : on stocke la date de dernière visite, et on incrémente
-  // 'uniques' une seule fois si la dernière visite n'est pas aujourd'hui
   try {
     const lastDay = localStorage.getItem('pulse_last_day');
     if (lastDay !== date) {
@@ -59,7 +71,6 @@ async function pulse() {
   try {
     await setDoc(ref, updates, { merge: true });
   } catch (e) {
-    // silencieux : aucune analytics ne doit jamais casser une page
     console.warn('pulse failed', e);
   }
 }
