@@ -43,8 +43,10 @@ export function normPrenom(s) {
 
 // === Login : prénom + codeId ===
 // Renvoie la session si OK, throw sinon
+// Le code est insensible à la casse, aux espaces et aux accents
 export async function login(prenom, codeId) {
-  const cleanId = String(codeId || '').trim();
+  // Normalisation : minuscules + retire les caractères invalides
+  const cleanId = String(codeId || '').trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
   if (!cleanId) throw new Error('code-vide');
 
   const snap = await getDoc(doc(db, COL.codes, cleanId));
