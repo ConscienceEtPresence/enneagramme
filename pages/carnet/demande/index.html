@@ -10,29 +10,159 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/carnet.css?v=3">
+  <style>
+    .ennea-pick { display:grid; grid-template-columns:repeat(3, 1fr); gap:.5rem; max-width:24rem; margin:.5rem auto; }
+    .ennea-pick__btn {
+      background: var(--car-glass); border:1.5px solid var(--car-line-2); border-radius:12px;
+      padding: 0.7rem .5rem; cursor:pointer; transition: all .2s;
+      font-family: 'Cormorant Garamond', serif; font-size:1.05rem;
+      color: var(--car-text); text-align:center; line-height:1.25;
+    }
+    .ennea-pick__btn:hover { border-color: var(--car-gold); }
+    .ennea-pick__btn.is-active {
+      background: linear-gradient(160deg, rgba(245,215,123,.18), var(--car-panel));
+      border-color: var(--car-gold); color: var(--car-gold); font-weight:600;
+    }
+    .ennea-pick__n { font-size:1.4rem; font-weight:600; color: var(--car-gold); display:block; }
+    .ennea-pick__nom { font-style:italic; font-size:.85rem; opacity:.85; }
+    .miroir-form-err {
+      margin-top:1rem; padding:.8rem 1rem;
+      background: rgba(253,164,175,.15); border:1px solid rgba(253,164,175,.5);
+      border-radius:10px; color:#fda4af; font-family:'Cormorant Garamond',serif;
+      font-style:italic; text-align:center;
+    }
+    .miroir-form-ok {
+      margin-top:1.4rem; padding:1.4rem; text-align:center;
+      background: linear-gradient(160deg, rgba(134,239,172,.15), var(--car-panel));
+      border:1px solid rgba(134,239,172,.5); border-radius:14px;
+    }
+    .miroir-form-ok h3 {
+      font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500;
+      color: var(--car-good); margin:0 0 .5rem;
+    }
+    .miroir-form-ok p { font-family:'Cormorant Garamond',serif; font-style:italic; color: var(--car-text-soft); margin:.4rem 0; line-height:1.55; }
+  </style>
 </head>
 <body class="miroir">
   <div class="miroir-wrap">
     <a href="../" class="miroir-back">← Le seuil</a>
-    <div class="miroir-form-wrap fade-in-up">
+
+    <div class="miroir-form-wrap fade-in-up" style="max-width:34rem">
       <h1 class="miroir-h1">Recevoir <em>une clé</em></h1>
       <p class="miroir-sub">
-        Cette version prototype permet d'entrer librement, sans demande préalable.
+        Quelques renseignements, et Brahms vous attribuera une clé personnelle pour entrer dans votre carnet.
       </p>
-      <p style="color:var(--car-text-soft);font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.7;margin:2rem 0;">
-        Vous connaissez votre type ?<br>
-        Allez directement à <a href="../entrer/" style="color:var(--car-gold)">l'entrée</a>.
-      </p>
-      <p style="color:var(--car-muted);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;">
-        Vous ne le connaissez pas encore ? Faites d'abord
-        <a href="/test-enneagramme-sans-indice.html" style="color:var(--car-gold)">le test</a>
-        ou
-        <a href="/voyage-enneagramme.html" style="color:var(--car-gold)">le voyage de l'ennéagramme</a>.
-      </p>
-      <div class="miroir-actions">
-        <a href="../entrer/" class="miroir-btn">Entrer dans le carnet</a>
+
+      <form id="form" autocomplete="off">
+        <!-- Honeypot anti-bot -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off"
+               style="position:absolute;left:-9999px;opacity:0;height:1px;width:1px" />
+
+        <div class="miroir-field">
+          <label class="miroir-field__label" for="prenom">Votre prénom</label>
+          <input class="miroir-input" type="text" id="prenom" required maxlength="60" placeholder="Jeanne" />
+        </div>
+
+        <div class="miroir-field">
+          <label class="miroir-field__label" for="contact">Comment vous joindre</label>
+          <input class="miroir-input" type="text" id="contact" required maxlength="180" placeholder="email ou numéro" />
+        </div>
+
+        <div class="miroir-field">
+          <label class="miroir-field__label">Quel type pensez-vous être ?</label>
+          <div class="ennea-pick">
+            <button type="button" class="ennea-pick__btn" data-t="1"><span class="ennea-pick__n">1</span><span class="ennea-pick__nom">Idéaliste</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="2"><span class="ennea-pick__n">2</span><span class="ennea-pick__nom">Donneur</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="3"><span class="ennea-pick__n">3</span><span class="ennea-pick__nom">Performeur</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="4"><span class="ennea-pick__n">4</span><span class="ennea-pick__nom">Individualiste</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="5"><span class="ennea-pick__n">5</span><span class="ennea-pick__nom">Observateur</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="6"><span class="ennea-pick__n">6</span><span class="ennea-pick__nom">Loyaliste</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="7"><span class="ennea-pick__n">7</span><span class="ennea-pick__nom">Enthousiaste</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="8"><span class="ennea-pick__n">8</span><span class="ennea-pick__nom">Meneur</span></button>
+            <button type="button" class="ennea-pick__btn" data-t="9"><span class="ennea-pick__n">9</span><span class="ennea-pick__nom">Médiateur</span></button>
+          </div>
+          <p style="text-align:center;margin:.8rem 0 0;font-size:.9rem;font-style:italic;color:var(--car-text-soft);font-family:'Cormorant Garamond',serif;">
+            Pas sûr·e ? Faites <a href="/test-enneagramme-sans-indice.html" style="color:var(--car-gold)">le test</a> ou
+            <a href="/voyage-enneagramme.html" style="color:var(--car-gold)">le voyage</a>. Brahms pourra ajuster.
+          </p>
+        </div>
+
+        <div class="miroir-field">
+          <label class="miroir-field__label" for="message">Quelques mots (facultatif)</label>
+          <textarea class="miroir-textarea" id="message" rows="3" maxlength="1500" placeholder="Pourquoi cela vous intéresse, ce qui vous fait croire à ce type, ce que vous voulez travailler…"></textarea>
+        </div>
+
+        <div class="miroir-actions">
+          <button type="submit" class="miroir-btn" id="submit">Envoyer ma demande</button>
+        </div>
+
+        <div id="err" class="miroir-form-err" style="display:none"></div>
+      </form>
+
+      <div id="ok" class="miroir-form-ok" style="display:none">
+        <h3>Merci !</h3>
+        <p>Votre demande est arrivée. Brahms vous écrira dans les prochains jours avec votre clé personnelle.</p>
+        <p>En attendant : prenez le temps d'<a href="/" style="color:var(--car-gold)">explorer les types sur le diagramme</a>.</p>
       </div>
     </div>
   </div>
+
+  <script type="module">
+    import { db } from '/assets/js/carnet/firebase-init.js';
+    import { addDoc, collection, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    let typeDeclare = null;
+    document.querySelectorAll('.ennea-pick__btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.ennea-pick__btn').forEach(x => x.classList.remove('is-active'));
+        b.classList.add('is-active');
+        typeDeclare = parseInt(b.dataset.t, 10);
+      });
+    });
+
+    const form = document.getElementById('form');
+    const errBox = document.getElementById('err');
+    const okBox = document.getElementById('ok');
+    const btn = document.getElementById('submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errBox.style.display = 'none';
+
+      const honeypot = form.querySelector('input[name="website"]').value;
+      if (honeypot) return;
+
+      const prenom = document.getElementById('prenom').value.trim();
+      const contact = document.getElementById('contact').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!prenom || !contact || !typeDeclare) {
+        errBox.textContent = 'Prénom, contact et type sont nécessaires.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Envoi…';
+      try {
+        await addDoc(collection(db, 'demandes-type'), {
+          prenom, contact,
+          typeDeclare,
+          message: message || null,
+          statut: 'en-attente',
+          langue: 'fr',
+          creeLe: serverTimestamp()
+        });
+        form.style.display = 'none';
+        okBox.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        errBox.textContent = 'Une difficulté est survenue. Réessayez dans un instant.';
+        errBox.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Envoyer ma demande';
+      }
+    });
+  </script>
 </body>
 </html>
