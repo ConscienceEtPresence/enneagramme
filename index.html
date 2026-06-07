@@ -385,25 +385,56 @@
   })();
   </script>
 
-  <!-- 🪞 Accès au carnet de bord — Le miroir intérieur -->
-  <a href="/pages/carnet/" id="quick-carnet"
-     title="Le miroir intérieur — mon carnet de bord"
-     style="position:fixed;bottom:24px;right:24px;z-index:950;width:54px;height:54px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,#1a2540,#0e1528);color:#f4cf6a;border:1.5px solid #f4cf6a;text-decoration:none;box-shadow:0 8px 28px rgba(244,207,106,.28),0 2px 6px rgba(0,0,0,.4);transition:all .25s ease;animation:carnet-breath 3.4s ease-in-out 1.5s 3;">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <ellipse cx="12" cy="12" rx="7" ry="9"/>
-      <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
-      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-    </svg>
+  <!-- 🪞 Accès au carnet de bord — Le miroir intérieur (pastille flottante + étiquette) -->
+  <a href="/pages/carnet/" id="quick-carnet" title="Le miroir intérieur — votre carnet de bord">
+    <div class="qc-pill">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="12" rx="7" ry="9"/>
+        <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
+        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="qc-text">
+        <strong>Le miroir intérieur</strong>
+        <em>Mon carnet de bord pour pratiquer chaque jour →</em>
+      </span>
+    </div>
   </a>
   <style>
-    @keyframes carnet-breath {
-      0%,100% { box-shadow:0 8px 28px rgba(244,207,106,.28),0 2px 6px rgba(0,0,0,.4); }
-      50%     { box-shadow:0 8px 36px rgba(244,207,106,.6),0 2px 6px rgba(0,0,0,.4); }
+    #quick-carnet {
+      position:fixed;bottom:18px;right:18px;z-index:950;text-decoration:none;
+      animation:qc-breath 3.4s ease-in-out 1s 3;
     }
-    #quick-carnet:hover {
-      background:linear-gradient(135deg,#f4cf6a,#fbbf24)!important;
-      color:#0e1528!important;
+    .qc-pill {
+      display:flex;align-items:center;gap:.8rem;
+      padding:.7rem .85rem .7rem 1rem;
+      background:linear-gradient(135deg,#1a2540,#0e1528);
+      border:1.5px solid #f4cf6a;
+      border-radius:999px;
+      color:#f4cf6a;
+      box-shadow:0 10px 32px rgba(244,207,106,.3),0 3px 8px rgba(0,0,0,.4);
+      transition:all .25s ease;
+      max-width:calc(100vw - 36px);
+    }
+    .qc-text { display:flex;flex-direction:column;line-height:1.15; }
+    .qc-text strong { font-size:.95rem;font-weight:600;color:#f4cf6a;letter-spacing:.01em; }
+    .qc-text em { font-size:.78rem;font-style:italic;color:#e8eeff;opacity:.85;margin-top:.1rem; }
+    #quick-carnet:hover .qc-pill {
+      background:linear-gradient(135deg,#f4cf6a,#fbbf24);
+      color:#0e1528;
       transform:translateY(-3px);
+      box-shadow:0 14px 38px rgba(244,207,106,.55);
+    }
+    #quick-carnet:hover .qc-text strong { color:#0e1528; }
+    #quick-carnet:hover .qc-text em { color:#0e1528;opacity:.8; }
+    @keyframes qc-breath {
+      0%,100% { box-shadow:0 10px 32px rgba(244,207,106,.3),0 3px 8px rgba(0,0,0,.4); }
+      50%     { box-shadow:0 10px 42px rgba(244,207,106,.7),0 3px 8px rgba(0,0,0,.4); }
+    }
+    @media (max-width:520px) {
+      #quick-carnet { right:12px;bottom:12px; }
+      .qc-pill { padding:.6rem .75rem; }
+      .qc-text strong { font-size:.88rem; }
+      .qc-text em { font-size:.72rem; }
     }
   </style>
 </body>

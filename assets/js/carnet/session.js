@@ -3,6 +3,9 @@
    En v2 : passage à Firebase. L'API reste la même.
    ============================================================ */
 
+// Thème appliqué immédiatement (avant tout rendu)
+import './theme.js';
+
 export const SESSION_KEY = 'mi_session';
 export const DAILY_PREFIX = 'mi_day_';
 

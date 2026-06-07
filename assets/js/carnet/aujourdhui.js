@@ -4,6 +4,7 @@ import {
   todayKey, yesterdayKey, getDay, saveDay,
   dateLisible, whisperForTime, esc, flashOk
 } from './session.js';
+import { injectThemeToggle } from './theme.js';
 
 const session = requireSession();
 const mount = document.getElementById('mount');
@@ -110,6 +111,9 @@ document.getElementById('sortir').addEventListener('click', e => {
   document.getElementById('sortir-top').addEventListener('click', e => {
     e.preventDefault(); document.getElementById('sortir').click();
   });
+
+  // Bouton de thème
+  injectThemeToggle();
 
   // Reprise du vœu d'hier
   document.querySelectorAll('#reprise .miroir-reprise__opt').forEach(btn => {
