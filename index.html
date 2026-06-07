@@ -78,26 +78,12 @@
   <div class="wrap">
     <header class="top mi-top">
       <div class="mi-hero">
-        <div class="mi-hero__mark">
-          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <ellipse cx="12" cy="12" rx="7" ry="9"/>
-            <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
-            <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
-          </svg>
-        </div>
         <h1 class="mi-title">Le <em>miroir intérieur</em></h1>
-        <p class="mi-tagline">
-          Un carnet de bord pour travailler son type chaque jour — psychologique, contemplatif, ancré dans le quotidien.
-        </p>
         <p class="mi-explainer">
-          <strong>L'ennéagramme</strong> est une cartographie en neuf types qui révèle comment notre ego s'est construit,
-          quels mécanismes le nourrissent — et par où l'on peut s'en libérer pour toucher son essence.
-          Choisissez votre type sur le diagramme pour explorer son fonctionnement, puis ouvrez votre carnet pour le travailler.
+          <strong>L'ennéagramme</strong> est une cartographie en neuf types qui révèle comment chacun de nous s'est construit —
+          ce qui nous porte, ce qui nous piège, et par où l'on peut s'en libérer pour toucher son essence.
         </p>
-        <p class="mi-cta-line">
-          <a href="/pages/carnet/" class="mi-cta">🪞 Ouvrir mon carnet de bord →</a>
-        </p>
-        <p id="subtitle" class="mi-sub-hint">Cliquez sur un type du diagramme pour voir son résumé.</p>
+        <p id="subtitle" class="mi-sub-hint">Cliquez sur un type du diagramme pour explorer son fonctionnement.</p>
       </div>
       <div class="actions">
         <button id="btnReset" type="button">Réinitialiser</button>
@@ -105,78 +91,37 @@
     </header>
 
     <style>
-      .mi-top { flex-direction:column; align-items:stretch; gap:0; padding-bottom:1.4rem; }
-      .mi-hero { text-align:center; max-width:54rem; margin:0 auto; padding:1rem 0 1.5rem; }
-      .mi-hero__mark {
-        width:72px; height:72px; margin:0 auto 1.1rem;
-        border-radius:50%;
-        background:radial-gradient(circle at 35% 30%, rgba(245,215,123,.95), rgba(245,215,123,.15));
-        border:1.5px solid rgba(245,215,123,.6);
-        color:#0e1528;
-        display:flex; align-items:center; justify-content:center;
-        box-shadow:0 0 28px rgba(245,215,123,.35), inset 0 0 12px rgba(0,0,0,.2);
-      }
+      .mi-top { flex-direction:column; align-items:stretch; gap:0; padding-bottom:1rem; }
+      .mi-hero { text-align:center; max-width:48rem; margin:0 auto; padding:.4rem 0 1rem; }
       .mi-title {
         font-family:'Cormorant Garamond','Georgia',serif;
         font-weight:500;
-        font-size:clamp(2.4rem, 6vw, 3.6rem);
+        font-size:clamp(2rem, 5vw, 2.8rem);
         color:#f1f5ff;
-        margin:0 0 .6rem;
+        margin:0 0 .8rem;
         letter-spacing:.005em;
-        line-height:1.1;
+        line-height:1.15;
       }
       .mi-title em { color:#f5d77b; font-style:italic; }
-      .mi-tagline {
-        font-family:'Cormorant Garamond',serif;
-        font-style:italic;
-        font-size:clamp(1.1rem, 2.4vw, 1.32rem);
-        color:#d8e0f4;
-        margin:0 auto 1.6rem;
-        max-width:38rem;
-        line-height:1.55;
-        font-weight:500;
-      }
       .mi-explainer {
         font-family:'Cormorant Garamond',serif;
-        font-size:1.08rem;
-        color:#b6c4e8;
-        margin:0 auto 1.8rem;
-        max-width:42rem;
+        font-size:clamp(1.1rem, 2.3vw, 1.25rem);
+        color:#dce4f4;
+        margin:0 auto 1rem;
+        max-width:38rem;
         line-height:1.65;
+        font-weight:500;
       }
-      .mi-explainer strong { color:#f5d77b; font-weight:600; }
-      .mi-cta-line { margin:0 0 1.2rem; }
-      .mi-cta {
-        display:inline-flex; align-items:center; gap:.4rem;
-        padding:.9rem 1.8rem;
-        background:linear-gradient(135deg,#f5d77b,#fbbf24);
-        color:#0e1528;
-        border-radius:999px;
-        text-decoration:none;
-        font-family:'Inter',system-ui,sans-serif;
-        font-weight:600;
-        font-size:1.05rem;
-        letter-spacing:.01em;
-        box-shadow:0 10px 28px rgba(245,215,123,.32);
-        transition:all .25s ease;
-      }
-      .mi-cta:hover {
-        transform:translateY(-2px);
-        box-shadow:0 14px 36px rgba(245,215,123,.55);
-      }
+      .mi-explainer strong { color:#f5d77b; font-weight:600; font-style:italic; }
       .mi-sub-hint {
         font-family:'Cormorant Garamond',serif;
         font-style:italic;
         color:#a8b6dc;
-        font-size:.98rem;
+        font-size:1.02rem;
         margin:.5rem 0 0;
         opacity:.85;
       }
       .mi-top .actions { display:flex; justify-content:center; margin-top:.4rem; }
-      @media (max-width:560px) {
-        .mi-hero__mark { width:60px; height:60px; }
-        .mi-explainer { font-size:1rem; }
-      }
     </style>
 
     <main class="grid">
@@ -499,40 +444,42 @@
   })();
   </script>
 
-  <!-- 🪞 Pastille flottante — accès rapide carnet (apparaît après scroll) -->
-  <a href="/pages/carnet/" id="quick-carnet" title="Ouvrir mon carnet de bord">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 🪞 Pastille flottante — accès discret au carnet de bord, pour qui veut le travailler -->
+  <a href="/pages/carnet/" id="quick-carnet" title="Mon carnet de bord — pour travailler son type chaque jour">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <ellipse cx="12" cy="12" rx="7" ry="9"/>
       <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
       <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
     </svg>
+    <span class="qc-label">Mon carnet</span>
   </a>
   <style>
     #quick-carnet {
       position:fixed;bottom:20px;right:20px;z-index:950;
-      width:54px;height:54px;
-      display:flex;align-items:center;justify-content:center;
+      display:flex;align-items:center;gap:.5rem;
+      padding:.55rem .9rem .55rem .7rem;
       background:linear-gradient(135deg,#1a2540,#0e1528);
-      border:1.5px solid #f5d77b;
-      border-radius:50%;
+      border:1px solid rgba(245,215,123,.55);
+      border-radius:999px;
       color:#f5d77b;
       text-decoration:none;
-      box-shadow:0 8px 24px rgba(245,215,123,.28);
+      box-shadow:0 6px 20px rgba(245,215,123,.22),0 2px 6px rgba(0,0,0,.35);
       transition:all .25s ease;
-      opacity:0; pointer-events:none;
+      font-family:'Cormorant Garamond',serif;
+      font-style:italic;
+      font-size:.95rem;
     }
-    #quick-carnet.visible { opacity:1; pointer-events:auto; }
+    #quick-carnet .qc-label { font-weight:500; }
     #quick-carnet:hover {
       background:linear-gradient(135deg,#f5d77b,#fbbf24);
       color:#0e1528;
-      transform:translateY(-3px) scale(1.05);
+      transform:translateY(-2px);
+      box-shadow:0 10px 28px rgba(245,215,123,.45);
+      border-color:#f5d77b;
+    }
+    @media (max-width:480px) {
+      #quick-carnet { padding:.5rem .75rem .5rem .6rem; font-size:.88rem; }
     }
   </style>
-  <script>
-    // pastille flottante seulement après scroll, pour ne pas concurrencer le CTA principal
-    addEventListener('scroll', () => {
-      document.getElementById('quick-carnet').classList.toggle('visible', scrollY > 400);
-    }, { passive: true });
-  </script>
 </body>
 </html>
