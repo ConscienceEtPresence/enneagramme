@@ -6,6 +6,7 @@ import {
   ensureValidSession
 } from './session.js';
 import { injectThemeToggle } from './theme.js';
+import { buildWeeklyData } from './weekly.js';
 
 const session = requireSession();
 const mount = document.getElementById('mount');
@@ -68,20 +69,22 @@ document.getElementById('sortir').addEventListener('click', e => {
 
   // --- Cartes "portes du jour"
   const portes = [
+    { key: 'instant', href: '../instant/',           icon: '⚡', titre: 'Un instant',                desc: 'Une remarque à toute heure — 15 secondes' },
     { key: 'niveau',  href: '../mon-niveau/',        icon: '📊', titre: 'Mon niveau aujourd\'hui',  desc: 'Où je me situe — 2 minutes' },
     { key: 'ego',     href: '../mon-ego/',           icon: '🌪', titre: 'Mon ego aujourd\'hui',     desc: 'Ce qui m\'a poussé, ce qui m\'a piégé' },
     { key: 'essence', href: '../mon-essence/',       icon: '✨', titre: 'Mon essence aujourd\'hui', desc: 'Ai-je touché autre chose ?' },
     { key: 'moment',  href: '../relire-un-moment/',  icon: '📖', titre: 'Relire un moment du jour', desc: 'Un événement à comprendre' },
     { key: 'poser',   href: '../poser-le-jour/',     icon: '🌙', titre: 'Déposer la journée',       desc: 'Une phrase, un vœu, puis dormir' }
   ];
+  const visitedInstant = (k) => k === 'instant' ? Array.isArray(dayData.instants) && dayData.instants.length > 0 : visited(k);
   const portesHtml = `
     <div class="miroir-portes">
       ${portes.map((p, i) => `
-        <a class="miroir-porte ${visited(p.key)?'is-visited':''} fade-in-up delay-${i+3}" href="${p.href}">
+        <a class="miroir-porte ${visitedInstant(p.key)?'is-visited':''} fade-in-up delay-${i+3}" href="${p.href}">
           <div class="miroir-porte__icon">${p.icon}</div>
           <h3 class="miroir-porte__title">${p.titre}</h3>
           <p class="miroir-porte__desc">${p.desc}</p>
-          <div class="miroir-porte__arrow">${visited(p.key) ? 'revenir →' : 'commencer →'}</div>
+          <div class="miroir-porte__arrow">${visitedInstant(p.key) ? 'revenir →' : 'commencer →'}</div>
         </a>
       `).join('')}
     </div>
@@ -107,7 +110,38 @@ document.getElementById('sortir').addEventListener('click', e => {
     ${compagnonHtml}
     ${centreHtml}
     ${portesHtml}
+    <div id="weekly-mount"></div>
   `;
+
+  // Calcul async du miroir hebdo (ne bloque pas l'affichage)
+  buildWeeklyData(session, T).then(({ mirror, suggestions, daysCount }) => {
+    const m = document.getElementById('weekly-mount');
+    if (!m) return;
+    const showMirror = daysCount >= 3; // au moins 3 jours pour avoir du sens
+    let html = '';
+    if (suggestions?.length) {
+      html += `
+        <section class="weekly-suggestions fade-in-up">
+          <h2 class="weekly-suggestions__title">🌱 Pour les jours qui viennent</h2>
+          ${suggestions.map(s => `
+            <div class="weekly-suggestions__item">
+              <p>${esc(s.message)}</p>
+            </div>
+          `).join('')}
+        </section>
+      `;
+    }
+    if (showMirror && mirror?.lines?.length) {
+      html += `
+        <section class="weekly-mirror fade-in-up">
+          <h2 class="weekly-mirror__title">🪞 <em>Le miroir de la semaine</em></h2>
+          <p class="weekly-mirror__sub">Un constat botanique, jamais un jugement.</p>
+          ${mirror.lines.map(l => `<p class="weekly-mirror__line">${l}</p>`).join('')}
+        </section>
+      `;
+    }
+    if (html) m.innerHTML = html;
+  }).catch(e => console.warn('weekly failed', e));
 
   // Sortir lien header
   document.getElementById('sortir-top').addEventListener('click', e => {

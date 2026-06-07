@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Un instant — Le miroir intérieur</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=4">
+  <style>
+    .instant-modes { display:grid; grid-template-columns:repeat(3, 1fr); gap:.7rem; margin:1.5rem 0; }
+    @media (max-width:520px) { .instant-modes { grid-template-columns:1fr; } }
+    .instant-mode {
+      background: var(--car-panel); border:1.5px solid var(--car-line-2);
+      border-radius:16px; padding:1.2rem 1rem; cursor:pointer;
+      text-align:center; transition: all .22s;
+    }
+    .instant-mode__icon { font-size:2rem; margin-bottom:.5rem; display:block; }
+    .instant-mode__nom {
+      font-family:'Cormorant Garamond', serif; font-weight:500;
+      font-size:1.15rem; color:var(--car-text); margin-bottom:.3rem;
+    }
+    .instant-mode__desc {
+      font-family:'Cormorant Garamond', serif; font-style:italic;
+      font-size:.95rem; color:var(--car-text-soft); line-height:1.45;
+    }
+    .instant-mode--ego.is-active { border-color: var(--car-gold); background: linear-gradient(160deg, rgba(245,215,123,.16), var(--car-panel)); }
+    .instant-mode--evite.is-active { border-color: rgb(180,140,180); background: linear-gradient(160deg, rgba(180,140,180,.16), var(--car-panel)); }
+    .instant-mode--presence.is-active { border-color: rgb(134,239,172); background: linear-gradient(160deg, rgba(134,239,172,.16), var(--car-panel)); }
+
+    .instant-chips { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0; }
+    .instant-chip {
+      background: var(--car-panel); border:1px solid var(--car-line-2);
+      border-radius:999px; padding:.55rem 1rem;
+      font-family:'Cormorant Garamond', serif; font-size:1rem;
+      color: var(--car-text); cursor:pointer; transition:all .2s;
+    }
+    .instant-chip:hover { border-color: var(--car-gold); }
+    .instant-chip.is-checked {
+      background: var(--car-gold); color: var(--car-bg-deep);
+      border-color: var(--car-gold); font-weight:500;
+    }
+
+    .instants-today {
+      margin-top: 2.5rem; padding: 1rem 0; border-top:1px solid var(--car-line);
+    }
+    .instants-today h2 {
+      font-family:'Cormorant Garamond', serif; font-size:1.2rem;
+      color: var(--car-text-soft); font-weight:500; margin:0 0 .8rem;
+      font-style: italic;
+    }
+    .instant-item {
+      padding: .8rem 1rem; background: var(--car-glass);
+      border-left: 3px solid var(--car-gold);
+      border-radius: 0 10px 10px 0;
+      margin-bottom: .5rem;
+      font-family:'Cormorant Garamond', serif;
+    }
+    .instant-item--evite { border-left-color: rgb(180,140,180); }
+    .instant-item--presence { border-left-color: rgb(134,239,172); }
+    .instant-item__time {
+      font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+      color: var(--car-muted); margin-bottom:.3rem;
+    }
+    .instant-item__what { color: var(--car-text); font-size:1.05rem; }
+    .instant-item__mot { color: var(--car-gold); font-style:italic; }
+    .instant-item__note {
+      color: var(--car-text-soft); font-style:italic;
+      margin-top:.25rem; font-size:.95rem;
+    }
+  </style>
+</head>
+<body class="miroir">
+  <div class="miroir-wrap" id="mount">
+    <p style="text-align:center;color:var(--car-muted)">…</p>
+  </div>
+  <nav class="miroir-bottom-nav">
+    <a href="../aujourdhui/" class="miroir-bottom-nav__item"><span class="icon">☀</span><span>Aujourd'hui</span></a>
+    <a href="../instant/" class="miroir-bottom-nav__item is-active"><span class="icon">⚡</span><span>Instant</span></a>
+    <a href="../miroir/" class="miroir-bottom-nav__item"><span class="icon">🪞</span><span>Miroir</span></a>
+    <a href="../aujourdhui/" class="miroir-bottom-nav__item"><span class="icon">↩</span><span>Retour</span></a>
+  </nav>
+  <script type="module" src="/assets/js/carnet/instant.js?v=1"></script>
+</body>
+</html>
