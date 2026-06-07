@@ -384,5 +384,27 @@
     }, true);
   })();
   </script>
+
+  <!-- 🪞 Accès au carnet de bord — Le miroir intérieur -->
+  <a href="/pages/carnet/" id="quick-carnet"
+     title="Le miroir intérieur — mon carnet de bord"
+     style="position:fixed;bottom:24px;right:24px;z-index:950;width:54px;height:54px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,#1a2540,#0e1528);color:#f4cf6a;border:1.5px solid #f4cf6a;text-decoration:none;box-shadow:0 8px 28px rgba(244,207,106,.28),0 2px 6px rgba(0,0,0,.4);transition:all .25s ease;animation:carnet-breath 3.4s ease-in-out 1.5s 3;">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="12" rx="7" ry="9"/>
+      <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+    </svg>
+  </a>
+  <style>
+    @keyframes carnet-breath {
+      0%,100% { box-shadow:0 8px 28px rgba(244,207,106,.28),0 2px 6px rgba(0,0,0,.4); }
+      50%     { box-shadow:0 8px 36px rgba(244,207,106,.6),0 2px 6px rgba(0,0,0,.4); }
+    }
+    #quick-carnet:hover {
+      background:linear-gradient(135deg,#f4cf6a,#fbbf24)!important;
+      color:#0e1528!important;
+      transform:translateY(-3px);
+    }
+  </style>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Le miroir intérieur — Carnet de bord</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=1">
+</head>
+<body class="miroir">
+  <div class="miroir-wrap">
+
+    <div class="miroir-seuil">
+      <div class="miroir-seuil__ornament">✦ ✦ ✦</div>
+
+      <h1 class="fade-in-up">Le <em>miroir intérieur</em></h1>
+      <p class="miroir-seuil__intro fade-in-up delay-1">
+        Un carnet de bord pour celles et ceux qui veulent travailler leur type
+        comme une voie d'éveil. Pas un test. Un compagnon — chaque jour, vraiment.
+      </p>
+
+      <div class="miroir-seuil__portes">
+        <a href="entrer/" class="miroir-seuil__porte fade-in-up delay-2">
+          <div class="miroir-seuil__porte-ar">🪞</div>
+          <div class="miroir-seuil__porte-titre">J'ai déjà ma clé</div>
+          <p class="miroir-seuil__porte-sub">Entrer dans mon carnet de bord et reprendre mon travail.</p>
+        </a>
+        <a href="demande/" class="miroir-seuil__porte miroir-seuil__porte--soft fade-in-up delay-3">
+          <div class="miroir-seuil__porte-ar">🌱</div>
+          <div class="miroir-seuil__porte-titre">Je viens pour la première fois</div>
+          <p class="miroir-seuil__porte-sub">Recevoir une clé pour commencer mon parcours.</p>
+        </a>
+      </div>
+
+      <a href="/" class="miroir-back">← Retour au site</a>
+    </div>
+
+  </div>
+
+  <script type="module">
+    // Si déjà connecté, on propose d'aller direct à aujourd'hui
+    import { getSession } from '/assets/js/carnet/session.js';
+    const s = getSession();
+    if (s && s.prenom && s.type) {
+      const link = document.querySelector('.miroir-seuil__porte');
+      if (link) {
+        link.href = 'aujourdhui/';
+        link.querySelector('.miroir-seuil__porte-titre').textContent = 'Reprendre mon carnet';
+        link.querySelector('.miroir-seuil__porte-sub').textContent =
+          `Bonjour ${s.prenom}. Type ${s.type} — reprendre le travail du jour.`;
+      }
+    }
+  </script>
+</body>
+</html>

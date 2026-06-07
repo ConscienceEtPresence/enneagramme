@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Ma trajectoire — Le miroir intérieur</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=1">
+  <style>
+    .traj-graph { background:var(--car-panel); border:1px solid var(--car-line); border-radius:18px; padding:1.5rem 1rem; margin:1.5rem 0; }
+    .traj-row { display:grid; grid-template-columns:90px 1fr; align-items:center; gap:.7rem; margin-bottom:.4rem; }
+    .traj-label { font-family:'Cormorant Garamond',serif; color:var(--car-text-soft); font-size:.95rem; }
+    .traj-bar { display:flex; gap:2px; height:18px; }
+    .traj-bar__cell { flex:1; background:var(--car-glass); border-radius:3px; }
+    .traj-bar__cell.lumineux   { background:#fcd34d; box-shadow:0 0 8px rgba(252,211,77,.5); }
+    .traj-bar__cell.fonctionnel{ background:#86efac; box-shadow:0 0 6px rgba(134,239,172,.4); }
+    .traj-bar__cell.reactif    { background:#fbbf24; opacity:.8; }
+    .traj-bar__cell.enseveli   { background:#fda4af; opacity:.6; }
+    .traj-essence { display:flex; gap:2px; height:8px; margin-top:.6rem; }
+    .traj-essence__cell { flex:1; }
+    .traj-essence__cell.has { background:#86efac; border-radius:2px; }
+    .traj-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; margin:1.5rem 0; }
+    .traj-stat { background:var(--car-glass); border:1px solid var(--car-line); border-radius:14px; padding:1rem; text-align:center; }
+    .traj-stat__num { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--car-gold); display:block; }
+    .traj-stat__lbl { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--car-muted); margin-top:.3rem; }
+    .traj-reading { background:var(--car-panel); border-left:3px solid var(--car-gold); padding:1rem 1.2rem; margin:1.5rem 0; border-radius:0 12px 12px 0; font-family:'Cormorant Garamond',serif; font-style:italic; line-height:1.65; color:var(--car-text-soft); }
+  </style>
+</head>
+<body class="miroir">
+  <div class="miroir-wrap" id="mount"><p style="text-align:center;color:var(--car-muted)">…</p></div>
+  <nav class="miroir-bottom-nav">
+    <a href="../aujourdhui/" class="miroir-bottom-nav__item"><span class="icon">☀</span><span>Aujourd'hui</span></a>
+    <a href="../miroir/" class="miroir-bottom-nav__item"><span class="icon">🪞</span><span>Miroir</span></a>
+    <a href="../ma-trajectoire/" class="miroir-bottom-nav__item is-active"><span class="icon">📈</span><span>Trajectoire</span></a>
+    <a href="../aujourdhui/" class="miroir-bottom-nav__item"><span class="icon">↩</span><span>Retour</span></a>
+  </nav>
+  <script type="module" src="/assets/js/carnet/ma-trajectoire.js?v=1"></script>
+</body>
+</html>

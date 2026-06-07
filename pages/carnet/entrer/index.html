@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Entrer — Le miroir intérieur</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=1">
+</head>
+<body class="miroir">
+  <div class="miroir-wrap">
+    <a href="../" class="miroir-back">← Le seuil</a>
+
+    <div class="miroir-form-wrap fade-in-up">
+      <h1 class="miroir-h1">Entrer dans <em>votre carnet</em></h1>
+      <p class="miroir-sub">Votre prénom et le type que vous travaillez.</p>
+
+      <form id="enter-form">
+        <div class="miroir-field">
+          <label class="miroir-field__label" for="prenom">Votre prénom</label>
+          <input class="miroir-input" type="text" id="prenom" required maxlength="40" placeholder="Jeanne" />
+        </div>
+
+        <div class="miroir-field">
+          <label class="miroir-field__label" for="type">Votre type ennéagramme</label>
+          <select class="miroir-select" id="type" required>
+            <option value="">— choisir —</option>
+            <option value="4">Type 4 — L'Individualiste</option>
+            <option value="" disabled>Autres types — bientôt disponibles</option>
+          </select>
+        </div>
+
+        <div class="miroir-actions">
+          <button type="submit" class="miroir-btn">Entrer dans le carnet</button>
+        </div>
+      </form>
+
+      <p style="margin-top:2rem;font-size:.85rem;color:var(--car-muted);font-style:italic;font-family:'Cormorant Garamond',serif;">
+        Note prototype : pour cette première version, le type 4 est entièrement développé.
+        Les 8 autres types arrivent au fur et à mesure.
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { setSession } from '/assets/js/carnet/session.js';
+
+    document.getElementById('enter-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const prenom = document.getElementById('prenom').value.trim();
+      const type   = document.getElementById('type').value;
+      if (!prenom || !type) return;
+      setSession({
+        prenom,
+        type: parseInt(type, 10),
+        startedAt: Date.now()
+      });
+      window.location.href = '../aujourdhui/';
+    });
+  </script>
+</body>
+</html>

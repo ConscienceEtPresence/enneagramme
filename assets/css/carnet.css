@@ -1,0 +1,829 @@
+/* ============================================================
+   LE MIROIR INTÉRIEUR — Carnet de bord ennéagramme
+   Design contemplatif, dark, sobre, sans surcharge.
+   ============================================================ */
+
+:root {
+  --car-bg:        #070b14;
+  --car-bg-deep:   #050810;
+  --car-panel:     rgba(14, 21, 40, 0.74);
+  --car-panel-2:   rgba(20, 28, 48, 0.85);
+  --car-glass:     rgba(255, 255, 255, 0.06);
+  --car-glass-2:   rgba(255, 255, 255, 0.10);
+  --car-text:      #e8eeff;
+  --car-text-soft: #c5d1ee;
+  --car-muted:     #8194c2;
+  --car-line:      rgba(255, 255, 255, 0.14);
+  --car-line-2:    rgba(255, 255, 255, 0.22);
+  --car-gold:      #f4cf6a;
+  --car-gold-2:    #fbbf24;
+  --car-gold-glow: rgba(244, 207, 106, 0.35);
+  --car-emo:       #f472b6;
+  --car-ment:      #60a5fa;
+  --car-inst:      #fbbf24;
+  --car-shadow:    0 26px 72px rgba(2, 10, 28, 0.55);
+  --car-shadow-soft: 0 12px 32px rgba(2, 10, 28, 0.32);
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--car-bg); }
+
+body.miroir {
+  margin: 0;
+  font-family: 'Inter', 'Source Sans Pro', system-ui, sans-serif;
+  color: var(--car-text);
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(244, 207, 106, 0.06), transparent 50%),
+    radial-gradient(ellipse at 90% 90%, rgba(96, 165, 250, 0.05), transparent 50%),
+    var(--car-bg);
+  min-height: 100vh;
+  line-height: 1.55;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Container universel === */
+.miroir-wrap {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 3vw, 2rem) 8rem;
+}
+
+/* === Header / brand === */
+.miroir-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--car-line);
+  margin-bottom: 2rem;
+}
+.miroir-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--car-text);
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.miroir-brand__mark {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--car-gold), rgba(244, 207, 106, 0.2));
+  box-shadow: 0 0 16px var(--car-gold-glow), inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.miroir-brand em { color: var(--car-gold); font-style: italic; font-weight: 400; }
+.miroir-header__nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.88rem;
+}
+.miroir-header__nav a {
+  color: var(--car-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.miroir-header__nav a:hover { color: var(--car-gold); }
+
+/* === Titres === */
+.miroir-h1, h1.miroir {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  letter-spacing: 0.005em;
+  margin: 0 0 0.5rem;
+  color: var(--car-text);
+  line-height: 1.15;
+}
+.miroir-h1 em { color: var(--car-gold); font-style: italic; }
+.miroir-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--car-muted);
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  margin: 0 0 2rem;
+}
+
+/* === Whisper temporel (phrase d'accueil) === */
+.miroir-whisper {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--car-muted);
+  font-size: 0.98rem;
+  margin: 1rem 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* === Salutation === */
+.miroir-hello {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--car-text);
+  margin: 0.3rem 0 0.2rem;
+}
+.miroir-hello em { color: var(--car-gold); font-style: italic; font-weight: 500; }
+.miroir-date {
+  text-align: center;
+  color: var(--car-muted);
+  font-size: 0.95rem;
+  margin: 0 0 2.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* === Bandeau type compagnon (sommet de chaque page) === */
+.miroir-compagnon {
+  background:
+    linear-gradient(160deg, rgba(244, 207, 106, 0.08), rgba(96, 165, 250, 0.04)),
+    var(--car-panel);
+  border: 1px solid var(--car-line-2);
+  border-radius: 22px;
+  padding: 1.6rem 1.4rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  box-shadow: var(--car-shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+.miroir-compagnon::before {
+  content: "";
+  position: absolute;
+  top: -40%; left: -20%;
+  width: 70%; height: 100%;
+  background: radial-gradient(ellipse, var(--car-gold-glow), transparent 60%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+.miroir-compagnon__label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--car-gold);
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+  position: relative;
+}
+.miroir-compagnon__type {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3.5vw, 1.7rem);
+  color: var(--car-text);
+  margin: 0 0 0.25rem;
+  font-weight: 500;
+  position: relative;
+}
+.miroir-compagnon__type em { color: var(--car-gold); font-style: italic; }
+.miroir-compagnon__phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.12rem);
+  color: var(--car-text-soft);
+  margin: 0.5rem auto 0;
+  max-width: 36rem;
+  line-height: 1.55;
+  position: relative;
+}
+
+/* === Carte de centre travaillé aujourd'hui === */
+.miroir-centre-card {
+  margin: 0 auto 2.5rem;
+  background: linear-gradient(160deg, rgba(251, 191, 36, 0.10), rgba(251, 191, 36, 0.02));
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  border-radius: 18px;
+  padding: 1.2rem 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.miroir-centre-card__icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.4), rgba(251, 191, 36, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.miroir-centre-card__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--car-inst);
+  opacity: 0.85;
+  margin-bottom: 0.2rem;
+}
+.miroir-centre-card__text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--car-text-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* === Grille de cartes "portes" du jour === */
+.miroir-portes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 auto;
+}
+@media (min-width: 700px) {
+  .miroir-portes { grid-template-columns: repeat(2, 1fr); }
+}
+
+.miroir-porte {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: var(--car-panel);
+  border: 1px solid var(--car-line);
+  border-radius: 18px;
+  padding: 1.4rem 1.3rem;
+  color: var(--car-text);
+  transition: all 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  min-height: 130px;
+}
+.miroir-porte::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(244, 207, 106, 0.10), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.miroir-porte:hover {
+  border-color: rgba(244, 207, 106, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(2, 10, 28, 0.5);
+}
+.miroir-porte:hover::before { opacity: 1; }
+
+.miroir-porte__icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
+  filter: drop-shadow(0 0 12px var(--car-gold-glow));
+}
+.miroir-porte__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 0.3rem;
+  color: var(--car-text);
+}
+.miroir-porte__desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--car-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+.miroir-porte__arrow {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--car-gold);
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+/* État visité */
+.miroir-porte.is-visited {
+  background: linear-gradient(160deg, rgba(134, 239, 172, 0.04), var(--car-panel));
+  border-color: rgba(134, 239, 172, 0.3);
+}
+.miroir-porte.is-visited .miroir-porte__title::after {
+  content: " ✓";
+  color: var(--car-good, #86efac);
+}
+
+/* === Bandeau reprise du vœu d'hier === */
+.miroir-reprise {
+  background: linear-gradient(160deg, rgba(244, 207, 106, 0.10), rgba(244, 207, 106, 0.02));
+  border: 1px solid rgba(244, 207, 106, 0.32);
+  border-radius: 18px;
+  padding: 1.3rem 1.4rem;
+  margin: 0 auto 2rem;
+}
+.miroir-reprise__label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--car-gold);
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+.miroir-reprise__vow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--car-text);
+  border-left: 3px solid var(--car-gold);
+  padding-left: 0.9rem;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.5;
+}
+.miroir-reprise__q {
+  font-size: 0.95rem;
+  color: var(--car-text-soft);
+  margin: 0 0 0.7rem;
+}
+.miroir-reprise__opts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+.miroir-reprise__opt {
+  background: var(--car-glass);
+  border: 1px solid var(--car-line-2);
+  border-radius: 12px;
+  padding: 0.7rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--car-text-soft);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+.miroir-reprise__opt:hover {
+  border-color: var(--car-gold);
+  color: var(--car-gold);
+}
+.miroir-reprise__opt.is-active {
+  background: var(--car-gold);
+  color: var(--car-bg-deep);
+  border-color: var(--car-gold);
+  font-weight: 500;
+}
+
+/* === Formulaires & inputs === */
+.miroir-field { margin: 1.2rem 0; }
+.miroir-field__label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--car-gold);
+  margin-bottom: 0.6rem;
+  opacity: 0.85;
+}
+.miroir-input, .miroir-textarea, .miroir-select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: var(--car-glass);
+  border: 1px solid var(--car-line);
+  border-radius: 12px;
+  color: var(--car-text);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  resize: vertical;
+  transition: border-color 0.2s, background 0.2s;
+}
+.miroir-input:focus, .miroir-textarea:focus, .miroir-select:focus {
+  outline: none;
+  border-color: var(--car-gold);
+  background: var(--car-glass-2);
+}
+.miroir-textarea { min-height: 5rem; line-height: 1.6; }
+
+/* === Boutons === */
+.miroir-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--car-gold);
+  background: var(--car-gold);
+  color: var(--car-bg-deep);
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.22s;
+  text-decoration: none;
+}
+.miroir-btn:hover {
+  background: var(--car-gold-2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px var(--car-gold-glow);
+}
+.miroir-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+}
+.miroir-btn--ghost {
+  background: transparent;
+  color: var(--car-gold);
+  border: 1px solid var(--car-line-2);
+}
+.miroir-btn--ghost:hover {
+  border-color: var(--car-gold);
+  background: rgba(244, 207, 106, 0.08);
+}
+.miroir-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* === Zones de niveau === */
+.niveau-zones {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+.niveau-zone {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem 1.2rem;
+  background: var(--car-panel);
+  border: 1px solid var(--car-line);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.22s;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.niveau-zone:hover {
+  border-color: rgba(244, 207, 106, 0.4);
+  transform: translateX(4px);
+}
+.niveau-zone.is-active {
+  background: linear-gradient(160deg, rgba(244, 207, 106, 0.12), var(--car-panel));
+  border-color: var(--car-gold);
+  box-shadow: 0 0 0 1px var(--car-gold-glow), 0 12px 30px rgba(2, 10, 28, 0.4);
+}
+.niveau-zone__icon {
+  flex-shrink: 0;
+  font-size: 1.8rem;
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--car-glass);
+}
+.niveau-zone__body { flex: 1; }
+.niveau-zone__nom {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--car-text);
+  margin: 0 0 0.3rem;
+}
+.niveau-zone__desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.96rem;
+  color: var(--car-text-soft);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.niveau-precision {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.niveau-precision__toggle {
+  background: none;
+  border: none;
+  color: var(--car-gold);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.niveau-precision__toggle:hover { opacity: 1; }
+
+.niveau-details {
+  margin-top: 1rem;
+  display: none;
+}
+.niveau-details.is-open { display: block; }
+.niveau-detail {
+  padding: 0.9rem 1.1rem;
+  background: var(--car-glass);
+  border: 1px solid var(--car-line);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+}
+.niveau-detail:hover { border-color: rgba(244, 207, 106, 0.4); }
+.niveau-detail.is-active {
+  background: rgba(244, 207, 106, 0.10);
+  border-color: var(--car-gold);
+}
+.niveau-detail__head {
+  display: flex; align-items: baseline; gap: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+.niveau-detail__n {
+  color: var(--car-gold);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+.niveau-detail__titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--car-text);
+}
+.niveau-detail__texte {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--car-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* === Checkbox cards (ego, essence) === */
+.check-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+@media (min-width: 600px) {
+  .check-cards { grid-template-columns: 1fr 1fr; }
+}
+
+.check-card {
+  position: relative;
+  padding: 1rem 1.1rem 1rem 3rem;
+  background: var(--car-panel);
+  border: 1px solid var(--car-line);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.22s;
+  text-align: left;
+  user-select: none;
+}
+.check-card:hover {
+  border-color: rgba(244, 207, 106, 0.35);
+  background: var(--car-panel-2);
+}
+.check-card input { display: none; }
+.check-card__box {
+  position: absolute;
+  left: 1rem;
+  top: 1.1rem;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--car-line-2);
+  background: var(--car-glass);
+  transition: all 0.22s;
+}
+.check-card.is-checked .check-card__box {
+  background: var(--car-gold);
+  border-color: var(--car-gold);
+  box-shadow: 0 0 12px var(--car-gold-glow);
+}
+.check-card.is-checked .check-card__box::after {
+  content: "✓";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--car-bg-deep);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.check-card__label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
+  color: var(--car-text);
+  display: block;
+  line-height: 1.45;
+}
+.check-card__detail {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--car-muted);
+  margin-top: 0.25rem;
+  line-height: 1.45;
+}
+.check-card.is-checked {
+  background: linear-gradient(160deg, rgba(244, 207, 106, 0.10), var(--car-panel));
+  border-color: rgba(244, 207, 106, 0.45);
+}
+
+/* Variantes essence — couleur verte douce */
+.check-card--essence.is-checked {
+  background: linear-gradient(160deg, rgba(134, 239, 172, 0.10), var(--car-panel));
+  border-color: rgba(134, 239, 172, 0.45);
+}
+.check-card--essence.is-checked .check-card__box {
+  background: #86efac;
+  border-color: #86efac;
+  box-shadow: 0 0 12px rgba(134, 239, 172, 0.4);
+}
+
+/* === Section titre === */
+.miroir-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--car-text);
+  margin: 2rem 0 0.5rem;
+  letter-spacing: 0.01em;
+}
+.miroir-section-title em { color: var(--car-gold); font-style: italic; }
+.miroir-section-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--car-muted);
+  font-size: 0.96rem;
+  margin: 0 0 1.2rem;
+  line-height: 1.55;
+}
+
+/* === Message confirmation === */
+.miroir-ok {
+  display: inline-block;
+  margin-left: 0.8rem;
+  color: #86efac;
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.miroir-ok.is-visible { opacity: 1; }
+
+/* === Bottom nav (toujours visible) === */
+.miroir-bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(7, 11, 20, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--car-line);
+  padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+}
+.miroir-bottom-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-decoration: none;
+  color: var(--car-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.2rem;
+  transition: color 0.2s;
+}
+.miroir-bottom-nav__item .icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.miroir-bottom-nav__item.is-active,
+.miroir-bottom-nav__item:hover {
+  color: var(--car-gold);
+}
+
+/* === Page seuil (porte d'entrée du carnet) === */
+.miroir-seuil {
+  text-align: center;
+  max-width: 38rem;
+  margin: 4rem auto 0;
+  padding: 0 1.5rem;
+}
+.miroir-seuil__ornament {
+  color: var(--car-gold);
+  font-size: 1rem;
+  letter-spacing: 0.8em;
+  text-indent: 0.8em;
+  opacity: 0.55;
+  margin-bottom: 1.5rem;
+}
+.miroir-seuil h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  color: var(--car-text);
+  margin: 0 0 0.6rem;
+}
+.miroir-seuil h1 em { color: var(--car-gold); font-style: italic; }
+.miroir-seuil__intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.12rem;
+  color: var(--car-text-soft);
+  margin: 0 auto 3rem;
+  max-width: 32rem;
+  line-height: 1.6;
+}
+.miroir-seuil__portes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+@media (min-width: 600px) {
+  .miroir-seuil__portes { grid-template-columns: 1fr 1fr; }
+}
+.miroir-seuil__porte {
+  display: block;
+  text-decoration: none;
+  color: var(--car-text);
+  padding: 1.8rem 1.3rem;
+  background: var(--car-panel);
+  border: 1px solid var(--car-line-2);
+  border-radius: 22px;
+  transition: all 0.25s;
+}
+.miroir-seuil__porte:hover {
+  border-color: var(--car-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(2, 10, 28, 0.5);
+}
+.miroir-seuil__porte-ar {
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 0 16px var(--car-gold-glow));
+}
+.miroir-seuil__porte-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0 0 0.3rem;
+  color: var(--car-text);
+}
+.miroir-seuil__porte-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--car-muted);
+  font-size: 0.96rem;
+  margin: 0;
+  line-height: 1.5;
+}
+.miroir-seuil__porte--soft {
+  background: var(--car-glass);
+  border-color: var(--car-line);
+}
+
+/* === Animations subtiles === */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+.delay-1 { animation-delay: 0.06s; }
+.delay-2 { animation-delay: 0.12s; }
+.delay-3 { animation-delay: 0.18s; }
+.delay-4 { animation-delay: 0.24s; }
+.delay-5 { animation-delay: 0.30s; }
+.delay-6 { animation-delay: 0.36s; }
+
+/* === Page mince (login, demande) === */
+.miroir-form-wrap {
+  max-width: 28rem;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+.miroir-back {
+  display: inline-block;
+  margin: 1rem 0;
+  color: var(--car-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+.miroir-back:hover { color: var(--car-gold); }

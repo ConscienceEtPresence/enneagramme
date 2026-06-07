@@ -1,0 +1,156 @@
+{
+  "type": 4,
+  "nom": "L'Individualiste",
+  "centre": {
+    "prefere": "emotionnel",
+    "support": "mental",
+    "reprime": "instinctif",
+    "prefere_libelle": "Émotionnel",
+    "reprime_libelle": "Instinctif",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est l'instinctif : revenir au corps, à l'acte, à l'ordinaire. Le sentiment a déjà sa place — il s'agit de ne pas le laisser tout occuper."
+  },
+
+  "dynamique_ego": {
+    "passion": "Envie",
+    "passion_explication": "Le sentiment qu'il manque en vous quelque chose que les autres possèdent. Cela génère soit la comparaison, soit le retrait, soit la fascination pour ce qui blesse.",
+    "fixation": "Mélancolie",
+    "compulsion_evitement": "Éviter l'ordinaire, le banal, le commun.",
+    "peur_de_base": "N'avoir aucune identité propre, n'être personne, être indistinct des autres.",
+    "desir_de_base": "Être soi-même pleinement, créer une identité unique à partir de l'expérience intérieure."
+  },
+
+  "essence": {
+    "qualite_principale": "Le sens de l'Origine",
+    "qualite_phrase": "Vous n'avez pas à devenir quelqu'un — vous l'êtes déjà, depuis avant que vous le sachiez.",
+    "horizons": [
+      "Reconnaître l'ordinaire comme suffisant",
+      "Toucher le simple sans le déprécier",
+      "Habiter le présent sans l'amplifier",
+      "Sentir l'identité au repos, sans avoir à la prouver"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Honorer l'ordinaire — ne pas le fuir comme s'il était inférieur",
+    "Finir quelque chose — pas parfaitement, juste finir",
+    "Sortir du retrait — répondre quand on me parle, sans masque",
+    "Poser un acte concret — agir avant de ressentir",
+    "Ne pas amplifier — laisser ce qui est, à sa juste taille",
+    "Toucher le simple — un thé, un visage, un geste",
+    "Rester quand l'envie de fuir monte",
+    "Laisser venir sans saisir — accueillir, ne pas s'identifier",
+    "Voir une beauté ordinaire et la garder pour soi"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant 10h, terminer une seule tâche — petite, concrète, banale. La savourer comme accomplie.",
+    "Quand l'envie monte, respirer trois fois et nommer ce qui est déjà là, ici, en moi.",
+    "Faire un acte routinier (un café, faire le lit) avec une attention pleine — comme si c'était nouveau.",
+    "Écrire trois lignes au stylo, pas pour la beauté, pour la trace.",
+    "Sortir pour 10 minutes sans téléphone, juste pour habiter le monde.",
+    "Choisir une chose à ne pas amplifier aujourd'hui, et y revenir si elle monte."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Présence claire. Vous voyez vos mécanismes sans vous y identifier. L'ordinaire vous touche sans vous engloutir. Création depuis ce qui est, pas depuis le manque.", "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous tenez debout, vous faites le nécessaire. Les patterns sont actifs mais gérables — vous les sentez monter et vous pouvez choisir.",                                  "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "L'ego conduit, vous êtes spectateur. L'humeur saisit. La comparaison ou le retrait s'installent sans que vous puissiez les défaire.",                                  "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Tout est lourd, vous êtes englouti. Le manque est total. C'est un jour difficile — il appelle de la douceur, pas du combat.",                                          "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Création depuis l'être. L'identité repose en elle-même, n'a plus rien à prouver. L'ordinaire est honoré, le simple touche profondément." },
+      { "n": 2, "titre": "Sain",          "texte": "Self-aware, vous reconnaissez l'envie qui monte sans la suivre. Sensibilité au service du réel, pas de l'image." },
+      { "n": 3, "titre": "Compétent",     "texte": "Vos créations honorent ce qui est. La singularité s'exprime sans avoir besoin d'être validée." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Romantique. Vous saisissez votre humeur comme identité (« je suis triste, donc je suis ainsi »). Esthétisation du ressenti." },
+      { "n": 5, "titre": "Moyen",         "texte": "Auto-conscience qui devient auto-absorption. Comparaison constante, fantasme d'une vie ailleurs, mélancolie cultivée." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Inhibition, retrait, capricieux. Vous cultivez la souffrance comme distinction. Envie active, jalousie." },
+      { "n": 7, "titre": "Malsain",       "texte": "Auto-rejet, envie destructive, dégoût de soi. Boucle d'auto-accusation. Coupé du monde." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Dépression, paralysie, désespoir profond. Tout semble inutile. Sentiment d'être irréparable." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Effondrement, auto-destruction, idées suicidaires. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "envie",        "label": "J'ai senti l'envie monter",           "detail": "Quelqu'un avait ce qui me manque." },
+      { "id": "comparaison",  "label": "Je me suis comparé(e)",               "detail": "Mon intérieur a perdu sa valeur." },
+      { "id": "amplifie",     "label": "J'ai amplifié ce qui m'a manqué",     "detail": "Le manque a pris toute la place." },
+      { "id": "intensite",    "label": "J'ai cultivé l'intensité",             "detail": "Drame, mélancolie, fascination du tragique." },
+      { "id": "incompris",    "label": "Je me suis senti(e) incompris(e)",    "detail": "Personne ne voit qui je suis vraiment." },
+      { "id": "fuite",        "label": "J'ai fui l'ordinaire",                 "detail": "Le banal m'a paru insupportable." }
+    ],
+    "pieges": [
+      { "id": "retrait",      "label": "Je me suis retiré(e) au lieu de répondre",      "detail": "Le silence comme protection." },
+      { "id": "attente",      "label": "J'ai attendu l'inspiration parfaite",            "detail": "Je n'ai pas commencé." },
+      { "id": "saisi_humeur", "label": "J'ai saisi mon humeur comme une identité",       "detail": "« Je suis triste, donc je suis ainsi. »" },
+      { "id": "romantise",    "label": "J'ai romantisé ce qui m'a blessé(e)",            "detail": "La douleur comme distinction." },
+      { "id": "noblesse",     "label": "J'ai cherché ce qui rendait ma souffrance noble", "detail": "Trouver du sens à ce qui n'en a peut-être pas." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "simple",       "label": "J'étais simplement là, sans avoir besoin de plus" },
+      { "id": "ordinaire",    "label": "Quelque chose d'ordinaire m'a paru juste, suffisant" },
+      { "id": "fini",         "label": "J'ai fini quelque chose sans drame, paisiblement" },
+      { "id": "contact",      "label": "J'ai contacté quelqu'un sans masque" },
+      { "id": "accueil",      "label": "J'ai accueilli ce qui était, sans le transformer" },
+      { "id": "sansmanque",   "label": "Le manque n'avait plus prise sur moi" },
+      { "id": "presence",     "label": "J'ai senti une présence en moi qui n'était pas l'humeur" },
+      { "id": "origine",      "label": "J'ai touché quelque chose qui semblait avoir toujours été là" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "amplifie",   "label": "J'ai amplifié ce qui m'a manqué" },
+    { "id": "compare",    "label": "Je me suis comparé(e)" },
+    { "id": "retrait",    "label": "Je suis resté(e) dans le retrait" },
+    { "id": "intensite",  "label": "J'ai cherché l'intensité" },
+    { "id": "ordinaire",  "label": "J'ai trouvé l'ordinaire" },
+    { "id": "fini",       "label": "J'ai fini quelque chose" },
+    { "id": "laisse",     "label": "J'ai laissé venir sans saisir" },
+    { "id": "ouvert",     "label": "Je me suis ouvert(e) à quelqu'un" },
+    { "id": "obscur",     "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "origine",       "label": "L'Origine — qui je suis avant l'histoire" },
+    { "id": "simple",        "label": "Le simple — l'ordinaire sacré" },
+    { "id": "equilibre",     "label": "L'équilibre — sortir de l'oscillation" },
+    { "id": "ancrage",       "label": "L'ancrage — le corps avant l'humeur" },
+    { "id": "presence",      "label": "La présence — habiter ce qui est" },
+    { "id": "achevement",    "label": "L'achèvement — finir, sans drame" },
+    { "id": "douceur",       "label": "La douceur envers soi" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type4.html",          "icon": "📖" },
+    { "label": "Le diamant de l'essence",     "href": "/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Que voudriez-vous honorer ?",
+      "Une journée s'ouvre — qu'est-ce qui peut juste être ?",
+      "L'ordinaire vous attend. Que voulez-vous y déposer ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. Quel est l'état des lieux ?",
+      "Vous voilà. Comment se porte votre cœur ?",
+      "Une pause possible. Que voulez-vous regarder ?"
+    ],
+    "soir": [
+      "Le jour décline. Que voulez-vous garder ?",
+      "Vous pouvez juste venir, sans rien dire.",
+      "Le soir est doux. Une phrase, si elle vient."
+    ],
+    "nuit": [
+      "La nuit veille. Une seule chose à déposer, puis dormir.",
+      "Vous êtes encore là. C'est déjà beaucoup."
+    ]
+  }
+}
