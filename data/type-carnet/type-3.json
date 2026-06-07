@@ -1,0 +1,156 @@
+{
+  "type": 3,
+  "nom": "Le Performeur",
+  "centre": {
+    "prefere": "emotionnel",
+    "support": "instinctif",
+    "reprime": "emotionnel-profond",
+    "prefere_libelle": "Émotionnel (coupé pour fonctionner)",
+    "reprime_libelle": "Le sentir véritable",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est l'émotionnel profond : sentir ce qui est, pas ce qui se présente bien. Cesser de fonctionner pendant quelques minutes — pour exister."
+  },
+
+  "dynamique_ego": {
+    "passion": "Vanité",
+    "passion_explication": "Une vanité fonctionnelle, presque invisible : 'je suis ce que je fais, ce que je projette, ce que je réussis.' L'image colle si bien qu'on la prend pour soi.",
+    "fixation": "Mensonge à soi-même (sur sa valeur intrinsèque)",
+    "compulsion_evitement": "Éviter l'échec, la stagnation, l'invisibilité.",
+    "peur_de_base": "Être sans valeur en dehors de ce qu'on fait.",
+    "desir_de_base": "Avoir de la valeur, être validé(e), être quelqu'un."
+  },
+
+  "essence": {
+    "qualite_principale": "L'être avant le faire",
+    "qualite_phrase": "Vous valez avant d'avoir prouvé — vous êtes avant de faire.",
+    "horizons": [
+      "Sentir ce qui est, derrière ce qui se montre",
+      "S'arrêter sans devoir produire",
+      "Reconnaître l'image comme image — sans la haïr, sans s'y coller",
+      "Toucher la valeur qui ne dépend d'aucune réussite"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Faire quelque chose qui ne sera pas vu",
+    "Ralentir — vraiment, pas en performance de lenteur",
+    "Sentir ce qui est, sans l'optimiser",
+    "Ne pas répondre à un mail aujourd'hui",
+    "Accepter d'être ordinaire pendant une heure",
+    "Honorer une émotion sans la transformer en action",
+    "Recevoir un compliment sans rebondir vers le suivant",
+    "Échouer une petite chose sans le cacher",
+    "Être présent(e) sans devoir briller"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant midi, ne rien produire pendant 15 minutes. Juste être assis(e).",
+    "Quand on vous demande 'ça va ?', répondre la vraie réponse, pas la sociale.",
+    "Boire un thé sans téléphone, sans podcast, sans rien à 'tirer' de ce moment.",
+    "Sentir un signal corporel (fatigue, faim, tension) au lieu de le pousser.",
+    "Cocher rien sur votre to-do d'aujourd'hui — voir ce qui se passe.",
+    "Annuler une chose qui n'est pas vitale. La libération est la pratique."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Présence avant performance. Vous touchez votre valeur intrinsèque. Ce que vous faites sert l'âme, pas l'image. L'authenticité est goûtée comme un don.", "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous fonctionnez, vous performez — mais vous sentez quand l'image prend trop de place. Vous pouvez ralentir.",                                            "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "L'image conduit. Vous courrez. Vous comparez. La fatigue est niée. Le sentir devient un coût que vous ne pouvez pas vous permettre.",                       "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Burn-out, dissociation, vide intérieur derrière la façade impeccable. Un jour très lourd qui appelle un arrêt vrai, pas une pause photogénique.",         "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Authentique, accepté(e), sans façade. Vous êtes vous, dans le succès comme dans l'échec. La valeur est dans l'être." },
+      { "n": 2, "titre": "Sain",          "texte": "Autonome, accomplissant(e), confiant(e). Vous performez par vocation, pas pour combler." },
+      { "n": 3, "titre": "Compétent",     "texte": "Adaptable, ambitieux(se), inspirant(e). Vous incarnez ce que vous représentez." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Compétitif(ve), image-conscient(e). Vous comparez. Vous calibrez votre apparence." },
+      { "n": 5, "titre": "Moyen",         "texte": "Calculateur(rice), narcissique. L'image prend toute la place. Le sentir s'éloigne." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Arrogant(e), hostile, expéditif(ve). Vous voyez les autres comme obstacles ou ressources." },
+      { "n": 7, "titre": "Malsain",       "texte": "Trompeur(se), manipulateur(rice), faux(sse). Vous mentez à vous d'abord." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Vengeance, sabotage de la réussite des autres, vide intérieur." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Effondrement, psychopathie relationnelle. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "image",       "label": "J'ai géré mon image",                       "detail": "Plus que mon vivant." },
+      { "id": "compare",     "label": "Je me suis comparé(e) en silence",           "detail": "Mon mètre invisible." },
+      { "id": "trop-vite",   "label": "J'ai fait trop, trop vite",                  "detail": "Le faire pour ne pas sentir." },
+      { "id": "nie-fatigue", "label": "J'ai nié ma fatigue",                        "detail": "Elle interdit la performance." },
+      { "id": "valeur-faire","label": "Je me suis pesé(e) à ce que j'ai produit",   "detail": "Sans ça je suis quoi ?" },
+      { "id": "convertir",   "label": "J'ai converti une émotion en action",        "detail": "Pour ne pas la sentir." }
+    ],
+    "pieges": [
+      { "id": "mail-reflexe","label": "J'ai répondu vite pour montrer ma présence", "detail": "Sans rien dire de vrai." },
+      { "id": "social-face", "label": "J'ai mis un visage social pour cacher l'état réel", "detail": "Personne n'a vu." },
+      { "id": "trop-prod",   "label": "J'ai sur-produit",                          "detail": "Quantité au lieu de présence." },
+      { "id": "selfie-vie",  "label": "J'ai vécu ma vie comme à raconter",        "detail": "Plus que comme à vivre." },
+      { "id": "rebondit",    "label": "J'ai rebondi sur un compliment vers le suivant", "detail": "Sans l'avoir reçu." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "non-fait",      "label": "Je n'ai rien fait — et c'était suffisant" },
+      { "id": "vraie-reponse", "label": "J'ai répondu la vraie réponse" },
+      { "id": "fatigue-sentie","label": "J'ai senti ma fatigue et l'ai honorée" },
+      { "id": "valeur-rien",   "label": "Je me suis senti(e) ayant de la valeur sans rien produire" },
+      { "id": "echec-doux",    "label": "J'ai échoué et c'était humain" },
+      { "id": "presence-vide", "label": "J'ai été présent(e) sans devoir briller" },
+      { "id": "ordinaire-bon", "label": "L'ordinaire m'a paru bon" },
+      { "id": "perle",         "label": "J'ai touché qui je suis, en deça de ce que je fais" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "image-pris-pas",  "label": "L'image a pris le pas" },
+    { "id": "sur-produit",     "label": "J'ai sur-produit" },
+    { "id": "vrai-arrete",     "label": "Je me suis vraiment arrêté(e)" },
+    { "id": "vrai-dit",        "label": "J'ai dit le vrai" },
+    { "id": "echec-cache",     "label": "J'ai caché un échec" },
+    { "id": "echec-montre",    "label": "J'ai laissé voir un échec" },
+    { "id": "compare-en-cachette","label": "Je me suis comparé(e) en silence" },
+    { "id": "valeur-sentie",   "label": "J'ai senti ma valeur indépendamment du faire" },
+    { "id": "obscur",          "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "etre",        "label": "Être — avant faire" },
+    { "id": "ralentir",    "label": "Ralentir — vraiment" },
+    { "id": "sentir-vrai", "label": "Sentir — ce qui est, pas ce qui se montre" },
+    { "id": "authentique", "label": "L'authenticité — la vraie réponse" },
+    { "id": "ordinaire",   "label": "L'ordinaire — comme suffisant" },
+    { "id": "perle",       "label": "La perle — qui je suis sous l'image" },
+    { "id": "echec-honore","label": "L'échec honoré — qui rend humain" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type3.html",          "icon": "📖" },
+    { "label": "Le diamant de l'essence",     "href": "/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Que voulez-vous *être*, plus que faire ?",
+      "Une journée s'ouvre — qu'est-ce qui peut juste rester non-fait ?",
+      "Que voulez-vous sentir, derrière ce qui se présentera ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. Avez-vous senti votre corps ?",
+      "Vous voilà. Qu'avez-vous vraiment fait — pour vous ?",
+      "Une pause possible. Posez-la, vraiment."
+    ],
+    "soir": [
+      "Le jour décline. Qu'est-ce qui peut être laissé inachevé ?",
+      "Vous pouvez juste venir, sans rien rapporter.",
+      "Le soir est doux. Une chose vraie, c'est très bien."
+    ],
+    "nuit": [
+      "La nuit veille. Un mot vrai, puis dormir.",
+      "Vous êtes encore là, sans avoir à le prouver."
+    ]
+  }
+}
