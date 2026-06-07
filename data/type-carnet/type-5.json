@@ -1,0 +1,156 @@
+{
+  "type": 5,
+  "nom": "L'Observateur",
+  "centre": {
+    "prefere": "mental",
+    "support": "instinctif",
+    "reprime": "emotionnel",
+    "prefere_libelle": "Mental (observation, savoir)",
+    "reprime_libelle": "Émotionnel",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est l'émotionnel : sentir, partager, descendre dans le cœur. Pas avec votre tête. Le savoir ne suffit pas — le contact non plus n'a pas à être su d'abord."
+  },
+
+  "dynamique_ego": {
+    "passion": "Avarice",
+    "passion_explication": "Pas une avarice d'argent. Une avarice de soi : de votre énergie, de votre temps, de votre présence, de ce que vous savez. Vous gardez, vous protégez, parce qu'il vous semble que vous n'avez pas assez.",
+    "fixation": "Retrait, observation distante",
+    "compulsion_evitement": "Éviter d'être envahi(e), dépossédé(e), vidé(e) de ses ressources.",
+    "peur_de_base": "Être incompétent(e), incapable, sans ressources.",
+    "desir_de_base": "Être capable, compétent(e), comprendre."
+  },
+
+  "essence": {
+    "qualite_principale": "La Connaissance directe",
+    "qualite_phrase": "Vous n'avez pas à tout savoir pour être en sécurité — vous êtes déjà en lien avec le réel.",
+    "horizons": [
+      "Sentir au lieu de comprendre",
+      "Sortir de l'observation pour être dedans",
+      "Partager une ressource, et voir qu'elle ne diminue pas",
+      "Toucher la richesse intérieure qui ne se calcule pas"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Sortir de ma tête au moins une fois",
+    "Engager mon corps dans une action concrète",
+    "Partager un peu de moi, sans tout calculer",
+    "Donner du temps à quelqu'un — vraiment",
+    "Sentir sans avoir besoin de comprendre",
+    "Ne pas me retirer quand l'émotion monte",
+    "Tenir une conversation au-delà du nécessaire",
+    "Faire l'expérience avant de l'analyser",
+    "Recevoir une présence, sans la décortiquer"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant midi, appeler quelqu'un sans avoir préparé ce que vous direz.",
+    "Une chose physique — marche, étirement, geste — pour habiter le corps.",
+    "Sortir de chez vous sans destination intellectuelle. Juste être dans le monde.",
+    "Quand on vous demande quelque chose, dire oui plus vite que vous ne le feriez.",
+    "Manger lentement, sentir le goût, ne pas lire en mangeant.",
+    "Partager une pensée à voix haute — pas pour l'expliquer, pour qu'elle existe en dehors."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Présence engagée. Vous savez ET vous sentez. Vous partagez vos ressources, et elles se renouvellent. Votre connaissance sert la rencontre.",        "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous observez, vous analysez — vous remarquez le réflexe de retrait mais vous pouvez choisir d'engager le contact.",                                   "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "Vous vous repliez dans votre tour. Le contact épuise. Vous accumulez du savoir mais vous fuyez le sentir. Le monde devient hostile.",                "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Isolement total, paranoïa, dépersonnalisation. Le corps n'est plus là. Un jour très lourd qui appelle un lien doux et concret.",                       "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Pionnier(ère), visionnaire, présent(e). Vous percevez ce que d'autres ne voient pas, et vous l'incarnez." },
+      { "n": 2, "titre": "Sain",          "texte": "Observateur(rice), perspicace, curieux(se). Vous voyez clair sans vous retirer." },
+      { "n": 3, "titre": "Compétent",     "texte": "Expert(e), focalisé(e), profond(e). Votre savoir sert quelque chose." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Penseur(se), conceptuel(le). Vous commencez à privilégier l'idée sur l'expérience." },
+      { "n": 5, "titre": "Moyen",         "texte": "Détaché(e), isolé(e), secret(ète). Vous gardez pour vous, vous économisez, vous calculez vos engagements." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Provocant(e), nihiliste, méprisant(e). Vous attaquez de loin." },
+      { "n": 7, "titre": "Malsain",       "texte": "Cynique, antagoniste, excentrique. Le monde est ennemi." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Paranoïa, hallucinations, déconnexion du corps. Le retrait devient psychose." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Schizoïde, dépersonnalisation totale. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "retrait",     "label": "Je me suis retiré(e) dans ma tête",          "detail": "Plus sûr, plus contrôlable." },
+      { "id": "economise",   "label": "J'ai économisé mon énergie",                  "detail": "Comme si j'en manquais." },
+      { "id": "garde",       "label": "J'ai gardé une pensée pour moi seul(e)",       "detail": "La partager m'a paru trop coûteux." },
+      { "id": "analyse",     "label": "J'ai analysé au lieu de sentir",               "detail": "Plus sûr que ressentir." },
+      { "id": "evite",       "label": "J'ai évité un contact qui demandait du cœur", "detail": "Trop d'engagement." },
+      { "id": "savoir-avant","label": "J'ai voulu savoir avant d'agir",               "detail": "Et je n'ai pas agi." }
+    ],
+    "pieges": [
+      { "id": "ecran",       "label": "Je me suis caché(e) derrière un écran ou un livre",  "detail": "Le réel attendait." },
+      { "id": "non-bref",    "label": "J'ai dit non par réflexe",                            "detail": "Parce que ça demandait du temps." },
+      { "id": "minimum",     "label": "J'ai fait le minimum vital",                          "detail": "Pour préserver mes ressources." },
+      { "id": "froid",       "label": "J'ai paru froid(e) sans le vouloir",                  "detail": "Le cœur n'a pas suivi." },
+      { "id": "expert-pas",  "label": "Je n'ai pas parlé parce que je n'étais pas expert(e)","detail": "Et la conversation s'est fermée." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "engage",       "label": "Je me suis engagé(e) sans avoir tout prévu" },
+      { "id": "partage-soi",  "label": "J'ai partagé une part de moi, simplement" },
+      { "id": "corps",        "label": "J'ai habité mon corps, vraiment" },
+      { "id": "senti-pas-su", "label": "J'ai senti sans avoir besoin de comprendre" },
+      { "id": "donne-temps",  "label": "J'ai donné du temps à quelqu'un, généreusement" },
+      { "id": "richesse",     "label": "J'ai senti la richesse en moi, qui ne se calcule pas" },
+      { "id": "vivant-monde", "label": "Le monde m'a paru vivant, pas menaçant" },
+      { "id": "savoir-libre", "label": "J'ai laissé tomber un savoir pour faire l'expérience" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "retire",      "label": "Je me suis retiré(e)" },
+    { "id": "engage",      "label": "Je me suis engagé(e)" },
+    { "id": "garde-pour-soi", "label": "J'ai gardé quelque chose pour moi qui voulait sortir" },
+    { "id": "partage",     "label": "J'ai partagé une ressource" },
+    { "id": "froid-paru",  "label": "J'ai paru froid(e) malgré moi" },
+    { "id": "senti",       "label": "J'ai senti, sans analyser" },
+    { "id": "tete-corps",  "label": "Je suis sorti(e) de ma tête vers le corps" },
+    { "id": "donne-temps", "label": "J'ai donné du temps généreusement" },
+    { "id": "obscur",      "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "engage",     "label": "L'engagement — descendre dans le réel" },
+    { "id": "partager",   "label": "Partager — la ressource se renouvelle" },
+    { "id": "corps",      "label": "Le corps — habiter ce qu'on a" },
+    { "id": "sentir",     "label": "Sentir — sans devoir savoir" },
+    { "id": "generosite", "label": "La générosité — il y en a assez" },
+    { "id": "presence",   "label": "La présence — pas l'observation" },
+    { "id": "humilite-savoir","label": "Humilité du savoir — accepter de ne pas comprendre" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type5.html",          "icon": "📖" },
+    { "label": "Le diamant de l'essence",     "href": "/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Voulez-vous descendre dans le corps aujourd'hui ?",
+      "Une journée s'ouvre — pouvez-vous y mettre votre présence ?",
+      "Que voulez-vous partager — même un peu ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. Êtes-vous dans votre tête ou dans la vie ?",
+      "Vous voilà. Quelqu'un mérite-t-il votre temps maintenant ?",
+      "Une pause possible. Mais qui soit habitée, pas réfugiée."
+    ],
+    "soir": [
+      "Le jour décline. Qu'avez-vous laissé entrer ?",
+      "Vous pouvez juste venir, sans devoir comprendre.",
+      "Le soir est doux. Un partage, si possible."
+    ],
+    "nuit": [
+      "La nuit veille. Un sentir, puis dormir.",
+      "Vous êtes encore là, et c'est partagé déjà."
+    ]
+  }
+}

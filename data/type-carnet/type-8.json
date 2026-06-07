@@ -1,0 +1,156 @@
+{
+  "type": 8,
+  "nom": "Le Meneur",
+  "centre": {
+    "prefere": "instinctif",
+    "support": "mental",
+    "reprime": "emotionnel-tendre",
+    "prefere_libelle": "Instinctif (force, action, ventre)",
+    "reprime_libelle": "L'émotionnel tendre",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est l'émotionnel tendre : laisser apparaître la vulnérabilité, le besoin, la douceur. Pas comme faiblesse — comme vérité."
+  },
+
+  "dynamique_ego": {
+    "passion": "Démesure (lust)",
+    "passion_explication": "Vouloir trop, plus fort, plus intense. Un appétit qui couvre une vulnérabilité interdite. Vous prenez de la place pour ne pas être pris(e). Vous menez pour ne pas être mené(e).",
+    "fixation": "Vengeance, contrôle, dureté défensive",
+    "compulsion_evitement": "Éviter la vulnérabilité, la dépendance, la soumission.",
+    "peur_de_base": "Être contrôlé(e), dominé(e), trahi(e), pris(e) au dépourvu.",
+    "desir_de_base": "Être autonome, maître(sse) de soi, intouchable."
+  },
+
+  "essence": {
+    "qualite_principale": "La Force innocente",
+    "qualite_phrase": "Vous n'avez pas à durcir pour être fort(e) — votre tendresse EST votre force.",
+    "horizons": [
+      "Laisser voir un ventre tendre",
+      "Recevoir une douceur sans la juger faible",
+      "Sentir l'autre comme égal, pas comme menace",
+      "Toucher la puissance qui ne brutalise pas"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Laisser une chose se faire sans la contrôler",
+    "Reconnaître un besoin tendre — et l'honorer",
+    "Demander, au lieu d'exiger",
+    "Écouter avant de répondre",
+    "Sentir la vulnérabilité qui monte, sans la durcir",
+    "Reconnaître un tort sans m'effondrer",
+    "Faire confiance à quelqu'un une fois",
+    "Toucher la juste mesure dans une dépense",
+    "Laisser quelqu'un me protéger un instant"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant midi, demander quelque chose doucement — sans l'imposer.",
+    "Quand le réflexe de contre-attaquer monte, respirer trois fois et écouter ce qui blesse vraiment.",
+    "Une activité où vous n'êtes pas le/la leader. Suivre. Voir comment c'est.",
+    "Sentir un besoin (faim, fatigue, manque) et y répondre doucement. Pas en force.",
+    "Recevoir une marque d'affection sans la dévier en plaisanterie.",
+    "Dire 'je ne sais pas' une fois, sans le compenser."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Force innocente. Vous protégez sans dominer. Vous décidez sans imposer. Votre vulnérabilité sentie nourrit votre puissance vraie.",     "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous menez, vous décidez — vous sentez la dureté qui monte et vous pouvez choisir d'écouter d'abord.",                                            "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "Le ventre conduit. Vous dominez, vous intimidez, vous niez ce qui fait mal. La cuirasse durcit.",                                                  "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Tyrannie, vengeance, isolement glacial. Le tendre est entièrement banni. Un jour très lourd qui appelle un témoin doux et résistant.",          "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Magnanime, protecteur(rice), courageux(se). Votre force sert la vie. Vous protégez les faibles parce que vous reconnaissez votre propre tendre." },
+      { "n": 2, "titre": "Sain",          "texte": "Décisif(ve), confiant(e), affirmé(e). Vous prenez position sans écraser." },
+      { "n": 3, "titre": "Compétent",     "texte": "Leader naturel(le), constructeur(rice), organisateur(rice). L'action incarnée." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Affirmé(e), pragmatique. Vous commencez à dominer subtilement les situations." },
+      { "n": 5, "titre": "Moyen",         "texte": "Égocentrique, dominateur(rice), provocateur(rice). Vous montrez votre force. La vulnérabilité est niée." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Confrontant, agressif(ve), méprisant(e) de la faiblesse. Vous intimidez." },
+      { "n": 7, "titre": "Malsain",       "texte": "Cruel, autoritaire, vengeur(se). La cuirasse devient blindée." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Brutal(e), destructeur(rice), mégalo. Vous attaquez par peur d'être attaqué(e)." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Sociopathie, destruction de soi et d'autrui. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "domine",     "label": "J'ai dominé une situation par réflexe",     "detail": "Sans qu'on me le demande." },
+      { "id": "intimide",   "label": "J'ai intimidé quelqu'un — un peu, beaucoup", "detail": "Pour ne pas être touché(e)." },
+      { "id": "nie-tendre", "label": "J'ai nié quelque chose de tendre en moi",    "detail": "Trop dangereux à laisser passer." },
+      { "id": "exces",      "label": "J'ai fait trop, en force, en quantité",       "detail": "L'excès comme prouve de puissance." },
+      { "id": "contre",     "label": "J'ai contre-attaqué avant de comprendre",    "detail": "Le réflexe avant le sentir." },
+      { "id": "controle",   "label": "J'ai contrôlé pour ne pas être contrôlé(e)", "detail": "La méfiance préventive." }
+    ],
+    "pieges": [
+      { "id": "non-ecoute", "label": "Je n'ai pas vraiment écouté",                "detail": "J'attendais mon tour de répondre." },
+      { "id": "ironie-pro", "label": "J'ai utilisé l'ironie pour ne pas sentir",    "detail": "L'humour comme bouclier." },
+      { "id": "refus-aide", "label": "J'ai refusé une aide qui s'offrait",          "detail": "Recevoir égale dépendre." },
+      { "id": "decharge",   "label": "J'ai déchargé une colère sur le mauvais cible","detail": "Plus accessible." },
+      { "id": "test-loy",   "label": "J'ai testé la loyauté de quelqu'un",          "detail": "Pour voir s'il/elle tenait." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "tendre-vu",  "label": "J'ai laissé voir ma tendresse" },
+      { "id": "ecoute",     "label": "J'ai écouté avant de répondre" },
+      { "id": "vulnerable", "label": "J'ai senti ma vulnérabilité, sans la durcir" },
+      { "id": "demande",    "label": "J'ai demandé doucement" },
+      { "id": "recu-aide",  "label": "J'ai reçu une aide, simplement" },
+      { "id": "force-douce","label": "Ma force a protégé sans écraser" },
+      { "id": "innocence",  "label": "J'ai touché une innocence en moi — qui n'était pas naïveté" },
+      { "id": "confiance",  "label": "J'ai fait confiance à quelqu'un" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "domine",      "label": "J'ai dominé" },
+    { "id": "tendre",      "label": "J'ai laissé voir mon tendre" },
+    { "id": "contre",      "label": "J'ai contre-attaqué" },
+    { "id": "ecoute",      "label": "J'ai écouté vraiment" },
+    { "id": "demande",     "label": "J'ai demandé doucement" },
+    { "id": "exces",       "label": "J'ai été dans l'excès" },
+    { "id": "vulnerable",  "label": "J'ai senti ma vulnérabilité" },
+    { "id": "force-juste", "label": "Ma force a servi quelque chose de juste" },
+    { "id": "obscur",      "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "innocence",   "label": "L'innocence — pas la naïveté, la fraîcheur" },
+    { "id": "vulnerable",  "label": "La vulnérabilité — vraie force" },
+    { "id": "tendresse",   "label": "La tendresse — envers soi d'abord" },
+    { "id": "mesure",      "label": "La juste mesure — au lieu de l'excès" },
+    { "id": "ecoute",      "label": "L'écoute — avant la réponse" },
+    { "id": "confiance",   "label": "La confiance — risquée, mais vivante" },
+    { "id": "force-juste", "label": "La force juste — qui protège, pas qui écrase" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type8.html",          "icon": "📖" },
+    { "label": "Le diamant de l'essence",     "href": "/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Quelle douceur pouvez-vous laisser entrer ?",
+      "Une journée s'ouvre — où pourrez-vous écouter avant d'agir ?",
+      "Quelle vulnérabilité voulez-vous honorer ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. La cuirasse a-t-elle bougé ?",
+      "Vous voilà. Quelqu'un mérite-t-il votre tendresse, maintenant ?",
+      "Une pause possible. Sans devoir prendre la place."
+    ],
+    "soir": [
+      "Le jour décline. Avez-vous laissé voir un peu de votre ventre tendre ?",
+      "Vous pouvez juste venir, sans rien dominer.",
+      "Le soir est doux. La force juste, c'est très bien."
+    ],
+    "nuit": [
+      "La nuit veille. Une demande douce, puis dormir.",
+      "Vous êtes encore là, sans avoir à le défendre."
+    ]
+  }
+}

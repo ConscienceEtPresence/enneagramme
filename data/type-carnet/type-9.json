@@ -1,0 +1,156 @@
+{
+  "type": 9,
+  "nom": "Le Médiateur",
+  "centre": {
+    "prefere": "instinctif",
+    "support": "emotionnel",
+    "reprime": "instinctif-affirmation",
+    "prefere_libelle": "Instinctif (mais endormi, anesthésié)",
+    "reprime_libelle": "L'instinct d'affirmation",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est votre instinct d'affirmation : prendre place, dire votre désir, agir pour vous. Vous existez — il est temps que ça se voie."
+  },
+
+  "dynamique_ego": {
+    "passion": "Paresse spirituelle",
+    "passion_explication": "Pas une paresse de travail. Une paresse de soi : ne pas se sentir, ne pas se nommer, ne pas s'éveiller à ce qu'on veut vraiment. Le confort comme évitement de l'urgence d'exister.",
+    "fixation": "Auto-oubli, fusion avec ce qui est confortable",
+    "compulsion_evitement": "Éviter le conflit, la séparation, la perte d'harmonie.",
+    "peur_de_base": "Être en conflit, séparé(e), perdre la connexion.",
+    "desir_de_base": "Avoir la paix, l'unité, l'harmonie."
+  },
+
+  "essence": {
+    "qualite_principale": "L'Amour vivant (qui inclut sans s'effacer)",
+    "qualite_phrase": "Vous n'avez pas à disparaître pour faire la paix — votre présence EST la paix.",
+    "horizons": [
+      "Vous nommer, vous prendre, vous occuper",
+      "Sentir votre propre désir — et le suivre",
+      "Reconnaître un conflit comme vivant, pas comme rupture",
+      "Toucher l'unité qui n'efface pas la différence"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Sentir ce que JE veux, vraiment, aujourd'hui",
+    "Prendre une place — verbale, physique, symbolique",
+    "Nommer un désaccord, doucement",
+    "Faire une chose qui me tient à cœur — pas une chose 'utile'",
+    "Ne pas me fondre dans ce que veut l'autre",
+    "Commencer une chose au lieu de la reporter",
+    "Sentir mon corps — pas pour bouger, pour exister",
+    "Faire un choix tranché, sans le diluer",
+    "Honorer une colère qui veut monter"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant midi, sentir ce que vous avez envie de manger (vraiment) et le manger.",
+    "Quand quelqu'un vous demande votre avis, prenez 3 secondes et dites le vrai — pas le diplomatique.",
+    "Commencer une chose reportée. Petite, mais commencée.",
+    "Sentir une tension dans le corps. La laisser là. Lui dire : 'tu es bienvenue.'",
+    "Choisir un endroit où vous occuperez de la place aujourd'hui. Y aller.",
+    "Avant de dire oui par réflexe, demandez-vous : est-ce que je veux ?"
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Présence éveillée. Vous êtes là — pleinement, distinctement. Votre paix n'efface pas votre désir. Votre amour n'efface pas votre 'je'.",      "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous tenez. Vous voyez la fuite par le confort quand elle vient. Vous pouvez choisir de vous nommer, parfois.",                                  "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "L'auto-oubli conduit. Vous reportez. Vous vous diluez dans ce qui est doux. Vous évitez par confort. Le 'je' devient flou.",                       "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Endormissement total, dissociation, hébétude. Le contact est perdu. Un jour très lourd qui appelle un réveil doux, ancré, corporel.",            "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Présent(e), unifié(e), éveillé(e). Votre paix est active, pleine. Vous incluez sans vous effacer." },
+      { "n": 2, "titre": "Sain",          "texte": "Apaisant(e), patient(e), accueillant(e). Vous voyez les autres comme égaux." },
+      { "n": 3, "titre": "Compétent",     "texte": "Soutenant(e), médiateur(rice), réconciliateur(rice). L'harmonie sentie, pas fabriquée." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Aimable, complaisant(e). Vous commencez à vous fondre. Le 'je' s'efface poliment." },
+      { "n": 5, "titre": "Moyen",         "texte": "Évitant(e), passif(ve), procrastinateur(rice). Vous vous oubliez. La routine couvre le sentir." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Résigné(e), engourdi(e), entêté(e). Vous résistez par inertie au lieu d'agir." },
+      { "n": 7, "titre": "Malsain",       "texte": "Négligence, dissociation, déconnexion. Vous n'êtes plus là dans votre vie." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Effacement complet, hébétude, dépression. Vous flottez." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Désintégration, fugue, abandon de soi total. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "fond",       "label": "Je me suis fondu(e) dans ce que voulait l'autre",  "detail": "Sans même y penser." },
+      { "id": "report",     "label": "J'ai reporté une chose importante",                 "detail": "Pour 'plus tard'." },
+      { "id": "evite-conflit","label": "J'ai évité un conflit qui valait la peine",        "detail": "La paix au prix de moi." },
+      { "id": "engourdi",   "label": "Je me suis engourdi(e) — TV, manger, écran",          "detail": "Pour ne pas sentir." },
+      { "id": "auto-oubli", "label": "J'ai oublié ce que je voulais",                       "detail": "Au profit du collectif." },
+      { "id": "rester-confort","label": "Je suis resté(e) dans la zone de confort",         "detail": "Même quand elle ne nourrissait plus." }
+    ],
+    "pieges": [
+      { "id": "oui-reflexe","label": "J'ai dit oui par réflexe",                          "detail": "Sans savoir si je voulais." },
+      { "id": "diffus",     "label": "J'ai donné un avis diplomatique au lieu du vrai",    "detail": "Pour ne pas heurter." },
+      { "id": "fade",       "label": "J'ai laissé passer une émotion qui voulait monter",  "detail": "Le contrôle par fadeur." },
+      { "id": "lent",       "label": "J'ai été lent(e), pour ne pas avoir à choisir",      "detail": "L'inertie comme protection." },
+      { "id": "remplis",    "label": "J'ai rempli le silence par habitude",                "detail": "L'absence de soi en bruit." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "voulu",        "label": "J'ai senti ce que je voulais, vraiment" },
+      { "id": "pris-place",   "label": "J'ai pris une place — visible" },
+      { "id": "nomme-desac",  "label": "J'ai nommé un désaccord, doucement" },
+      { "id": "commence",     "label": "J'ai commencé une chose reportée" },
+      { "id": "colere-honore","label": "J'ai honoré une colère qui voulait monter" },
+      { "id": "vrai-avis",    "label": "J'ai donné mon vrai avis" },
+      { "id": "present",      "label": "J'ai été pleinement présent(e), sans m'effacer" },
+      { "id": "amour-vrai",   "label": "L'amour vrai est venu — qui n'efface pas le 'je'" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "fond",        "label": "Je me suis fondu(e)" },
+    { "id": "pris-place",  "label": "J'ai pris ma place" },
+    { "id": "report",      "label": "J'ai reporté" },
+    { "id": "commence",    "label": "J'ai commencé" },
+    { "id": "evite-conflit","label": "J'ai évité un conflit nécessaire" },
+    { "id": "vrai",        "label": "J'ai dit le vrai" },
+    { "id": "engourdi",    "label": "Je me suis engourdi(e)" },
+    { "id": "eveille",     "label": "Je me suis éveillé(e) à un désir" },
+    { "id": "obscur",      "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "action",      "label": "L'action — au lieu de l'inertie" },
+    { "id": "je",          "label": "Le 'je' — me distinguer, sans rompre" },
+    { "id": "desir",       "label": "Le désir — sentir ce qui m'appelle" },
+    { "id": "presence",    "label": "La présence — être ici, vraiment" },
+    { "id": "vrai-place",  "label": "Ma vraie place — la prendre, sans m'excuser" },
+    { "id": "amour-distinct","label": "L'amour qui distingue — au lieu de fondre" },
+    { "id": "reveil-corps","label": "Réveil du corps — sentir, exister" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type9.html",          "icon": "📖" },
+    { "label": "Le diamant de l'amour",       "href": "/diamant-amour.html",          "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Que voulez-vous, VOUS, aujourd'hui ?",
+      "Une journée s'ouvre — quelle place voulez-vous y prendre ?",
+      "Quel désir mérite votre attention, pas votre report ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. Êtes-vous vraiment là ?",
+      "Vous voilà. Avez-vous senti votre propre voix aujourd'hui ?",
+      "Une pause possible. Sentez votre corps, pas la routine."
+    ],
+    "soir": [
+      "Le jour décline. Vous êtes-vous habité(e) un peu ?",
+      "Vous pouvez juste venir, présent(e) à vous-même.",
+      "Le soir est doux. Un 'je veux', c'est très bien."
+    ],
+    "nuit": [
+      "La nuit veille. Une chose voulue, puis dormir.",
+      "Vous êtes encore là, distinct(e). Et c'est très beau."
+    ]
+  }
+}

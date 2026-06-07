@@ -1,0 +1,156 @@
+{
+  "type": 6,
+  "nom": "Le Loyaliste",
+  "centre": {
+    "prefere": "mental",
+    "support": "emotionnel",
+    "reprime": "instinctif-autorite",
+    "prefere_libelle": "Mental (anticipation, vigilance)",
+    "reprime_libelle": "L'autorité intérieure",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est votre autorité intérieure : faire confiance à votre propre savoir, sans le confirmer auprès d'autrui. Vous savez plus que vous ne croyez."
+  },
+
+  "dynamique_ego": {
+    "passion": "Peur",
+    "passion_explication": "Une peur sourde, mentale : peur du danger, du soutien qui lâche, de l'erreur, de ce qui se cache. Elle nourrit le doute permanent — sur les autres, sur soi, sur ce qu'on croit savoir.",
+    "fixation": "Doute, vigilance, scénarios",
+    "compulsion_evitement": "Éviter de se retrouver seul(e), sans soutien, sans cadre.",
+    "peur_de_base": "Être sans soutien, sans guide, perdu(e).",
+    "desir_de_base": "Avoir un cadre sûr, une autorité fiable, une boussole."
+  },
+
+  "essence": {
+    "qualite_principale": "La Foi vivante",
+    "qualite_phrase": "Vous n'avez pas à tout prévoir — vous êtes porté(e) déjà.",
+    "horizons": [
+      "Faire confiance à votre propre savoir intérieur",
+      "Reconnaître le soutien quand il vient — sans en douter",
+      "Sentir la base intérieure qui ne se voit pas",
+      "Agir malgré la peur, pas contre elle"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Faire confiance à mon propre jugement une fois",
+    "Ne pas demander un avis supplémentaire — décider seul(e)",
+    "Reconnaître un soutien sans le tester",
+    "Agir malgré la peur, doucement",
+    "Suspendre le scénario catastrophe quelques heures",
+    "Trouver ma propre voix dans une situation",
+    "Voir le danger réel, pas le danger imaginé",
+    "Honorer ma fidélité à quelque chose qui le mérite",
+    "Recevoir un compliment comme vrai"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant midi, prendre une décision sans consulter personne.",
+    "Quand un scénario catastrophe monte, lui dire : 'merci, je note. Maintenant retour au présent.'",
+    "Sentir le sol sous vos pieds. Vous êtes porté(e) — c'est un fait, pas une promesse.",
+    "Demander un soutien clairement — et accepter qu'on vous le donne.",
+    "Repérer une chose dont vous êtes certain(e). Y revenir comme à un point d'appui.",
+    "Faire une chose nouvelle, petite — pour entraîner le courage."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Foi vivante. Vous avez votre propre boussole. La peur passe sans vous prendre. Vous êtes fiable parce que vous vous appuyez sur ce qui ne change pas.", "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous doutez, vous anticipez, mais vous fonctionnez. Vous reconnaissez la peur quand elle parle — vous ne la suivez pas toujours.",                              "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "La peur conduit. Vous testez sans cesse, vous scénarisez, vous oscillez entre dépendance et défi. Le doute paralyse.",                                                   "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Panique, paranoïa, blocage. Le sol semble disparu. Un jour très lourd qui appelle un appui simple et solide.",                                                          "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Courageux(se), confiant(e), foi vivante. Vous êtes votre propre soutien — donc vous pouvez en être un pour d'autres." },
+      { "n": 2, "titre": "Sain",          "texte": "Fiable, fidèle, engagé(e). Vous travaillez pour la cohésion sans dépendre de l'approbation." },
+      { "n": 3, "titre": "Compétent",     "texte": "Coopératif(ve), responsable, organisé(e). La peur vous rend vigilant(e), pas paralysé(e)." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Ambivalent(e), vous cherchez l'autorité de référence. Le doute commence." },
+      { "n": 5, "titre": "Moyen",         "texte": "Anxieux(se), réactif(ve), méfiant(e). Vous testez sans cesse. Les scénarios catastrophe abondent." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Sur la défensive, agressif(ve) ou sur-dépendant(e). Vous oscillez entre le contre-phobique et le sur-soumis." },
+      { "n": 7, "titre": "Malsain",       "texte": "Paniqué(e), désespéré(e), comportements auto-destructeurs pour échapper à l'anxiété." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Paranoïa, hystérie, idées masochistes. Vous attaquez ce que vous craignez de perdre." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Effondrement total, sabotage de soi. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "scenario",    "label": "J'ai joué le scénario catastrophe",     "detail": "Et il est venu dans ma chair." },
+      { "id": "teste",       "label": "J'ai testé la loyauté d'un proche",      "detail": "Pour vérifier qu'il/elle est là." },
+      { "id": "doute-savoir","label": "J'ai douté de ce que je savais",          "detail": "Au point de ne plus rien faire." },
+      { "id": "consulte",    "label": "J'ai consulté trop d'avis",               "detail": "Au point de perdre le mien." },
+      { "id": "anticipe-pire","label": "J'ai anticipé le pire",                  "detail": "Plus vite que le présent." },
+      { "id": "defie-autorite","label": "Je me suis arc-bouté(e) contre une autorité", "detail": "Plus pour résister qu'autre chose." }
+    ],
+    "pieges": [
+      { "id": "non-decide",  "label": "Je n'ai pas décidé — j'ai laissé passer", "detail": "Le doute a gagné." },
+      { "id": "valide",      "label": "J'ai cherché une validation extérieure",  "detail": "Pour quelque chose que je savais." },
+      { "id": "vigilant-vide","label": "Je suis resté(e) vigilant(e) sans raison","detail": "Le danger n'était pas là." },
+      { "id": "refus-soutien","label": "J'ai refusé un soutien réel",             "detail": "Trop dur d'y croire." },
+      { "id": "minimise",    "label": "J'ai minimisé une réussite",               "detail": "Pour ne pas tenter le sort." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "decide-seul",  "label": "J'ai décidé seul(e), sans consulter" },
+      { "id": "confiance",    "label": "J'ai fait confiance à un soutien" },
+      { "id": "foi",          "label": "J'ai senti une foi tranquille en moi" },
+      { "id": "courage",      "label": "J'ai agi malgré la peur" },
+      { "id": "present-vrai", "label": "Le présent m'a paru sûr, pas menaçant" },
+      { "id": "soutien-recu", "label": "J'ai reconnu un soutien et l'ai accueilli" },
+      { "id": "voix-propre",  "label": "Ma voix propre s'est fait entendre" },
+      { "id": "porte",        "label": "J'ai senti que j'étais porté(e), pas seul(e)" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "scenario",     "label": "J'ai joué le scénario catastrophe" },
+    { "id": "consulte",     "label": "J'ai consulté trop ou trop peu" },
+    { "id": "doute",        "label": "Le doute m'a paralysé(e)" },
+    { "id": "courage",      "label": "J'ai eu du courage" },
+    { "id": "soutien-vu",   "label": "J'ai reconnu un soutien" },
+    { "id": "decide",       "label": "J'ai décidé seul(e)" },
+    { "id": "teste",        "label": "J'ai testé quelqu'un" },
+    { "id": "voix",         "label": "J'ai fait entendre ma voix" },
+    { "id": "obscur",       "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "foi",         "label": "La foi — sans contenu, juste l'appui" },
+    { "id": "courage",     "label": "Le courage — agir avec la peur" },
+    { "id": "autorite-int","label": "L'autorité intérieure — votre boussole" },
+    { "id": "presence",    "label": "La présence — vrai antidote au scénario" },
+    { "id": "soutien",     "label": "Le soutien — accueillir quand il vient" },
+    { "id": "decider",     "label": "Décider — sans confirmer" },
+    { "id": "humour",      "label": "L'humour — désamorcer la peur" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type6.html",          "icon": "📖" },
+    { "label": "Le diamant de l'essence",     "href": "/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Qu'est-ce qui est sûr aujourd'hui, vraiment ?",
+      "Une journée s'ouvre — quel courage vous habite déjà ?",
+      "Que voulez-vous décider — sans consulter ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. La peur a-t-elle été un guide ou une cage ?",
+      "Vous voilà. Quel soutien était là, que vous n'avez pas vu ?",
+      "Une pause possible. Sentez vos appuis."
+    ],
+    "soir": [
+      "Le jour décline. Qu'est-ce que vous savez, que vous saviez sans le savoir ?",
+      "Vous pouvez juste venir, sans rien anticiper.",
+      "Le soir est doux. Le sol est encore là."
+    ],
+    "nuit": [
+      "La nuit veille. Une chose à confier, puis dormir.",
+      "Vous êtes encore là — c'est déjà la foi."
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "type": 7,
+  "nom": "L'Enthousiaste",
+  "centre": {
+    "prefere": "mental",
+    "support": "emotionnel",
+    "reprime": "instinctif-present",
+    "prefere_libelle": "Mental (plans, options)",
+    "reprime_libelle": "L'instinct du présent",
+    "reprime_invitation": "Aujourd'hui, le centre que vous travaillez est l'instinct présent : rester avec ce qui est, finir ce qui est commencé, sentir la fatigue ou l'ennui. Pas pour souffrir — pour exister."
+  },
+
+  "dynamique_ego": {
+    "passion": "Gourmandise",
+    "passion_explication": "Une gourmandise de plans, de stimulations, d'options, d'idées. Vous gardez toutes les portes ouvertes en même temps. La peur est de manquer — de manquer le suivant, plus vivant, plus intéressant.",
+    "fixation": "Plans futurs, dispersion, anticipation joyeuse",
+    "compulsion_evitement": "Éviter la douleur, l'ennui, la privation, la stagnation.",
+    "peur_de_base": "Être pris(e) au piège de la douleur, de la limite, du manque.",
+    "desir_de_base": "Être heureux(se), content(e), satisfait(e)."
+  },
+
+  "essence": {
+    "qualite_principale": "Le travail d'éveil (le présent comme suffisant)",
+    "qualite_phrase": "Vous n'avez pas à fuir vers le suivant — ce qui est, ici, suffit déjà.",
+    "horizons": [
+      "Rester avec ce qui est, sans le fuir",
+      "Finir une chose, vraiment",
+      "Sentir l'ennui sans le combler",
+      "Toucher la joie qui ne dépend pas de la nouveauté"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Finir une chose commencée — vraiment",
+    "Choisir une option et fermer les autres",
+    "Rester avec une difficulté plutôt que la contourner",
+    "Sentir l'ennui sans le combler tout de suite",
+    "Faire moins de plans aujourd'hui",
+    "Honorer une privation sans pleurer",
+    "Écouter quelqu'un jusqu'au bout, sans rebondir",
+    "Faire une chose en profondeur, pas en largeur",
+    "Goûter ce qui est, sans regarder ce qui pourrait être"
+  ],
+
+  "pratiques_du_matin": [
+    "Avant midi, finir une seule tâche commencée — pas en ouvrir une nouvelle.",
+    "Quand l'envie de zapper monte, respirer trois fois et rester.",
+    "Une activité jusqu'au bout, sans diversion (pas de téléphone, pas de musique différente toutes les 3 minutes).",
+    "Sentir la fatigue ou l'ennui qui vient — et ne rien faire pour le fuir, pendant 5 minutes.",
+    "Choisir UNE chose à goûter pleinement aujourd'hui, et la goûter pleinement.",
+    "Avant de planifier la suite, vérifier : suis-je vraiment ici ?"
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Lumineux",    "description": "Joie présente. Vous goûtez ce qui est sans le multiplier. Vous savez rester, finir, sentir le difficile. La gratitude est sentie, pas affichée.",  "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Fonctionnel", "description": "Vous papillonnez, vous planifiez, mais vous voyez quand vous fuyez. Vous pouvez ralentir, finir.",                                                       "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Réactif",     "description": "Vous fuyez ce qui est lourd. Vous accumulez les options sans en choisir. La dispersion devient frénétique. La superficialité s'installe.",                "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Enseveli",    "description": "Impulsivité destructrice, addictions, effondrement quand la fuite ne marche plus. Un jour très lourd qui appelle un appui simple, présent.",            "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Libéré",        "texte": "Reconnaissant(e), satisfait(e), libre. La joie vient de l'être, pas du faire. Vous savez rester avec le difficile aussi." },
+      { "n": 2, "titre": "Sain",          "texte": "Enthousiaste, productif(ve), polyvalent(e). Votre vivacité sert la vie autour de vous." },
+      { "n": 3, "titre": "Compétent",     "texte": "Multi-talentueux(se), pratique, généreux(se). Vos idées prennent forme." },
+      { "n": 4, "titre": "Moyen-haut",    "texte": "Hédoniste léger(ère), curieux(se). Vous commencez à privilégier la nouveauté à la profondeur." },
+      { "n": 5, "titre": "Moyen",         "texte": "Dispersé(e), insatiable, superficiel(le). Vous commencez sans finir. Vous fuyez l'ennui activement." },
+      { "n": 6, "titre": "Moyen-bas",     "texte": "Égoïste, exigeant(e), impatient(e). Vous voulez tout, tout de suite." },
+      { "n": 7, "titre": "Malsain",       "texte": "Impulsif(ve), addictif(ve), fuyant(e). Tout pour ne pas sentir." },
+      { "n": 8, "titre": "Très malsain",  "texte": "Maniaque, hystérique, comportements à risque. La fuite devient compulsive." },
+      { "n": 9, "titre": "Pathologique",  "texte": "Effondrement, panique, désespoir nu. Demander de l'aide est vital ici." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "zappe",      "label": "J'ai zappé d'une chose à l'autre",          "detail": "Sans rien terminer." },
+      { "id": "plans-fuite","label": "J'ai fait un plan pour fuir le présent",     "detail": "Le suivant comme refuge." },
+      { "id": "stimule",    "label": "J'ai cherché une stimulation",                "detail": "Pour ne pas sentir l'ennui." },
+      { "id": "options",    "label": "J'ai gardé trop d'options ouvertes",          "detail": "Pour ne pas choisir, donc pas perdre." },
+      { "id": "rebondi",    "label": "J'ai rebondi sur les paroles d'autrui",       "detail": "Au lieu d'écouter." },
+      { "id": "reframe",    "label": "J'ai 'reframé' une difficulté en positif",    "detail": "Pour ne pas la sentir." }
+    ],
+    "pieges": [
+      { "id": "non-fini",   "label": "J'ai laissé une chose à moitié",           "detail": "Pour passer à plus excitant." },
+      { "id": "evite-conv", "label": "J'ai évité une conversation difficile",     "detail": "Trop lourd." },
+      { "id": "surface",    "label": "Je suis resté(e) en surface",                "detail": "La profondeur fait peur." },
+      { "id": "promesse-trop","label": "J'ai promis trop, à trop de gens",        "detail": "Et je n'ai pas tenu." },
+      { "id": "consume",    "label": "J'ai consommé une expérience au lieu de la vivre","detail": "Trop vite." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "fini",         "label": "J'ai fini une chose, vraiment" },
+      { "id": "reste",        "label": "Je suis resté(e) avec un difficile" },
+      { "id": "ennui-tenu",   "label": "J'ai senti l'ennui sans le combler" },
+      { "id": "choix-clair",  "label": "J'ai choisi une option et fermé les autres" },
+      { "id": "ecoute-fond",  "label": "J'ai écouté jusqu'au bout" },
+      { "id": "goute",        "label": "J'ai goûté ce qui était, sans regarder ailleurs" },
+      { "id": "satisfait",    "label": "J'ai été satisfait(e), simplement" },
+      { "id": "joie-presente","label": "La joie était dans le présent, pas dans le suivant" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "zappe",        "label": "J'ai zappé" },
+    { "id": "fini",         "label": "J'ai fini quelque chose" },
+    { "id": "fuite",        "label": "J'ai fui un difficile" },
+    { "id": "reste",        "label": "Je suis resté(e)" },
+    { "id": "promesse",     "label": "J'ai promis trop" },
+    { "id": "profond",      "label": "Je suis allé(e) en profondeur" },
+    { "id": "choix",        "label": "J'ai choisi et lâché les autres options" },
+    { "id": "ennui",        "label": "J'ai accueilli l'ennui" },
+    { "id": "obscur",       "label": "Je ne comprends pas encore" }
+  ],
+
+  "remedes": [
+    { "id": "sobriete",    "label": "La sobriété — moins, mais vrai" },
+    { "id": "finir",       "label": "Finir — l'accomplissement nourrit" },
+    { "id": "rester",      "label": "Rester — avec ce qui est lourd aussi" },
+    { "id": "present",     "label": "Le présent — ici, c'est suffisant" },
+    { "id": "profondeur",  "label": "La profondeur — au lieu de la largeur" },
+    { "id": "joie-vraie",  "label": "La joie vraie — qui ne fuit pas" },
+    { "id": "silence",     "label": "Le silence — pas de stimulation à chercher" }
+  ],
+
+  "ressources_site": [
+    { "label": "Mon profil complet",          "href": "/profils/type7.html",          "icon": "📖" },
+    { "label": "Le diamant de l'essence",     "href": "/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restaurer le centre oublié",  "href": "/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "Le voyage à travers le type", "href": "/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions entre types",      "href": "/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Le matin commence. Que voulez-vous *finir* aujourd'hui ?",
+      "Une journée s'ouvre — pouvez-vous y rester sans planifier la suivante ?",
+      "Que voulez-vous goûter pleinement, sans chercher ailleurs ?"
+    ],
+    "midi": [
+      "Vous êtes au milieu du jour. Êtes-vous ici, ou déjà ailleurs ?",
+      "Vous voilà. Qu'est-ce qui mérite votre profondeur, là, maintenant ?",
+      "Une pause possible. Pas pour planifier — pour goûter."
+    ],
+    "soir": [
+      "Le jour décline. Avez-vous achevé une chose, paisiblement ?",
+      "Vous pouvez juste venir, sans rien rapporter.",
+      "Le soir est doux. Un sentir, sans le multiplier."
+    ],
+    "nuit": [
+      "La nuit veille. Une chose vraie, puis dormir.",
+      "Vous êtes encore là, sans avoir à le fuir."
+    ]
+  }
+}
