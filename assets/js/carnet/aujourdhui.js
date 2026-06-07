@@ -106,12 +106,40 @@ document.getElementById('sortir').addEventListener('click', e => {
     <p class="miroir-hello fade-in-up">Bonjour, <em>${esc(session.prenom)}</em>.</p>
     <p class="miroir-date">${dateLisible()}</p>
 
+    ${(() => {
+      // Carte de bienvenue : seulement au 1er accès
+      try {
+        if (localStorage.getItem('mi_welcomed') === '1') return '';
+        localStorage.setItem('mi_welcomed', '1');
+      } catch {}
+      return `
+        <section class="welcome-card fade-in-up">
+          <h2>🪞 Bienvenue dans votre <em>miroir intérieur</em></h2>
+          <p>Ce carnet est votre compagnon quotidien — il s'adapte à votre type ${T.type} pour vous aider à observer, comprendre, et avancer doucement.</p>
+          <ul>
+            <li><strong>⚡ Un instant</strong> — pour poser une remarque à toute heure.</li>
+            <li><strong>📊 Mon niveau</strong> — pour situer où vous êtes, sans jugement.</li>
+            <li><strong>🌪 Mon ego</strong> — pour repérer vos mécanismes spécifiques.</li>
+            <li><strong>✨ Mon essence</strong> — pour honorer les moments de liberté.</li>
+            <li><strong>📖 Relire un moment</strong> — pour comprendre un événement.</li>
+            <li><strong>🌙 Déposer le jour</strong> — pour finir avec un vœu.</li>
+          </ul>
+          <p style="margin-top:1rem;"><em>Pas d'obligation. Une chose à la fois, à votre rythme. Le miroir n'évalue jamais — il écoute.</em></p>
+          <p style="text-align:center;margin-top:1.2rem;"><button class="miroir-btn miroir-btn--ghost" id="welcome-close">Je commence</button></p>
+        </section>
+      `;
+    })()}
     ${repriseHtml}
     ${compagnonHtml}
     ${centreHtml}
     ${portesHtml}
     <div id="weekly-mount"></div>
   `;
+
+  // Fermer la carte de bienvenue
+  document.getElementById('welcome-close')?.addEventListener('click', e => {
+    e.target.closest('.welcome-card').style.display = 'none';
+  });
 
   // Calcul async du miroir hebdo (ne bloque pas l'affichage)
   buildWeeklyData(session, T).then(({ mirror, suggestions, daysCount }) => {

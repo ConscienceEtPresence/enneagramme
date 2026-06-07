@@ -1053,5 +1053,39 @@ Analogie : Le Type 9 est comme une eau calme : le Neuf Survie est une mare confo
   </script>
 <script src="../assets/js/shared.js"></script>
 <script type="module" src="/assets/js/pulse.js?v=2"></script>
+
+  <!-- 🪞 Pastille flottante — invitation au carnet de bord -->
+  <a href="/pages/carnet/" id="profil-carnet-pill" title="Travailler ce type au quotidien dans votre carnet de bord">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="12" rx="7" ry="9"/>
+      <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+    </svg>
+    <span>Travailler ce type<br>au quotidien →</span>
+  </a>
+  <style>
+    #profil-carnet-pill {
+      position: fixed; bottom: 22px; right: 22px; z-index: 950;
+      display: flex; align-items: center; gap: .65rem;
+      padding: .65rem 1.1rem .65rem .85rem;
+      background: linear-gradient(135deg, #1a2540, #0e1528);
+      border: 1px solid #f5d77b; border-radius: 999px;
+      color: #f5d77b; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(245,215,123,.28), 0 2px 8px rgba(0,0,0,.4);
+      transition: all .25s ease;
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: .9rem; line-height: 1.15;
+    }
+    #profil-carnet-pill svg { flex-shrink: 0; }
+    #profil-carnet-pill:hover {
+      background: linear-gradient(135deg, #f5d77b, #fbbf24);
+      color: #0e1528; transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(245,215,123,.45);
+    }
+    @media (max-width: 480px) {
+      #profil-carnet-pill { padding: .55rem .9rem .55rem .7rem; font-size: .82rem; bottom: 14px; right: 14px; }
+    }
+  </style>
+
 </body>
 </html>

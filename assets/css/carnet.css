@@ -965,3 +965,36 @@ body.miroir.theme-light .miroir-bottom-nav {
 }
 .weekly-mirror__line strong { color: var(--car-gold); font-weight: 600; }
 .weekly-mirror__line em { font-style: italic; color: var(--car-text-soft); }
+
+/* === Carte de bienvenue (1er accès) === */
+.welcome-card {
+  margin: 0 auto 2rem;
+  background: linear-gradient(160deg, rgba(245, 215, 123, 0.16), rgba(245, 215, 123, 0.04));
+  border: 1px solid var(--car-gold);
+  border-radius: 20px;
+  padding: 1.6rem 1.5rem;
+  box-shadow: 0 12px 36px rgba(245, 215, 123, 0.18);
+}
+.welcome-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 500;
+  color: var(--car-text); margin: 0 0 .8rem;
+}
+.welcome-card h2 em { color: var(--car-gold); font-style: italic; }
+.welcome-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem; color: var(--car-text-soft);
+  line-height: 1.6; margin: .5rem 0;
+}
+.welcome-card ul {
+  list-style: none; padding: 0; margin: 1rem 0;
+}
+.welcome-card li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; color: var(--car-text-soft);
+  padding: .5rem 0;
+  line-height: 1.5;
+}
+.welcome-card li strong {
+  color: var(--car-gold); font-weight: 600;
+}
