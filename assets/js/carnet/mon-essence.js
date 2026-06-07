@@ -7,7 +7,7 @@ const mount = document.getElementById('mount');
 (async function init() {
   const T = await loadTypeData(session.type);
   const today = todayKey();
-  const day = getDay(today);
+  const day = await getDay(today, session);
   const cur = day.essence || { moments: [], phrase: '', appris: '' };
   const isChecked = (id) => Array.isArray(cur.moments) && cur.moments.includes(id);
 
@@ -60,9 +60,9 @@ const mount = document.getElementById('mount');
     });
   });
 
-  document.getElementById('save').addEventListener('click', () => {
+  document.getElementById('save').addEventListener("click", async () => {
     const moments = [...document.querySelectorAll('input[data-id]:checked')].map(i => i.dataset.id);
-    saveDay(today, {
+    await saveDay(today, {
       essence: {
         moments,
         phrase: document.getElementById('phrase').value.trim() || null,

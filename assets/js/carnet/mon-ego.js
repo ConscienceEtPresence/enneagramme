@@ -7,7 +7,7 @@ const mount = document.getElementById('mount');
 (async function init() {
   const T = await loadTypeData(session.type);
   const today = todayKey();
-  const day = getDay(today);
+  const day = await getDay(today, session);
   const cur = day.ego || { passions: [], pieges: [], notes: {} };
   const isChecked = (kind, id) => Array.isArray(cur[kind]) && cur[kind].includes(id);
 
@@ -70,11 +70,11 @@ const mount = document.getElementById('mount');
     });
   });
 
-  document.getElementById('save').addEventListener('click', () => {
+  document.getElementById('save').addEventListener("click", async () => {
     const passions = [...document.querySelectorAll('input[data-kind="passions"]:checked')].map(i => i.dataset.id);
     const pieges   = [...document.querySelectorAll('input[data-kind="pieges"]:checked')].map(i => i.dataset.id);
     const note = document.getElementById('note').value.trim();
-    saveDay(today, {
+    await saveDay(today, {
       ego: {
         passions, pieges,
         notes: { global: note || null },

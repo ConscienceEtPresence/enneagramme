@@ -7,7 +7,7 @@ const mount = document.getElementById('mount');
 (async function init() {
   const T = await loadTypeData(session.type);
   const today = todayKey();
-  const day = getDay(today);
+  const day = await getDay(today, session);
   const cur = day.poser || {};
 
   mount.innerHTML = `
@@ -49,8 +49,8 @@ const mount = document.getElementById('mount');
     </div>
   `;
 
-  document.getElementById('save').addEventListener('click', () => {
-    saveDay(today, {
+  document.getElementById('save').addEventListener("click", async () => {
+    await saveDay(today, {
       poser: {
         phrase: document.getElementById('phrase').value.trim() || null,
         merci:  document.getElementById('merci').value.trim() || null,

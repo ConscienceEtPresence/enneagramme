@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/carnet.css?v=2">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=3">
 </head>
 <body class="miroir">
   <div class="miroir-wrap">
@@ -17,49 +17,66 @@
 
     <div class="miroir-form-wrap fade-in-up">
       <h1 class="miroir-h1">Entrer dans <em>votre carnet</em></h1>
-      <p class="miroir-sub">Votre prénom et le type que vous travaillez.</p>
+      <p class="miroir-sub">Votre prénom et le code qui vous a été confié.</p>
 
-      <form id="enter-form">
+      <form id="enter-form" autocomplete="off">
         <div class="miroir-field">
           <label class="miroir-field__label" for="prenom">Votre prénom</label>
-          <input class="miroir-input" type="text" id="prenom" required maxlength="40" placeholder="Jeanne" />
+          <input class="miroir-input" type="text" id="prenom" required maxlength="40" placeholder="Jeanne" autocomplete="given-name" />
         </div>
 
         <div class="miroir-field">
-          <label class="miroir-field__label" for="type">Votre type ennéagramme</label>
-          <select class="miroir-select" id="type" required>
-            <option value="">— choisir —</option>
-            <option value="4">Type 4 — L'Individualiste</option>
-            <option value="" disabled>Autres types — bientôt disponibles</option>
-          </select>
+          <label class="miroir-field__label" for="code">Votre code</label>
+          <input class="miroir-input" type="text" id="code" required minlength="6" maxlength="40" placeholder="le code reçu par Brahms" autocomplete="off" spellcheck="false" />
         </div>
 
         <div class="miroir-actions">
-          <button type="submit" class="miroir-btn">Entrer dans le carnet</button>
+          <button type="submit" class="miroir-btn" id="submit">Entrer dans le carnet</button>
         </div>
+
+        <div id="err" class="miroir-form-err" style="display:none;margin-top:1rem;padding:.8rem 1rem;background:rgba(253,164,175,.15);border:1px solid rgba(253,164,175,.5);border-radius:10px;color:#fda4af;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;text-align:center;"></div>
       </form>
 
-      <p style="margin-top:2rem;font-size:.85rem;color:var(--car-muted);font-style:italic;font-family:'Cormorant Garamond',serif;">
-        Note prototype : pour cette première version, le type 4 est entièrement développé.
-        Les 8 autres types arrivent au fur et à mesure.
+      <p style="margin-top:2.5rem;font-size:.95rem;color:#a8b6dc;font-style:italic;font-family:'Cormorant Garamond',serif;line-height:1.6;">
+        Pas encore de code ? <a href="../demande/" style="color:#f5d77b">En demander un</a>.<br>
+        Code oublié ? <a href="../oubli/" style="color:#f5d77b">Demander un rappel</a>.
       </p>
     </div>
   </div>
 
   <script type="module">
-    import { setSession } from '/assets/js/carnet/session.js';
+    import { login } from '/assets/js/carnet/session.js';
 
-    document.getElementById('enter-form').addEventListener('submit', e => {
+    const form = document.getElementById('enter-form');
+    const errBox = document.getElementById('err');
+    const btn = document.getElementById('submit');
+
+    const messages = {
+      'code-vide':         'Saisissez votre code.',
+      'code-introuvable':  'Ce code n\'existe pas. Vérifiez-le, ou demandez-en un nouveau.',
+      'code-desactive':    'Ce code n\'est plus actif. Demandez un rappel à Brahms.',
+      'prenom-incorrect':  'Ce prénom ne correspond pas à ce code.',
+      'default':           'Une difficulté est survenue. Réessayez dans un instant.'
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      errBox.style.display = 'none';
       const prenom = document.getElementById('prenom').value.trim();
-      const type   = document.getElementById('type').value;
-      if (!prenom || !type) return;
-      setSession({
-        prenom,
-        type: parseInt(type, 10),
-        startedAt: Date.now()
-      });
-      window.location.href = '../aujourdhui/';
+      const code   = document.getElementById('code').value.trim();
+      if (!prenom || !code) return;
+      btn.disabled = true;
+      btn.textContent = 'Un instant…';
+      try {
+        await login(prenom, code);
+        window.location.href = '../aujourdhui/';
+      } catch (err) {
+        const code = err?.message || 'default';
+        errBox.textContent = messages[code] || messages.default;
+        errBox.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Entrer dans le carnet';
+      }
     });
   </script>
 </body>

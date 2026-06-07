@@ -7,7 +7,7 @@ const mount = document.getElementById('mount');
 (async function init() {
   const T = await loadTypeData(session.type);
   const today = todayKey();
-  const day = getDay(today);
+  const day = await getDay(today, session);
   const cur = day.moment || {};
 
   const isEvtChecked = (id) => cur.type === id;
@@ -74,9 +74,9 @@ const mount = document.getElementById('mount');
     });
   });
 
-  document.getElementById('save').addEventListener('click', () => {
+  document.getElementById('save').addEventListener("click", async () => {
     const type = document.querySelector('input[name="evtype"]:checked')?.value || null;
-    saveDay(today, {
+    await saveDay(today, {
       moment: {
         type,
         scene:  document.getElementById('scene').value.trim() || null,

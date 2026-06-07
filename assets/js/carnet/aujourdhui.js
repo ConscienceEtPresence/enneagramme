@@ -2,7 +2,8 @@
 import {
   requireSession, clearSession, loadTypeData,
   todayKey, yesterdayKey, getDay, saveDay,
-  dateLisible, whisperForTime, esc, flashOk
+  dateLisible, whisperForTime, esc, flashOk,
+  ensureValidSession
 } from './session.js';
 import { injectThemeToggle } from './theme.js';
 
@@ -22,10 +23,11 @@ document.getElementById('sortir').addEventListener('click', e => {
   try { T = await loadTypeData(session.type); }
   catch (e) { mount.innerHTML = '<p style="color:#fda4af;text-align:center">Type introuvable.</p>'; return; }
 
+  try { await ensureValidSession(session); } catch { return; }
+
   const today = todayKey();
   const hier  = yesterdayKey();
-  const dayData  = getDay(today);
-  const hierData = getDay(hier);
+  const [dayData, hierData] = await Promise.all([getDay(today, session), getDay(hier, session)]);
   const visited = (key) => !!dayData[key];
 
   // --- Reprise du vœu d'hier
@@ -117,10 +119,11 @@ document.getElementById('sortir').addEventListener('click', e => {
 
   // Reprise du vœu d'hier
   document.querySelectorAll('#reprise .miroir-reprise__opt').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       document.querySelectorAll('#reprise .miroir-reprise__opt').forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      saveDay(today, { reprise: { statut: btn.dataset.id, when: Date.now() } });
+      try { await saveDay(today, { reprise: { statut: btn.dataset.id, when: Date.now() } }, session); }
+      catch (e) { console.warn(e); }
     });
   });
 })();

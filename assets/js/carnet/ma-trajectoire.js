@@ -1,5 +1,5 @@
 /* « Ma trajectoire » — vue 30/56 derniers jours : niveau + essence */
-import { requireSession, loadTypeData, todayKey, getDay, esc } from './session.js';
+import { requireSession, loadTypeData, todayKey, listDays, esc } from './session.js';
 
 const session = requireSession();
 const mount = document.getElementById('mount');
@@ -11,10 +11,13 @@ function dateKey(d) {
 (async function init() {
   const T = await loadTypeData(session.type);
   const DAYS = 28;
+  const days = await listDays(session, 60);
+  const dataMap = Object.fromEntries(days.map(d => [d.date, d.data]));
   const cells = [];
   for (let i = DAYS - 1; i >= 0; i--) {
     const d = new Date(); d.setDate(d.getDate() - i);
-    cells.push({ key: dateKey(d), day: getDay(dateKey(d)) });
+    const k = dateKey(d);
+    cells.push({ key: k, day: dataMap[k] || {} });
   }
 
   // Comptages

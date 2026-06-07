@@ -9,7 +9,7 @@ const mount = document.getElementById('mount');
 (async function init() {
   const T = await loadTypeData(session.type);
   const today = todayKey();
-  const day = getDay(today);
+  const day = await getDay(today, session);
   const cur = day.niveau || {};
 
   mount.innerHTML = `
@@ -75,20 +75,20 @@ const mount = document.getElementById('mount');
   if (precisionOpen) document.getElementById('details').classList.add('is-open');
 
   document.querySelectorAll('#zones .niveau-zone').forEach(b => {
-    b.addEventListener('click', () => {
+    b.addEventListener("click", async () => {
       document.querySelectorAll('#zones .niveau-zone').forEach(x => x.classList.remove('is-active'));
       b.classList.add('is-active');
       zone = b.dataset.id;
     });
   });
 
-  document.getElementById('toggle-precision').addEventListener('click', () => {
+  document.getElementById('toggle-precision').addEventListener("click", async () => {
     precisionOpen = !precisionOpen;
     document.getElementById('details').classList.toggle('is-open', precisionOpen);
   });
 
   document.querySelectorAll('#details .niveau-detail').forEach(b => {
-    b.addEventListener('click', () => {
+    b.addEventListener("click", async () => {
       document.querySelectorAll('#details .niveau-detail').forEach(x => x.classList.remove('is-active'));
       b.classList.add('is-active');
       nivR = parseInt(b.dataset.n, 10);
@@ -96,9 +96,9 @@ const mount = document.getElementById('mount');
     });
   });
 
-  document.getElementById('save').addEventListener('click', () => {
+  document.getElementById('save').addEventListener("click", async () => {
     if (!zone) { alert('Choisissez une zone d\'abord.'); return; }
-    saveDay(today, { niveau: { zone, niveau_riso: nivR, note: document.getElementById('note').value.trim() || null, when: Date.now() } });
+    await saveDay(today, { niveau: { zone, niveau_riso: nivR, note: document.getElementById('note').value.trim() || null, when: Date.now() } });
     flashOk(document.getElementById('ok'));
     setTimeout(() => window.location.href = '../aujourdhui/', 900);
   });

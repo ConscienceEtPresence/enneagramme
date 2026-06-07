@@ -1,5 +1,5 @@
 /* « Mon miroir » — calendrier 30 jours + détail du jour cliqué */
-import { requireSession, loadTypeData, todayKey, getDay, DAILY_PREFIX, esc } from './session.js';
+import { requireSession, loadTypeData, todayKey, listDays, esc } from './session.js';
 
 const session = requireSession();
 const mount = document.getElementById('mount');
@@ -16,14 +16,16 @@ function dateLisible(s) {
   const T = await loadTypeData(session.type);
   const today = todayKey();
 
-  // 56 derniers jours (8 semaines)
+  // Récupère tous les jours saisis (jusqu'à 100), puis projette sur 56 jours
+  const days = await listDays(session, 100);
+  const visitedSet = new Set(days.map(d => d.date));
+  const dataMap = Object.fromEntries(days.map(d => [d.date, d.data]));
+
   const cells = [];
   for (let i = 55; i >= 0; i--) {
     const d = new Date(); d.setDate(d.getDate() - i);
     const k = dateKey(d);
-    const day = getDay(k);
-    const visited = Object.keys(day).filter(x => !x.startsWith('_')).length > 0;
-    cells.push({ key: k, visited, isToday: k === today });
+    cells.push({ key: k, visited: visitedSet.has(k), isToday: k === today });
   }
 
   const visitedCount = cells.filter(c => c.visited).length;
@@ -61,7 +63,7 @@ function dateLisible(s) {
   document.querySelectorAll('.cal-cell').forEach(c => {
     c.addEventListener('click', () => {
       const k = c.dataset.key;
-      const day = getDay(k);
+      const day = dataMap[k] || {};
       const has = Object.keys(day).filter(x => !x.startsWith('_')).length > 0;
       if (!has) {
         detail.innerHTML = `<p class="day-detail__empty">${dateLisible(k)} — rien noté ce jour-là.</p>`;
