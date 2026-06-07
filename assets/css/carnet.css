@@ -1127,3 +1127,71 @@ body.miroir.theme-light .miroir-btn--ghost {
   background: transparent !important; color: #b88820 !important;
   border-color: rgba(45, 32, 8, .3) !important;
 }
+
+/* ============================================================
+   v8 — Thème clair : forcer tout (override stylé)
+   ============================================================ */
+
+/* === Body fond UNIFORME en clair, plus de gradient capricieux === */
+html.theme-light,
+body.miroir.theme-light {
+  background: #fbf6e8 !important;
+  background-image: none !important;
+}
+
+/* === Centre cultivé : carte vraiment lisible en clair === */
+body.miroir.theme-light .miroir-centre-card {
+  background: linear-gradient(160deg, #fff5d6, #fce9b8) !important;
+  border: 1.5px solid #b88820 !important;
+}
+body.miroir.theme-light .miroir-centre-card__icon {
+  background: radial-gradient(circle, #fbbf24, rgba(251,191,36,.2)) !important;
+}
+body.miroir.theme-light .miroir-centre-card__label {
+  color: #8a6510 !important; font-weight: 700;
+}
+body.miroir.theme-light .miroir-centre-card__text {
+  color: #1f1505 !important; opacity: 1 !important;
+}
+
+/* === Sections de check-cards : fond clair === */
+body.miroir.theme-light .miroir-section-title {
+  color: #1f1505 !important;
+}
+body.miroir.theme-light .miroir-section-sub {
+  color: #3d2d10 !important;
+}
+body.miroir.theme-light .check-cards {
+  background: transparent !important;
+}
+body.miroir.theme-light .check-card {
+  background: #fffdf8 !important;
+  border-color: rgba(184,136,32,0.3) !important;
+}
+body.miroir.theme-light .check-card:hover {
+  background: #fff5d6 !important;
+  border-color: #b88820 !important;
+}
+body.miroir.theme-light .check-card__label {
+  color: #1f1505 !important;
+}
+body.miroir.theme-light .check-card__detail {
+  color: #5b4a2a !important;
+}
+body.miroir.theme-light .check-card.is-checked {
+  background: linear-gradient(160deg, #fff5d6, #fce9b8) !important;
+  border-color: #b88820 !important;
+}
+body.miroir.theme-light .check-card.is-checked .check-card__box {
+  background: #b88820 !important;
+  border-color: #b88820 !important;
+}
+body.miroir.theme-light .check-card__box {
+  background: rgba(184,136,32,0.06) !important;
+  border-color: rgba(184,136,32,0.4) !important;
+}
+
+/* === Sortir les éléments parasites du dark === */
+body.miroir.theme-light * {
+  --car-bg-grad: none;
+}
