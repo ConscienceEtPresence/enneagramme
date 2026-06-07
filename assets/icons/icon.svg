@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- Fond circulaire nuit profonde -->
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%"   stop-color="#1a2540"/>
+      <stop offset="55%"  stop-color="#0e1528"/>
+      <stop offset="100%" stop-color="#050810"/>
+    </radialGradient>
+    <!-- Halo doré -->
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#f5d77b" stop-opacity="0.85"/>
+      <stop offset="55%"  stop-color="#b88820" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#b88820" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Or pur (anneau) -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#fde68a"/>
+      <stop offset="50%"  stop-color="#f5d77b"/>
+      <stop offset="100%" stop-color="#b88820"/>
+    </linearGradient>
+    <!-- Reflet du miroir -->
+    <linearGradient id="reflet" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Filtre de douceur sur les contours -->
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2"/>
+    </filter>
+  </defs>
+
+  <!-- Fond circulaire (squircle léger pour iOS) -->
+  <rect x="0" y="0" width="1024" height="1024" rx="232" ry="232" fill="url(#bg)"/>
+
+  <!-- Halo doré central diffus -->
+  <circle cx="512" cy="512" r="380" fill="url(#halo)"/>
+
+  <!-- Miroir : ovale vertical doré, à double anneau (intérieur / extérieur) -->
+  <ellipse cx="512" cy="512" rx="220" ry="290"
+           fill="none" stroke="url(#gold)" stroke-width="22"
+           stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Anneau intérieur — la profondeur du miroir -->
+  <ellipse cx="512" cy="512" rx="130" ry="190"
+           fill="none" stroke="url(#gold)" stroke-width="12"
+           stroke-opacity="0.55" stroke-linecap="round"/>
+
+  <!-- Pupille centrale lumineuse — le point d'éveil -->
+  <circle cx="512" cy="512" r="36" fill="url(#gold)"/>
+  <circle cx="512" cy="512" r="14" fill="#fff8e0" opacity="0.95"/>
+
+  <!-- Reflet diagonal subtil sur le miroir -->
+  <ellipse cx="512" cy="430" rx="100" ry="55" fill="url(#reflet)" transform="rotate(-22 512 430)"/>
+
+  <!-- Petites étoiles ✦ en haut et en bas (signature contemplative) -->
+  <g fill="#f5d77b" opacity="0.7">
+    <path d="M 512 130 L 522 165 L 557 175 L 522 185 L 512 220 L 502 185 L 467 175 L 502 165 Z"/>
+    <path d="M 512 804 L 519 828 L 543 835 L 519 842 L 512 866 L 505 842 L 481 835 L 505 828 Z" opacity="0.5"/>
+  </g>
+</svg>
