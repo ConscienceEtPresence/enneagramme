@@ -998,3 +998,132 @@ body.miroir.theme-light .miroir-bottom-nav {
 .welcome-card li strong {
   color: var(--car-gold); font-weight: 600;
 }
+
+/* ============================================================
+   v7 — Renforce le thème clair partout (lisibilité totale)
+   ============================================================ */
+
+/* Le HTML aussi prend la couleur en thème clair */
+html.theme-light, html.theme-light body.miroir { background: #fbf6e8 !important; }
+html:not(.theme-light), html:not(.theme-light) body.miroir { /* sombre par défaut */ }
+
+/* Bouton flottant adapté thème clair */
+body.miroir.theme-light #theme-toggle-floating {
+  background: rgba(255, 253, 248, .9) !important;
+  border-color: #b88820 !important;
+  color: #b88820 !important;
+  box-shadow: 0 4px 14px rgba(45, 32, 8, .12) !important;
+}
+
+/* Centre cultivé — thème clair lisible */
+body.miroir.theme-light .miroir-centre-card {
+  background: linear-gradient(160deg, rgba(184, 136, 32, 0.18), rgba(184, 136, 32, 0.06));
+  border-color: rgba(184, 136, 32, 0.55);
+}
+body.miroir.theme-light .miroir-centre-card__label { color: #8a6510; }
+body.miroir.theme-light .miroir-centre-card__text { color: #1f1505 !important; opacity: 1; }
+body.miroir.theme-light .miroir-centre-card__icon {
+  background: radial-gradient(circle, rgba(184,136,32,.4), rgba(184,136,32,.1));
+}
+
+/* Compagnon — thème clair */
+body.miroir.theme-light .miroir-compagnon {
+  background: linear-gradient(160deg, rgba(184, 136, 32, 0.10), rgba(184, 136, 32, 0.03)), #fffdf8;
+  border-color: rgba(184, 136, 32, 0.4);
+}
+body.miroir.theme-light .miroir-compagnon__label { color: #8a6510; }
+body.miroir.theme-light .miroir-compagnon__type { color: #1f1505; }
+body.miroir.theme-light .miroir-compagnon__type em { color: #b88820; }
+body.miroir.theme-light .miroir-compagnon__phrase { color: #3d2d10 !important; }
+
+/* Welcome card */
+body.miroir.theme-light .welcome-card {
+  background: linear-gradient(160deg, rgba(184, 136, 32, 0.12), rgba(184, 136, 32, 0.03));
+  border-color: #b88820;
+}
+body.miroir.theme-light .welcome-card h2 { color: #1f1505; }
+body.miroir.theme-light .welcome-card h2 em { color: #b88820; }
+body.miroir.theme-light .welcome-card p,
+body.miroir.theme-light .welcome-card li { color: #3d2d10; }
+body.miroir.theme-light .welcome-card li strong { color: #8a6510; }
+
+/* Portes du jour */
+body.miroir.theme-light .miroir-porte {
+  background: #fffdf8;
+  border-color: #d4c89a;
+}
+body.miroir.theme-light .miroir-porte:hover { border-color: #b88820; }
+body.miroir.theme-light .miroir-porte__title { color: #1f1505; }
+body.miroir.theme-light .miroir-porte__desc { color: #5b4a2a; }
+body.miroir.theme-light .miroir-porte__arrow { color: #b88820; }
+
+/* Reprise du vœu */
+body.miroir.theme-light .miroir-reprise {
+  background: linear-gradient(160deg, rgba(184, 136, 32, 0.14), rgba(184, 136, 32, 0.04));
+  border-color: rgba(184, 136, 32, 0.5);
+}
+body.miroir.theme-light .miroir-reprise__label { color: #8a6510; }
+body.miroir.theme-light .miroir-reprise__vow { color: #1f1505; border-left-color: #b88820; }
+body.miroir.theme-light .miroir-reprise__q { color: #3d2d10; }
+body.miroir.theme-light .miroir-reprise__opt {
+  background: rgba(255, 253, 248, .9); color: #5b4a2a;
+  border-color: rgba(45, 32, 8, .25);
+}
+body.miroir.theme-light .miroir-reprise__opt.is-active {
+  background: #b88820; color: #fffdf8; border-color: #b88820;
+}
+
+/* Whisper */
+body.miroir.theme-light .miroir-whisper { color: #5b4a2a; }
+body.miroir.theme-light .miroir-hello { color: #1f1505; }
+body.miroir.theme-light .miroir-hello em { color: #b88820; }
+body.miroir.theme-light .miroir-date { color: #5b4a2a; }
+
+/* Brand header */
+body.miroir.theme-light .miroir-brand { color: #1f1505; }
+body.miroir.theme-light .miroir-brand em { color: #b88820; }
+body.miroir.theme-light .miroir-brand__mark {
+  background: radial-gradient(circle at 35% 30%, #b88820, rgba(184, 136, 32, 0.2));
+}
+body.miroir.theme-light .miroir-header__nav a { color: #5b4a2a; }
+body.miroir.theme-light .miroir-header__nav a:hover { color: #b88820; }
+body.miroir.theme-light .miroir-header { border-bottom-color: rgba(45, 32, 8, .18); }
+
+/* Titres + sub */
+body.miroir.theme-light .miroir-h1 { color: #1f1505; }
+body.miroir.theme-light .miroir-h1 em { color: #b88820; }
+body.miroir.theme-light .miroir-sub { color: #3d2d10; }
+
+/* Bottom nav */
+body.miroir.theme-light .miroir-bottom-nav {
+  background: rgba(255, 253, 248, .95) !important;
+  border-top-color: rgba(184, 136, 32, .4);
+}
+body.miroir.theme-light .miroir-bottom-nav__item { color: #5b4a2a; }
+body.miroir.theme-light .miroir-bottom-nav__item.is-active,
+body.miroir.theme-light .miroir-bottom-nav__item:hover { color: #b88820; }
+
+/* Weekly mirror & suggestions — thème clair */
+body.miroir.theme-light .weekly-mirror {
+  background: linear-gradient(160deg, rgba(184, 136, 32, 0.12), rgba(184, 136, 32, 0.03));
+  border-color: rgba(184, 136, 32, 0.5);
+}
+body.miroir.theme-light .weekly-mirror__title { color: #1f1505; }
+body.miroir.theme-light .weekly-mirror__title em { color: #b88820; }
+body.miroir.theme-light .weekly-mirror__line { color: #3d2d10; }
+body.miroir.theme-light .weekly-mirror__line strong { color: #b88820; }
+body.miroir.theme-light .weekly-suggestions {
+  background: linear-gradient(160deg, rgba(70, 140, 80, 0.10), rgba(70, 140, 80, 0.02));
+  border-color: rgba(70, 140, 80, 0.4);
+}
+body.miroir.theme-light .weekly-suggestions__title { color: #2d6040; }
+body.miroir.theme-light .weekly-suggestions__item p { color: #3d2d10; }
+
+/* Bouton qui doit toujours être lisible */
+body.miroir.theme-light .miroir-btn {
+  background: #b88820 !important; color: #fffdf8 !important; border-color: #b88820 !important;
+}
+body.miroir.theme-light .miroir-btn--ghost {
+  background: transparent !important; color: #b88820 !important;
+  border-color: rgba(45, 32, 8, .3) !important;
+}

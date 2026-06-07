@@ -8,10 +8,17 @@ export function getTheme() {
 
 export function applyTheme(t) {
   const isLight = t === 'light';
-  document.body.classList.toggle('theme-light', isLight);
-  // mettre à jour le bouton si présent
+  // Ajout sur HTML et BODY pour que tout le viewport bascule
+  document.documentElement.classList.toggle('theme-light', isLight);
+  if (document.body) document.body.classList.toggle('theme-light', isLight);
+  // Le HTML a un fond hardcodé inline — on le force ici à la bonne couleur
+  document.documentElement.style.background = isLight ? '#fbf6e8' : '#070b14';
+  if (document.body) document.body.style.background = '';  // laisse le CSS reprendre la main
+  // mettre à jour les boutons (header + flottant)
   const btn = document.getElementById('theme-toggle');
   if (btn) btn.textContent = isLight ? '🌙' : '☀';
+  const btnFloat = document.getElementById('theme-toggle-floating');
+  if (btnFloat) btnFloat.textContent = isLight ? '🌙' : '☀';
   try { localStorage.setItem(THEME_KEY, t); } catch {}
 }
 
