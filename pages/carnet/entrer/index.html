@@ -10,6 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/carnet.css?v=8">
+  <style>
+    .mi-types{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;margin:.4rem 0 0}
+    @media (max-width:430px){.mi-types{grid-template-columns:repeat(2,1fr)}}
+    .mi-type{position:relative;display:flex;flex-direction:column;gap:.15rem;padding:.7rem .6rem;border:1px solid rgba(168,182,220,.25);border-radius:12px;cursor:pointer;background:rgba(255,255,255,.02);transition:border-color .15s,background .15s,transform .1s}
+    .mi-type:hover{border-color:rgba(245,215,123,.6)}
+    .mi-type input{position:absolute;opacity:0;pointer-events:none}
+    .mi-type__n{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#f5d77b;line-height:1}
+    .mi-type__nom{font-size:.82rem;color:#a8b6dc;line-height:1.2}
+    .mi-type:has(input:checked),.mi-type.is-checked{border-color:#f5d77b;background:rgba(245,215,123,.12);transform:translateY(-1px)}
+    .mi-help{margin-top:1.4rem;font-size:.92rem;color:#a8b6dc;font-style:italic;font-family:'Cormorant Garamond',serif;line-height:1.6}
+    .mi-help a{color:#f5d77b}
+  </style>
 </head>
 <body class="miroir">
   <div class="miroir-wrap">
@@ -17,65 +29,80 @@
 
     <div class="miroir-form-wrap fade-in-up">
       <h1 class="miroir-h1">Entrer dans <em>votre carnet</em></h1>
-      <p class="miroir-sub">Votre prénom et le code qui vous a été confié.</p>
+      <p class="miroir-sub">Aucun code, aucune inscription. Indiquez votre type — vous pourrez le changer à tout moment.</p>
 
       <form id="enter-form" autocomplete="off">
         <div class="miroir-field">
-          <label class="miroir-field__label" for="prenom">Votre prénom</label>
-          <input class="miroir-input" type="text" id="prenom" required maxlength="40" placeholder="Jeanne" autocomplete="given-name" />
+          <label class="miroir-field__label" for="prenom">Votre prénom <span style="opacity:.6">(facultatif)</span></label>
+          <input class="miroir-input" type="text" id="prenom" maxlength="40" placeholder="Comment vous appeler ?" autocomplete="given-name" />
         </div>
 
         <div class="miroir-field">
-          <label class="miroir-field__label" for="code">Votre code</label>
-          <input class="miroir-input" type="text" id="code" required minlength="3" maxlength="40" placeholder="le code reçu par Brahms" autocomplete="off" spellcheck="false" />
+          <label class="miroir-field__label">Votre type</label>
+          <div class="mi-types" id="types"></div>
         </div>
 
         <div class="miroir-actions">
           <button type="submit" class="miroir-btn" id="submit">Entrer dans le carnet</button>
         </div>
 
-        <div id="err" class="miroir-form-err" style="display:none;margin-top:1rem;padding:.8rem 1rem;background:rgba(253,164,175,.15);border:1px solid rgba(253,164,175,.5);border-radius:10px;color:#fda4af;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;text-align:center;"></div>
+        <div id="err" style="display:none;margin-top:1rem;padding:.8rem 1rem;background:rgba(253,164,175,.15);border:1px solid rgba(253,164,175,.5);border-radius:10px;color:#fda4af;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;text-align:center;"></div>
       </form>
 
-      <p style="margin-top:2.5rem;font-size:.95rem;color:#a8b6dc;font-style:italic;font-family:'Cormorant Garamond',serif;line-height:1.6;">
-        Pas encore de code ? <a href="../demande/" style="color:#f5d77b">En demander un</a>.<br>
-        Code oublié ? <a href="../oubli/" style="color:#f5d77b">Demander un rappel</a>.
+      <p class="mi-help">
+        Vous hésitez sur votre type ? <a href="/comprendre-son-type.html">Comprendre mon type</a>
+        ou <a href="/test-enneagramme-sans-indice.html">faire le test</a>.
       </p>
     </div>
   </div>
 
   <script type="module">
-    import { login } from '/assets/js/carnet/session.js';
+    import { enterAnon, getSession } from '/assets/js/carnet/session.js';
+
+    const NOMS = {1:"L'Idéaliste",2:"Le Donneur",3:"Le Performeur",4:"L'Individualiste",5:"L'Observateur",6:"Le Loyaliste",7:"L'Enthousiaste",8:"Le Meneur",9:"Le Médiateur"};
+    const typesEl = document.getElementById('types');
+    typesEl.innerHTML = Object.entries(NOMS).map(([n, nom]) => `
+      <label class="mi-type">
+        <input type="radio" name="type" value="${n}">
+        <span class="mi-type__n">${n}</span>
+        <span class="mi-type__nom">${nom}</span>
+      </label>`).join('');
+
+    function syncChecked() {
+      typesEl.querySelectorAll('.mi-type').forEach(l => l.classList.remove('is-checked'));
+      const c = typesEl.querySelector('input:checked');
+      if (c) c.closest('.mi-type').classList.add('is-checked');
+    }
+    typesEl.querySelectorAll('input[name="type"]').forEach(r => r.addEventListener('change', syncChecked));
+
+    // Pré-remplissage si la personne a déjà un carnet (cette page sert aussi à « changer de type »)
+    const s = getSession();
+    if (s) {
+      if (s.prenom) document.getElementById('prenom').value = s.prenom;
+      if (s.type) { const r = typesEl.querySelector(`input[value="${s.type}"]`); if (r) { r.checked = true; syncChecked(); } }
+      document.querySelector('.miroir-h1').innerHTML = 'Votre <em>carnet</em>';
+      document.querySelector('.miroir-sub').textContent = 'Vérifiez votre type (vous pouvez le changer), puis continuez.';
+      document.getElementById('submit').textContent = 'Continuer';
+    }
 
     const form = document.getElementById('enter-form');
     const errBox = document.getElementById('err');
     const btn = document.getElementById('submit');
 
-    const messages = {
-      'code-vide':         'Saisissez votre code.',
-      'code-introuvable':  'Ce code n\'existe pas. Vérifiez-le, ou demandez-en un nouveau.',
-      'code-desactive':    'Ce code n\'est plus actif. Demandez un rappel à Brahms.',
-      'prenom-incorrect':  'Ce prénom ne correspond pas à ce code.',
-      'default':           'Une difficulté est survenue. Réessayez dans un instant.'
-    };
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       errBox.style.display = 'none';
       const prenom = document.getElementById('prenom').value.trim();
-      const code   = document.getElementById('code').value.trim();
-      if (!prenom || !code) return;
-      btn.disabled = true;
-      btn.textContent = 'Un instant…';
+      const type = document.querySelector('input[name="type"]:checked')?.value;
+      if (!type) { errBox.textContent = 'Choisissez votre type pour continuer.'; errBox.style.display = 'block'; return; }
+      btn.disabled = true; btn.textContent = 'Un instant…';
       try {
-        await login(prenom, code);
+        await enterAnon({ prenom, type });
         window.location.href = '../aujourdhui/';
       } catch (err) {
-        const code = err?.message || 'default';
-        errBox.textContent = messages[code] || messages.default;
+        errBox.textContent = "Une difficulté est survenue. Réessayez dans un instant.";
         errBox.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = 'Entrer dans le carnet';
+        btn.disabled = false; btn.textContent = 'Entrer dans le carnet';
       }
     });
   </script>

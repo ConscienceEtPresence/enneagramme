@@ -98,6 +98,7 @@ document.getElementById('sortir').addEventListener('click', e => {
       </a>
       <div class="miroir-header__nav">
         <a href="../miroir/">Miroir</a>
+        <a href="../mon-carnet/">Mon carnet</a>
         <a href="#" id="sortir-top">Sortir</a>
       </div>
     </header>

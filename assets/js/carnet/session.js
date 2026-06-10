@@ -77,9 +77,113 @@ export async function login(prenom, codeId) {
   return session;
 }
 
+// === Entrée SANS CODE — identifiant anonyme local (comme la voie du dedans) ===
+const ANON_ID_KEY = 'mi_carnet_id';
+
+function newAnonId() {
+  try { if (window.crypto?.randomUUID) return 'mi-' + window.crypto.randomUUID(); } catch {}
+  return 'mi-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+}
+function getOrCreateAnonId() {
+  let id = null;
+  try { id = localStorage.getItem(ANON_ID_KEY); } catch {}
+  if (!id) { id = newAnonId(); try { localStorage.setItem(ANON_ID_KEY, id); } catch {} }
+  return id;
+}
+
+// Écrit / met à jour le profil du carnet, sur le document PARENT carnets-type/{id}
+// (indispensable pour que le cockpit puisse LISTER les carnets : sous Firestore,
+//  une collection ne renvoie pas les docs qui n'ont que des sous-collections).
+async function writeProfil(session, isNew = false) {
+  if (!session?.codeId) return;
+  const ref = doc(db, COL.carnets, session.codeId);
+  const data = {
+    prenom:   session.prenom || null,
+    type:     session.type ?? null,
+    aile:     session.aile ?? null,
+    sousType: session.sousType ?? null,
+    langue:   session.langue || 'fr',
+    anon:     true,
+    lastSeen: serverTimestamp()
+  };
+  if (isNew) data.firstSeen = serverTimestamp();
+  try { await setDoc(ref, data, { merge: true }); }
+  catch (e) { console.warn('writeProfil', e); }
+}
+
+// Ouvre (ou rouvre) un carnet SANS code. Le type est choisi par la personne (1..9).
+export async function enterAnon({ prenom = '', type, aile = null, sousType = null, langue = 'fr' } = {}) {
+  const t = parseInt(type, 10);
+  if (!(t >= 1 && t <= 9)) throw new Error('type-invalide');
+  const id = getOrCreateAnonId();
+  const isNew = !getSession();
+  const session = {
+    codeId: id, anon: true,
+    prenom: String(prenom || '').trim(),
+    type: t, aile, sousType,
+    langue, startedAt: Date.now()
+  };
+  setSession(session);
+  await writeProfil(session, isNew);
+  return session;
+}
+
+// Changer de type plus tard (depuis le carnet)
+export async function changeType(type, aile = null, sousType = null) {
+  const s = getSession();
+  if (!s) throw new Error('no-session');
+  const t = parseInt(type, 10);
+  if (!(t >= 1 && t <= 9)) throw new Error('type-invalide');
+  s.type = t; s.aile = aile; s.sousType = sousType;
+  setSession(s);
+  await writeProfil(s, false);
+  return s;
+}
+
+// === Lien de reprise (sauvegarde / changement d'appareil), SANS code a saisir ===
+// Le lien porte l'identifiant du carnet : l'ouvrir sur un autre appareil rouvre le meme carnet.
+export function recoveryUrl(session) {
+  session = session || getSession();
+  if (!session?.codeId) return '';
+  const p = new URLSearchParams();
+  p.set('c', session.codeId);
+  if (session.type)     p.set('t', String(session.type));
+  if (session.prenom)   p.set('p', session.prenom);
+  if (session.aile)     p.set('a', String(session.aile));
+  if (session.sousType) p.set('s', String(session.sousType));
+  const origin = (typeof location !== 'undefined' && location.origin) ? location.origin : '';
+  return `${origin}/pages/carnet/reprendre/?${p.toString()}`;
+}
+
+// Restaure une session a partir des parametres d'un lien de reprise (cote 'reprendre/').
+export function restoreFromParams(search) {
+  const p = new URLSearchParams(search || '');
+  const id = (p.get('c') || '').trim();
+  if (!id) throw new Error('lien-invalide');
+  try { localStorage.setItem(ANON_ID_KEY, id); } catch {}
+  const session = {
+    codeId: id, anon: true,
+    prenom: p.get('p') || '',
+    type: parseInt(p.get('t'), 10) || null,
+    aile: p.get('a') || null,
+    sousType: p.get('s') || null,
+    langue: 'fr', startedAt: Date.now()
+  };
+  setSession(session);
+  return session;
+}
+
 // === Vérification de session ouverte ===
-// (la clé est-elle toujours active ?)
 export async function ensureValidSession(session) {
+  session = session || getSession();
+  if (!session || !session.codeId) {
+    clearSession();
+    window.location.href = '/pages/carnet/entrer/';
+    throw new Error('session-invalid');
+  }
+  // Carnet sans code : aucune clé à vérifier, on rafraîchit juste la présence.
+  if (session.anon) { writeProfil(session, false); return; }
+  // (Compatibilité avec l'ancien système à code)
   const snap = await getDoc(doc(db, COL.codes, session.codeId));
   if (!snap.exists() || snap.data().actif === false) {
     clearSession();
