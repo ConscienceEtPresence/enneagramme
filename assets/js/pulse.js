@@ -47,32 +47,47 @@ function normalizePath(p) {
   return s.substring(0, 80) || 'home';
 }
 
+function monthKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+}
+
 async function pulse() {
   if (/bot|spider|crawler|preview|headless/i.test(navigator.userAgent || '')) return;
 
   const date = todayKey();
-  const ref = doc(db, 'analytics', SITE, 'jours', date);
+  const month = monthKey();
   const pathKey = normalizePath(location.pathname);
-  const updates = {
-    pageviews: increment(1),
-    lastSeen: serverTimestamp()
-  };
-  // Compteur par page (champ pages.{path} incrémenté)
-  updates[`pages.${pathKey}`] = increment(1);
 
+  // ---- Doc du JOUR ----
+  const dayUpd = { pageviews: increment(1), lastSeen: serverTimestamp() };
+  dayUpd[`pages.${pathKey}`] = increment(1);
   try {
-    const lastDay = localStorage.getItem('pulse_last_day');
-    if (lastDay !== date) {
-      updates.uniques = increment(1);
+    if (localStorage.getItem('pulse_last_day') !== date) {
+      dayUpd.uniques = increment(1);
       localStorage.setItem('pulse_last_day', date);
     }
   } catch {}
 
+  // ---- Doc du MOIS (même collection 'jours', id spécial '_mois_…') ----
+  const moUpd = { pageviews: increment(1) };
+  moUpd[`pages.${pathKey}`] = increment(1);
   try {
-    await setDoc(ref, updates, { merge: true });
-  } catch (e) {
-    console.warn('pulse failed', e);
-  }
+    if (localStorage.getItem('pulse_last_month') !== month) {
+      moUpd.uniques = increment(1);
+      localStorage.setItem('pulse_last_month', month);
+    }
+    let up = {}; try { up = JSON.parse(localStorage.getItem('pulse_upm') || '{}'); } catch {}
+    if (up.m !== month) up = { m: month, k: [] };
+    if (!up.k.includes(pathKey)) {
+      moUpd[`upages.${pathKey}`] = increment(1);
+      up.k.push(pathKey);
+      localStorage.setItem('pulse_upm', JSON.stringify(up));
+    }
+  } catch {}
+
+  try { await setDoc(doc(db, 'analytics', SITE, 'jours', date), dayUpd, { merge: true }); } catch (e) { console.warn('pulse day failed', e); }
+  try { await setDoc(doc(db, 'analytics', SITE, 'jours', '_mois_' + month), moUpd, { merge: true }); } catch (e) { console.warn('pulse month failed', e); }
 }
 
 // déclenche sans attendre (non bloquant)
