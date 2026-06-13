@@ -213,90 +213,24 @@
             </div>
           </div>
 
-          <!-- Action principale toujours visible -->
-          <div class="ctaRow primaryRow">
-            <a id="openFull" class="btn btnHero" href="profils/type1.html" aria-disabled="true">Voir la fiche complète →</a>
+          <div class="ctaRow">
+            <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
+            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
+            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
+            <button id="btnChooseProfiles" class="btn" type="button">Explorer les profils</button>
+            <a id="openCompat" class="btn" href="compatibilite.html">Affinité entre types</a>
+            <a class="btn" href="approches.html">Voies de transformation</a>
+            <a class="btn" href="approche-diamant.html">◆ L'approche Diamant ◆</a>
+            <a class="btn" href="comprendre-son-type.html">Comprendre votre type</a>
+            <a class="btn" href="confusions-entre-types.html">Vous hésitez entre deux types ?</a>
+            <a class="btn" href="sous-types.html">Les trois sous-types</a>
+            <a class="btn btnVoyage" href="voyage-enneagramme.html">◌ Le Voyage intérieur</a>
           </div>
-
-          <!-- Trois chemins, regroupés et pliables -->
-          <details class="pathGroup" open>
-            <summary><span class="dot"></span>Découvrir l'ennéagramme</summary>
-            <div class="pathLinks">
-              <a class="btn btnVoyage" href="voyage-enneagramme.html">◌ Le Voyage intérieur</a>
-              <a class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
-              <a class="btn" href="comprendre-son-type.html">Comprendre votre type</a>
-              <a class="btn" href="sous-types.html">Les trois sous-types</a>
-              <a class="btn" href="explore.html">Explorer l'ennéagramme</a>
-              <button id="btnChooseProfiles" class="btn" type="button">Choisir un profil sur le diagramme</button>
-            </div>
-          </details>
-
-          <details class="pathGroup">
-            <summary><span class="dot"></span>Vous et les autres</summary>
-            <div class="pathLinks">
-              <a id="openCompat" class="btn" href="compatibilite.html">Affinité entre types</a>
-              <a class="btn" href="confusions-entre-types.html">Vous hésitez entre deux types ?</a>
-              <a class="btn" href="expression-sexuelle.html">Expression sexuelle des types</a>
-            </div>
-          </details>
-
-          <details class="pathGroup">
-            <summary><span class="dot"></span>Aller plus loin</summary>
-            <div class="pathLinks">
-              <a class="btn" href="approches.html">Voies de transformation</a>
-              <a class="btn" href="approche-diamant.html">◆ L'approche Diamant ◆</a>
-            </div>
-          </details>
-
           <style>
-            .primaryRow{margin-top:14px;justify-content:center}
-            .btnHero{
-              border:1px solid rgba(125,211,252,.5);
-              background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.14));
-              color:#fff;font-weight:800;font-size:15px;padding:13px 26px;
-              text-decoration:none;border-radius:999px;letter-spacing:.2px;
-              transition:transform .12s ease, background .18s ease;
-            }
-            .btnHero:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.22))}
-            .btnHero[aria-disabled="true"]{opacity:.45;cursor:not-allowed;pointer-events:none}
-
-            .pathGroup{
-              margin:14px 0 0;border:1px solid rgba(255,255,255,.08);
-              border-radius:14px;background:rgba(255,255,255,.025);overflow:hidden;
-              transition:border-color .2s ease;
-            }
-            .pathGroup[open]{border-color:rgba(125,211,252,.22)}
-            .pathGroup summary{
-              cursor:pointer;list-style:none;padding:13px 16px;
-              font-size:14px;font-weight:700;letter-spacing:.4px;color:#e8eeff;
-              display:flex;align-items:center;gap:10px;
-              transition:background .15s ease;
-            }
-            .pathGroup summary::-webkit-details-marker{display:none}
-            .pathGroup summary:hover{background:rgba(125,211,252,.04)}
-            .pathGroup summary .dot{
-              width:8px;height:8px;border-radius:50%;background:#7dd3fc;
-              box-shadow:0 0 10px rgba(125,211,252,.5);flex-shrink:0;
-            }
-            .pathGroup summary::after{
-              content:"▾";margin-left:auto;color:var(--muted);
-              transition:transform .2s ease;font-size:12px;
-            }
-            .pathGroup[open] summary::after{transform:rotate(180deg)}
-            .pathLinks{padding:4px 14px 14px;display:flex;flex-direction:column;gap:8px}
-            .pathLinks .btn{
-              text-align:left;padding:10px 14px;font-size:14px;
-              border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);
-              border-radius:10px;color:#e8eeff;text-decoration:none;font-weight:600;
-              transition:background .14s ease, border-color .14s ease, transform .1s ease;
-              cursor:pointer;
-            }
-            .pathLinks .btn:hover{background:rgba(125,211,252,.08);border-color:rgba(125,211,252,.3);transform:translateX(2px)}
-
             .btnVoyage{
-              border:1px solid rgba(125,211,252,.4)!important;
+              border-color:rgba(125,211,252,.4)!important;
               background:linear-gradient(135deg,rgba(125,211,252,.16),rgba(196,181,253,.12))!important;
-              color:#bae6fd!important;font-weight:700!important;
+              color:#bae6fd!important;font-weight:700;
             }
             .btnVoyage:hover{
               background:linear-gradient(135deg,rgba(125,211,252,.26),rgba(196,181,253,.2))!important;
