@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Les trois sous-types — Ennéagramme</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    [hidden]{display:none!important}
+    .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0 8px}
+    .topBar a{font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;text-decoration:none}
+    .topBar a:hover{color:var(--text)}
+    .badge{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#7dd3fc;font-weight:700}
+
+    .hero{text-align:center;padding:24px 0 18px}
+    .hero h1{
+      margin:0 0 14px;font-size:clamp(28px,4.6vw,40px);line-height:1.15;letter-spacing:.3px;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 55%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero p{color:#cfe9ff;max-width:60ch;margin:0 auto;font-size:16px;line-height:1.6}
+    .hero .lead{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:62ch}
+
+    /* Trois cartes instincts */
+    .threeCards{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;
+      margin:30px 0 40px;
+    }
+    .iCard{
+      padding:18px 20px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .iCard:hover{transform:translateY(-2px)}
+    .iCard.sp{border-color:rgba(251,191,36,.45)}
+    .iCard.so{border-color:rgba(96,165,250,.45)}
+    .iCard.sx{border-color:rgba(244,114,182,.45)}
+    .iCard h3{margin:0 0 4px;font-size:18px;letter-spacing:.3px}
+    .iCard.sp h3{color:#fbbf24}
+    .iCard.so h3{color:#60a5fa}
+    .iCard.sx h3{color:#f472b6}
+    .iCard .alt{display:block;font-size:11.5px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:10px}
+    .iCard p{color:#e8eeff;font-size:14.5px;line-height:1.55;margin:0 0 10px}
+    .iCard .kw{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+    .iCard .kw span{font-size:11.5px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.06);color:#cfe9ff}
+    .iCard h4{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:12px 0 6px}
+    .iCard ul{margin:0;padding-left:18px;color:#cfe9ff;font-size:13.5px;line-height:1.55}
+    .iCard .pit{margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.04);font-size:13.5px;color:#cfe9ff;font-style:italic;border-left:2px solid rgba(255,255,255,.15)}
+
+    /* Sélecteur de type */
+    .picker{
+      margin:40px 0 18px;padding:20px;border-radius:16px;
+      border:1px solid rgba(125,211,252,.25);
+      background:linear-gradient(135deg,rgba(125,211,252,.06),rgba(196,181,253,.04));
+    }
+    .picker h2{margin:0 0 6px;font-size:20px;letter-spacing:.2px}
+    .picker p{color:var(--muted);font-size:14px;margin:0 0 14px}
+    .typeGrid{display:flex;flex-wrap:wrap;gap:8px}
+    .typeBtn{
+      width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);color:#e8eeff;font-weight:800;font-size:16px;cursor:pointer;
+      transition:all .15s ease;
+    }
+    .typeBtn:hover{border-color:rgba(125,211,252,.5);background:rgba(125,211,252,.08)}
+    .typeBtn.active{border-color:#7dd3fc;background:rgba(125,211,252,.2);color:#fff;transform:scale(1.08);box-shadow:0 0 14px rgba(125,211,252,.4)}
+
+    /* Le détail des 3 sous-types pour le type choisi */
+    .detail{margin:18px 0 40px}
+    .typeName{font-size:22px;font-weight:800;margin:0 0 4px}
+    .typeName small{font-weight:600;color:var(--muted);font-size:14px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:6px}
+    .subCards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+    @media(min-width:700px){.subCards{grid-template-columns:repeat(3,1fr)}}
+    .subCard{
+      padding:16px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .subCard.sp{border-top:3px solid #fbbf24}
+    .subCard.so{border-top:3px solid #60a5fa}
+    .subCard.sx{border-top:3px solid #f472b6}
+    .subCard .label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+    .subCard.sp .label{color:#fbbf24}
+    .subCard.so .label{color:#60a5fa}
+    .subCard.sx .label{color:#f472b6}
+    .subCard h4{margin:0;font-size:16px;color:#fff}
+    .subCard p{color:#cfe9ff;font-size:14px;line-height:1.55;margin:0}
+    .subCard .meta{color:var(--muted);font-size:12.5px;font-style:italic;margin-top:auto}
+    .subCard .counter{
+      display:inline-block;align-self:flex-start;margin-top:4px;
+      font-size:10.5px;padding:3px 8px;border-radius:999px;
+      background:rgba(125,211,252,.12);color:#bae6fd;letter-spacing:.5px;
+    }
+
+    /* Section identifier son sous-type */
+    .identify{
+      margin:30px 0 20px;padding:22px 22px 20px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);
+    }
+    .identify h2{margin:0 0 14px;font-size:20px}
+    .qBlock{margin-bottom:18px}
+    .qBlock h3{margin:0 0 8px;font-size:15px;color:#cfe9ff}
+    .qBlock ul{margin:0;padding-left:18px;color:#cfe9ff;font-size:14px;line-height:1.65}
+    .qBlock li strong{color:#fff}
+    .qBlock li .sp{color:#fbbf24}
+    .qBlock li .so{color:#60a5fa}
+    .qBlock li .sx{color:#f472b6}
+    .pitBox{
+      margin-top:12px;padding:14px 16px;border-radius:12px;
+      border:1px solid rgba(244,114,182,.25);background:rgba(244,114,182,.06);
+      color:#fbcfe8;font-size:14px;line-height:1.55;
+    }
+    .pitBox strong{color:#fff}
+
+    .sources{
+      margin:30px 0 16px;padding:16px 18px;border-radius:12px;
+      background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);
+      font-size:13px;color:var(--muted);line-height:1.6;
+    }
+    .sources strong{color:#cfe9ff}
+
+    .siteFooter{text-align:center;color:var(--muted);font-size:12px;padding:18px 0 28px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a href="index.html">← Accueil</a>
+      <span class="badge">3 sous-types · 27 profils</span>
+      <a href="voyage-enneagramme.html">◌ Le Voyage</a>
+    </div>
+
+    <section class="hero">
+      <h1>Les trois sous-types</h1>
+      <p>L'ennéagramme se déploie en 9 types, mais chaque type se vit de <strong>trois manières</strong> très différentes selon l'instinct qui nous occupe le plus au quotidien. C'est ce qu'on appelle les <em>sous-types instinctuels</em>.</p>
+      <p class="lead">Selon David Daniels, sans la connaissance des sous-types, on a environ une chance sur deux de se tromper de type. Les voici, simplement.</p>
+    </section>
+
+    <!-- Trois cartes des instincts -->
+    <section class="threeCards">
+      <div class="iCard sp">
+        <h3>Survie</h3>
+        <span class="alt">Auto-conservation · sp</span>
+        <p>Mon attention va d'abord vers ma sécurité matérielle, mon bien-être physique, le confort de mon foyer.</p>
+        <div class="kw">
+          <span>maison</span><span>confort</span><span>sécurité</span><span>détails</span><span>prévoyance</span>
+        </div>
+        <h4>Au quotidien</h4>
+        <ul>
+          <li>Sens du concret, gère bien la matière</li>
+          <li>Crée une atmosphère sûre et douillette</li>
+          <li>Anticipe, range, prévoit</li>
+        </ul>
+        <div class="pit"><strong>Le piège :</strong> une anxiété sans fin sur le « assez » — jamais assez d'argent, de sécurité, de réserves.</div>
+      </div>
+
+      <div class="iCard so">
+        <h3>Social</h3>
+        <span class="alt">Groupe · so</span>
+        <p>Mon attention va d'abord vers le groupe : ma place, mes liens, ce qui se joue entre les personnes, les causes communes.</p>
+        <div class="kw">
+          <span>amis</span><span>groupe</span><span>statut</span><span>réseau</span><span>participation</span>
+        </div>
+        <h4>Au quotidien</h4>
+        <ul>
+          <li>Comprend la dynamique des organisations</li>
+          <li>Aime les événements, les projets collectifs</li>
+          <li>Sait qui est qui, tisse du lien</li>
+        </ul>
+        <div class="pit"><strong>Le piège :</strong> confondre sa valeur personnelle avec la reconnaissance du groupe.</div>
+      </div>
+
+      <div class="iCard sx">
+        <h3>Tête-à-tête</h3>
+        <span class="alt">Sexuel · sx</span>
+        <p>Mon attention va d'abord vers la relation intense, l'étincelle avec <em>une</em> personne, les moments forts, la présence partagée.</p>
+        <div class="kw">
+          <span>intensité</span><span>passion</span><span>complicité</span><span>présence</span><span>étincelle</span>
+        </div>
+        <h4>Au quotidien</h4>
+        <ul>
+          <li>Vit le temps en moments intenses</li>
+          <li>Excellent en face-à-face, séducteur</li>
+          <li>Cherche la complicité profonde</li>
+        </ul>
+        <div class="pit"><strong>Le piège :</strong> l'intensité requise en permanence, jusqu'à confondre passion et fusion.</div>
+      </div>
+    </section>
+
+    <!-- Sélecteur de type -->
+    <section class="picker">
+      <h2>Voir les sous-types pour votre type</h2>
+      <p>Choisissez votre type pour découvrir comment il s'incarne dans chacun des trois instincts.</p>
+      <div class="typeGrid" id="typeGrid"></div>
+    </section>
+
+    <section class="detail" id="detail"></section>
+
+    <!-- Identifier son sous-type -->
+    <section class="identify">
+      <h2>Comment reconnaître votre instinct dominant</h2>
+
+      <div class="qBlock">
+        <h3>1. Où va naturellement votre attention et votre énergie ?</h3>
+        <ul>
+          <li><strong class="sp">Survie ·</strong> vers la maison, la sécurité matérielle, mon bien-être physique, les détails pratiques</li>
+          <li><strong class="sx">Tête-à-tête ·</strong> vers une relation privilégiée, l'intensité avec une personne, le moment présent</li>
+          <li><strong class="so">Social ·</strong> vers les événements, les amis, ma place dans le groupe, les réseaux</li>
+        </ul>
+      </div>
+
+      <div class="qBlock">
+        <h3>2. Sous stress, que faites-vous instinctivement ?</h3>
+        <ul>
+          <li><strong class="sp">Survie ·</strong> je me retire à la maison, j'organise, je range, je sécurise</li>
+          <li><strong class="sx">Tête-à-tête ·</strong> je cherche la présence d'un proche, j'ai besoin d'intensité, de contact</li>
+          <li><strong class="so">Social ·</strong> je sors, j'appelle, je participe, je m'entoure</li>
+        </ul>
+      </div>
+
+      <div class="qBlock">
+        <h3>3. Un samedi soir parfait, c'est plutôt…</h3>
+        <ul>
+          <li><strong class="sp">Survie ·</strong> à la maison, au calme, bonne nourriture, film tranquille</li>
+          <li><strong class="sx">Tête-à-tête ·</strong> en tête-à-tête intense, conversation profonde, présence concentrée</li>
+          <li><strong class="so">Social ·</strong> entouré d'amis, soirée animée, conversations variées</li>
+        </ul>
+      </div>
+
+      <div class="qBlock">
+        <h3>4. Où êtes-vous instinctivement doué·e ?</h3>
+        <ul>
+          <li><strong class="sp">Survie ·</strong> gérer le concret, le bien-être physique, l'organisation pratique</li>
+          <li><strong class="sx">Tête-à-tête ·</strong> convaincre en face-à-face, créer une intimité, communiquer l'émotion</li>
+          <li><strong class="so">Social ·</strong> tisser un réseau, organiser le collectif, lire la politique des groupes</li>
+        </ul>
+      </div>
+
+      <div class="pitBox">
+        <strong>Un piège classique :</strong> on confond souvent son instinct dominant avec celui qu'on <em>rejette</em>. Quelqu'un qui déteste les événements sociaux peut être un <strong>social refoulé</strong>, pas un survie dominant. Demandez à un proche — il sait souvent mieux que vous.
+      </div>
+    </section>
+
+    <div class="sources">
+      <strong>Sources principales :</strong> Beatrice Chestnut, <em>The Complete Enneagram — 27 Paths to Greater Self-Knowledge</em> · <em>La Clé de l'Ennéagramme — Les Sous-types</em>. Les noms des trois instincts sont parfois traduits différemment : Auto-conservation (sp) / Social (so) / Sexuel ou Tête-à-tête (sx).
+    </div>
+
+    <footer class="siteFooter">Un instinct dominant n'est pas une étiquette — c'est une porte d'entrée pour mieux se connaître.</footer>
+  </div>
+
+  <script>
+  // ============================================================
+  // Données des 27 sous-types (synthèse Chestnut + Clé)
+  // counterType: true = "contre-type" (paraît différent des deux autres)
+  // ============================================================
+  const TYPES = {
+    1:{name:"Le Perfectionniste",
+       sp:{title:"Anxiété — Le Pionnier",
+           desc:"Concentre sa rigueur sur la matière : maison, ordre, détails. Le moindre désordre, la moindre erreur le déstabilise. Discipliné, exemplaire, mais habité d'une anxiété douce et permanente.",
+           distinct:"Contrôle le concret (et non le monde ou le partenaire)."},
+       sx:{title:"Zèle — Le Prédicateur", counter:true,
+           desc:"Tend vers l'excellence ET contrôle la relation. Jaloux du temps que l'autre se garde. Critique voilée, autorité dissimulée. Son zèle à être le parfait conjoint peut épuiser l'autre.",
+           distinct:"Contre-type : passion, intensité — paraît moins « 1 » que les deux autres."},
+       so:{title:"Inadaptabilité sociale — Le Réformateur",
+           desc:"Colère contre un monde qui ne tourne pas rond. Sermonneur, rigide, supérieur. Croit avoir raison sur ce que la société devrait être. Manque de spontanéité en groupe.",
+           distinct:"Focalisé sur le collectif et ce qui « devrait » être."}},
+
+    2:{name:"L'Altruiste",
+       sp:{title:"Privilège — La Nourrice",
+           desc:"Donne énormément d'énergie au foyer, au confort matériel des proches. Demande des privilèges en retour, comme un dû discret : meilleure place, traitement préférentiel.",
+           distinct:"Plus enfantin et exigeant que les deux autres — paraît parfois moins serviable."},
+       sx:{title:"Séduction — L'Amoureux",
+           desc:"Doublement focalisé sur la séduction : charme, voix douce, langage du corps. Cherche à être l'irrésistible. Si le charme ne prend pas, peut devenir intrusif ou agressif.",
+           distinct:"Passion et conquête de l'autre."},
+       so:{title:"Ambition — L'Influent", counter:true,
+           desc:"Cherche la reconnaissance par le statut et les réseaux. Aide les gens importants, comprend le pouvoir. Orgueil = être reconnu par le groupe qui compte.",
+           distinct:"Contre-type : plus ambitieux et stratégique — paraît moins « altruiste »."}},
+
+    3:{name:"Le Battant",
+       sp:{title:"Sécurité — L'Entrepreneur", counter:true,
+           desc:"Réussite mesurée par la sécurité matérielle. Travaille dur, accumule, garantit l'avenir. Plus il s'insécurise, plus il produit. Peu démonstratif.",
+           distinct:"Contre-type : sobre, peu en représentation — paraît moins « 3 »."},
+       sx:{title:"Charme — La Star",
+           desc:"Cherche à être désirable, séduisant, l'objet de l'attention. Image polie au service de la relation, performance émotive. Veut être admiré par les personnes-clés.",
+           distinct:"Image et charme au service du face-à-face."},
+       so:{title:"Prestige — Le Champion",
+           desc:"Réussite mesurée par la position dans le groupe, le réseau, les clients prestigieux. Investit dans son image publique, sait briller en société.",
+           distinct:"L'image collective avant tout."}},
+
+    4:{name:"L'Individualiste",
+       sp:{title:"Témérité — L'Aventurier", counter:true,
+           desc:"Refuse le confort routinier. Choisit l'authentique au prix du risque. Vie aventureuse, métiers atypiques, précarité parfois assumée. Endure en silence.",
+           distinct:"Contre-type : moins dramatique, plus stoïque — paraît moins « 4 »."},
+       sx:{title:"Compétition — Le Passionné au carré",
+           desc:"Personnalité entière, exaltée. Construit l'estime par la rivalité. Capacité à soulever des montagnes, mais aussi à transformer la passion en haine.",
+           distinct:"Intensité maximale, à la limite de la fureur."},
+       so:{title:"Honte — L'Exclu",
+           desc:"Sentiment d'exclusion, envie du statut des autres. Cherche à paraître original, raffiné, au-dessus des normes pour compenser une honte intérieure.",
+           distinct:"La honte sociale comme moteur."}},
+
+    5:{name:"L'Observateur",
+       sp:{title:"Château fort — Le Minimaliste",
+           desc:"Réduit besoins, possessions et contacts. Vit dans peu d'espace, simplement. L'autonomie comme liberté. Le savoir vaut plus que les objets.",
+           distinct:"L'isolement matériel, le minimalisme."},
+       sx:{title:"Confidence — Le Confident",
+           desc:"Autorise quelques rencontres très intenses : confidences hors du temps, intimité intellectuelle. Se livre sans retenue, puis reprend distance.",
+           distinct:"Choisit UNE relation intense parmi peu."},
+       so:{title:"Totems — L'Initié", counter:true,
+           desc:"Passionné par les idées importantes, les symboles culturels, les sujets prestigieux. Observateur du social plus que participant.",
+           distinct:"Contre-type : intéressé par le social — paraît moins « solitaire »."}},
+
+    6:{name:"Le Loyal",
+       sp:{title:"Chaleur — L'Hôte",
+           desc:"Crée de la chaleur autour de soi pour se prémunir contre l'agression. « Si les gens m'aiment, j'ai moins à craindre. » Cercle d'amis proches comme garde rapprochée.",
+           distinct:"Sécurité par les liens affectueux proches."},
+       sx:{title:"Force / Beauté — Le Rebelle", counter:true,
+           desc:"Compense la peur par l'apparence de force ou de séduction. Exagère la puissance (hommes) ou la beauté (femmes). Va vers le danger plutôt que de l'éviter.",
+           distinct:"Contre-type : paraît assuré, voire intrépide — masque la peur."},
+       so:{title:"Devoir — Le Loyaliste",
+           desc:"Hyper-vigilant sur la fiabilité du groupe, de l'organisation. Sens du devoir poussé. Cherche un cadre clair, peut devenir inquisiteur.",
+           distinct:"L'obligation envers le collectif."}},
+
+    7:{name:"L'Épicurien",
+       sp:{title:"Clan — L'Animateur",
+           desc:"Organise la vie la plus sympa possible autour de la famille et des proches. Projets, repas, voyages avec le clan. A besoin d'une « cour » pour s'épanouir.",
+           distinct:"Le groupe restreint et choisi."},
+       sx:{title:"Fascination — L'Enthousiaste",
+           desc:"Plaisir maximum en un minimum de temps, en compagnie d'une personne. Très influençable, séducteur, vit dans un parc d'attractions permanent.",
+           distinct:"L'intensité doublée — voracité et nouveauté."},
+       so:{title:"Sacrifice — Le Dévoué", counter:true,
+           desc:"Renonce à son plaisir personnel pour le groupe, par sens du devoir. Tension entre l'envie de fuir et la responsabilité collective.",
+           distinct:"Contre-type : sacrifie son fun — paraît moins « 7 »."}},
+
+    8:{name:"Le Meneur",
+       sp:{title:"Satisfaction — Le Combattant",
+           desc:"Contrôle son territoire, ses ressources, sa tribu. Mode de vie spartiate, peu de luxe. « Je dois savoir qui est où et qui fait quoi. »",
+           distinct:"Contrôle direct du concret et du territoire."},
+       sx:{title:"Possession — L'Amour Passion",
+           desc:"Tout ou rien dans la relation. Possession totale ou reddition totale au partenaire. Intensité sans compromis, amour passion brûlant.",
+           distinct:"Relation binaire, sans demi-mesure."},
+       so:{title:"Solidarité — Le Patriarche", counter:true,
+           desc:"Protège le groupe, rassemble, organise les réunions de famille. Loyal à ceux qu'il considère « siens ». Tendre sous l'écorce dure.",
+           distinct:"Contre-type : plus loyal et chaleureux — paraît moins « dur »."}},
+
+    9:{name:"Le Médiateur",
+       sp:{title:"Appétit — Le Casanier",
+           desc:"S'oublie dans les petits plaisirs matériels : routine, télé, nourriture, jardin. Comble ses besoins affectifs par les objets et les habitudes.",
+           distinct:"L'oubli passe par la matière."},
+       sx:{title:"Union — Le Fusionnel",
+           desc:"S'oublie dans la fusion avec l'autre. Adhère aux goûts du partenaire, perd ses propres désirs. « Un + un = un. »",
+           distinct:"L'oubli passe par la fusion relationnelle."},
+       so:{title:"Participation — L'Engagé", counter:true,
+           desc:"S'oublie dans le groupe, les causes, le bénévolat. Très actif pour le collectif — ce qui devient son excuse pour ne pas se rencontrer lui-même.",
+           distinct:"Contre-type : plus engagé et actif — paraît moins « 9 »."}}
+  };
+
+  // ============================================================
+  // Sélecteur
+  // ============================================================
+  const grid = document.getElementById('typeGrid');
+  const detail = document.getElementById('detail');
+
+  function renderGrid(active){
+    grid.innerHTML = '';
+    for(let t=1;t<=9;t++){
+      const b = document.createElement('button');
+      b.className = 'typeBtn' + (t===active?' active':'');
+      b.textContent = t;
+      b.addEventListener('click', ()=> renderType(t));
+      grid.appendChild(b);
+    }
+  }
+
+  function renderType(t){
+    renderGrid(t);
+    const T = TYPES[t];
+    const order = ['sp','so','sx'];
+    const labels = {sp:'Survie', so:'Social', sx:'Tête-à-tête'};
+
+    let cards = '';
+    order.forEach(k=>{
+      const s = T[k];
+      cards += `
+        <div class="subCard ${k}">
+          <span class="label">${labels[k]}</span>
+          <h4>${s.title}</h4>
+          ${s.counter ? `<span class="counter">Contre-type</span>` : ''}
+          <p>${s.desc}</p>
+          <p class="meta">${s.distinct}</p>
+        </div>`;
+    });
+
+    detail.innerHTML = `
+      <p class="typeName"><small>Type ${t}</small>${T.name}</p>
+      <div class="subCards">${cards}</div>
+    `;
+    detail.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // Au démarrage, on n'affiche aucun type sélectionné (l'utilisateur choisit)
+  renderGrid(null);
+  </script>
+</body>
+</html>
