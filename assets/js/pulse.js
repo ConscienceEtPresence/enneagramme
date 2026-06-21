@@ -68,6 +68,16 @@ async function pulse() {
       localStorage.setItem('pulse_last_day', date);
     }
   } catch {}
+  try {
+    let upDay = {};
+    try { upDay = JSON.parse(localStorage.getItem('pulse_upd') || '{}'); } catch {}
+    if (upDay.d !== date) upDay = { d: date, k: [] };
+    if (!upDay.k.includes(pathKey)) {
+      dayUpd[`upages.${pathKey}`] = increment(1);
+      upDay.k.push(pathKey);
+      localStorage.setItem('pulse_upd', JSON.stringify(upDay));
+    }
+  } catch {}
 
   // ---- Doc du MOIS (même collection 'jours', id spécial '_mois_…') ----
   const moUpd = { pageviews: increment(1) };
