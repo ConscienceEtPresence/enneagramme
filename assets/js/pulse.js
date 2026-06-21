@@ -52,20 +52,61 @@ function monthKey() {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
 }
 
+function visitMoment() {
+  const hour = new Date().getHours();
+  const period = hour >= 5 && hour < 12 ? 'matin'
+    : hour >= 12 && hour < 18 ? 'apres_midi'
+    : hour >= 18 && hour < 23 ? 'soir'
+    : 'nuit';
+  return { hour: String(hour).padStart(2, '0'), period };
+}
+
+function sourceKey() {
+  try {
+    if (!document.referrer) return 'direct';
+    const from = new URL(document.referrer).hostname.replace(/^www\./, '');
+    const here = location.hostname.replace(/^www\./, '');
+    if (!from) return 'direct';
+    if (from === here) return 'interne';
+    if (/google\./i.test(from)) return 'google';
+    if (/bing\.|duckduckgo\.|qwant\.|yahoo\./i.test(from)) return 'recherche';
+    if (/lavoiedudedans\./i.test(from)) return 'lavoiedudedans';
+    if (/lemiroirinterieur\./i.test(from)) return 'lemiroirinterieur';
+    if (/facebook\.|instagram\.|threads\.|linkedin\.|x\.com$|twitter\.|t\.co$|youtube\./i.test(from)) return 'social';
+    return 'autre';
+  } catch {
+    return 'direct';
+  }
+}
+
 async function pulse() {
   if (/bot|spider|crawler|preview|headless/i.test(navigator.userAgent || '')) return;
 
   const date = todayKey();
   const month = monthKey();
   const pathKey = normalizePath(location.pathname);
+  const moment = visitMoment();
 
   // ---- Doc du JOUR ----
   const dayUpd = { pageviews: increment(1), lastSeen: serverTimestamp() };
   dayUpd[`pages.${pathKey}`] = increment(1);
+  dayUpd[`hours.${moment.hour}`] = increment(1);
+  dayUpd[`periods.${moment.period}`] = increment(1);
   try {
     if (localStorage.getItem('pulse_last_day') !== date) {
       dayUpd.uniques = increment(1);
+      dayUpd[`sources.${sourceKey()}`] = increment(1);
       localStorage.setItem('pulse_last_day', date);
+    }
+  } catch {}
+  try {
+    let upPeriods = {};
+    try { upPeriods = JSON.parse(localStorage.getItem('pulse_uperiods') || '{}'); } catch {}
+    if (upPeriods.d !== date) upPeriods = { d: date, k: [] };
+    if (!upPeriods.k.includes(moment.period)) {
+      dayUpd[`uperiods.${moment.period}`] = increment(1);
+      upPeriods.k.push(moment.period);
+      localStorage.setItem('pulse_uperiods', JSON.stringify(upPeriods));
     }
   } catch {}
   try {
