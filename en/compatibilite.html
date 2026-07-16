@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Affinity - Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <style>
+    :root{
+      --love:#fb7185;
+      --work:#34d399;
+      --hier:#5eead4;
+    }
+    html,body{overflow-x:hidden}
+
+    .wrap{max-width:1180px;margin:24px auto 34px;padding:0 14px}
+
+    .top{
+      display:grid;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    h1{margin:0;font-size:clamp(28px,4.5vw,46px);line-height:1.05;text-align:center}
+    .sub{margin:0 auto;color:var(--muted);font-size:17px;max-width:78ch;text-align:center}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 16px;
+      min-height:var(--touch-min);
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.07);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.24);text-decoration:none}
+    .btn:active{transform:translateY(1px)}
+    .btn[disabled]{opacity:.55;cursor:not-allowed}
+
+    .grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:16px;align-items:start}
+    .grid > *{min-width:0}
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--glass);
+      box-shadow:var(--shadow);
+    }
+
+    .diagramCard{padding:16px}
+    .svgWrap{display:flex;justify-content:center;align-items:center;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:10px;overflow:hidden}
+    .svgWrap svg{width:100%;max-width:720px;height:auto;display:block}
+    .hint{margin:10px 2px 2px;color:rgba(255,255,255,.76);font-size:14px;text-align:center}
+
+    .ring{stroke:rgba(147,197,253,.55);stroke-width:3.2;fill:none}
+    .hex,.tri{fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .hex{stroke:rgba(255,255,255,.08);stroke-width:2.2}
+    .tri{stroke:rgba(255,255,255,.06);stroke-width:2;opacity:.65}
+
+    .centerLabel{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;fill:rgba(255,255,255,.72)}
+    .centerLabel.instinctif{fill:var(--inst)}
+    .centerLabel.emotionnel{fill:var(--emo)}
+    .centerLabel.mental{fill:var(--ment)}
+
+    .pairLine{stroke:rgba(255,255,255,.22);stroke-width:2.6;opacity:0;transition:opacity .18s ease}
+    .pairLine.on{opacity:.95}
+    .pairLine.love{stroke:rgba(251,113,133,.86)}
+    .pairLine.work{stroke:rgba(52,211,153,.84)}
+
+    .node{cursor:pointer;transition:opacity .14s ease}
+    .node circle{
+      fill:rgba(15,26,51,.85);
+      stroke:rgba(255,255,255,.2);
+      stroke-width:2.2;
+      transition:stroke .14s ease,opacity .14s ease,stroke-width .14s ease;
+    }
+    .node text{
+      fill:var(--text);
+      font-size:22px;
+      font-weight:850;
+      dominant-baseline:middle;
+      text-anchor:middle;
+      transition:fill .14s ease;
+    }
+    .node.instinctif circle{stroke:var(--inst)}
+    .node.emotionnel circle{stroke:var(--emo)}
+    .node.mental circle{stroke:var(--ment)}
+
+    .node.dimmed{opacity:.24}
+    .node.selectedA,.node.selectedB{opacity:1}
+    .node.selectedA circle,.node.selectedB circle{stroke-width:3.2}
+    .node.selectedA text,.node.selectedB text{fill:#fff}
+
+    .panel{padding:14px;display:grid;gap:12px}
+    .picks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .pick{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:14px;
+      padding:10px 10px;
+      background:rgba(0,0,0,.18);
+      min-height:60px;
+      display:grid;
+      gap:3px;
+      align-content:center;
+    }
+    .pick .k{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+    .pick .v{font-size:18px;font-weight:800;line-height:1.15}
+    .pick.a{border-color:rgba(52,211,153,.38)}
+    .pick.b{border-color:rgba(251,113,133,.38)}
+
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .miniBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 14px;
+      min-height:var(--touch-min);
+      font-weight:700;
+      cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform var(--motion-fast) var(--motion-ease);
+    }
+    .miniBtn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24);transform:translateY(-1px)}
+
+    .empty{border:1px dashed rgba(255,255,255,.2);border-radius:14px;padding:12px;color:var(--muted);font-size:14px}
+
+    .resultBlock{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .resultBlock summary{
+      padding:12px 14px;
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:17px;
+      font-weight:700;
+      letter-spacing:.2px;
+      user-select:none;
+    }
+    .resultBlock summary::-webkit-details-marker{display:none}
+    .resultBlock summary::after{
+      content:"▸";
+      font-size:14px;
+      color:var(--muted);
+      transition:transform .2s ease;
+    }
+    .resultBlock[open] summary::after{transform:rotate(90deg)}
+    .resultBlock.love summary{color:var(--love)}
+    .resultBlock.work summary{color:var(--work)}
+
+    .accordionBody{padding:0 14px 14px;display:grid;gap:10px}
+    .subBlock{display:grid;gap:6px}
+    .subBlock ul{margin:0;padding-left:18px;display:grid;gap:6px}
+    .subBlock li{color:rgba(255,255,255,.88);line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
+
+    .hierSub{
+      border:1px solid rgba(94,234,212,.15);
+      border-radius:12px;
+      background:rgba(94,234,212,.04);
+      overflow:hidden;
+      margin-top:4px;
+    }
+    .hierSub summary{
+      padding:10px 12px;
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:.2px;
+      color:var(--hier);
+      user-select:none;
+    }
+    .hierSub summary::-webkit-details-marker{display:none}
+    .hierSub summary::after{
+      content:"▸";
+      font-size:12px;
+      color:var(--muted);
+      transition:transform .2s ease;
+    }
+    .hierSub[open] summary::after{transform:rotate(90deg)}
+    .hierSubBody{padding:0 12px 12px;display:grid;gap:6px}
+
+    /* Accordion animations */
+    .resultBlock .accordionBody,.hierSubBody{animation:fadeSlideIn .28s cubic-bezier(.22,.61,.36,1)}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+    @media (max-width:1060px){
+      .grid{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .wrap{margin:16px auto 26px}
+      .sub{font-size:15px}
+      .panel{padding:12px}
+      .hint{font-size:13px}
+    }
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/compatibilite.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/compatibilite.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/compatibilite.html" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="topBar">
+        <a class="btn" href="/en/">← Home</a>
+      </div>
+      <h1>Affinity</h1>
+      <p class="sub">Choose two types on the diagram. The relationship is described according to three themes: love life, work, and workplace hierarchy.</p>
+    </header>
+
+    <main class="grid">
+      <section class="card diagramCard">
+        <div class="svgWrap">
+          <svg id="compatSvg" viewBox="0 0 700 700" aria-label="Enneagram affinity diagram">
+            <circle class="ring" cx="350" cy="350" r="270"></circle>
+
+            <g id="staticBg">
+              <path class="hex" d="" id="hexPath"></path>
+              <path class="tri" d="" id="triPath"></path>
+              <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctive</text>
+              <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Emotional</text>
+              <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
+            </g>
+
+            <line id="pairLove" class="pairLine love" x1="0" y1="0" x2="0" y2="0"></line>
+            <line id="pairWork" class="pairLine work" x1="0" y1="0" x2="0" y2="0"></line>
+            <g id="nodesLayer"></g>
+          </svg>
+        </div>
+        <p class="hint" id="selectHint">Select Type A, then Type B.</p>
+      </section>
+
+      <aside class="card panel">
+        <div class="picks">
+          <div class="pick a">
+            <span class="k">Type A</span>
+            <span class="v" id="pickA">—</span>
+          </div>
+          <div class="pick b">
+            <span class="k">Type B</span>
+            <span class="v" id="pickB">—</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="miniBtn" id="btnSwap" type="button" disabled>Swap A/B</button>
+          <button class="miniBtn" id="btnReset" type="button">Reset</button>
+        </div>
+
+        <div class="empty" id="resultEmpty">Click two types to display the summary for love, work, and hierarchy.</div>
+
+        <div id="resultWrap" hidden style="display:grid;gap:12px">
+          <details class="resultBlock love" open>
+            <summary>Love life</summary>
+            <div class="accordionBody">
+              <div class="subBlock">
+                <ul id="loveSummary"></ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="resultBlock work" open>
+            <summary>Work</summary>
+            <div class="accordionBody">
+              <div class="subBlock">
+                <ul id="workSummary"></ul>
+              </div>
+              <details class="hierSub" id="hierBlock">
+                <summary>Leader–subordinate relationship</summary>
+                <div class="hierSubBody">
+                  <ul id="hierSummary"></ul>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const cx = 350, cy = 350, R = 270;
+    const order = [9,1,2,3,4,5,6,7,8];
+    const centerGroups = {
+      instinctif: [8,9,1],
+      emotionnel: [2,3,4],
+      mental: [5,6,7]
+    };
+
+    const points = {};
+    order.forEach((t, i) => {
+      const angle = (-90 + i * (360 / 9)) * (Math.PI / 180);
+      points[t] = { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) };
+    });
+
+    function groupOf(t){
+      if (centerGroups.instinctif.includes(t)) return "instinctif";
+      if (centerGroups.emotionnel.includes(t)) return "emotionnel";
+      return "mental";
+    }
+
+    function pathFromSeq(seq){
+      return seq
+        .map((t, idx) => (idx === 0 ? "M" : "L") + points[t].x.toFixed(2) + " " + points[t].y.toFixed(2))
+        .join(" ");
+    }
+
+    document.getElementById("hexPath").setAttribute("d", pathFromSeq([1,4,2,8,5,7,1]));
+    document.getElementById("triPath").setAttribute("d", pathFromSeq([3,6,9,3]));
+
+    const nodesLayer = document.getElementById("nodesLayer");
+    const pickAEl = document.getElementById("pickA");
+    const pickBEl = document.getElementById("pickB");
+    const hintEl = document.getElementById("selectHint");
+    const btnSwap = document.getElementById("btnSwap");
+    const btnReset = document.getElementById("btnReset");
+    const resultWrap = document.getElementById("resultWrap");
+    const resultEmpty = document.getElementById("resultEmpty");
+    const pairLove = document.getElementById("pairLove");
+    const pairWork = document.getElementById("pairWork");
+
+    const loveSummary = document.getElementById("loveSummary");
+    const workSummary = document.getElementById("workSummary");
+    const hierSummary = document.getElementById("hierSummary");
+    const hierBlock = document.getElementById("hierBlock");
+
+    const state = { a: null, b: null };
+    let typesData = null;
+    let duosDataByKey = {};
+    let duosLoaded = false;
+
+    function setList(el, items, boldPrefix){
+      el.innerHTML = "";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        if (boldPrefix) {
+          const m = item.match(/^(Leader\s+.+?\/Subordinate\s+.+?\s*:)\s*/);
+          if (m) {
+            const strong = document.createElement("strong");
+            strong.textContent = m[1] + " ";
+            li.appendChild(strong);
+            li.appendChild(document.createTextNode(item.slice(m[0].length)));
+          } else {
+            li.textContent = item;
+          }
+        } else {
+          li.textContent = item;
+        }
+        el.appendChild(li);
+      });
+    }
+
+    function updateLines(){
+      const a = state.a;
+      const b = state.b;
+      if (!a || !b) {
+        pairLove.classList.remove("on");
+        pairWork.classList.remove("on");
+        return;
+      }
+      pairLove.setAttribute("x1", points[a].x);
+      pairLove.setAttribute("y1", points[a].y);
+      pairLove.setAttribute("x2", points[b].x);
+      pairLove.setAttribute("y2", points[b].y);
+
+      pairWork.setAttribute("x1", points[a].x);
+      pairWork.setAttribute("y1", points[a].y);
+      pairWork.setAttribute("x2", points[b].x);
+      pairWork.setAttribute("y2", points[b].y);
+
+      pairLove.classList.add("on");
+      pairWork.classList.add("on");
+    }
+
+    function renderNodes(){
+      nodesLayer.querySelectorAll(".node").forEach((node) => {
+        const t = Number(node.getAttribute("data-type"));
+        const isA = t === state.a;
+        const isB = t === state.b;
+        const hasSelection = state.a !== null || state.b !== null;
+        node.classList.toggle("selectedA", isA);
+        node.classList.toggle("selectedB", isB);
+        node.classList.toggle("dimmed", hasSelection && !isA && !isB);
+      });
+    }
+
+    function duoKey(a, b){
+      const min = Math.min(a, b);
+      const max = Math.max(a, b);
+      return `${min}-${max}`;
+    }
+
+    function getTypeData(t){
+      return typesData && typesData[String(t)]
+        ? typesData[String(t)]
+        : {
+            name: `Type ${t}`,
+            center: groupOf(t) === "instinctif" ? "Instinctive" : groupOf(t) === "emotionnel" ? "Emotional" : "Mental",
+            fear: "needs security",
+            desire: "seeks balance",
+            compulsion: "avoids tension",
+            integr: t,
+            disint: t,
+            integr_text: "brings positive resources",
+            disint_text: "reveals tensions during stress"
+          };
+    }
+
+    function sectionPoints(arr){
+      return Array.isArray(arr) ? arr : [];
+    }
+
+    function renderReport(){
+      const a = state.a;
+      const b = state.b;
+
+      if (!a || !b) {
+        resultWrap.hidden = true;
+        resultEmpty.hidden = false;
+        resultEmpty.textContent = "Click two types to display the summary for love, work, and hierarchy.";
+        setList(loveSummary, []);
+        setList(workSummary, []);
+        setList(hierSummary, []);
+        return;
+      }
+
+      if (!duosLoaded) {
+        resultWrap.hidden = true;
+        resultEmpty.hidden = false;
+        resultEmpty.textContent = "Loading duo profiles...";
+        return;
+      }
+
+      const key = duoKey(a, b);
+      const report = duosDataByKey[key];
+      if (!report){
+        resultWrap.hidden = true;
+        resultEmpty.hidden = false;
+        resultEmpty.textContent = `Duo ${key} not found.`;
+        setList(loveSummary, []);
+        setList(workSummary, []);
+        setList(hierSummary, []);
+        return;
+      }
+
+      resultWrap.hidden = false;
+      resultEmpty.hidden = true;
+
+      setList(loveSummary, sectionPoints(report.amour));
+      setList(workSummary, sectionPoints(report.travail));
+
+      if (report.hierarchie && report.hierarchie.length) {
+        hierBlock.style.display = '';
+        setList(hierSummary, sectionPoints(report.hierarchie), true);
+      } else {
+        hierBlock.style.display = 'none';
+        setList(hierSummary, []);
+      }
+    }
+
+    function updateSelectionUI(){
+      const a = state.a;
+      const b = state.b;
+      const A = a ? getTypeData(a) : null;
+      const B = b ? getTypeData(b) : null;
+
+      pickAEl.textContent = A ? `${a} · ${A.name}` : "—";
+      pickBEl.textContent = B ? `${b} · ${B.name}` : "—";
+      btnSwap.disabled = !(a && b);
+
+      if (!a) hintEl.textContent = "Select Type A, then Type B.";
+      else if (!b) hintEl.textContent = "Type A selected. Now select Type B.";
+      else hintEl.textContent = `Profile displayed for duo ${duoKey(a, b)}.`;
+
+      renderNodes();
+      updateLines();
+      renderReport();
+    }
+
+    function onNodeClick(t){
+      if (state.a === null) {
+        state.a = t;
+      } else if (state.b === null) {
+        state.b = t;
+      } else {
+        state.a = t;
+        state.b = null;
+      }
+      updateSelectionUI();
+    }
+
+    function createNodes(){
+      [1,2,3,4,5,6,7,8,9].forEach((t) => {
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.setAttribute("class", `node ${groupOf(t)}`);
+        g.setAttribute("data-type", String(t));
+
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", points[t].x);
+        c.setAttribute("cy", points[t].y);
+        c.setAttribute("r", 28);
+
+        const tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tx.setAttribute("x", points[t].x);
+        tx.setAttribute("y", points[t].y + 1);
+        tx.textContent = t;
+
+        g.appendChild(c);
+        g.appendChild(tx);
+        g.addEventListener("click", () => onNodeClick(t));
+        nodesLayer.appendChild(g);
+      });
+    }
+
+    async function loadTypesData(){
+      try {
+        const res = await fetch("/assets/data/en/types.json?v=2");
+        if (!res.ok) throw new Error("types.json unavailable");
+        typesData = await res.json();
+      } catch (err) {
+        typesData = null;
+      }
+      updateSelectionUI();
+    }
+
+    async function loadDuosData(){
+      try {
+        const res = await fetch("/assets/data/en/duos-palmer-synthese.json?v=2");
+        if (!res.ok) throw new Error("duos-palmer-synthese.json unavailable");
+        const payload = await res.json();
+        const byKey = {};
+        (payload?.duos || []).forEach((duo) => {
+          if (duo && duo.duo) byKey[String(duo.duo)] = duo;
+        });
+        duosDataByKey = byKey;
+      } catch (err) {
+        duosDataByKey = {};
+      }
+      duosLoaded = true;
+      updateSelectionUI();
+    }
+
+    btnReset.addEventListener("click", () => {
+      state.a = null;
+      state.b = null;
+      updateSelectionUI();
+    });
+
+    btnSwap.addEventListener("click", () => {
+      if (!(state.a && state.b)) return;
+      const a = state.a;
+      state.a = state.b;
+      state.b = a;
+      updateSelectionUI();
+    });
+
+    createNodes();
+    updateSelectionUI();
+    loadTypesData();
+    loadDuosData();
+  </script>
+  <script src="/assets/js/shared.js"></script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+{
+  "1": {
+    "name": "The Perfectionist",
+    "center": "Instinctive",
+    "fear": "Being bad, corrupt, defective or imperfect",
+    "desire": "Being good, virtuous and in balance",
+    "compulsion": "Avoids imperfection or mistakes",
+    "integr": 7,
+    "disint": 4,
+    "integr_text": "Brings joy, spontaneity and curiosity",
+    "disint_text": "Brings melancholy, withdrawal and self-criticism",
+    "sections": []
+  },
+  "2": {
+    "name": "The Giver",
+    "center": "Emotional",
+    "fear": "Being unworthy of love or unwanted for oneself",
+    "desire": "Feeling loved",
+    "compulsion": "Avoids acknowledging their own needs",
+    "integr": 4,
+    "disint": 8,
+    "integr_text": "Brings emotional honesty, self-awareness and self-nurturing",
+    "disint_text": "Brings aggressiveness, domination and expression of anger",
+    "sections": []
+  },
+  "3": {
+    "name": "The Performer",
+    "center": "Emotional",
+    "fear": "Being worthless or without intrinsic value",
+    "desire": "Feeling valuable, admired and accepted",
+    "compulsion": "Avoids failure",
+    "integr": 6,
+    "disint": 9,
+    "integr_text": "Brings cooperation, loyalty and commitment to others",
+    "disint_text": "Brings disengagement, apathy and stagnation",
+    "sections": []
+  },
+  "4": {
+    "name": "The Romantic",
+    "center": "Emotional",
+    "fear": "Having no identity of their own or personal significance",
+    "desire": "Finding and understanding themselves in order to be unique",
+    "compulsion": "Avoids banality or the ordinary",
+    "integr": 1,
+    "disint": 2,
+    "integr_text": "Brings objectivity, discipline and practical realism",
+    "disint_text": "Brings dependency, possessiveness and the need to please",
+    "sections": []
+  },
+  "5": {
+    "name": "The Observer",
+    "center": "Mental",
+    "fear": "Being incapable, useless, incompetent or overwhelmed",
+    "desire": "Being competent, capable and mastering their environment",
+    "compulsion": "Avoids inner emptiness",
+    "integr": 8,
+    "disint": 7,
+    "integr_text": "Brings self-confidence, authority and the capacity to act",
+    "disint_text": "Brings hyperactivity, scattering and impulsiveness",
+    "sections": []
+  },
+  "6": {
+    "name": "The Loyal Skeptic",
+    "center": "Mental",
+    "fear": "Being without support or guidance, unable to survive alone",
+    "desire": "Having security and support",
+    "compulsion": "Avoids deviance or breaking the rules",
+    "integr": 9,
+    "disint": 3,
+    "integr_text": "Brings inner peace, stability and self-acceptance",
+    "disint_text": "Brings competitive agitation, arrogance and lying",
+    "sections": []
+  },
+  "7": {
+    "name": "The Epicure",
+    "center": "Mental",
+    "fear": "Being deprived, suffering or being trapped in pain",
+    "desire": "Being happy, satisfied and fulfilled",
+    "compulsion": "Avoids moral and physical suffering",
+    "integr": 5,
+    "disint": 1,
+    "integr_text": "Brings focus, depth, calm and concentration",
+    "disint_text": "Brings rigidity, criticism and intolerance",
+    "sections": []
+  },
+  "8": {
+    "name": "The Protector",
+    "center": "Instinctive",
+    "fear": "Being harmed, dominated, controlled or violated by others",
+    "desire": "Protecting themselves and remaining autonomous",
+    "compulsion": "Avoids weakness",
+    "integr": 2,
+    "disint": 5,
+    "integr_text": "Brings empathy, tenderness, generosity and innocence",
+    "disint_text": "Brings withdrawal, isolation, secrecy and coldness",
+    "sections": []
+  },
+  "9": {
+    "name": "The Mediator",
+    "center": "Instinctive",
+    "fear": "Loss, separation, fragmentation or conflict",
+    "desire": "Inner peace, harmony and stability",
+    "compulsion": "Avoids conflict",
+    "integr": 3,
+    "disint": 6,
+    "integr_text": "Brings energy, initiative and the development of their talents",
+    "disint_text": "Brings anxiety, mistrust and fearful passivity",
+    "sections": []
+  }
+}

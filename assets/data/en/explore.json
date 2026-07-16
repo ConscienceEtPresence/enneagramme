@@ -1,0 +1,139 @@
+{
+  "sections": [
+    {
+      "id": "accueil",
+      "title": "Where to start",
+      "icon": "🧭",
+      "desc": "Test, reading the profiles, quick reference points",
+      "items": [
+        {
+          "label": "Suggested order",
+          "value": "1) Take the test. 2) Read the dominant type. 3) Check wings + subtype. 4) Observe stress/growth. 5) Use levels 1–9 to place your current state."
+        },
+        {
+          "label": "Important",
+          "value": "The test gives a hypothesis. Validation comes from reading the deep motivations (fear/desire) and the mechanisms (passion/fixation/defense)."
+        }
+      ]
+    },
+    {
+      "id": "histoire",
+      "title": "History and origins",
+      "icon": "📜",
+      "desc": "Roots, modern pioneers, spread",
+      "items": [
+        {
+          "label": "Ancient roots",
+          "value": "Origins are debated; possible influences include ancient traditions, the Desert Fathers, Sufism, and the Kabbalah (depending on the school)."
+        },
+        {
+          "label": "Modern pioneers",
+          "children": [
+            { "label": "Gurdjieff", "value": "Introduced the symbol to the West (the Law of Three and of Seven), but not yet the 9 types." },
+            { "label": "Ichazo", "value": "Placed the fixations on the symbol (Arica school)." },
+            { "label": "Naranjo", "value": "Connected it to character/modern psychology, developed the panels." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "centres",
+      "title": "The 3 centers",
+      "icon": "🧠",
+      "desc": "Instinctive, Emotional, Mental + hierarchies",
+      "items": [
+        {
+          "label": "Definition",
+          "value": "Instinctive center (body/action), emotional center (heart/image/relationships), mental center (head/analysis/security)."
+        },
+        {
+          "label": "Types by preferred center",
+          "children": [
+            { "label": "Instinctive", "value": "8, 9, 1" },
+            { "label": "Emotional", "value": "2, 3, 4" },
+            { "label": "Mental", "value": "5, 6, 7" }
+          ]
+        },
+        {
+          "label": "Repressed center and posture",
+          "children": [
+            { "label": "Mental repressed", "value": "1, 2, 6 → dependent posture (external guidance)" },
+            { "label": "Emotional repressed", "value": "3, 7, 8 → assertive/aggressive posture (priority to the goal)" },
+            { "label": "Instinctive repressed", "value": "4, 5, 9 → withdrawn posture (difficulty acting/making an impact)" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dynamique",
+      "title": "Wings, subtypes, arrows",
+      "icon": "🧩",
+      "desc": "Nuances of the type + stress/growth movements",
+      "items": [
+        {
+          "label": "Wings",
+          "value": "The two neighboring types influence the base type (one wing is often dominant)."
+        },
+        {
+          "label": "Subtypes (instincts)",
+          "children": [
+            { "label": "Self-preservation", "value": "Comfort, material security, health" },
+            { "label": "Social", "value": "Belonging, role, status" },
+            { "label": "One-to-one", "value": "Intensity, intimacy, fusion/attraction" }
+          ]
+        },
+        {
+          "label": "Arrows",
+          "value": "Under stress and in growth, we adopt traits of other types; these describe tendencies, not an identity."
+        }
+      ]
+    },
+    {
+      "id": "niveaux",
+      "title": "Levels 1–9",
+      "icon": "📈",
+      "desc": "From the most free to the most automatic + reference points by type",
+      "items": [
+        {
+          "label": "Quick reading",
+          "value": "1–3: healthy zone. 4–6: average zone. 7–9: unhealthy zone. The type doesn't change, but the degree of identification does."
+        },
+        {
+          "label": "Definitions by type (shorthand)",
+          "value": "Type 1: 1 Wise realist / 2 Reasonable person / 3 Principled teacher / 4 Idealistic reformer / 5 Orderly person / 6 Moralistic perfectionist / 7 Intolerant misanthrope / 8 Obsessive hypocrite / 9 Punitive avenger.\nType 2: 1 Disinterested altruist / 2 Caring person / 3 Nurturing helper / 4 Expansive friend / 5 Possessive intimate / 6 Self-important saint / 7 Deceptive manipulator / 8 Coercive dominator / 9 Psychosomatic victim.\nType 3: 1 Authentic person / 2 Self-assured person / 3 Outstanding paragon / 4 Competitive status-seeker / 5 Image-conscious pragmatist / 6 Self-promoting narcissist / 7 Dishonest opportunist / 8 Malicious deceiver / 9 Vindictive psychopath.\nType 4: 1 Inspired creator / 2 Self-aware intuitive / 3 Self-revealing individual / 4 Imaginative aesthete / 5 Self-absorbed romantic / 6 Self-indulgent exception / 7 Alienated depressive / 8 Emotionally tormented person / 9 Self-destructive person.\nType 5: 1 Pioneering visionary / 2 Perceptive observer / 3 Focused innovator / 4 Studious expert / 5 Intense conceptualizer / 6 Provocative cynic / 7 Isolated nihilist / 8 Terrified alienated person / 9 Imploded schizoid.\nType 6: 1 Valiant hero / 2 Engaging person / 3 Committed worker / 4 Obedient loyalist / 5 Ambivalent pessimist / 6 Authoritarian rebel / 7 Overreactive dependent / 8 Paranoid hysteric / 9 Self-defeating masochist.\nType 7: 1 Ecstatic appreciator / 2 Free-spirited enthusiast / 3 Accomplished generalist / 4 Experienced sophisticate / 5 Hyperactive extrovert / 6 Excessive hedonist / 7 Impulsive escapist / 8 Compulsive maniac / 9 Panic-stricken hysteric.\nType 8: 1 Magnanimous heart / 2 Self-confident person / 3 Constructive leader / 4 Enterprising adventurer / 5 Dominating power broker / 6 Provocative adversary / 7 Ruthless outlaw / 8 Omnipotent megalomaniac / 9 Violent destroyer.\nType 9: 1 Self-possessed guide / 2 Receptive person / 3 Supportive mediator / 4 Accommodating role-player / 5 Disengaged participant / 6 Resigned fatalist / 7 Reality-denying doormat / 8 Dissociated automaton / 9 Self-abandoning ghost."
+        }
+      ]
+    },
+    {
+      "id": "pratiques",
+      "title": "Practices for transformation",
+      "icon": "🧘",
+      "desc": "Observing, journaling, meditation, inquiry, the body",
+      "items": [
+        {
+          "label": "Inner observer",
+          "value": "Catching the automatism as it happens (catching yourself in the act), without judgment or justification."
+        },
+        {
+          "label": "Journaling",
+          "value": "Note triggers, reactions, the fear/desire behind the action; reread at the end of the day."
+        },
+        {
+          "label": "Meditation",
+          "children": [
+            { "label": "Shamatha", "value": "Stabilizing attention (breath, a simple object)." },
+            { "label": "Vipassana", "value": "Observing sensations/thoughts without clinging to them." }
+          ]
+        },
+        {
+          "label": "Inquiry (Diamond Approach)",
+          "value": "Exploring present experience with curiosity, without wanting to change it, until contact with an essential quality."
+        },
+        {
+          "label": "Bodywork",
+          "value": "Returning to the body (breathing, grounding, gentle movement) to step out of the mental/emotional trance."
+        }
+      ]
+    }
+  ]
+}

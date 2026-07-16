@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>What Is Essence?</title>
+
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 56px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background .14s ease,border-color .14s ease,transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+
+    /* Hero */
+    .hero{
+      max-width:920px;margin:0 auto 40px;padding:46px 30px 38px;
+      text-align:center;
+      border:1px solid rgba(125,211,252,.22);
+      background:
+        radial-gradient(ellipse at top, rgba(252,211,77,.07), transparent 60%),
+        linear-gradient(180deg, rgba(125,211,252,.06), transparent);
+      border-radius:var(--radius);
+    }
+    .hero .kicker{
+      font-size:12px;letter-spacing:2px;text-transform:uppercase;
+      color:#bae6fd;font-weight:800;margin:0 0 12px;
+    }
+    .hero .gem{font-size:18px;color:#7dd3fc;letter-spacing:8px;margin:0 0 14px}
+    .hero h1{
+      margin:0;font-size:clamp(30px,5vw,48px);line-height:1.08;letter-spacing:.2px;
+      background:linear-gradient(135deg,#fff 0%,#fef3c7 40%,#cfe9ff 80%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero .lead{
+      margin:18px auto 0;max-width:60ch;color:#e8eeff;
+      font-size:17px;line-height:1.6;font-style:italic;
+    }
+    .hero .author{
+      margin:14px 0 0;color:#9fb1da;font-size:13px;
+      letter-spacing:1.2px;text-transform:uppercase;font-weight:700;
+    }
+
+    /* Sommaire */
+    .toc{
+      max-width:920px;margin:0 auto 50px;padding:22px 26px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.02);
+    }
+    .toc h2{
+      margin:0 0 14px;font-size:13px;letter-spacing:1.6px;
+      text-transform:uppercase;color:#bae6fd;font-weight:800;text-align:center;
+    }
+    .toc ol{
+      margin:0;padding:0;list-style:none;
+      display:grid;grid-template-columns:repeat(2,1fr);gap:8px;counter-reset:tocnum;
+    }
+    @media(max-width:640px){.toc ol{grid-template-columns:1fr}}
+    .toc li{counter-increment:tocnum}
+    .toc a{
+      display:flex;align-items:baseline;gap:10px;
+      padding:8px 12px;border-radius:8px;color:#cfe9ff;
+      text-decoration:none;font-size:14px;line-height:1.4;
+      border:1px solid transparent;
+    }
+    .toc a:hover{background:rgba(125,211,252,.07);border-color:rgba(125,211,252,.18)}
+    .toc a::before{
+      content:counter(tocnum,decimal-leading-zero);
+      color:#7dd3fc;font-weight:850;font-size:13px;flex:0 0 auto;
+    }
+
+    /* Sections */
+    .mvt{
+      max-width:920px;margin:0 auto 56px;
+      scroll-margin-top:24px;
+    }
+    .mvt .num{
+      display:inline-block;font-size:11px;letter-spacing:2px;
+      text-transform:uppercase;color:#7dd3fc;font-weight:850;
+      margin:0 0 6px;
+    }
+    .mvt h2{
+      margin:0 0 8px;font-size:clamp(24px,3.4vw,32px);line-height:1.15;letter-spacing:.2px;
+      color:#fff;
+    }
+    .mvt .lead{
+      margin:0 0 22px;color:#cfe9ff;font-size:16px;line-height:1.55;
+      max-width:62ch;font-style:italic;
+    }
+    .mvt p{margin:0 0 14px;line-height:1.75;font-size:15.5px;color:#e8eeff}
+    .mvt p:last-of-type{margin-bottom:0}
+    .mvt strong{color:#fff}
+    .mvt em{color:#cfe9ff;font-style:normal;font-weight:600}
+    .mvt h3{
+      margin:26px 0 10px;font-size:17px;color:#fff;
+      letter-spacing:.2px;line-height:1.3;
+    }
+
+    /* Cartes */
+    .panel{
+      margin:18px 0;padding:22px 24px;
+      border:1px solid var(--line);border-radius:14px;
+      background:rgba(255,255,255,.025);
+    }
+    .panel.feature{
+      border-color:rgba(125,211,252,.25);
+      background:linear-gradient(135deg, rgba(125,211,252,.06), rgba(196,181,253,.03));
+    }
+    .panel.quote{
+      border-left:3px solid #7dd3fc;border-radius:0 12px 12px 0;
+      background:rgba(125,211,252,.04);
+      font-style:italic;font-size:15.5px;color:#cfe9ff;line-height:1.7;
+      padding:18px 22px;
+    }
+
+    /* Schémas */
+    .schema{
+      margin:24px auto;padding:26px 24px;
+      border:1px solid var(--line);border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .schema svg{width:100%;height:auto;display:block;max-width:680px;margin:0 auto}
+    .schema .caption{
+      margin:14px 0 0;font-size:13.5px;color:var(--muted);
+      text-align:center;font-style:italic;line-height:1.5;
+    }
+
+    /* Encart À retenir */
+    .keypoints{
+      margin:26px 0 8px;padding:18px 22px;
+      border:1px solid rgba(252,211,77,.30);
+      background:linear-gradient(135deg, rgba(252,211,77,.07), rgba(252,211,77,.02));
+      border-left:4px solid #fcd34d;
+      border-radius:12px;
+    }
+    .keypoints .label{
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+      color:#fcd34d;font-weight:850;margin:0 0 10px;
+    }
+    .keypoints ul{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+    .keypoints li{
+      padding-left:22px;position:relative;
+      font-size:14.5px;line-height:1.55;color:#fef3c7;
+    }
+    .keypoints li::before{
+      content:"◆";position:absolute;left:0;top:1px;
+      color:rgba(252,211,77,.7);font-size:9px;
+    }
+    .keypoints li strong{color:#fff}
+
+    /* Mouvement 1 — trois scènes ouvertures */
+    .scenes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+    @media(max-width:720px){.scenes{grid-template-columns:1fr}}
+    .scene{
+      padding:18px;border-radius:12px;
+      border:1px solid rgba(125,211,252,.22);
+      background:linear-gradient(180deg, rgba(125,211,252,.04), transparent);
+    }
+    .scene .ico{font-size:22px;color:#7dd3fc;margin-bottom:6px}
+    .scene h4{margin:0 0 8px;font-size:14.5px;color:#cfe9ff;letter-spacing:.2px}
+    .scene p{margin:0;font-size:14px;line-height:1.6;color:#e8eeff}
+
+    /* Mouvement 2 — pas-ça / plutôt-ça */
+    .notThat{display:grid;gap:10px;margin:18px 0}
+    .nt{
+      display:grid;grid-template-columns:auto 1fr;gap:14px;
+      padding:14px 18px;border-radius:10px;
+      background:rgba(253,164,175,.04);border:1px solid rgba(253,164,175,.20);
+    }
+    .nt .tag{
+      font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:850;
+      padding:6px 9px;border-radius:6px;height:max-content;white-space:nowrap;
+      color:#fda4af;background:rgba(253,164,175,.10);border:1px solid rgba(253,164,175,.30);
+    }
+    .nt p{margin:0;font-size:14.5px;line-height:1.55;color:#fecdd3}
+    .nt p strong{color:#fff}
+
+    /* Mouvement 3 — qualités quasi-physiques */
+    .textures{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:18px 0;
+    }
+    .texture{
+      padding:12px 14px;border-radius:10px;
+      background:rgba(125,211,252,.05);border:1px solid rgba(125,211,252,.20);
+      font-size:13.5px;line-height:1.4;color:#cfe9ff;text-align:center;
+    }
+    .texture strong{display:block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#7dd3fc;margin-bottom:4px}
+
+    /* Mouvement 4 — constellation des aspects */
+    .aspects{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:18px 0}
+    .aspect{
+      padding:16px 18px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);
+      border-left:3px solid currentColor;
+    }
+    .aspect h4{margin:0 0 4px;font-size:15px;color:#fff;letter-spacing:.2px}
+    .aspect .tag{
+      font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;
+      font-weight:800;color:inherit;margin:0 0 6px;
+    }
+    .aspect p{margin:0;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .aspect.a-rouge{color:#fda4af}
+    .aspect.a-or{color:#fcd34d}
+    .aspect.a-jaune{color:#fde68a}
+    .aspect.a-vert{color:#86efac}
+    .aspect.a-bleu{color:#7dd3fc}
+    .aspect.a-violet{color:#c4b5fd}
+    .aspect.a-blanc{color:#f8fafc}
+    .aspect.a-rose{color:#f9a8d4}
+
+    /* Mouvement 5 — théorie des trous (triptyque) */
+    .triptych{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;
+    }
+    @media(max-width:720px){.triptych{grid-template-columns:1fr}}
+    .tryp{
+      padding:18px;border-radius:12px;text-align:center;
+      border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18);
+      border-top:3px solid currentColor;
+    }
+    .tryp svg{display:block;margin:0 auto 12px;width:100px;height:100px}
+    .tryp h4{margin:0 0 6px;font-size:14px;color:#fff;letter-spacing:.3px}
+    .tryp .step{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:850;color:inherit;margin:0 0 8px;
+    }
+    .tryp p{margin:0;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .tryp.t-essence{color:#fcd34d}
+    .tryp.t-trou{color:#94a3b8}
+    .tryp.t-ego{color:#c4b5fd}
+
+    /* Mouvement 6 — distinctions */
+    .distinct{display:grid;gap:14px;margin:18px 0}
+    .dRow{
+      padding:18px 20px;border-radius:12px;
+      border:1px solid rgba(125,211,252,.20);
+      background:linear-gradient(135deg, rgba(125,211,252,.04), transparent);
+    }
+    .dRow .dHead{
+      font-size:18px;font-weight:850;color:#fff;
+      letter-spacing:.3px;margin:0 0 14px;
+      padding-bottom:10px;border-bottom:1px solid rgba(125,211,252,.18);
+    }
+    .dPair{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;
+    }
+    @media(max-width:640px){.dPair{grid-template-columns:1fr}}
+    .dCol{
+      padding:14px 16px;border-radius:10px;
+      background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.06);
+      border-top:3px solid currentColor;
+    }
+    .dCol.essence{color:#fcd34d}
+    .dCol.ego{color:#fda4af}
+    .dCol .lab{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:850;color:inherit;margin:0 0 8px;
+    }
+    .dCol p{margin:0;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .dExample{
+      margin:0;padding:12px 14px;border-radius:8px;
+      background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+      font-size:13.5px;line-height:1.6;color:#cfe9ff;
+    }
+    .dExample strong{color:#bae6fd;font-weight:700}
+
+    /* Mouvement 7 — Rouge/Or */
+    .ro{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+    @media(max-width:640px){.ro{grid-template-columns:1fr}}
+    .roCard{
+      padding:18px 20px;border-radius:12px;
+      border:1px solid currentColor;background:rgba(0,0,0,.18);
+      border-left:4px solid currentColor;
+    }
+    .roCard.rouge{color:#fda4af;background:linear-gradient(135deg, rgba(252,165,165,.06), transparent)}
+    .roCard.or{color:#fcd34d;background:linear-gradient(135deg, rgba(252,211,77,.06), transparent)}
+    .roCard h4{margin:0 0 8px;font-size:16px;color:#fff;letter-spacing:.3px}
+    .roCard .tag{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:800;color:inherit;margin:0 0 10px;
+    }
+    .roCard p{margin:0 0 8px;font-size:14px;line-height:1.55;color:#e8eeff}
+    .roCard p:last-child{margin-bottom:0}
+
+    /* Mouvement 8 — pratiques */
+    .praticesGrid{display:grid;gap:12px;margin:18px 0;counter-reset:pcount}
+    .pStep{
+      counter-increment:pcount;
+      padding:16px 18px 16px 60px;border-radius:10px;position:relative;
+      border:1px solid rgba(125,211,252,.22);
+      background:linear-gradient(135deg, rgba(125,211,252,.04), transparent);
+    }
+    .pStep::before{
+      content:counter(pcount);position:absolute;left:14px;top:14px;
+      width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+      font-size:14px;font-weight:850;color:#0b1120;background:#7dd3fc;
+    }
+    .pStep h4{margin:0 0 6px;font-size:15px;color:#fff;letter-spacing:.2px}
+    .pStep p{margin:0;font-size:14px;line-height:1.6;color:#e8eeff}
+
+    /* Closing */
+    .closing{
+      max-width:880px;margin:30px auto 0;padding:34px 28px;text-align:center;
+      border:1px solid rgba(125,211,252,.22);border-radius:var(--radius);
+      background:
+        radial-gradient(ellipse at center, rgba(252,211,77,.06), transparent 70%),
+        linear-gradient(135deg, rgba(125,211,252,.06), rgba(196,181,253,.04));
+    }
+    .closing::before{content:"◆";color:rgba(125,211,252,.5);display:block;font-size:18px;margin-bottom:14px}
+    .closing p{margin:0 0 14px;font-size:17px;line-height:1.7;color:#fff;font-style:italic}
+    .closing p:last-child{margin-bottom:0}
+    .closing strong{color:#bae6fd;font-style:normal}
+    .actions{
+      display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px;
+    }
+
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/diamant-essence.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/diamant-essence.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/diamant-essence.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/approche-diamant.html">← The Diamond Approach</a>
+      <a class="btn" href="/en/">Home</a>
+    </div>
+
+    <header class="hero">
+      <p class="kicker">The Diamond Approach</p>
+      <p class="gem">◆ ◆ ◆</p>
+      <h1>What Is Essence?</h1>
+      <p class="lead">Something in you has already known. Before a landscape, in a grief fully inhabited, in the presence of a newborn — something was <em>more present</em>. That something has a name.</p>
+      <p class="author">A.H. Almaas</p>
+    </header>
+
+    <nav class="toc" aria-label="Contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#m1">Something in you has already known</a></li>
+        <li><a href="#m2">What Essence is not</a></li>
+        <li><a href="#m3">A substantial presence</a></li>
+        <li><a href="#m4">The many faces of Essence</a></li>
+        <li><a href="#m5">Why we lost it — the theory of holes</a></li>
+        <li><a href="#m6">Recognizing the difference — Essence ↔ Personality</a></li>
+        <li><a href="#m7">The body, organ of Essence</a></li>
+        <li><a href="#m8">The return — not building, but unveiling</a></li>
+        <li><a href="#m9">Essence is already here</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════ M1 ═════ -->
+    <section class="mvt" id="m1">
+      <p class="num">Movement 1</p>
+      <h2>Something in you has already known</h2>
+      <p class="lead">Essence is not an abstract notion to understand. It is an experience you have already lived through several times — without necessarily giving it this name.</p>
+
+      <p>Before any definition, take the time to remember three moments. Probably not invented: drawn from your own life.</p>
+
+      <div class="scenes">
+        <div class="scene">
+          <div class="ico">◆</div>
+          <h4>Before a landscape</h4>
+          <p>At the summit of a mountain, before a sunset over the sea, in a silent forest. The mind settles on its own. Something in you <strong>is more there</strong>. The landscape and you seem to meet halfway.</p>
+        </div>
+        <div class="scene">
+          <div class="ico">◆</div>
+          <h4>In a grief fully inhabited</h4>
+          <p>A sadness accepted all the way through, without trying to flee it, ends up acquiring a <strong>thickness</strong>, a density. The feeling itself becomes almost palpable. Something opens beneath it.</p>
+        </div>
+        <div class="scene">
+          <div class="ico">◆</div>
+          <h4>In the presence of a newborn</h4>
+          <p>The child who has just been born is manifestly a <strong>fresh presence</strong>. Not just a small body: something is there, without name, without history, that radiates. Those who witness it always use the same words.</p>
+        </div>
+      </div>
+
+      <div class="schema">
+        <svg viewBox="0 0 600 220" aria-label="Three scenes converging toward one same presence">
+          <defs>
+            <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+              <stop offset=".5" stop-color="#fcd34d" stop-opacity=".4"/>
+              <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- 3 cercles -->
+          <circle cx="100" cy="80" r="32" fill="rgba(125,211,252,.08)" stroke="rgba(125,211,252,.45)" stroke-width="1.4"/>
+          <text x="100" y="84" fill="#cfe9ff" font-size="11" text-anchor="middle">landscape</text>
+
+          <circle cx="300" cy="50" r="32" fill="rgba(125,211,252,.08)" stroke="rgba(125,211,252,.45)" stroke-width="1.4"/>
+          <text x="300" y="54" fill="#cfe9ff" font-size="11" text-anchor="middle">grief</text>
+
+          <circle cx="500" cy="80" r="32" fill="rgba(125,211,252,.08)" stroke="rgba(125,211,252,.45)" stroke-width="1.4"/>
+          <text x="500" y="84" fill="#cfe9ff" font-size="11" text-anchor="middle">birth</text>
+
+          <!-- Lignes vers centre -->
+          <line x1="100" y1="112" x2="280" y2="180" stroke="rgba(252,211,77,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="300" y1="82" x2="300" y2="180" stroke="rgba(252,211,77,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="500" y1="112" x2="320" y2="180" stroke="rgba(252,211,77,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+
+          <!-- Centre : la présence -->
+          <circle cx="300" cy="180" r="42" fill="url(#centerGlow)"/>
+          <text x="300" y="184" fill="#fff" font-size="13" font-weight="800" text-anchor="middle">Presence</text>
+        </svg>
+        <p class="caption">In those moments, something was <em>more present</em>. That something, Almaas calls Essence.</p>
+      </div>
+
+      <p>These moments share a common flavor: an <strong>amplification of presence</strong>. It's as if, in that instant, there is <em>more of oneself</em> in the body — not more ideas about oneself, not more emotions, but something more dense, calmer, more palpable. It's an experience that most people recognize as soon as it is named.</p>
+
+      <p>Almaas calls this <strong>Essence</strong>. Not a metaphor: a precise word for a precise reality. A <em>substantial presence</em> that is our most intimate nature, and that we have learned to forget — without ever entirely losing it.</p>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Essence is not an <strong>abstract notion</strong>, it is an experience.</li>
+          <li>It presents itself as an <strong>amplification of presence</strong> at certain ordinary moments.</li>
+          <li>You have already encountered it. The work begins by <strong>recognizing it when it comes</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M2 ═════ -->
+    <section class="mvt" id="m2">
+      <p class="num">Movement 2</p>
+      <h2>What Essence is not</h2>
+      <p class="lead">We must start by clearing the ground. Most confusions about Essence come from mistaking it for something else that resembles it — and that we already know.</p>
+
+      <div class="notThat">
+        <div class="nt">
+          <span class="tag">Not a thought</span>
+          <p>Essence cannot be concluded, deduced, or asserted. <strong>A correct idea about Essence is not Essence.</strong> One can have read a thousand pages on presence without ever having touched what it points to.</p>
+        </div>
+        <div class="nt">
+          <span class="tag">Not an emotion</span>
+          <p>An intense joy, an overflowing love, an ecstasy, a deep grief <strong>are not Essence</strong>. These are discharges of the nervous system, sometimes thresholds it crosses, but not it itself. Confusing it with a strong emotion is the most common mistake.</p>
+        </div>
+        <div class="nt">
+          <span class="tag">Not an altered state</span>
+          <p>An expansion brought on by meditation, an opening chakra, a vision, an experience of cosmic fusion under certain practices — <strong>all of this can be real without being Essence</strong>. Essence is neither rare nor spectacular.</p>
+        </div>
+        <div class="nt">
+          <span class="tag">Not a subtle energy</span>
+          <p>Energetic currents (kundalini, meridians, prana) belong to another order. <strong>Energy circulates, Essence is.</strong> The distinction is subtle but radical.</p>
+        </div>
+        <div class="nt">
+          <span class="tag">Not an insight</span>
+          <p>A psychological understanding, even a deep one, even a liberating one, is not yet Essence. <strong>Understanding something about oneself and touching Essence are two different orders.</strong> The first prepares the second without replacing it.</p>
+        </div>
+        <div class="nt">
+          <span class="tag">Not a bodily posture</span>
+          <p>Good breathing, correct alignment, deep muscular relaxation are precious but are not Essence. <strong>The body is the organ through which Essence is perceived, not its source.</strong></p>
+        </div>
+      </div>
+
+      <p>Why this clearing of the air? Because there exists in us a clever mechanism: as soon as one begins to speak of Essence, the mind seeks to <em>file it away</em> under an already-known category. “Ah, that's what I feel when I do yoga.” “Ah, that's that moment of love with my children.” Yet each of these experiences can be very beautiful, and still <strong>not be Essence</strong>. To confuse it is to believe oneself arrived when one is still at the threshold.</p>
+
+      <div class="schema">
+        <svg viewBox="0 0 520 280" aria-label="Layers of inner experience">
+          <!-- Anneaux concentriques -->
+          <circle cx="260" cy="140" r="125" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1" stroke-dasharray="2 4"/>
+          <circle cx="260" cy="140" r="100" fill="none" stroke="rgba(125,211,252,.18)" stroke-width="1" stroke-dasharray="3 3"/>
+          <circle cx="260" cy="140" r="76" fill="none" stroke="rgba(125,211,252,.25)" stroke-width="1"/>
+          <circle cx="260" cy="140" r="52" fill="none" stroke="rgba(196,181,253,.30)" stroke-width="1.2" stroke-dasharray="1 3"/>
+
+          <!-- Centre : Essence -->
+          <defs>
+            <radialGradient id="essCore" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+              <stop offset="1" stop-color="#fcd34d" stop-opacity=".4"/>
+            </radialGradient>
+          </defs>
+          <circle cx="260" cy="140" r="28" fill="url(#essCore)"/>
+          <text x="260" y="144" fill="#0b1120" font-size="11" font-weight="800" text-anchor="middle">Essence</text>
+
+          <!-- Étiquettes -->
+          <text x="260" y="20" fill="rgba(255,255,255,.65)" font-size="11" text-anchor="middle">thoughts</text>
+          <text x="260" y="50" fill="#bae6fd" font-size="11" text-anchor="middle">emotions</text>
+          <text x="260" y="76" fill="#cfe9ff" font-size="11" text-anchor="middle">sensations</text>
+          <text x="260" y="100" fill="#ddd6fe" font-size="11" text-anchor="middle">subtle energies</text>
+        </svg>
+        <p class="caption">Essence is deeper than everything ordinarily called “inner experience.” Not higher. Further beneath.</p>
+      </div>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Essence is <strong>neither thought, nor emotion, nor energy, nor insight</strong>.</li>
+          <li>It is <strong>deeper</strong> than all of that — not more beautiful or more intense.</li>
+          <li>Confusing it with a familiar strong experience is <strong>missing it entirely</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M3 ═════ -->
+    <section class="mvt" id="m3">
+      <p class="num">Movement 3</p>
+      <h2>A substantial presence</h2>
+      <p class="lead">If it is none of what we already know, what <em>is</em> it? Almaas answers with a strong word: a <strong>substance</strong>. Not material in the crude sense, but real — perceptible, palpable, describable.</p>
+
+      <p>Essence is lived in the body with an <strong>almost-physical texture</strong>. When it is there, it can be described — not through poetic metaphors, but with a precise descriptive vocabulary. It has a density. A warmth or a coolness. A fluidity or a firmness. Sometimes a color, perceived by the inner eye. Always a recognizable flavor.</p>
+
+      <div class="textures">
+        <div class="texture"><strong>Density</strong>something present</div>
+        <div class="texture"><strong>Warmth</strong>or coolness</div>
+        <div class="texture"><strong>Texture</strong>soft, dense, fluid</div>
+        <div class="texture"><strong>Flavor</strong>recognizable</div>
+        <div class="texture"><strong>Color</strong>perceived inwardly</div>
+        <div class="texture"><strong>Location</strong>in a zone of the body</div>
+      </div>
+
+      <div class="panel quote">
+        When Essence touches your body, it is not a feeling one could have invented. One can feel one's stomach without the stomach being a feeling. Essence is of that order — something one feels, that is there, and that is neither a thought, nor an emotion, nor the physical body. A presence that is both in you and deeper than what you ordinarily call “me.”
+      </div>
+
+      <p>This description may seem strange to those without the experience. It is nevertheless faithful to what those who have learned to perceive report. Essence manifests in a <strong>subtle body</strong> that interpenetrates the physical body. To perceive it, the latter must become sensitive — freed of the muscular armor that holds repression in place, open to the fine sensations that coarse sensations ordinarily cover over.</p>
+
+      <p>This is why Almaas's approach is neither purely intellectual nor purely “spiritual.” It is <em>embodied</em>. It brings together psychological work (which unknots tensions charged with memory) and the practice of presence (which progressively sensitizes one to the subtle dimension).</p>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Essence is <strong>substantial</strong>: it has density, texture, flavor, sometimes color.</li>
+          <li>It is perceived in a <strong>subtle body</strong> that interpenetrates the physical body.</li>
+          <li>To perceive it, the body must become <strong>sensitive</strong> — it is not enough for the mind to be calm.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M4 ═════ -->
+    <section class="mvt" id="m4">
+      <p class="num">Movement 4</p>
+      <h2>The many faces of Essence</h2>
+      <p class="lead">Essence is not a single state. It manifests in <strong>specific aspects</strong>, each with its own flavor, texture, function, sometimes its own color. Almaas names about ten — without claiming the list is closed.</p>
+
+      <p>A fully essential life does not settle into a single aspect: it <em>moves through the entire palette</em> according to what the situation calls for. The same being can be in the presence of Strength when affirmation is needed, of Compassion when welcoming is needed, of Joy when life sparkles, of Peace when silence arrives.</p>
+
+      <div class="aspects">
+        <div class="aspect a-rouge">
+          <p class="tag">Instinctive center · belly</p>
+          <h4>Strength</h4>
+          <p>Quiet vigor, robustness, capacity for assertion without hostility. Warm density, often in the lower body. The “I can” that needs no demonstration.</p>
+        </div>
+        <div class="aspect a-jaune">
+          <p class="tag">Heart · chest</p>
+          <h4>Joy</h4>
+          <p>Light, transparent sparkle. Needs nothing to exist. Coexists with a present difficulty — one can be in joy <em>and</em> in a painful situation.</p>
+        </div>
+        <div class="aspect a-rose">
+          <p class="tag">Heart · radiant</p>
+          <h4>Love</h4>
+          <p>Radiant presence of the heart that expects nothing. Does not depend on the other's behavior. Unfolds as much toward a loved one as toward a stranger.</p>
+        </div>
+        <div class="aspect a-or">
+          <p class="tag">Heart · melting</p>
+          <h4>Merging love</h4>
+          <p>Honeyed softness that dissolves boundaries. It is through this quality that one feels <em>one</em> with what is. Golden, warm, melting texture.</p>
+        </div>
+        <div class="aspect a-blanc">
+          <p class="tag">Solar plexus · belly</p>
+          <h4>Will</h4>
+          <p>Grounded mountain-like solidity. Mineral density, firm, without tension. Capacity to hold course without hardening. The “yes” that knows how to say no.</p>
+        </div>
+        <div class="aspect a-vert">
+          <p class="tag">Heart · enveloping</p>
+          <h4>Compassion</h4>
+          <p>Green presence, gentle, that knows how to suffer with the other without losing itself. Stays there when the suffering is great. Neither pity nor rescue.</p>
+        </div>
+        <div class="aspect a-bleu">
+          <p class="tag">Head · clarity</p>
+          <h4>Truth</h4>
+          <p>Clear presence that spontaneously eliminates the false. Not an opinion, not a mental certainty — a transparency that sees what is.</p>
+        </div>
+        <div class="aspect a-violet">
+          <p class="tag">Head · vastness</p>
+          <h4>Peace</h4>
+          <p>Calm and silent vastness, sometimes experienced as an expansion of the head. A posture of quiet majesty. The mind is settled, not switched off.</p>
+        </div>
+        <div class="aspect a-jaune">
+          <p class="tag">The whole being</p>
+          <h4>Value</h4>
+          <p>A feeling of being precious <em>by nature</em>, without having to earn it. Not the result of an achievement: it is Essence itself that is value.</p>
+        </div>
+        <div class="aspect a-blanc">
+          <p class="tag">Forehead · light</p>
+          <h4>Brilliance</h4>
+          <p>Essential intelligence, which sees several facets simultaneously. Understanding <em>arrives</em>, calm and clear, without mental agitation.</p>
+        </div>
+        <div class="aspect a-bleu">
+          <p class="tag">The whole being</p>
+          <h4>Consciousness</h4>
+          <p>Inner light, the very substance of awakening. Recognizing that one is conscious — not thinking that one is.</p>
+        </div>
+        <div class="aspect a-blanc">
+          <p class="tag">The whole being</p>
+          <h4>Existence</h4>
+          <p>The naked “I am.” The most stripped-down aspect. Not “I am this or that” — simply <em>being</em>, without content.</p>
+        </div>
+      </div>
+
+      <p>Each aspect has its <strong>preferred zone of manifestation</strong> in the subtle body, its spontaneous posture, its own function. Merging Love centers in the heart; expansive Peace in the head; Will in the belly. The essentially free body is the one that can welcome all these aspects without favoring any one of them.</p>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Essence manifests in <strong>multiple aspects</strong> — Strength, Joy, Love, Will, Peace, Compassion, Truth, Value, Brilliance, Consciousness…</li>
+          <li>Each aspect has its <strong>flavor, its texture, its zone</strong> in the body.</li>
+          <li>An essential life <strong>moves through the entire palette</strong> depending on the situation — it is not frozen in a single state.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M5 ═════ -->
+    <section class="mvt" id="m5">
+      <p class="num">Movement 5</p>
+      <h2>Why we lost it — the theory of holes</h2>
+      <p class="lead">If Essence is our nature, how is it that most adults have so little awareness of it? Almaas's answer is precise. And it is perhaps the most original contribution of his entire body of work.</p>
+
+      <p>The baby does not merely have an essence: <strong>it <em>is</em> essence</strong>. Anyone who has held an infant knows it: the infant is manifestly a presence, dense, palpable, without history. What it is dominates what it does. As it grows, certain essential qualities dominate in succession: merging love in the symbiotic phase, strength at the moment the child begins to say no, will when it walks, joy when it discovers…</p>
+
+      <p>But the ordinary human environment — parents, school, society — is made up of personalities that have themselves lost contact with their own Essence. Without malice, simply through <strong>blindness</strong>, they do not recognize the essential presence in the child. Worse: they frustrate it. They mistake a surge of assertion for a whim; a will of one's own for disobedience; pure joy for agitation. Each time an essential aspect is <em>frustrated</em> in its emergence, the child suffers the loss of that aspect.</p>
+
+      <div class="triptych">
+        <div class="tryp t-essence">
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <radialGradient id="ess1" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#fcd34d" stop-opacity=".5"/>
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="38" fill="url(#ess1)" stroke="#fcd34d" stroke-width="1.5"/>
+          </svg>
+          <p class="step">Step 1</p>
+          <h4>The original aspect</h4>
+          <p>The child <em>is</em> the essential aspect. Full, luminous, without lack. It is its nature.</p>
+        </div>
+
+        <div class="tryp t-trou">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(148,163,184,.5)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="50" cy="50" r="22" fill="rgba(0,0,0,.6)"/>
+          </svg>
+          <p class="step">Step 2</p>
+          <h4>The hole</h4>
+          <p>The aspect is frustrated, repressed. In its place, a feeling of <em>lack</em>, of emptiness, of deficiency.</p>
+        </div>
+
+        <div class="tryp t-ego">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(196,181,253,.5)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="50" cy="50" r="22" fill="rgba(196,181,253,.20)" stroke="#c4b5fd" stroke-width="1.5"/>
+            <line x1="38" y1="40" x2="62" y2="40" stroke="#c4b5fd" stroke-width="0.7"/>
+            <line x1="38" y1="50" x2="62" y2="50" stroke="#c4b5fd" stroke-width="0.7"/>
+            <line x1="38" y1="60" x2="62" y2="60" stroke="#c4b5fd" stroke-width="0.7"/>
+          </svg>
+          <p class="step">Step 3</p>
+          <h4>The filling</h4>
+          <p>The personality builds a <em>sector of imitation</em> that tries to fill the hole — without ever succeeding.</p>
+        </div>
+      </div>
+
+      <p>In place of the lost aspect a <strong>hole</strong> forms: an intolerable feeling of lack, of deficiency. The child cannot bear it — it would mean the collapse of its budding ego. So it <strong>fills it</strong>: it develops a sector of personality that <em>imitates</em> the lost aspect, that <em>fantasizes</em> its presence, or that tries to <em>obtain it from others</em>.</p>
+
+      <h3>A cardinal example — the loss of merging love</h3>
+      <p>In the symbiotic phase, the baby and its mother are not distinct: they are immersed in a shared presence of merging love. The inevitable rupture of this union — when the mother must be absent, or the child grows — is not experienced as the loss of a relationship, but as <strong>the loss of a part of oneself</strong>.</p>
+
+      <p>A hole. Inscribed for life, in the body like a dull ache of lack. The personality will build, around this hole, an organization that will spend decades <strong>seeking fusion through romantic relationships</strong> — believing each time that the other will fill this lack, when what is lacking is <em>an aspect of Essence</em> within oneself, which has never ceased to be there, simply buried.</p>
+
+      <p>By the end of childhood, <em>all</em> the aspects are buried, <em>all</em> the holes are filled, and the person no longer perceives anything but the filling. They take this filling for themselves. <strong>Essence is not lost</strong> — it cannot be, it is our nature. It is only <em>covered over</em>. That is what makes its return possible.</p>
+
+      <div class="panel feature">
+        <p style="margin:0;font-size:15px;line-height:1.7"><strong>The universal mechanism.</strong> What we call “our personality,” in the psychological sense, is neither a given character nor a moral flaw. It is a remarkably intelligent <em>system of imitation</em> that attempted to fill the holes left by the loss of the essential aspects — and that allowed the child to survive in a blind environment. Personality is not the enemy: it is the work of genius of a child who had no other choice. The inner work is not to destroy it but to <em>understand what it was imitating</em> — and to recover the original.</p>
+      </div>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>The child <strong>is</strong> Essence. The environment frustrates it without knowing it.</li>
+          <li>Each repressed aspect leaves a <strong>hole</strong> that the personality fills through imitation.</li>
+          <li>Essence is <strong>not lost</strong>, it is covered over. That is what makes its return possible.</li>
+          <li>Personality is not the enemy: it is <strong>a work of imitation</strong> that made survival possible.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M6 ═════ -->
+    <section class="mvt" id="m6">
+      <p class="num">Movement 6 — the pedagogical heart</p>
+      <h2>Recognizing the difference — Essence ↔ Personality</h2>
+      <p class="lead">Once you know the flavor of both sides, you no longer mistake one for the other. Here are eight dimensions where the difference is clear — each with an ordinary example that makes the distinction palpable. Read slowly.</p>
+
+      <div class="distinct">
+        <!-- JOIE -->
+        <div class="dRow">
+          <p class="dHead">◆ Joy</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Light, transparent sparkle. Depends on nothing. Appears without cause. Coexists peacefully with a present difficulty. Fresh texture, almost golden.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Good mood, excitement, contentment. Always depends on an object, a success, a promise. Collapses when the object disappears. Often overexcited or forced.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> You are washing dishes on an autumn evening. Nothing special. Suddenly the running water, the light, and an inner sparkle for no reason — that is essential joy. Compare with: you receive good news, you're overexcited for two hours, you call everyone, and the next day you feel empty.</p>
+        </div>
+
+        <!-- FORCE -->
+        <div class="dRow">
+          <p class="dHead">◆ Strength</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Quiet solidity in the belly. Capacity to act and hold firm without gritting one's teeth. Not directed against anything; simply present. The body is dense but relaxed.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Muscular tension, clenched jaw, defensive anger, hardening. One “holds on” through contraction. The body closes up. Energy that exhausts.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> A sick person announcing a difficult decision to their family. Essential strength is speaking straight, without aggression or collapse, from a solid belly. Personality-strength is the same announcement made with a strained voice, a hard stare, a locked body — one held on, but is wrung out afterward.</p>
+        </div>
+
+        <!-- AMOUR -->
+        <div class="dRow">
+          <p class="dHead">◆ Love</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Radiant presence of the heart that expects nothing in return. Does not depend on the other's behavior. Unfolds as much toward a loved one as toward a stranger. Does not change if the other is ungrateful.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Attachment, need, expectation. Conditional: “I love you <em>if</em>.” Turns to jealousy, anger, withdrawal when the other disappoints. Often confused with lack — I love because I need.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> You pass a neighbor you don't know; they say hello, and you feel an immediate warmth, simple, without content. That is essential love. Compare with: the dull fear when your partner comes home late without answering — a fear whose root is not tenderness, but panic of abandonment.</p>
+        </div>
+
+        <!-- PAIX -->
+        <div class="dRow">
+          <p class="dHead">◆ Peace</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Silent, open vastness. The mind is settled, not switched off. Perception remains fine. Can arise in the middle of noise. Full presence.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Numbness, escape, dissociation, anesthesia. One no longer thinks because one has cut off. In front of the TV, after two drinks, one is “at peace” — this peace is absence, not presence.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> Sunrise in the mountains, mind completely silent, sharp perception, vastness — that is essential peace. Compare with: Sunday evening in front of a show, mind unplugged, emerging three hours later foggy, drained, vaguely sad — that was escape.</p>
+        </div>
+
+        <!-- VOLONTÉ -->
+        <div class="dRow">
+          <p class="dHead">◆ Will</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Mountain-like solidity. Capacity to sustain, to endure, to hold course without tension. The “yes” that knows how to say no, and vice versa. Mineral grounding in the lower body.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Stubbornness, willfulness, rigidity. One clenches, forces, wears oneself out in order not to give in. Often a reaction to an inner fault line: one wants to prove something.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> A mother who maintains a clear educational framework without getting worked up, because she knows why she holds to it — that is essential will. Compare with: the same mother shouting the same instruction for the third time, jaw clenched, out of fear of not being respected — that is willfulness.</p>
+        </div>
+
+        <!-- COMPASSION -->
+        <div class="dRow">
+          <p class="dHead">◆ Compassion</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Capacity to remain in the presence of another's suffering without fleeing it, without taking it on in their place, without turning it into an occasion for a display. Green texture, soft, firm.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Pity (looking down), rescuing (taking the other's place), self-pitying commiseration (collapsing along with them). One feels obliged to “do something,” or withdraws feeling uneasy.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> A friend tells you he has lost his father. Essential compassion is staying there, listening to him, not filling the silence, simply being present. Personality-rescuing is offering him ten practical solutions within five minutes so as not to have to bear his pain.</p>
+        </div>
+
+        <!-- INTELLIGENCE -->
+        <div class="dRow">
+          <p class="dHead">◆ Intelligence — Brilliance</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>Clear vision that embraces several facets simultaneously, without linearity. Understanding <em>arrives</em>, stripped-down, sometimes in a flash but very calmly. No agitation.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Fast mental activity, linear reasoning, frantic search for solutions, cerebral excitement. One “thinks a lot” without always seeing better.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> An experienced doctor who, looking at a patient for five seconds, <em>knows</em> there is a problem — without having consciously reviewed the symptoms. That is essential brilliance. Compare with: the sleepless night spent turning a problem over, arriving at a solution less relevant than the one that will quietly present itself the next morning in the shower.</p>
+        </div>
+
+        <!-- PRÉSENCE -->
+        <div class="dRow">
+          <p class="dHead">◆ Presence</p>
+          <div class="dPair">
+            <div class="dCol essence">
+              <p class="lab">Essence side</p>
+              <p>“There is more of me here.” Something palpable is halfway between oneself and the world. One is <em>with</em>. The body is inhabited. The other feels it.</p>
+            </div>
+            <div class="dCol ego">
+              <p class="lab">Personality side</p>
+              <p>Forced mental concentration. One tells oneself “be present, be present,” calling oneself to order. An effort of attention. The body remains empty. The other feels nothing more.</p>
+            </div>
+          </div>
+          <p class="dExample"><strong>Example.</strong> A grandparent playing with a small child who is <em>truly there</em> — the child senses it immediately and blossoms. Compare with: the parent playing while checking their phone every two minutes, or thinking about tomorrow's meeting — they are there physically, the child knows they are not really there.</p>
+        </div>
+      </div>
+
+      <p>Reading these tables is not enough — it is <strong>remembering precise moments from your own life</strong> that changes everything. When have you felt essential joy? Essential strength? Full presence? If memory gives nothing in one dimension, it is because that aspect is still waiting to be recognized.</p>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Each quality presents itself <strong>in two very different versions</strong> — essential or personality.</li>
+          <li>The difference is in the <strong>flavor</strong>, not in the word. You have to have tasted it.</li>
+          <li>This fine discrimination is itself an <strong>essential act</strong> that purifies the ground.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M7 ═════ -->
+    <section class="mvt" id="m7">
+      <p class="num">Movement 7</p>
+      <h2>The body, organ of Essence</h2>
+      <p class="lead">Essence is substantial. It is not lived in the abstract: it is lived <em>in</em> the body. Without a sensitive body, no access. The mind alone is not enough — and free sexuality is one of its most powerful revealers.</p>
+
+      <p>To perceive Essence, the physical body must become sensitive. The muscular armor — those chronic tensions in the shoulders, the jaw, the belly, which hold old repressions in place — must release. The subtle organs of perception, ordinarily asleep, must open. It is gradual. It happens through attention to the body, through certain practices (breath, conscious movement, pause), through work on tension patterns.</p>
+
+      <p>Almaas devoted specific work to the link between Essence and the body: he identified <strong>two fundamental qualities</strong> — which he simply calls the Red and the Gold — that regulate the essential organism.</p>
+
+      <div class="ro">
+        <div class="roCard rouge">
+          <p class="tag">Red Aspect</p>
+          <h4>Strength, vitality, expansion</h4>
+          <p>Warmth in the lower body. Assertion, capacity to act, desire, separation, ardor. Red is what says <em>“I am, I can, I want.”</em></p>
+          <p>Dense, vibrant texture. A ruby-red presence, like a fire that does not burn. When it is free, one feels alive, capable, expansive without being aggressive.</p>
+        </div>
+        <div class="roCard or">
+          <p class="tag">Gold Aspect</p>
+          <h4>Fusion, softness, melting</h4>
+          <p>Honeyed softness that dissolves boundaries. Rest, satisfaction, fusion, pleasure. Gold is what says <em>“I am with, I melt, I rest.”</em></p>
+          <p>Transparent, fluid, golden texture. A warm presence that permeates. When it is free, one feels deeply satisfied and one with what is.</p>
+        </div>
+      </div>
+
+      <h3>The Red / Gold alternation — the fundamental grammar</h3>
+      <p>The healthy baby spontaneously alternates between these two states: Red in tension and desire, Gold in satisfaction and rest. This is the <strong>fundamental alternation of living things</strong>. Every healthy adult should be able to do the same, in action and in return, in engagement and in rest.</p>
+
+      <p>This alternation is powerfully revealed in sexuality. A free sexuality successively unfolds Red (excitement, buildup, desire, separation) and Gold (fusion, softness, melting, rest). The two fundamental essential qualities are there, present, accessible to whoever knows how to feel them.</p>
+
+      <h3>Why sexuality fades in couples who love each other</h3>
+      <p>The most valuable insight of Almaas's work on this point: <strong>when a couple loves each other deeply, the positive fusion of Gold can awaken the repressed negative fusion — the Gold missed in childhood, contaminated by the frustration and rage of a distorted Red</strong>. To preserve the bond of love, the individual then represses Red. This is what extinguishes sexuality.</p>
+
+      <p>This is the classic mechanism of the couple who love each other but no longer desire each other. Not an inevitability, not a loss of love — the opposite. It is <em>because love has become too precious</em> that one has repressed the healthy aggression of desire, for fear it might break it. Sexuality can therefore be a powerful revealer of Essence, or a veil — depending on what one does with it.</p>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Without a <strong>sensitive body</strong>, no access to Essence. The mind alone is not enough.</li>
+          <li>Two fundamental qualities regulate the essential organism: <strong>Red</strong> (strength, desire, expansion) and <strong>Gold</strong> (fusion, softness, rest).</li>
+          <li>The Red/Gold alternation is the <strong>fundamental grammar</strong> of living things. Free sexuality unfolds it fully.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M8 ═════ -->
+    <section class="mvt" id="m8">
+      <p class="num">Movement 8</p>
+      <h2>The return — not building, but unveiling</h2>
+      <p class="lead">Essence is not to be acquired, nor conquered, nor developed the way one develops a muscle. It is what we have always been, simply covered over. The inner work is a <strong>return</strong>, a remembering, an unveiling — not a construction. This reversal of perspective changes everything.</p>
+
+      <p>Concretely, where to begin? Almaas is precise about the first steps. None is spectacular. All are solid.</p>
+
+      <div class="praticesGrid">
+        <div class="pStep">
+          <h4>Extending awareness</h4>
+          <p>Everything begins with observing. Without material to observe, no understanding. Learning to perceive the thoughts that pass, the emotions that rise, the sensations that appear in the body — without intervening. This is the basis of all inner practice.</p>
+        </div>
+        <div class="pStep">
+          <h4>Sensitizing the body</h4>
+          <p>Progressively dissolving the muscular armor that holds repression in place. Refining perception. The mind can be calm while the body remains insensitive — that is not enough. The path passes through embodiment.</p>
+        </div>
+        <div class="pStep">
+          <h4>Recognizing Essence when it presents itself</h4>
+          <p>Not confusing it with a strong emotion, a vision, an insight, an experience of opening. The particular flavor of Essence — substantial, calm, palpable, without excitement — is recognized through use. The more one tastes it, the more one knows it.</p>
+        </div>
+        <div class="pStep">
+          <h4>Following the holes, not fleeing them</h4>
+          <p>When a feeling of lack, of emptiness, of deficiency appears, not seeking to fill it immediately with an activity, a relationship, a consumption. Letting it be. This is precisely the entryway to the corresponding essential aspect — which waits just behind.</p>
+        </div>
+        <div class="pStep">
+          <h4>Bringing together the psychological and the spiritual</h4>
+          <p>The Diamond Approach holds the two together: the psychological understanding of the holes prepares the emergence of the essential aspects, which in turn expose deeper layers of the personality. It is a reciprocal spiral, without end.</p>
+        </div>
+        <div class="pStep">
+          <h4>Not inflating the spiritual self</h4>
+          <p>Every attempt to “cultivate” Essence through the will of the ego only reinforces the veil. Essence is not cultivated, it is discovered — by letting go of what hides it. The trap of the “advanced spiritual self” is the ego that has seized hold of the vocabulary of the path.</p>
+        </div>
+      </div>
+
+      <div class="panel feature">
+        <p style="margin:0;font-size:15px;line-height:1.7"><strong>The central trap to avoid.</strong> Wanting to <em>“reach Essence”</em> is still a movement of the personality. It is the same mechanism of the ego that wants <em>“to be someone”</em> — applied this time to the inner domain. This movement adds more veil. The work consists in seeing this movement, letting it be, and discovering that <em>what wants to reach</em> is itself a layer to pass through. Essence is not to be reached: it is what watches all these attempts.</p>
+      </div>
+
+      <div class="keypoints">
+        <p class="label">Key takeaways</p>
+        <ul>
+          <li>Essence is <strong>already here</strong>. The work consists in letting the veil fall, not in manufacturing a state.</li>
+          <li>Six first steps: awareness, sensitizing the body, recognizing, following the holes, bringing together the two registers, not inflating the spiritual self.</li>
+          <li>The central trap: <strong>wanting to reach Essence</strong> — still a movement of the ego.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M9 ═════ -->
+    <section class="mvt" id="m9">
+      <p class="num">Movement 9 — closing</p>
+      <h2>Essence is already here</h2>
+      <p class="lead">Three or four final ideas that change everything, if we truly let them sink in.</p>
+
+      <div class="panel quote">
+        <strong style="color:#bae6fd;display:block;margin-bottom:10px;font-style:normal">The “normal self” is still a child.</strong>
+        Almaas speaks bluntly: the “well-adjusted” person, balanced according to standard psychological measures, is still a child from the point of view of Essence. What we call mental health is a compromise with the veil. This is not contempt: it is an opening. There is infinitely more to discover than what we have learned to call “being well.”
+      </div>
+
+      <div class="panel quote">
+        <strong style="color:#bae6fd;display:block;margin-bottom:10px;font-style:normal">Where it is lacking, Essence is just behind.</strong>
+        The feelings of lack, of emptiness, of deficiency that we spend our whole lives fleeing are precisely the doorways to the corresponding essential aspects. Where it hurts, where it hollows out — that is where what was hidden waits. The return does not pass through the summits, it passes through the holes.
+      </div>
+
+      <div class="panel quote">
+        <strong style="color:#bae6fd;display:block;margin-bottom:10px;font-style:normal">Essence is more real than the thought that denies it.</strong>
+        Once you have tasted Essence even once, you discover that all the theories that deny its existence — including our own, for years — were themselves mental activities, that is, less real than what they claimed to judge. The experience overturns the hierarchy of certainties.
+      </div>
+
+      <section class="closing">
+        <p>This palpable presence, dense and calm, which has already visited you several times — you do not have to invent it.</p>
+        <p><strong>You only have to learn to recognize it when it comes,<br>and to stop leaving it once it is here.</strong></p>
+        <div class="actions">
+          <a class="btn" href="/en/approche-diamant.html">← Back to the Diamond Approach</a>
+        </div>
+      </section>
+    </section>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

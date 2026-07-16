@@ -1,0 +1,156 @@
+{
+  "type": 8,
+  "nom": "The Leader",
+  "centre": {
+    "prefere": "instinctif",
+    "support": "mental",
+    "reprime": "emotionnel-tendre",
+    "prefere_libelle": "Instinctive (strength, action, gut)",
+    "reprime_libelle": "The tender emotional",
+    "reprime_invitation": "Today, the center you are working is the tender emotional: letting vulnerability, need, and gentleness appear. Not as weakness — as truth."
+  },
+
+  "dynamique_ego": {
+    "passion": "Lust",
+    "passion_explication": "Wanting too much, too strong, too intense. An appetite that covers a forbidden vulnerability. You take up space so as not to be taken. You lead so as not to be led.",
+    "fixation": "Vengeance, control, defensive hardness",
+    "compulsion_evitement": "Avoiding vulnerability, dependency, submission.",
+    "peur_de_base": "Being controlled, dominated, betrayed, caught off guard.",
+    "desir_de_base": "Being autonomous, self-mastered, untouchable."
+  },
+
+  "essence": {
+    "qualite_principale": "Innocent Strength",
+    "qualite_phrase": "You don't have to harden to be strong — your tenderness IS your strength.",
+    "horizons": [
+      "Letting a tender belly be seen",
+      "Receiving gentleness without judging it weak",
+      "Feeling the other as an equal, not a threat",
+      "Touching power that doesn't brutalize"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Let something happen without controlling it",
+    "Recognize a tender need — and honor it",
+    "Ask, instead of demanding",
+    "Listen before responding",
+    "Feel rising vulnerability, without hardening it",
+    "Acknowledge a wrong without collapsing",
+    "Trust someone, once",
+    "Touch the right measure in a spending",
+    "Let someone protect you for a moment"
+  ],
+
+  "pratiques_du_matin": [
+    "Before noon, ask for something gently — without imposing it.",
+    "When the reflex to counterattack rises, breathe three times and listen to what truly hurts.",
+    "An activity where you're not the leader. Follow. See how that feels.",
+    "Feel a need (hunger, fatigue, lack) and respond to it gently. Not by force.",
+    "Receive a sign of affection without deflecting it with a joke.",
+    "Say 'I don't know' once, without compensating for it."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Luminous",    "description": "Innocent strength. You protect without dominating. You decide without imposing. Your felt vulnerability nourishes your true power.",     "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Functional", "description": "You lead, you decide — you feel hardness rising and you can choose to listen first.",                                            "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Reactive",     "description": "The gut leads. You dominate, intimidate, deny what hurts. The armor hardens.",                                                  "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Buried",    "description": "Tyranny, vengeance, icy isolation. Tenderness is entirely banished. A very heavy day that calls for a gentle, steady witness.",          "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Liberated",        "texte": "Magnanimous, protective, courageous. Your strength serves life. You protect the weak because you recognize your own tenderness." },
+      { "n": 2, "titre": "Healthy",          "texte": "Decisive, confident, assertive. You take a stand without crushing." },
+      { "n": 3, "titre": "Competent",     "texte": "Natural leader, builder, organizer. Action embodied." },
+      { "n": 4, "titre": "Upper-average",    "texte": "Assertive, pragmatic. You begin to subtly dominate situations." },
+      { "n": 5, "titre": "Average",         "texte": "Self-centered, domineering, provocative. You show your strength. Vulnerability is denied." },
+      { "n": 6, "titre": "Lower-average",     "texte": "Confrontational, aggressive, contemptuous of weakness. You intimidate." },
+      { "n": 7, "titre": "Unhealthy",       "texte": "Cruel, authoritarian, vengeful. The armor becomes plating." },
+      { "n": 8, "titre": "Very unhealthy",  "texte": "Brutal, destructive, megalomaniac. You attack out of fear of being attacked." },
+      { "n": 9, "titre": "Pathological",  "texte": "Sociopathy, destruction of self and others. Asking for help is vital here." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "domine",     "label": "I dominated a situation by reflex",     "detail": "Without being asked to." },
+      { "id": "intimide",   "label": "I intimidated someone — a little, a lot", "detail": "So as not to be touched." },
+      { "id": "nie-tendre", "label": "I denied something tender in myself",    "detail": "Too dangerous to let through." },
+      { "id": "exces",      "label": "I did too much, with force, in quantity",       "detail": "Excess as proof of power." },
+      { "id": "contre",     "label": "I counterattacked before understanding",    "detail": "Reflex before feeling." },
+      { "id": "controle",   "label": "I controlled so as not to be controlled", "detail": "Preventive mistrust." }
+    ],
+    "pieges": [
+      { "id": "non-ecoute", "label": "I didn't truly listen",                "detail": "I was waiting for my turn to respond." },
+      { "id": "ironie-pro", "label": "I used irony so as not to feel",    "detail": "Humor as a shield." },
+      { "id": "refus-aide", "label": "I refused help that was offered",          "detail": "Receiving equals depending." },
+      { "id": "decharge",   "label": "I unloaded anger on the wrong target","detail": "More accessible." },
+      { "id": "test-loy",   "label": "I tested someone's loyalty",          "detail": "To see if they'd hold." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "tendre-vu",  "label": "I let my tenderness be seen" },
+      { "id": "ecoute",     "label": "I listened before responding" },
+      { "id": "vulnerable", "label": "I felt my vulnerability, without hardening it" },
+      { "id": "demande",    "label": "I asked gently" },
+      { "id": "recu-aide",  "label": "I received help, simply" },
+      { "id": "force-douce","label": "My strength protected without crushing" },
+      { "id": "innocence",  "label": "I touched an innocence in myself — that wasn't naivety" },
+      { "id": "confiance",  "label": "I trusted someone" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "domine",      "label": "I dominated" },
+    { "id": "tendre",      "label": "I let my tenderness show" },
+    { "id": "contre",      "label": "I counterattacked" },
+    { "id": "ecoute",      "label": "I truly listened" },
+    { "id": "demande",     "label": "I asked gently" },
+    { "id": "exces",       "label": "I went to excess" },
+    { "id": "vulnerable",  "label": "I felt my vulnerability" },
+    { "id": "force-juste", "label": "My strength served something just" },
+    { "id": "obscur",      "label": "I don't understand yet" }
+  ],
+
+  "remedes": [
+    { "id": "innocence",   "label": "Innocence — not naivety, freshness" },
+    { "id": "vulnerable",  "label": "Vulnerability — true strength" },
+    { "id": "tendresse",   "label": "Tenderness — toward oneself first" },
+    { "id": "mesure",      "label": "The right measure — instead of excess" },
+    { "id": "ecoute",      "label": "Listening — before responding" },
+    { "id": "confiance",   "label": "Trust — risky, but alive" },
+    { "id": "force-juste", "label": "Just strength — that protects, not that crushes" }
+  ],
+
+  "ressources_site": [
+    { "label": "My full profile",          "href": "/en/profils/type8.html",          "icon": "📖" },
+    { "label": "The diamond of essence",     "href": "/en/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restore the forgotten center",  "href": "/en/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "The journey through the type", "href": "/en/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions between types",      "href": "/en/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Morning begins. What gentleness can you let in?",
+      "A day opens up — where could you listen before acting?",
+      "What vulnerability do you want to honor?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Has the armor shifted?",
+      "Here you are. Does someone deserve your tenderness, now?",
+      "A possible pause. Without having to take up space."
+    ],
+    "soir": [
+      "The day is fading. Did you let a bit of your tender belly show?",
+      "You can simply arrive, without dominating anything.",
+      "Evening is gentle. The right strength, that's very good."
+    ],
+    "nuit": [
+      "Night keeps watch. A gentle request, then sleep.",
+      "You are still here, without having to defend it."
+    ]
+  }
+}

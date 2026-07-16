@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facets of Unity — A. H. Almaas</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Bandeau livre */
+    .bookHead{
+      max-width:920px;margin:0 auto 28px;padding:26px 28px;
+      border:1px solid rgba(125,211,252,.22);
+      background:linear-gradient(135deg, rgba(125,211,252,.08), rgba(196,181,253,.05));
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      display:flex;gap:24px;align-items:center;flex-wrap:wrap;
+    }
+    .bookHead .cover{
+      width:90px;height:130px;flex:0 0 auto;
+      border-radius:8px;
+      background:linear-gradient(135deg,#1e3a8a 0%,#312e81 50%,#1e1b4b 100%);
+      display:grid;place-items:center;
+      box-shadow:0 14px 32px rgba(0,0,0,.4);
+      position:relative;overflow:hidden;
+    }
+    .bookHead .cover::after{
+      content:"◆";font-size:36px;color:#7dd3fc;
+      text-shadow:0 0 18px rgba(125,211,252,.5);
+    }
+    .bookHead .cover::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.10), transparent 40%);
+    }
+    .bookHead .info{flex:1;min-width:240px}
+    .bookHead .meta{
+      font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;
+      color:#bae6fd;font-weight:800;margin:0 0 6px;
+    }
+    .bookHead h1{
+      margin:0;font-size:clamp(26px,3.6vw,38px);letter-spacing:.2px;line-height:1.1;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 60%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .bookHead .subtitle{margin:4px 0 0;color:var(--muted);font-size:14.5px;line-height:1.4}
+    .bookHead .author{margin:10px 0 0;color:#bae6fd;font-size:13.5px;font-weight:700;letter-spacing:.5px}
+
+    /* Intro narrative */
+    .intro{
+      margin:0 auto 32px;max-width:880px;
+      padding:22px 24px;border-radius:var(--radius);
+      background:rgba(255,255,255,.03);border:1px solid var(--line);
+    }
+    .intro p{margin:0 0 12px;line-height:1.7;font-size:15.5px}
+    .intro p:last-child{margin-bottom:0}
+    .intro strong{color:#fff}
+    .intro em{color:#cfe9ff;font-style:normal;font-weight:600}
+
+    /* Section title */
+    .sectionTitle{
+      text-align:center;font-size:13px;letter-spacing:1.4px;
+      text-transform:uppercase;color:#bae6fd;font-weight:800;
+      margin:36px 0 18px;
+    }
+    .sectionTitle::before, .sectionTitle::after{
+      content:"◆";color:rgba(125,211,252,.45);margin:0 12px;font-size:10px;
+    }
+
+    /* Schémas */
+    .schemaCard{
+      max-width:920px;margin:0 auto 28px;padding:24px;
+      border-radius:var(--radius);border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+    .schemaCard h3{
+      margin:0 0 6px;font-size:18px;letter-spacing:.3px;color:#fff;
+    }
+    .schemaCard .lead{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.5}
+    .schemaCard svg{width:100%;height:auto;display:block;max-width:680px;margin:0 auto}
+    .schemaCard p{margin:14px 0 0;line-height:1.65;font-size:14.5px}
+    .schemaCard p:first-of-type{margin-top:0}
+
+    /* Diagramme ennéagramme avec 9 Idées */
+    .ennea9{
+      max-width:920px;margin:0 auto 28px;padding:24px;
+      border-radius:var(--radius);border:1px solid rgba(125,211,252,.22);
+      background:radial-gradient(ellipse at center, rgba(125,211,252,.06), rgba(255,255,255,.02));
+    }
+    .ennea9 svg{width:100%;height:auto;display:block;max-width:720px;margin:0 auto}
+    .enneaRing{stroke:rgba(125,211,252,.5);stroke-width:2.5;fill:none}
+    .enneaHex{stroke:rgba(255,255,255,.08);stroke-width:1.6;fill:none}
+    .enneaTri{stroke:rgba(196,181,253,.18);stroke-width:1.6;fill:none}
+    .enneaNode circle{
+      fill:rgba(15,26,51,.92);
+      stroke:rgba(125,211,252,.55);stroke-width:2;
+      transition:fill .15s ease, stroke .15s ease, stroke-width .15s ease;
+      cursor:pointer;
+    }
+    .enneaNode:hover circle{fill:rgba(125,211,252,.18);stroke-width:3}
+    .enneaNode text.num{
+      fill:#fff;font-size:18px;font-weight:850;
+      text-anchor:middle;dominant-baseline:middle;
+      pointer-events:none;
+    }
+    .enneaNode text.idea{
+      fill:#cfe9ff;font-size:11px;font-weight:700;letter-spacing:.4px;
+      text-anchor:middle;
+      pointer-events:none;
+    }
+    .enneaCenter{
+      fill:rgba(125,211,252,.06);stroke:rgba(125,211,252,.22);stroke-width:1;
+    }
+    .enneaCenter text{
+      fill:rgba(255,255,255,.85);font-size:11px;letter-spacing:1.6px;
+      text-anchor:middle;font-weight:700;text-transform:uppercase;
+    }
+
+    /* Sélecteur de type */
+    .selector{margin:14px auto 0;max-width:880px}
+    .pills{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px}
+    @media(max-width:640px){.pills{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    .pill{
+      appearance:none;border:1px solid rgba(125,211,252,.32);
+      background:rgba(15,26,51,.72);color:var(--text);
+      border-radius:14px;padding:12px 6px 10px;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      transition:transform .12s ease, border-color .14s ease, background .14s ease;
+      min-height:64px;
+    }
+    .pill:hover{transform:translateY(-2px);background:rgba(125,211,252,.08)}
+    .pill .num{font-size:22px;font-weight:850;line-height:1}
+    .pill .lbl{font-size:10.5px;color:var(--muted);font-weight:600;text-align:center}
+    .pill.active{
+      background:rgba(125,211,252,.14);border-width:2px;
+      transform:translateY(-2px);box-shadow:0 8px 22px rgba(125,211,252,.22);
+    }
+
+    /* Carte de type */
+    .typeCard{
+      margin:24px auto 0;max-width:920px;
+      border:1px solid rgba(125,211,252,.22);background:var(--card);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      overflow:hidden;animation:fadeUp .35s ease;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .typeHead{
+      padding:24px 26px 20px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(125,211,252,.10), rgba(196,181,253,.05));
+      text-align:center;
+    }
+    .typeHead .num{
+      display:inline-grid;place-items:center;
+      width:56px;height:56px;border-radius:50%;
+      font-size:26px;font-weight:850;color:#fff;
+      background:rgba(15,26,51,.85);
+      border:2px solid rgba(125,211,252,.55);
+      margin-bottom:10px;
+      box-shadow:0 0 24px rgba(125,211,252,.20);
+    }
+    .typeHead h2{margin:0;font-size:clamp(22px,3vw,28px);letter-spacing:.2px}
+    .typeHead .typeName{color:var(--muted);font-weight:600;font-size:14px;margin-top:2px}
+
+    .typeBody{padding:24px 26px 26px}
+
+    /* Diamant : Idée ↔ Vertu */
+    .pairing{
+      display:grid;grid-template-columns:1fr 60px 1fr;gap:0;
+      align-items:stretch;margin:0 0 22px;
+    }
+    @media(max-width:640px){
+      .pairing{grid-template-columns:1fr;gap:8px}
+      .pairing .gem{display:none}
+    }
+    .pairing .facet{
+      padding:18px 20px;border-radius:14px;
+      border:1px solid rgba(125,211,252,.28);
+      background:linear-gradient(135deg, rgba(125,211,252,.10), rgba(125,211,252,.02));
+    }
+    .pairing .facet.virtue{
+      border-color:rgba(196,181,253,.30);
+      background:linear-gradient(135deg, rgba(196,181,253,.10), rgba(196,181,253,.02));
+    }
+    .pairing .label{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:800;margin:0 0 6px;
+    }
+    .pairing .idea .label{color:#bae6fd}
+    .pairing .virtue .label{color:#ddd6fe}
+    .pairing .name{
+      font-size:20px;font-weight:800;letter-spacing:.2px;margin:0 0 10px;color:#fff;
+      line-height:1.2;
+    }
+    .pairing .desc{margin:0;font-size:14.5px;line-height:1.6;color:#e8eeff}
+    .pairing .gem{
+      display:grid;place-items:center;
+    }
+    .pairing .gem svg{width:54px;height:54px;animation:gemPulse 4s ease-in-out infinite}
+    @keyframes gemPulse{
+      0%,100%{opacity:.7;transform:rotate(0deg)}
+      50%{opacity:1;transform:rotate(180deg)}
+    }
+
+    /* Sections */
+    .block{
+      margin:0 0 16px;padding:18px 20px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .block:last-child{margin-bottom:0}
+    .block h3{
+      margin:0 0 10px;font-size:13px;letter-spacing:.7px;text-transform:uppercase;
+      font-weight:800;color:inherit;
+    }
+    .block p{margin:0 0 8px;line-height:1.7;font-size:15px;color:#e8eeff}
+    .block p:last-child{margin-bottom:0}
+
+    .block.fixation{border-left-color:#fda4af;color:#fecdd3}
+    .block.fixation{background:rgba(253,164,175,.05)}
+
+    /* Trois facettes : illusion / difficulté / réaction */
+    .facets3{display:grid;gap:14px;margin:0 0 16px}
+    .facet3{
+      position:relative;padding:18px 20px 18px 56px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .facet3 .step{
+      position:absolute;left:14px;top:18px;
+      width:30px;height:30px;border-radius:50%;
+      display:grid;place-items:center;
+      font-size:14px;font-weight:850;color:#fff;
+      background:rgba(0,0,0,.35);border:1.5px solid currentColor;
+    }
+    .facet3 .label{
+      font-size:11px;letter-spacing:1.2px;text-transform:uppercase;
+      font-weight:800;margin:0 0 4px;color:inherit;
+    }
+    .facet3 .name{
+      margin:0 0 8px;font-size:17px;font-weight:800;color:#fff;line-height:1.25;
+    }
+    .facet3 p{margin:0;line-height:1.65;font-size:14.5px;color:#e8eeff}
+    .facet3.illusion{
+      border-left-color:#fda4af;color:#fecdd3;
+      background:linear-gradient(135deg, rgba(253,164,175,.07), rgba(253,164,175,.02));
+    }
+    .facet3.difficulty{
+      border-left-color:#fcd34d;color:#fde68a;
+      background:linear-gradient(135deg, rgba(252,211,77,.07), rgba(252,211,77,.02));
+    }
+    .facet3.reaction{
+      border-left-color:#c4b5fd;color:#ddd6fe;
+      background:linear-gradient(135deg, rgba(196,181,253,.08), rgba(196,181,253,.02));
+    }
+
+    /* Séparateur "voie de retour" */
+    .returnDivider{
+      display:flex;align-items:center;gap:14px;
+      margin:6px 0 14px;color:#86efac;
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;
+    }
+    .returnDivider::before, .returnDivider::after{
+      content:"";flex:1;height:1px;
+      background:linear-gradient(90deg, transparent, rgba(134,239,172,.45), transparent);
+    }
+    .returnDivider .gem{font-size:13px;color:#7dd3fc}
+
+    /* 4e bloc : Clé essentielle */
+    .essenceCard{
+      position:relative;padding:22px 24px 22px 60px;border-radius:14px;
+      border:1px solid rgba(134,239,172,.35);
+      background:
+        radial-gradient(ellipse at top right, rgba(252,211,77,.08), transparent 60%),
+        linear-gradient(135deg, rgba(125,211,252,.10), rgba(134,239,172,.05));
+      border-left:4px solid #86efac;
+      box-shadow:0 0 32px rgba(125,211,252,.10) inset;
+    }
+    .essenceCard .step{
+      position:absolute;left:14px;top:22px;
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      font-size:15px;font-weight:850;color:#0b1120;
+      background:linear-gradient(135deg,#7dd3fc,#86efac,#fcd34d);
+      box-shadow:0 0 18px rgba(125,211,252,.45);
+    }
+    .essenceCard .label{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:800;margin:0 0 4px;color:#86efac;
+    }
+    .essenceCard .name{
+      margin:0 0 4px;font-size:20px;font-weight:850;color:#fff;line-height:1.2;
+      background:linear-gradient(135deg,#fff 0%,#e0f5ea 60%,#fef3c7 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .essenceCard .nameEn{
+      margin:0 0 12px;font-size:12px;color:rgba(255,255,255,.5);
+      font-style:italic;letter-spacing:.3px;
+    }
+    .essenceCard .desc{
+      margin:0 0 14px;line-height:1.65;font-size:14.5px;color:#e8eeff;
+    }
+    .essenceCard .subBlock{
+      margin:10px 0 0;padding:12px 14px;border-radius:10px;
+      background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.06);
+    }
+    .essenceCard .subBlock .subLabel{
+      font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;
+      font-weight:800;margin:0 0 6px;color:#bae6fd;
+    }
+    .essenceCard .subBlock.texture .subLabel{color:#fcd34d}
+    .essenceCard .subBlock.unlock .subLabel{color:#86efac}
+    .essenceCard .subBlock p{
+      margin:0;font-size:14px;line-height:1.6;color:#e8eeff;
+    }
+    .essenceCard .quote{
+      margin:14px 0 0;padding:12px 14px 12px 18px;
+      border-left:2px solid rgba(125,211,252,.5);
+      font-style:italic;font-size:13.5px;line-height:1.55;color:#cfe9ff;
+    }
+
+    /* Schéma du mouvement de la perte */
+    .moveSchema svg{max-width:780px}
+    .moveSchema .moveStep{font-weight:800;font-size:12px;letter-spacing:.4px}
+    .moveSchema .moveSub{font-size:10.5px;letter-spacing:.3px}
+
+    .inquiry{
+      margin:0;padding:22px 24px;border-radius:14px;
+      border:1px solid rgba(196,181,253,.32);
+      background:radial-gradient(ellipse at center, rgba(196,181,253,.10), rgba(196,181,253,.02));
+      text-align:center;
+    }
+    .inquiry .label{
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+      color:#ddd6fe;font-weight:800;margin:0 0 10px;
+    }
+    .inquiry .question{
+      margin:0;font-size:18px;line-height:1.5;font-weight:600;font-style:italic;
+      color:#fff;max-width:600px;margin-left:auto;margin-right:auto;
+    }
+    .inquiry::before, .inquiry::after{
+      content:"◆";color:rgba(196,181,253,.40);font-size:10px;display:block;margin:6px 0;
+    }
+
+    .navTypes{
+      display:flex;justify-content:space-between;align-items:center;
+      flex-wrap:wrap;gap:8px;padding:14px 22px;
+      border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);
+    }
+    .navTypes .btn{font-size:13px;padding:9px 14px}
+
+    /* 3 triangles d'Idées */
+    .triangles{
+      max-width:920px;margin:0 auto;padding:24px 26px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+    }
+    .triangles h2{margin:0 0 6px;font-size:22px;letter-spacing:.3px}
+    .triangles .lead{color:var(--muted);font-size:14px;margin:0 0 18px}
+    .triGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media(max-width:720px){.triGrid{grid-template-columns:1fr}}
+    .triCard{
+      padding:18px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);border-top:3px solid currentColor;
+    }
+    .triCard .pts{
+      font-size:24px;font-weight:850;color:#fff;
+      letter-spacing:6px;margin:0 0 6px;
+    }
+    .triCard h3{margin:0 0 8px;font-size:14px;letter-spacing:.5px;color:inherit}
+    .triCard ul{margin:8px 0 0;padding-left:18px;color:#e8eeff;font-size:13.5px;line-height:1.5}
+    .triCard li{margin:3px 0}
+    .triCard .desc{margin:0 0 6px;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .triCard.t-doing{color:#fcd34d}
+    .triCard.t-being{color:#7dd3fc}
+    .triCard.t-relating{color:#f9a8d4}
+
+    .closing{
+      margin:30px auto 0;max-width:880px;padding:24px 26px;
+      border:1px solid rgba(125,211,252,.22);border-radius:var(--radius);
+      background:linear-gradient(135deg, rgba(125,211,252,.06), rgba(196,181,253,.04));
+      line-height:1.7;font-size:15px;text-align:center;
+    }
+    .closing strong{color:#fff}
+    .closing::before{content:"◆";color:rgba(125,211,252,.5);display:block;font-size:18px;margin-bottom:10px}
+
+    .placeholder{max-width:880px;margin:14px auto 0;text-align:center;color:var(--muted);font-size:14.5px;padding:14px}
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/diamant-facettes-unite.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/diamant-facettes-unite.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/diamant-facettes-unite.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/approche-diamant.html">← The Diamond Approach</a>
+      <a class="btn" href="/en/index.html">Home</a>
+    </div>
+
+    <header class="bookHead">
+      <div class="cover" aria-hidden="true"></div>
+      <div class="info">
+        <p class="meta">A.H. Almaas</p>
+        <h1>Facets of Unity &amp; Essential Keys</h1>
+        <p class="subtitle">The Enneagram of Holy Ideas — and the path of return through the essential qualities</p>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p>This perspective offers a <strong>contemplative and ontological</strong> reading of the Enneagram. Each type is not merely a defensive mechanism: it is also the <em>veil</em> over a true perception of reality. This true perception is called the <strong>Holy Idea</strong>. When this Idea awakens within us, a natural quality emerges — the <strong>Virtue</strong>.</p>
+      <p>At the heart of this approach lies an essential concept: <strong>Basic Trust</strong>. It is the implicit experience, often lost in childhood, that there is a profound benevolence in the very nature of reality — a <em>Living Daylight</em> that supports all things. Without this trust, Holy Ideas remain concepts; with it, they become a direct encounter.</p>
+      <p>The work proposed here is not to intellectually understand these nine perceptions, but to <strong>let them reveal themselves</strong> through a practice of inner questioning — <em>inquiry</em>. Each Holy Idea is, like a facet of a diamond, a way in which Unity shows itself.</p>
+      <p>To the loss of a Holy Idea corresponds, for each type, a <strong>path of return</strong>: an <em>essential quality</em> — a real aspect of Being, with its own texture, colour, and location in the subtle body — that the ego's ideal unconsciously imitates. Recognizing it, then letting it become embodied, unties the fixation at its root. Each type profile below therefore presents the complete movement: the <strong>loss</strong> in three stages, then the <strong>essential key</strong> that opens the return.</p>
+    </section>
+
+    <p class="sectionTitle">The veil and the facet</p>
+
+    <section class="schemaCard">
+      <h3>The Holy Idea and the Fixation</h3>
+      <p class="lead">Every type is crossed by this fundamental dynamic: a true vision of reality, and the veil that masks it.</p>
+      <svg viewBox="0 0 720 200" aria-label="Holy Idea veiled by fixation">
+        <defs>
+          <radialGradient id="lightSource" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+            <stop offset=".5" stop-color="#cfe9ff" stop-opacity=".5"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Source : Idée -->
+        <circle cx="120" cy="100" r="65" fill="url(#lightSource)"/>
+        <text x="120" y="98" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" letter-spacing=".5">Holy Idea</text>
+        <text x="120" y="115" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="11">true vision</text>
+
+        <!-- Le voile (fixation) -->
+        <rect x="280" y="40" width="160" height="120" rx="6" fill="rgba(253,164,175,.10)" stroke="rgba(253,164,175,.40)" stroke-width="1.2"/>
+        <text x="360" y="92" text-anchor="middle" fill="#fecdd3" font-size="13" font-weight="800" letter-spacing=".5">Fixation</text>
+        <text x="360" y="110" text-anchor="middle" fill="rgba(254,205,211,.75)" font-size="11">distorted vision</text>
+        <text x="360" y="124" text-anchor="middle" fill="rgba(254,205,211,.65)" font-size="10">(the veil of the ego)</text>
+
+        <!-- Œil : la perception -->
+        <ellipse cx="600" cy="100" rx="60" ry="32" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+        <circle cx="600" cy="100" r="14" fill="rgba(125,211,252,.4)" stroke="rgba(125,211,252,.7)" stroke-width="1.5"/>
+        <circle cx="600" cy="100" r="5" fill="#fff"/>
+        <text x="600" y="160" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="11" letter-spacing=".5">the perception</text>
+
+        <!-- Rayons traversés -->
+        <line x1="185" y1="80" x2="280" y2="60" stroke="rgba(125,211,252,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="185" y1="100" x2="280" y2="100" stroke="rgba(125,211,252,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="185" y1="120" x2="280" y2="140" stroke="rgba(125,211,252,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <line x1="440" y1="100" x2="540" y2="100" stroke="rgba(253,164,175,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+      </svg>
+      <p>As long as the fixation holds, the Holy Idea is invisible — the ego perceives reality through its own distorting filter. The <em>practice of inquiry</em> consists in exploring this veil patiently, until it becomes transparent and true vision reveals itself.</p>
+    </section>
+
+    <section class="schemaCard">
+      <h3>Basic Trust &amp; Living Daylight</h3>
+      <p class="lead">The experiential ground without which inquiry cannot open.</p>
+      <svg viewBox="0 0 720 200" aria-label="Basic Trust et Living Daylight">
+        <defs>
+          <radialGradient id="livingLight" cx="50%" cy="50%" r="60%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+            <stop offset=".5" stop-color="#fde68a" stop-opacity=".25"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Champ universel : Living Daylight -->
+        <ellipse cx="360" cy="100" rx="320" ry="80" fill="url(#livingLight)"/>
+        <text x="360" y="46" text-anchor="middle" fill="#fde68a" font-size="12" font-weight="800" letter-spacing="2" text-transform="uppercase">LIVING DAYLIGHT</text>
+        <text x="360" y="62" text-anchor="middle" fill="rgba(253,230,138,.7)" font-size="10" font-style="italic">loving universal presence</text>
+
+        <!-- Personne au centre : confiance fondamentale -->
+        <circle cx="360" cy="115" r="22" fill="rgba(125,211,252,.18)" stroke="rgba(125,211,252,.6)" stroke-width="1.5"/>
+        <text x="360" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">me</text>
+
+        <text x="360" y="170" text-anchor="middle" fill="rgba(125,211,252,.85)" font-size="12" font-weight="700">Basic Trust</text>
+        <text x="360" y="186" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="10" font-style="italic">“reality supports me”</text>
+      </svg>
+      <p>The <strong>Living Daylight</strong> (<em>Living Daylight</em>) is the fundamental quality of reality itself: a loving, tender presence that permeates all things. <strong>Basic Trust</strong> (<em>Basic Trust</em>) is the intimate, often forgotten experience that this Light carries us. Without this trust, the ego hardens to protect itself; with it, it can relax and let truth emerge.</p>
+    </section>
+
+    <p class="sectionTitle">The movement of loss and return</p>
+
+    <section class="schemaCard moveSchema">
+      <h3>The complete cycle: three stages of loss, one key for the return</h3>
+      <p class="lead">For each type, the loss of the Holy Idea unfolds across three interdependent facets — illusion, difficulty, reaction. The return passes through a fourth facet: the <em>essential quality</em>, a real presence that dissolves the fixation at its source.</p>
+      <svg viewBox="0 0 780 360" aria-label="Movement of loss and return: Holy Idea → Illusion → Difficulty → Reaction → Essential key → return to the Idea">
+        <defs>
+          <marker id="arrowM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="rgba(255,255,255,.4)"/>
+          </marker>
+          <radialGradient id="ideaGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".9"/>
+            <stop offset=".6" stop-color="#7dd3fc" stop-opacity=".3"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Idée sacrée (perdue) -->
+        <circle cx="80" cy="115" r="55" fill="url(#ideaGlow)"/>
+        <circle cx="80" cy="115" r="30" fill="none" stroke="rgba(125,211,252,.55)" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="80" y="113" class="moveStep" fill="#cfe9ff" text-anchor="middle">Holy Idea</text>
+        <text x="80" y="128" class="moveSub" fill="rgba(207,233,255,.7)" text-anchor="middle">(lost from view)</text>
+
+        <!-- Flèche 1 -->
+        <line x1="145" y1="115" x2="220" y2="115" stroke="rgba(255,255,255,.4)" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+        <!-- ① Illusion -->
+        <rect x="230" y="70" width="140" height="90" rx="10" fill="rgba(253,164,175,.10)" stroke="rgba(253,164,175,.50)" stroke-width="1.4"/>
+        <circle cx="248" cy="88" r="11" fill="rgba(0,0,0,.35)" stroke="#fda4af" stroke-width="1.5"/>
+        <text x="248" y="92" fill="#fff" font-size="12" font-weight="850" text-anchor="middle">1</text>
+        <text x="300" y="115" class="moveStep" fill="#fecdd3" text-anchor="middle">Illusion</text>
+        <text x="300" y="132" class="moveSub" fill="rgba(254,205,211,.75)" text-anchor="middle">distorted vision</text>
+
+        <!-- Flèche 2 -->
+        <line x1="375" y1="115" x2="430" y2="115" stroke="rgba(255,255,255,.4)" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+        <!-- ② Difficulté -->
+        <rect x="440" y="70" width="140" height="90" rx="10" fill="rgba(252,211,77,.08)" stroke="rgba(252,211,77,.50)" stroke-width="1.4"/>
+        <circle cx="458" cy="88" r="11" fill="rgba(0,0,0,.35)" stroke="#fcd34d" stroke-width="1.5"/>
+        <text x="458" y="92" fill="#fff" font-size="12" font-weight="850" text-anchor="middle">2</text>
+        <text x="510" y="115" class="moveStep" fill="#fde68a" text-anchor="middle">Difficulty</text>
+        <text x="510" y="132" class="moveSub" fill="rgba(253,230,138,.75)" text-anchor="middle">inner pain</text>
+
+        <!-- Flèche 3 -->
+        <line x1="585" y1="115" x2="640" y2="115" stroke="rgba(255,255,255,.4)" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+        <!-- ③ Réaction -->
+        <rect x="650" y="70" width="120" height="90" rx="10" fill="rgba(196,181,253,.10)" stroke="rgba(196,181,253,.55)" stroke-width="1.4"/>
+        <circle cx="668" cy="88" r="11" fill="rgba(0,0,0,.35)" stroke="#c4b5fd" stroke-width="1.5"/>
+        <text x="668" y="92" fill="#fff" font-size="12" font-weight="850" text-anchor="middle">3</text>
+        <text x="710" y="115" class="moveStep" fill="#ddd6fe" text-anchor="middle">Reaction</text>
+        <text x="710" y="132" class="moveSub" fill="rgba(221,214,254,.75)" text-anchor="middle">defensive strategy</text>
+
+        <!-- Étiquettes du bas -->
+        <text x="300" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">“this is how I see”</text>
+        <text x="510" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">“this is how I feel”</text>
+        <text x="710" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">“this is how I act”</text>
+
+        <!-- Bande "voie de retour" -->
+        <line x1="40" y1="245" x2="740" y2="245" stroke="rgba(134,239,172,.25)" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="390" y="240" fill="#86efac" font-size="10.5" font-weight="800" letter-spacing="2.4" text-anchor="middle">PATH OF RETURN</text>
+
+        <!-- Flèche descendante de ③ vers ④ -->
+        <path d="M 710 160 Q 710 220 600 280" stroke="rgba(134,239,172,.55)" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#arrowReturn)"/>
+
+        <!-- Marker spécial retour -->
+        <defs>
+          <marker id="arrowReturn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="rgba(134,239,172,.7)"/>
+          </marker>
+          <radialGradient id="essenceGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+            <stop offset=".5" stop-color="#86efac" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- ④ Clé essentielle -->
+        <rect x="370" y="270" width="220" height="70" rx="12" fill="url(#essenceGlow)" stroke="rgba(134,239,172,.6)" stroke-width="1.6"/>
+        <circle cx="395" cy="295" r="13" fill="rgba(11,17,32,.85)" stroke="#86efac" stroke-width="1.8"/>
+        <text x="395" y="299" fill="#fff" font-size="13" font-weight="850" text-anchor="middle">4</text>
+        <text x="490" y="298" class="moveStep" fill="#fff" text-anchor="middle">Essential key</text>
+        <text x="490" y="316" class="moveSub" fill="rgba(255,255,255,.85)" text-anchor="middle">quality of Being</text>
+        <text x="490" y="332" class="moveSub" fill="rgba(255,255,255,.6)" text-anchor="middle">“I am that”</text>
+
+        <!-- Arc de retour vers Idée sacrée -->
+        <path d="M 370 305 Q 200 305 90 165" stroke="rgba(125,211,252,.55)" stroke-width="1.8" fill="none" stroke-dasharray="5 4" marker-end="url(#arrowReturn)"/>
+        <text x="220" y="335" fill="rgba(125,211,252,.75)" font-size="10.5" font-style="italic" text-anchor="middle">the return to the Holy Idea</text>
+      </svg>
+      <p>Each of the nine types reproduces this same movement, with very different content. The contemplative work consists in recognizing these three stages within oneself, without seeking to suppress them — their very recognition begins to untie them. And it is the embodiment of the fourth facet, the <em>essential key</em>, that completes the cycle: the fixation dissolves because the real quality it obscurely imitated is now present.</p>
+    </section>
+
+    <p class="sectionTitle">The nine Holy Ideas</p>
+
+    <section class="ennea9">
+      <svg viewBox="0 0 720 720" aria-label="Enneagram diagram with the 9 Holy Ideas">
+        <!-- Centre -->
+        <circle class="enneaCenter" cx="360" cy="360" r="65"/>
+        <text x="360" y="356" class="enneaCenter">Unity</text>
+        <text x="360" y="376" fill="rgba(125,211,252,.7)" font-size="9" letter-spacing="1.5" text-anchor="middle">9 facets</text>
+
+        <!-- Cercle externe -->
+        <circle class="enneaRing" cx="360" cy="360" r="250"/>
+
+        <!-- Triangle intérieur 9-3-6 -->
+        <polygon class="enneaTri" points="360,110 577,485 143,485"/>
+
+        <!-- Hexagone 1-4-2-8-5-7 -->
+        <polygon class="enneaHex" points="521,169 410,595 596,317 199,169 124,317 310,595"/>
+
+        <!-- 9 noeuds -->
+        <g class="enneaNode" data-n="9" tabindex="0">
+          <circle cx="360" cy="110" r="22"/>
+          <text class="num" x="360" y="110">9</text>
+          <text class="idea" x="360" y="78">Love</text>
+        </g>
+        <g class="enneaNode" data-n="1" tabindex="0">
+          <circle cx="521" cy="169" r="22"/>
+          <text class="num" x="521" y="169">1</text>
+          <text class="idea" x="556" y="148">Perfection</text>
+        </g>
+        <g class="enneaNode" data-n="2" tabindex="0">
+          <circle cx="596" cy="317" r="22"/>
+          <text class="num" x="596" y="317">2</text>
+          <text class="idea" x="643" y="320">Will</text>
+        </g>
+        <g class="enneaNode" data-n="3" tabindex="0">
+          <circle cx="577" cy="485" r="22"/>
+          <text class="num" x="577" y="485">3</text>
+          <text class="idea" x="616" y="510">Harmony</text>
+        </g>
+        <g class="enneaNode" data-n="4" tabindex="0">
+          <circle cx="410" cy="595" r="22"/>
+          <text class="num" x="410" y="595">4</text>
+          <text class="idea" x="448" y="624">Origin</text>
+        </g>
+        <g class="enneaNode" data-n="5" tabindex="0">
+          <circle cx="310" cy="595" r="22"/>
+          <text class="num" x="310" y="595">5</text>
+          <text class="idea" x="270" y="624">Omniscience</text>
+        </g>
+        <g class="enneaNode" data-n="6" tabindex="0">
+          <circle cx="143" cy="485" r="22"/>
+          <text class="num" x="143" y="485">6</text>
+          <text class="idea" x="100" y="510">Faith</text>
+        </g>
+        <g class="enneaNode" data-n="7" tabindex="0">
+          <circle cx="124" cy="317" r="22"/>
+          <text class="num" x="124" y="317">7</text>
+          <text class="idea" x="80" y="320">Wisdom</text>
+        </g>
+        <g class="enneaNode" data-n="8" tabindex="0">
+          <circle cx="199" cy="169" r="22"/>
+          <text class="num" x="199" y="169">8</text>
+          <text class="idea" x="164" y="148">Truth</text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="selector" aria-label="Type selection">
+      <div class="pills" id="pills"></div>
+    </section>
+
+    <p class="placeholder" id="placeholder">↑ Select a type on the diagram or the pills below to discover its Holy Idea and its Virtue.</p>
+
+    <article class="typeCard" id="typeCard" hidden></article>
+
+    <p class="sectionTitle">The nine essential keys</p>
+
+    <section class="schemaCard" style="border-color:rgba(134,239,172,.28); background:radial-gradient(ellipse at top, rgba(134,239,172,.05), rgba(255,255,255,.02));">
+      <h3>Overview — the path of return for each type</h3>
+      <p class="lead">For each type, a real essential quality — an aspect of Being with its own texture, colour, and location — that the ego's ideal obscurely imitates, and which unties the fixation once it is recognized and then embodied.</p>
+      <div class="keysGrid">
+        <div class="keyRow"><span class="kn">1</span><span class="kc" style="background:linear-gradient(135deg,#fff,#e0e0e0)"></span><span class="ktitle">Brilliancy</span><span class="kdesc">essence of intelligence — smooth, colourless fluid that contains all qualities</span></div>
+        <div class="keyRow"><span class="kn">2</span><span class="kc" style="background:linear-gradient(135deg,#fbbf24,#fde68a)"></span><span class="ktitle">Merging Love</span><span class="kdesc">soft transparent gold that melts the heart — the principle of true connection</span></div>
+        <div class="keyRow"><span class="kn">3</span><span class="kc" style="background:linear-gradient(135deg,#f8fafc,#cbd5e1)"></span><span class="ktitle">Personal Essence</span><span class="kdesc">the white pearl — the true person, essential individuation</span></div>
+        <div class="keyRow"><span class="kn">4</span><span class="kc" style="background:radial-gradient(circle,#fff 30%,#7dd3fc)"></span><span class="ktitle">Essential Identity</span><span class="kdesc">the point of light — the authentic “I,” a concentrated star</span></div>
+        <div class="keyRow"><span class="kn">5</span><span class="kc" style="background:linear-gradient(135deg,#60a5fa,#86efac,#fcd34d)"></span><span class="ktitle">Diamond Guidance</span><span class="kdesc">vehicle of coloured diamonds at the forehead — the essential intellect</span></div>
+        <div class="keyRow"><span class="kn">6</span><span class="kc" style="background:linear-gradient(135deg,#e2e8f0,#94a3b8)"></span><span class="ktitle">Personal Will</span><span class="kdesc">shimmering silver — solidity, inner support, effortless perseverance</span></div>
+        <div class="keyRow"><span class="kn">7</span><span class="kc" style="background:conic-gradient(from 0deg,#fcd34d,#86efac,#7dd3fc,#c4b5fd,#fcd34d)"></span><span class="ktitle">The Pleasure Vehicle</span><span class="kdesc">swirling multicoloured diamonds — essential pleasure, causeless bliss</span></div>
+        <div class="keyRow"><span class="kn">8</span><span class="kc" style="background:linear-gradient(135deg,#dc2626,#fb923c)"></span><span class="ktitle">True Strength</span><span class="kdesc">ruby-red fire in the lower body — organic vitality, capacity for assertion</span></div>
+        <div class="keyRow"><span class="kn">9</span><span class="kc" style="background:radial-gradient(circle,#fef3c7,#fff,#fef3c7)"></span><span class="ktitle">Boundless Love</span><span class="kdesc">enveloping white-gold light — non-dual love, the matrix of everything</span></div>
+      </div>
+    </section>
+
+    <style>
+      .keysGrid{display:grid;gap:8px;margin-top:6px}
+      .keyRow{
+        display:grid;grid-template-columns:32px 26px 1fr 2fr;gap:14px;align-items:center;
+        padding:12px 14px;border-radius:10px;
+        background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+        transition:background .15s ease,border-color .15s ease;
+      }
+      .keyRow:hover{background:rgba(134,239,172,.06);border-color:rgba(134,239,172,.25)}
+      .keyRow .kn{font-size:18px;font-weight:850;color:#fff;text-align:center}
+      .keyRow .kc{
+        width:22px;height:22px;border-radius:50%;
+        border:1.5px solid rgba(255,255,255,.4);
+        box-shadow:0 0 12px rgba(255,255,255,.15);
+      }
+      .keyRow .ktitle{font-size:14.5px;font-weight:800;color:#fff}
+      .keyRow .kdesc{font-size:13px;color:#cfe9ff;line-height:1.5}
+      @media(max-width:640px){
+        .keyRow{grid-template-columns:32px 26px 1fr;gap:10px}
+        .keyRow .kdesc{grid-column:1 / -1;padding-left:46px;font-size:12.5px}
+      }
+    </style>
+
+    <p class="sectionTitle">The three facets of Unity</p>
+
+    <section class="triangles">
+      <h2>Three groups of Holy Ideas</h2>
+      <p class="lead">Almaas groups the nine Ideas into three families, corresponding to three ways in which Unity shows itself in experience.</p>
+      <div class="triGrid">
+        <div class="triCard t-being">
+          <p class="pts">8 · 5 · 2</p>
+          <h3>The triangle of Being</h3>
+          <p class="desc">How reality <em>is</em>, independent of our interpretations.</p>
+          <ul>
+            <li><strong>8</strong> — Holy Truth</li>
+            <li><strong>5</strong> — Holy Omniscience</li>
+            <li><strong>2</strong> — Holy Will</li>
+          </ul>
+        </div>
+        <div class="triCard t-doing">
+          <p class="pts">1 · 7 · 4</p>
+          <h3>The triangle of Doing</h3>
+          <p class="desc">How reality <em>unfolds</em>, how action and creation are accomplished.</p>
+          <ul>
+            <li><strong>1</strong> — Holy Perfection</li>
+            <li><strong>7</strong> — Holy Wisdom / Holy Plan</li>
+            <li><strong>4</strong> — Holy Origin</li>
+          </ul>
+        </div>
+        <div class="triCard t-relating">
+          <p class="pts">9 · 6 · 3</p>
+          <h3>The triangle of Relating</h3>
+          <p class="desc">How reality <em>holds us</em>, in relationship, love, and trust.</p>
+          <ul>
+            <li><strong>9</strong> — Holy Love</li>
+            <li><strong>6</strong> — Holy Faith</li>
+            <li><strong>3</strong> — Holy Harmony</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p>The nine Holy Ideas are not beliefs to adopt, but <strong>perceptions to rediscover</strong>. The nine essential keys are not virtues to cultivate, but <strong>presences to let emerge</strong>. Each type has its own door of entry — and it is always the same diamond that is revealed, seen from a new facet. The work of inquiry adds nothing: it lets fall away what veils what is already there.</p>
+    </section>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+
+  <script>
+  // Données pour chaque type — Idée sacrée + Vertu + Fixation + Inquiry
+  // Source : A. H. Almaas, Facets of Unity (1998)
+  const TYPES = [
+    {
+      n:1, name:"The Perfectionist",
+      idea:{ name:"Holy Perfection",
+             desc:"Everything is intrinsically perfect, exactly as it should be, by its very nature. If everything is perfect, nothing can be fundamentally bad in itself, because we are part of the whole." },
+      virtue:{ name:"Serenity",
+               desc:"A calm presence that no longer needs to improve anything. A deep acceptance of what is, which is neither resignation nor indifference, but the recognition that nothing needs to be corrected." },
+      illusion:{ name:"Comparative judgment",
+                 desc:"An inner voice compares what is to an absent ideal standard. Reality is divided into good/bad, right/wrong, perfect/flawed. Everything passes through this evaluative filter, whose criteria come from the superego and internalized social values." },
+      difficulty:{ name:"The feeling of being fundamentally bad",
+                   desc:"Not the guilt of having acted wrongly (Type 8), but the silent conviction that something is wrong with oneself, with what one is. An inherent imperfection that seems inscribed at the very heart of the soul." },
+      reaction:{ name:"Compulsive self-improvement",
+                 desc:"An unceasing inner work to correct oneself, to set oneself right, or conversely to prove oneself right. A felt activity, faintly angry, that says underneath, “I don't want this” to experience." },
+      essence:{
+        name:"Brilliancy", nameEn:"Brilliancy",
+        desc:"The essence of intelligence — not the mental intellect, but a quality of Being that synthesizes all the other essential qualities into a single undifferentiated presence. Every aspect (will, strength, love, joy…) is implicit within it. From this completeness comes the true sense of perfection: nothing is missing.",
+        texture:"A fluid of extreme smoothness, lighter than mercury yet dense, with no friction or adherence. Visually, colourless — the pure brilliance of light, like the reflection of the sun on water that one could look at without pain. Its centre is not the head but the mobius point, in the middle of the lower sternum. It can flow into the brain (which then functions “brilliantly”), gather in the belly as a dense fullness, or permeate the heart.",
+        unlock:"Brilliancy reveals that perfection is not an external standard to reach, but presence itself in its completeness. Consciousness ceases to be borrowed and becomes the living intelligence of Being, which responds to every situation in a complete and appropriate way. Resentment loses its object: reality no longer has to be corrected according to an image, it is met in its own intrinsic intelligence.",
+        quote:"“Perfection is not in something external, such as an action or a creation; nor is it based on a standard. Perfection is in its own presence, which is both completeness and preciousness.”"
+      },
+      inquiry:"What if nothing, in this moment, needed to be corrected — what would remain?"
+    },
+    {
+      n:2, name:"The Giver",
+      idea:{ name:"Holy Will",
+             desc:"Reality unfolds as a unified flow according to natural laws; we are not separate from this force, we are a part of it. True freedom is to want what the very movement of life wants." },
+      virtue:{ name:"Humility",
+               desc:"Not self-effacement, but a right measure of oneself. The capacity to give without inflating oneself, to receive without diminishing oneself. Recognizing that one is neither above nor below others." },
+      illusion:{ name:"Separate will",
+                 desc:"Believing that there exists an independent “I” who can make things go the way it wants. The silent pride: “I'll make sure it happens,” an unceasing opposition to what is unfolding." },
+      difficulty:{ name:"The humiliation of not getting one's way",
+                   desc:"Not getting what one expects becomes a blow to pride. A diminishment, a slap that shrinks — the feeling that one is losing one's strength, one's vitality, one's very worth of being." },
+      reaction:{ name:"Obstinate action",
+                 desc:"Standing up against what is: “I'll do it my own way.” From this come the maneuvers to influence, seduce, hold onto the other, make oneself indispensable — all manifestations of this stubborn posture." },
+      essence:{
+        name:"Merging Love", nameEn:"Merging Love (or Merging Gold)",
+        desc:"The love that embodies the principle of connection: the specific quality of essential love that forms a relationship, that dissolves the boundaries of self and other and allows union without abolishing differentiation. It is the essence of true connection — what makes an encounter become a relationship.",
+        texture:"A softness with no earthly equivalent. The heart — and everything this presence touches — is felt as literally melting, the way butter melts. Visually, a pure, transparent, luminous golden fluid, comparable to honey but less dense, shot through with sunlight. Its centre is on the left side of the sternum. When two people share it, they feel as though they form a soft, luminous pool of love.",
+        unlock:"The merging gold gives the Two the true inner nourishment they thirst for and once sought to extract from others through manipulation. When this presence is integrated, giving becomes free (the nourishment is already there), connection no longer depends on the other's behaviour, and autonomy becomes possible because the merging is already inward. Codependency dissolves: the merging is already had, and there is no longer any need to seek it elsewhere.",
+        quote:"“The nature of this love is a substantial presence that melts our heart and mind with softness. It melts whatever part of our inner subjectivity it touches.”"
+      },
+      inquiry:"If I no longer needed to be needed by anyone, who would I be?"
+    },
+    {
+      n:3, name:"The Performer",
+      idea:{ name:"Holy Harmony",
+             desc:"There are no exceptions to the laws that govern reality; every action is the manifestation of one single unified movement. Also called Holy Law or Holy Hope — the experiential certainty of this objectivity." },
+      virtue:{ name:"Truthfulness",
+               desc:"Being true, without a mask, without fabricating an image. Resting in what one is without having to demonstrate it. A transparent presence, without posturing." },
+      illusion:{ name:"The vanity of the independent agent",
+                 desc:"Believing oneself to be an autonomous actor who produces one's own results, by one's own laws. As if the universe played no part — as if everything depended on oneself alone." },
+      difficulty:{ name:"Fundamental powerlessness",
+                   desc:"Beneath the image, a feeling of inadequacy, incapacity, failure. The conviction that deep down, one is not really someone who can act — but believing one is, one experiences oneself as failing." },
+      reaction:{ name:"Struggle / ceaseless activity",
+                 desc:"A perpetual agitation, inward and outward: doing, accomplishing, performing, succeeding. The act of producing matters more than what is produced. This activity covers over the powerlessness, imitating it with a surface dynamism." },
+      essence:{
+        name:"Personal Essence", nameEn:"Personal Essence (the Pearl Beyond Price)",
+        desc:"The “pearl beyond price”: the essential presence that manifests as a true person, an individual who is spiritually mature and functional. Neither the ego, nor an impersonal absorption into the transcendent — the soul arrived at its essential individuation, capable of embodying Being as a functioning human being. It is the culmination of maturation: being a real person who expresses depth while fully living human life.",
+        texture:"A full, rounded presence, dense and resilient, yet made entirely of consciousness. A fleshy fullness in the belly, comparable to the firmness of a young, healthy muscle — without being physical. Visually, a luminescent white pearl, not brilliant but gifted with a soft glow. When embodied, one is the living expression of an authentic “I am.” It confers real contact through its simple presence, and the efficiency that bridges the two worlds.",
+        unlock:"The pearl is true human accomplishment: not external but ontological. When the Three recognizes that he is a fake, an imitation, and accepts the emptiness underlying the shell, he is freed from appearances. The pearl can then emerge: he becomes a real person, no longer a performer. His functionality remains, but now in the service of true functioning, not of image. He can meet others as whole persons, not as mirrors of his excellence.",
+        quote:"“The true story of human success is finding the pearl, or maturing to the point of being able to embody it, rather than succeeding in some external way or in the external world.”"
+      },
+      inquiry:"If I no longer had anything to prove, what would remain?"
+    },
+    {
+      n:4, name:"The Romantic",
+      idea:{ name:"Holy Origin",
+             desc:"Every being is a unique expression of the same Source, which is its centre. Our true identity is not separate from this origin — it is one facet of it." },
+      virtue:{ name:"Equanimity",
+               desc:"An inner stability that is neither above nor below, neither dramatic nor indifferent. Resting in reality as it is, without comparing it to an absent ideal." },
+      illusion:{ name:"Separate identity",
+                 desc:"Believing that one's “I” is ultimately separate, unique, different. Specialness as a way of masking disconnection from the Source — the obsession with being original, irreplaceable, apart." },
+      difficulty:{ name:"Disconnection / abandonment",
+                   desc:"Feeling foreign, alienated, cut off from oneself and from reality. Not isolation (Type 5), but distance from what loves, from the origin — hence the characteristic melancholy, sadness, and despair." },
+      reaction:{ name:"Control of inner experience",
+                 desc:"A subtle activity aimed at controlling one's experience, so as not to feel the emptiness of disconnection. This creates a false centre — a manufactured “me” that masks the absence of the real centre and sustains the identity of the ego." },
+      essence:{
+        name:"Essential Identity", nameEn:"Essential Identity (the Point)",
+        desc:"The “point of light”: the concentrated presence that gives the soul its sense of an authentic, irreducible “I.” Not an identity built out of images or history, but the very prototype of the self, endowed with an inherent affect of identity, authenticity, and uniqueness. Every soul has its own point, whose radiance differs in the colours it emits — hence the real uniqueness of each person.",
+        texture:"A point of light shining like a star, sometimes glimpsed as a shooting star crossing consciousness. When one dwells with it, one feels a concentrated presence, endowed with a precise, unfabricated sense of “being me.” One can become the point: the sensation of being a centre of light and wisdom that radiates all the essential qualities. It brings freedom, lightness, space, playfulness, uniqueness, authenticity.",
+        unlock:"The point is literally the origin within the soul — the individual expression of the ground of Being. The Four's nostalgia, his melancholy, his sense of having lost an unknown beloved, is in fact a longing for this presence. When he dares to move through his void of identity, the point can descend. He then becomes authentic without drama, special in an ordinary way, original simply by being himself. The need for the spotlight and forced creativity fall away: depth no longer has to announce itself.",
+        quote:"“The point has the sense of simplicity and ordinariness, which is the very essence of being authentically who we are. When we are authentically who we are, we don't need to be seen or to express who we are dramatically in order to draw attention.”"
+      },
+      inquiry:"If nothing essential were missing in this moment, what would that be like?"
+    },
+    {
+      n:5, name:"The Observer",
+      idea:{ name:"Holy Omniscience",
+             desc:"Everything is interconnected within a multiple unity; every being is inseparable from the whole, its boundaries transparent. Also called Holy Transparency — no separation is possible except through mental hallucination." },
+      virtue:{ name:"Non-attachment",
+               desc:"An openness that holds onto nothing and fears missing out on nothing. Energy can flow freely, because one is no longer separate from its source." },
+      illusion:{ name:"Separation",
+                 desc:"Perceiving one's boundaries as real and impassable. Believing oneself to be a distinct entity, fundamentally cut off from others and from the whole." },
+      difficulty:{ name:"Impoverished isolation",
+                   desc:"Feeling small, empty, destitute, alone. A state of inner poverty: not enough energy, resources, or presence to face the world and its demands." },
+      reaction:{ name:"Withdrawal / avoidance",
+                 desc:"Hiding, withdrawing, cutting off contact, fleeing anything that might hurt. Dissociation between mind and body, emotional withdrawal, observing from a distance rather than participating in life." },
+      essence:{
+        name:"Diamond Guidance", nameEn:"Diamond Guidance (Nous)",
+        desc:"The essential intellect: a diamond vehicle that contains all the essential qualities configured for the function of discernment, synthesis, and understanding. Neither the ordinary mental intellect nor its opposite: the discerning intelligence of Being, capable of combining acquired knowledge with direct knowledge of the immediate present to produce a complete experiential understanding. The true guide of the inner path.",
+        texture:"A delicate, pulsing presence at the centre of the forehead, brilliant and luminous. In its full manifestation, a vehicle of transparent coloured diamonds, each diamond being the crystalline form of an essential quality — all present, each with its own clarity of colour. The experience is marked by a diamond-like precision: clear perception, clear experience, clear mental functioning. The dominant qualities are blue (gnosis), green (the empathic heart), and solid gold (truth).",
+        unlock:"Diamond Guidance gives the Five what he was seeking in the distorted form of mental accumulation: true understanding, which is experiential and includes the mind without being reduced to it. It allows him to feel his emotions without losing clarity — on the contrary, emotional openness becomes a condition for true understanding. Withdrawal becomes unnecessary: one can be fully engaged and fully clear. The emptiness the Five avoids turns out to be the very space where true intellect emerges.",
+        quote:"“Diamond Guidance is unexpected in its truth and presence, mysterious in the way it guides our search and our exploration of the truth of experience. It has the strange capacity to combine the data of our here-and-now experience with the data and knowledge of the past.”"
+      },
+      inquiry:"What if participating didn't diminish my being, but revealed it?"
+    },
+    {
+      n:6, name:"The Loyal Skeptic",
+      idea:{ name:"Holy Faith",
+             desc:"The experiential certainty that Being exists, that it is our inner nature, that it is reliable. Also called Holy Strength — not a belief, but the lived certainty of an essence in everyone." },
+      virtue:{ name:"Courage",
+               desc:"Moving forward into the unknown without asking for guarantees. A quiet strength that rests on trust in the very nature of reality." },
+      illusion:{ name:"Cynicism",
+                 desc:"The advance conviction that there is no selfless goodness in others, that every appearance of love is hidden self-interest. Not an open doubt, but a closed conclusion that invalidates any possible trust." },
+      difficulty:{ name:"Fearful insecurity",
+                   desc:"The world appears as a dangerous jungle populated by selfish people. No one to lean on, nothing inward to rely on. A sensitive, delicate state in which fear and insecurity merge into one." },
+      reaction:{ name:"Defensive suspicion",
+                 desc:"Constant wariness, vigilance, scanning for danger. Whether in phobic mode (pulling back, suspicious withdrawal) or counterphobic mode (charging forward to prove one isn't afraid), it is the same defensive posture." },
+      essence:{
+        name:"Personal Will", nameEn:"Personal Will",
+        desc:"The presence of essential solidity: an inner foundation that confers confidence, security, firmness, effortless perseverance, and the capacity for true commitment. Not will in the sense of effort imposed on oneself — the quality of being that makes resolve, fidelity, and stability possible because one is anchored in reality.",
+        texture:"First as a luminous, silvery-white “full moon” at the solar plexus, with a sense of centeredness and flexible firmness. More deeply, as the presence of silver — either liquid or solid — at the solar plexus, in the belly, in the spine (“having backbone”), or filling the whole body like a living silver statue. Essential silver is shimmering, luminous, cool, malleable — in contrast to “iron will,” which is dark and heavy.",
+        unlock:"The presence of silver restores the inner support that the Six desperately seeks outside himself. With true will, perseverance becomes effortless, confidence arises spontaneously, and commitment becomes possible because external guarantees are no longer needed. Fear — and its treatment through rigidity or conformity — loses its foundation: security comes from inner grounding. Flexibility, incompatible with the false will, becomes possible without implying weakness.",
+        quote:"“Essential silver is shimmering and luminous, unlike iron will, which tends to be felt as dark and heavy — sometimes even rusty and old — like cast iron.”"
+      },
+      inquiry:"If life were trustworthy, how would I breathe?"
+    },
+    {
+      n:7, name:"The Epicure",
+      idea:{ name:"Holy Wisdom",
+             desc:"The unfolding of the soul and of every being is part of a work that happens spontaneously; there already exists an inherent plan oriented toward the realization of potential. Also called Holy Plan or Holy Work." },
+      virtue:{ name:"Sobriety",
+               desc:"Fully inhabiting what is, without fleeing elsewhere. An unsaturated presence, capable of tasting without needing to accumulate or anticipate." },
+      illusion:{ name:"Being able to direct one's own unfolding",
+                 desc:"Believing that one can program the course of one's life, know in advance what is to come, chart the trajectory. A self-manufactured orientation in place of the organic intelligence of the present." },
+      difficulty:{ name:"Disorientation / being lost",
+                   desc:"When trust is missing, there arises the feeling that one should know but does not. A deficient state: the capacity for orientation seems cut off, one no longer knows what to do or which path to take." },
+      reaction:{ name:"Planning",
+                 desc:"Mentally constructing a direction for one's future actions. The plan comes from past experiences and lacks the freshness of the present. An unceasing, compulsive activity that flees the moment." },
+      essence:{
+        name:"The Pleasure Vehicle", nameEn:"Pleasure Vehicle (the Markabah)",
+        desc:"A diamond vehicle that gathers all the essential qualities into a configuration in which each one manifests as a specific form of pleasure, delight, or bliss. It is not a single quality but a plenitude: goodness felt as pleasure, intelligence as pleasure, peace as pleasure. The essence of true pleasure, with no external cause, that springs from the simple fact of being oneself freely.",
+        texture:"In its initial opening, like a transparent yellow sun above the left nipple, giving a pure, ethereal, causeless joy. More fully, as a presence of fullness and richness in the chest, accompanied by inner music and the sight of swirling diamonds of various colours. Each quality has its own specific taste of sweetness: yellow joy tastes of sugar, black peace of licorice, green goodness of mint… The synesthetic aspect is total.",
+        unlock:"The Markabah is precisely what the Seven is seeking — a true and inexhaustible pleasure — but inwardly, as the very nature of Being. When he dares to move through the emptiness instead of fleeing it through stimulation, essential pleasure emerges spontaneously. Compulsive planning ceases because happiness is no longer a future to be manufactured. True curiosity (which follows truth) replaces scattered curiosity. Loyalty to inner truth becomes the shortest path to authentic bliss.",
+        quote:"“True pleasure, without artifice, is a quality of our very being. We just need to be ourselves freely, in a carefree way. If we turn deeply inward, this ecstatic pleasure will naturally be there.”"
+      },
+      inquiry:"What if the depth I'm looking for were right here in this very moment?"
+    },
+    {
+      n:8, name:"The Protector",
+      idea:{ name:"Holy Truth",
+             desc:"The cosmos exists objectively as a non-dual unity in which everything is included. There is only truth, and everything is truth — a single fabric of being, with no real division." },
+      virtue:{ name:"Innocence",
+               desc:"A freshness with no agenda, an open presence that comes neither to dominate nor to defend itself. The capacity to be touched without being weakened." },
+      illusion:{ name:"Duality",
+                 desc:"Perceiving reality as divided into separate, opposing objects: me/the other, strong/weak, just/unjust. The whole fragments into opposing camps; there is no longer unity, only antagonistic poles." },
+      difficulty:{ name:"The feeling of being bad and guilty",
+                   desc:"At the ontological level, the feeling of having “committed something,” of being crooked, separate from the whole. Not a circumstantial moral guilt (Type 1) — something deeper, like a fault of being." },
+      reaction:{ name:"Self-reproach turned into revenge",
+                 desc:"Self-reproach, turned outward, transforms into harshness, intensity, a desire for revenge. Imposing one's truth, dominating rather than being dominated, striking rather than being struck." },
+      essence:{
+        name:"True Strength", nameEn:"True Strength",
+        desc:"The essence of life force, the prototype of all strength (physical, emotional, moral, mental). It is aggression in its original, non-destructive sense: the capacity for assertion, courage, boldness, vigour, expansion, the capacity to say “I can.” The strength of Being itself — not strength that one possesses, but strength that one is.",
+        texture:"A warmth in the lower body, like a fire that does not burn. Visually like a flame, a luminous ruby-red fire, or dense flowing lava moving through the pelvis, the legs, the whole body. Also like a blood-red fluid pulsing through consciousness. The colour is invariably a pure, otherworldly ruby red. The affect is unmistakable: a sense of overflowing vitality, of robustness, of expansion (“bigger than one's body”), of spontaneous boldness and capability.",
+        unlock:"True Strength gives the Eight what he was seeking through brutality: an assertion that is genuinely effective, that needs to be neither loud nor hurtful, that can be gentle and yet solid. It dissolves the need to defend against weakness because one embodies a strength that cannot be threatened. Aggression in the service of truth remains possible, but it loses its reactive, vengeful dimension. The key passage: daring to feel the avoided weakness, which reveals itself as the very space where essential strength can arise.",
+        quote:"“When we experience true strength, we feel strong because we feel the presence of strength itself — we are full of an energy and a presence that is the essence of life force. It is not physical or animal, not muscular or emotional, but organic and innate.”"
+      },
+      inquiry:"What if I no longer had to make things happen — who would I be?"
+    },
+    {
+      n:9, name:"The Mediator",
+      idea:{ name:"Holy Love",
+             desc:"The intimate nature of everything that exists is good and lovable. The universe has an unconditional, loving quality, a positivity that directly permeates the soul — everything is love." },
+      virtue:{ name:"Right Action",
+               desc:"Acting from presence with oneself, expressing one's true desire within the movement of life. A diligence that is no longer passive but embodied, present." },
+      illusion:{ name:"Conditional, localized love",
+                 desc:"Believing that love is a local phenomenon, present here but not there, at certain moments, under certain conditions. Goodness might be elsewhere — in others, in certain situations — but perhaps not in oneself." },
+      difficulty:{ name:"Inferiority",
+                   desc:"A global feeling that one is not worthy of love, that what makes a soul good is missing. Not a precise hole, but a diffuse quality of lack, a low-grade shame, the feeling that the very substance of oneself is devoid of worth." },
+      reaction:{ name:"Falling asleep to one's own nature",
+                 desc:"The soul makes itself heavy, forgetful, resigned. One clings to conventional reality, carrying on as if nothing else were possible. Laziness is not about outer doing — it is the forgetting of what one is." },
+      essence:{
+        name:"Boundless Love", nameEn:"Boundless Love (Loving Light, Living Daylight)",
+        desc:"The non-dual dimension of love: a universal, omnipresent love, which is not relational like the merging gold but is the matrix and ground out of which everything is made. The “ocean of love” that differentiates into all the forms of love relevant to human life. Its realization is the awakening to the unity of being as pure goodness — basic trust, the feeling of being held by a benevolent presence that permeates everything.",
+        texture:"A delicate white-gold presence, soft and sweet, perceived both as loving light and as pure consciousness. Inwardly: deep relaxation, a quieting of the mind, ease in the body. Outwardly: the sensation of being bathed, supported, caressed by an enveloping presence, as if a tender hand were touching the whole atmosphere. In its non-dual form: an infinite field of golden, weightless light, which one discovers to be the very nature of everything — and that one is this field.",
+        unlock:"Boundless Love gives the Nine true peace — the peace that comes from facing conflict (rather than avoiding it), because basic trust is there. The loving presence holds the situation, freeing the other essential qualities (strength, intelligence, compassion) to act for real. Numbness becomes unnecessary: one is inwardly at peace, so there is no more need for distractions or for accumulating. Generosity becomes natural (one overflows). True action replaces busy activity. The liberated Nine can make peace because he arises out of the harmony of love.",
+        quote:"“This love is felt differently, with a different texture and taste, a different colour and function. It is the ocean of love, which differentiates into the many forms of love relevant to human beings and their lives. We feel supported, bathed all around us, by a softness that permeates the whole atmosphere.”"
+      },
+      inquiry:"What if my presence mattered just as much as everyone else's — what would I do right now?"
+    }
+  ];
+
+  // Build pills
+  const pillsEl = document.getElementById('pills');
+  TYPES.forEach(t=>{
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.dataset.n = t.n;
+    b.innerHTML = `<span class="num">${t.n}</span><span class="lbl">${t.idea.name.replace(/^La |^Le |^L'/, '')}</span>`;
+    b.addEventListener('click', ()=> selectType(t.n));
+    pillsEl.appendChild(b);
+  });
+
+  // Diagram nodes clickable
+  document.querySelectorAll('.enneaNode').forEach(n=>{
+    n.addEventListener('click', ()=> selectType(Number(n.dataset.n)));
+    n.addEventListener('keydown', e=>{
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectType(Number(n.dataset.n)); }
+    });
+  });
+
+  function selectType(n){
+    const t = TYPES.find(x=>x.n===n);
+    if(!t) return;
+
+    document.querySelectorAll('.pill').forEach(p=>{
+      p.classList.toggle('active', Number(p.dataset.n)===n);
+    });
+
+    const card = document.getElementById('typeCard');
+    document.getElementById('placeholder').hidden = true;
+    card.hidden = false;
+
+    const prev = n===1 ? 9 : n-1;
+    const next = n===9 ? 1 : n+1;
+
+    card.innerHTML = `
+      <div class="typeHead">
+        <div class="num">${t.n}</div>
+        <h2>${t.idea.name}</h2>
+        <p class="typeName">Type ${t.n} — ${t.name}</p>
+      </div>
+      <div class="typeBody">
+        <div class="pairing">
+          <div class="facet idea">
+            <p class="label">Holy Idea</p>
+            <p class="name">${t.idea.name}</p>
+            <p class="desc">${t.idea.desc}</p>
+          </div>
+          <div class="gem" aria-hidden="true">
+            <svg viewBox="0 0 60 60">
+              <defs>
+                <linearGradient id="diamGrad${t.n}" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#7dd3fc"/>
+                  <stop offset="1" stop-color="#c4b5fd"/>
+                </linearGradient>
+              </defs>
+              <polygon points="30,5 55,30 30,55 5,30" fill="url(#diamGrad${t.n})" opacity=".75" stroke="#fff" stroke-width="1.5"/>
+              <polygon points="30,5 55,30 30,30" fill="rgba(255,255,255,.20)"/>
+            </svg>
+          </div>
+          <div class="facet virtue">
+            <p class="label">Virtue</p>
+            <p class="name">${t.virtue.name}</p>
+            <p class="desc">${t.virtue.desc}</p>
+          </div>
+        </div>
+
+        <div class="facets3">
+          <div class="facet3 illusion">
+            <span class="step">1</span>
+            <p class="label">Specific illusion</p>
+            <p class="name">${t.illusion.name}</p>
+            <p>${t.illusion.desc}</p>
+          </div>
+          <div class="facet3 difficulty">
+            <span class="step">2</span>
+            <p class="label">Specific difficulty</p>
+            <p class="name">${t.difficulty.name}</p>
+            <p>${t.difficulty.desc}</p>
+          </div>
+          <div class="facet3 reaction">
+            <span class="step">3</span>
+            <p class="label">Specific reaction</p>
+            <p class="name">${t.reaction.name}</p>
+            <p>${t.reaction.desc}</p>
+          </div>
+        </div>
+
+        <div class="returnDivider"><span class="gem">◆</span> The path of return <span class="gem">◆</span></div>
+
+        <div class="essenceCard">
+          <span class="step">4</span>
+          <p class="label">Essential key — quality of Being to embody</p>
+          <p class="name">${t.essence.name}</p>
+          <p class="nameEn">${t.essence.nameEn}</p>
+          <p class="desc">${t.essence.desc}</p>
+          <div class="subBlock texture">
+            <p class="subLabel">How it is felt</p>
+            <p>${t.essence.texture}</p>
+          </div>
+          <div class="subBlock unlock">
+            <p class="subLabel">How it unties the fixation</p>
+            <p>${t.essence.unlock}</p>
+          </div>
+          <p class="quote">${t.essence.quote}</p>
+        </div>
+
+        <div class="inquiry" style="margin-top:18px">
+          <p class="label">A question for inquiry</p>
+          <p class="question">« ${t.inquiry} »</p>
+        </div>
+      </div>
+      <div class="navTypes">
+        <button class="btn" type="button" data-go="${prev}">← Type ${prev}</button>
+        <a class="btn" href="/en/profils/type${t.n}.html">See the full profile for Type ${t.n} →</a>
+        <button class="btn" type="button" data-go="${next}">Type ${next} →</button>
+      </div>
+    `;
+
+    card.querySelectorAll('[data-go]').forEach(b=>{
+      b.addEventListener('click', ()=> selectType(Number(b.dataset.go)));
+    });
+
+    requestAnimationFrame(()=>{
+      const y = card.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({top: Math.max(0, y), behavior:'smooth'});
+    });
+  }
+
+  const m = (location.hash||'').match(/type([1-9])/i);
+  if(m) selectType(Number(m[1]));
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

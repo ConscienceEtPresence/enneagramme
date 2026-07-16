@@ -1,0 +1,156 @@
+{
+  "type": 7,
+  "nom": "The Enthusiast",
+  "centre": {
+    "prefere": "mental",
+    "support": "emotionnel",
+    "reprime": "instinctif-present",
+    "prefere_libelle": "Mental (plans, options)",
+    "reprime_libelle": "The instinct of the present",
+    "reprime_invitation": "Today, the center you are working is the instinct of the present: staying with what is, finishing what has been started, feeling fatigue or boredom. Not to suffer — to exist."
+  },
+
+  "dynamique_ego": {
+    "passion": "Gluttony",
+    "passion_explication": "A gluttony for plans, stimulation, options, ideas. You keep every door open at once. The fear is of missing out — of missing the next thing, more alive, more interesting.",
+    "fixation": "Future plans, scattering, joyful anticipation",
+    "compulsion_evitement": "Avoiding pain, boredom, deprivation, stagnation.",
+    "peur_de_base": "Being trapped in pain, limitation, lack.",
+    "desir_de_base": "Being happy, content, satisfied."
+  },
+
+  "essence": {
+    "qualite_principale": "The work of awakening (the present as sufficient)",
+    "qualite_phrase": "You don't have to flee toward what's next — what is, here, is already enough.",
+    "horizons": [
+      "Staying with what is, without fleeing it",
+      "Finishing a thing, truly",
+      "Feeling boredom without filling it",
+      "Touching the joy that doesn't depend on novelty"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Finish something you started — truly",
+    "Choose one option and close the others",
+    "Stay with a difficulty rather than going around it",
+    "Feel boredom without filling it right away",
+    "Make fewer plans today",
+    "Honor a deprivation without complaining",
+    "Listen to someone all the way through, without jumping in",
+    "Do one thing in depth, not in breadth",
+    "Savor what is, without looking at what could be"
+  ],
+
+  "pratiques_du_matin": [
+    "Before noon, finish a single task you've started — don't open a new one.",
+    "When the urge to skip ahead rises, breathe three times and stay.",
+    "One activity through to the end, without diversion (no phone, no different music every 3 minutes).",
+    "Feel the fatigue or boredom coming — and do nothing to escape it, for 5 minutes.",
+    "Choose ONE thing to savor fully today, and savor it fully.",
+    "Before planning what's next, check: am I truly here?"
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Luminous",    "description": "Present joy. You savor what is without multiplying it. You know how to stay, finish, feel what is hard. Gratitude is felt, not displayed.",  "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Functional", "description": "You flit about, you plan, but you see when you're fleeing. You can slow down, finish.",                                                       "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Reactive",     "description": "You flee what is heavy. You accumulate options without choosing among them. Scattering becomes frantic. Superficiality sets in.",                "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Buried",    "description": "Destructive impulsiveness, addictions, collapse when escape no longer works. A very heavy day that calls for simple, present support.",            "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Liberated",        "texte": "Grateful, satisfied, free. Joy comes from being, not from doing. You know how to stay with what is difficult too." },
+      { "n": 2, "titre": "Healthy",          "texte": "Enthusiastic, productive, versatile. Your liveliness serves the life around you." },
+      { "n": 3, "titre": "Competent",     "texte": "Multi-talented, practical, generous. Your ideas take shape." },
+      { "n": 4, "titre": "Upper-average",    "texte": "Lightly hedonistic, curious. You begin to favor novelty over depth." },
+      { "n": 5, "titre": "Average",         "texte": "Scattered, insatiable, superficial. You start without finishing. You actively flee boredom." },
+      { "n": 6, "titre": "Lower-average",     "texte": "Selfish, demanding, impatient. You want everything, right now." },
+      { "n": 7, "titre": "Unhealthy",       "texte": "Impulsive, addictive, escapist. Anything not to feel." },
+      { "n": 8, "titre": "Very unhealthy",  "texte": "Manic, hysterical, risky behaviors. Escape becomes compulsive." },
+      { "n": 9, "titre": "Pathological",  "texte": "Collapse, panic, bare despair. Asking for help is vital here." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "zappe",      "label": "I flitted from one thing to another",          "detail": "Without finishing anything." },
+      { "id": "plans-fuite","label": "I made a plan to escape the present",     "detail": "The next thing as refuge." },
+      { "id": "stimule",    "label": "I sought out stimulation",                "detail": "So as not to feel bored." },
+      { "id": "options",    "label": "I kept too many options open",          "detail": "So as not to choose, and so not to lose." },
+      { "id": "rebondi",    "label": "I jumped on other people's words",       "detail": "Instead of listening." },
+      { "id": "reframe",    "label": "I 'reframed' a difficulty as positive",    "detail": "So as not to feel it." }
+    ],
+    "pieges": [
+      { "id": "non-fini",   "label": "I left something half-done",           "detail": "To move on to something more exciting." },
+      { "id": "evite-conv", "label": "I avoided a difficult conversation",     "detail": "Too heavy." },
+      { "id": "surface",    "label": "I stayed on the surface",                "detail": "Depth is frightening." },
+      { "id": "promesse-trop","label": "I promised too much, to too many people",        "detail": "And I didn't follow through." },
+      { "id": "consume",    "label": "I consumed an experience instead of living it","detail": "Too fast." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "fini",         "label": "I finished something, truly" },
+      { "id": "reste",        "label": "I stayed with something difficult" },
+      { "id": "ennui-tenu",   "label": "I felt boredom without filling it" },
+      { "id": "choix-clair",  "label": "I chose one option and closed the others" },
+      { "id": "ecoute-fond",  "label": "I listened all the way through" },
+      { "id": "goute",        "label": "I savored what was, without looking elsewhere" },
+      { "id": "satisfait",    "label": "I was satisfied, simply" },
+      { "id": "joie-presente","label": "Joy was in the present, not in what's next" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "zappe",        "label": "I flitted" },
+    { "id": "fini",         "label": "I finished something" },
+    { "id": "fuite",        "label": "I fled something difficult" },
+    { "id": "reste",        "label": "I stayed" },
+    { "id": "promesse",     "label": "I promised too much" },
+    { "id": "profond",      "label": "I went deep" },
+    { "id": "choix",        "label": "I chose and let go of the other options" },
+    { "id": "ennui",        "label": "I welcomed boredom" },
+    { "id": "obscur",       "label": "I don't understand yet" }
+  ],
+
+  "remedes": [
+    { "id": "sobriete",    "label": "Sobriety — less, but true" },
+    { "id": "finir",       "label": "Finishing — accomplishment nourishes" },
+    { "id": "rester",      "label": "Staying — with what is heavy too" },
+    { "id": "present",     "label": "The present — here is enough" },
+    { "id": "profondeur",  "label": "Depth — instead of breadth" },
+    { "id": "joie-vraie",  "label": "True joy — that doesn't flee" },
+    { "id": "silence",     "label": "Silence — no stimulation to seek" }
+  ],
+
+  "ressources_site": [
+    { "label": "My full profile",          "href": "/en/profils/type7.html",          "icon": "📖" },
+    { "label": "The diamond of essence",     "href": "/en/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restore the forgotten center",  "href": "/en/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "The journey through the type", "href": "/en/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions between types",      "href": "/en/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Morning begins. What do you want to *finish* today?",
+      "A day opens up — can you stay in it without planning the next one?",
+      "What do you want to savor fully, without looking elsewhere?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Are you here, or already elsewhere?",
+      "Here you are. What deserves your depth, right now?",
+      "A possible pause. Not to plan — to savor."
+    ],
+    "soir": [
+      "The day is fading. Have you completed something, peacefully?",
+      "You can simply arrive, without bringing anything back.",
+      "Evening is gentle. A feeling, without multiplying it."
+    ],
+    "nuit": [
+      "Night keeps watch. One true thing, then sleep.",
+      "You are still here, without having to flee it."
+    ]
+  }
+}

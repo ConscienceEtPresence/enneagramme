@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>The Inner Mirror — A daily journal through the Enneagram</title>
+  <meta name="description" content="A journal for working on your type every day. The Enneagram as a psycho-spiritual tool for daily awakening.">
+
+  <!-- Icônes pour les écrans d'accueil et navigateurs -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/icon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest-en.webmanifest" />
+
+  <!-- iOS web-app full screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mirror" />
+  <meta name="theme-color" content="#070b14" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Inner Mirror" />
+  <meta property="og:description" content="A journal for working on your type every day." />
+  <meta property="og:image" content="https://lemiroirinterieur.fr/assets/icons/icon-512.png" />
+  <meta property="og:url" content="https://lemiroirinterieur.fr/en/" />
+  <meta property="og:type" content="website" />
+
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/app.css?v=203" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    /* === ANIMATION D'ENTRÉE DU DIAGRAMME === */
+    .anim-draw{
+      stroke-dashoffset:var(--len);
+      stroke-dasharray:var(--len);
+      animation:drawLine 1.4s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes drawLine{to{stroke-dashoffset:0}}
+
+    .anim-fade{opacity:0;animation:fadeUp .5s ease forwards}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(6px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .anim-node{opacity:0;transform-origin:center;transform:scale(0)}
+    .anim-node-in{animation:nodePopIn .35s cubic-bezier(.34,1.56,.64,1) forwards}
+    @keyframes nodePopIn{to{opacity:1;transform:scale(1)}}
+
+    .anim-center{opacity:0}
+    .anim-center-in{animation:centerFade .6s ease forwards}
+    @keyframes centerFade{to{opacity:1}}
+
+    .node-invite circle{
+      animation:nodeInvite .6s ease forwards;
+      animation-delay:inherit;
+    }
+    @keyframes nodeInvite{
+      0%{stroke-opacity:1}
+      40%{stroke-opacity:.3;stroke-width:4}
+      100%{stroke-opacity:1;stroke-width:2.2}
+    }
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top mi-top">
+      <div class="mi-hero">
+        <h1 class="mi-title">The <em>Inner Mirror</em></h1>
+        <p class="mi-explainer">
+          <strong>The Enneagram</strong> is a map of nine types that reveals how each of us was shaped —
+          what drives us, what traps us, and the way through which we can free ourselves from it to touch our essence.
+        </p>
+        <p id="subtitle" class="mi-sub-hint">Click a type on the diagram to explore how it works.</p>
+        <div class="mi-langChoice" role="navigation" aria-label="Language choice — Choix de langue">
+          <a class="mi-langBtn" href="/" lang="fr" onclick="try{localStorage.setItem('mi_lang','fr')}catch(e){}">Français</a>
+          <a class="mi-langBtn on" href="/en/" aria-current="true" lang="en">English</a>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btnReset" type="button">Reset</button>
+      </div>
+    </header>
+
+    <style>
+      .mi-top { flex-direction:column; align-items:stretch; gap:0; padding-bottom:1rem; }
+      .mi-hero { text-align:center; max-width:48rem; margin:0 auto; padding:.4rem 0 1rem; }
+      .mi-title {
+        font-family:'Cormorant Garamond','Georgia',serif;
+        font-weight:500;
+        font-size:clamp(2rem, 5vw, 2.8rem);
+        color:#f1f5ff;
+        margin:0 0 .8rem;
+        letter-spacing:.005em;
+        line-height:1.15;
+      }
+      .mi-title em { color:#f5d77b; font-style:italic; }
+      .mi-explainer {
+        font-family:'Cormorant Garamond',serif;
+        font-size:clamp(1.1rem, 2.3vw, 1.25rem);
+        color:#dce4f4;
+        margin:0 auto 1rem;
+        max-width:38rem;
+        line-height:1.65;
+        font-weight:500;
+      }
+      .mi-explainer strong { color:#f5d77b; font-weight:600; font-style:italic; }
+      .mi-sub-hint {
+        font-family:'Cormorant Garamond',serif;
+        font-style:italic;
+        color:#a8b6dc;
+        font-size:1.02rem;
+        margin:.5rem 0 0;
+        opacity:.85;
+      }
+      .mi-top .actions { display:flex; justify-content:center; margin-top:.4rem; }
+      .mi-langChoice {
+        display:flex; justify-content:center; gap:.6rem; margin-top:1rem;
+      }
+      .mi-langBtn {
+        display:inline-block; padding:.5rem 1.35rem; border-radius:999px;
+        font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600;
+        color:#a8b6dc; text-decoration:none;
+        border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.03);
+        transition:all .18s ease; letter-spacing:.02em;
+      }
+      .mi-langBtn:hover { color:#f1f5ff; border-color:rgba(125,211,252,.5); transform:translateY(-1px); }
+      .mi-langBtn.on {
+        color:#f5d77b; border-color:rgba(245,215,123,.65);
+        background:linear-gradient(135deg,rgba(245,215,123,.14),rgba(245,215,123,.05));
+        box-shadow:0 0 14px rgba(245,215,123,.15);
+        pointer-events:none;
+      }
+    </style>
+
+    <main class="grid">
+      <section class="stage" id="stage">
+        <div class="svgWrap">
+          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Enneagram diagram">
+            <defs>
+              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
+              </marker>
+              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
+              </marker>
+
+              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <circle class="ring" cx="350" cy="350" r="270"></circle>
+
+            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
+                  style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
+              Enneagram
+            </text>
+
+            <g id="staticBg" class="staticBg">
+              <path class="hex" d="" id="hexPath"></path>
+              <path class="tri" d="" id="triPath"></path>
+
+              <g class="centers">
+                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctive</text>
+                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Emotional</text>
+                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
+              </g>
+            </g>
+
+            <g id="arrowsLayer"></g>
+            <g id="nodesLayer"></g>
+          </svg>
+        </div>
+      </section>
+
+      <aside class="side" id="sidePanel" aria-live="polite">
+        <div class="badgeRow">
+          <div class="badge" id="typeBadge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+        </div>
+        <div class="centerLegend" aria-label="Centers legend">
+          <span class="centerLegendItem"><span class="centerLegendDot instinctif"></span>Instinctive</span>
+          <span class="centerLegendItem"><span class="centerLegendDot emotionnel"></span>Emotional</span>
+          <span class="centerLegendItem"><span class="centerLegendDot mental"></span>Mental</span>
+        </div>
+
+        <div class="card">
+          <div class="miniGrid">
+            <div class="mini"><h3>Center of intelligence</h3><p id="center">—</p></div>
+            <div class="mini"><h3>Basic fear</h3><p id="fear">—</p></div>
+            <div class="mini"><h3>Basic desire</h3><p id="desire">—</p></div>
+            <div class="mini"><h3>Compulsion (avoidance)</h3><p id="compulsion">—</p></div>
+          </div>
+
+          <div class="moveLines">
+            <div id="moveHealth" class="moveLine">
+              <div class="moveHead">
+                <span class="dot good"></span>
+                <strong>Integration</strong>
+                <span class="muted">(growth)</span>
+                <span class="muted"> > </span>
+                <strong id="toIntegr">—</strong>
+                <span class="muted">:</span>
+              </div>
+              <div class="moveBody" id="moveHealthText">—</div>
+            </div>
+
+            <div id="moveStress" class="moveLine">
+              <div class="moveHead">
+                <span class="dot warn"></span>
+                <strong>Disintegration</strong>
+                <span class="muted">(stress)</span>
+                <span class="muted"> > </span>
+                <strong id="toDisint">—</strong>
+                <span class="muted">:</span>
+              </div>
+              <div class="moveBody" id="moveStressText">—</div>
+            </div>
+          </div>
+
+          <!-- Action principale toujours visible -->
+          <div class="ctaRow primaryRow">
+            <a id="openFull" class="btn btnHero" href="/en/profils/type1.html" aria-disabled="true">View full profile →</a>
+          </div>
+
+          <!-- Trois chemins, regroupés et pliables -->
+          <details class="pathGroup" open>
+            <summary><span class="dot"></span>Discover the Enneagram</summary>
+            <div class="pathLinks">
+              <a class="btn btnVoyage" href="/en/voyage-enneagramme.html">◌ The Inner Journey</a>
+              <a class="btn" href="/en/test-enneagramme-sans-indice.html">Take the test</a>
+              <a class="btn" href="/en/comprendre-son-type.html">Understand your type</a>
+              <a class="btn" href="/en/sous-types.html">The three subtypes</a>
+              <a class="btn" href="/en/explore.html">Explore the Enneagram</a>
+              <button id="btnChooseProfiles" class="btn" type="button">Choose a profile on the diagram</button>
+            </div>
+          </details>
+
+          <details class="pathGroup">
+            <summary><span class="dot"></span>You and others</summary>
+            <div class="pathLinks">
+              <a id="openCompat" class="btn" href="/en/compatibilite.html">Affinity between types</a>
+              <a class="btn" href="/en/confusions-entre-types.html">Torn between two types?</a>
+              <a class="btn" href="/en/expression-sexuelle.html">Sexual expression of the types</a>
+            </div>
+          </details>
+
+          <details class="pathGroup">
+            <summary><span class="dot"></span>Going further</summary>
+            <div class="pathLinks">
+              <a class="btn" href="/en/approches.html">Paths of transformation</a>
+              <a class="btn" href="/en/approche-diamant.html">◆ The Diamond Approach ◆</a>
+            </div>
+          </details>
+
+          <style>
+            .primaryRow{margin-top:14px;justify-content:center}
+            .btnHero{
+              border:1px solid rgba(125,211,252,.5);
+              background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.14));
+              color:#fff;font-weight:800;font-size:15px;padding:13px 26px;
+              text-decoration:none;border-radius:999px;letter-spacing:.2px;
+              transition:transform .12s ease, background .18s ease;
+            }
+            .btnHero:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.22))}
+            .btnHero[aria-disabled="true"]{opacity:.45;cursor:not-allowed;pointer-events:none}
+
+            .pathGroup{
+              margin:14px 0 0;border:1px solid rgba(255,255,255,.08);
+              border-radius:14px;background:rgba(255,255,255,.025);overflow:hidden;
+              transition:border-color .2s ease;
+            }
+            .pathGroup[open]{border-color:rgba(125,211,252,.22)}
+            .pathGroup summary{
+              cursor:pointer;list-style:none;padding:13px 16px;
+              font-size:14px;font-weight:700;letter-spacing:.4px;color:#e8eeff;
+              display:flex;align-items:center;gap:10px;
+              transition:background .15s ease;
+            }
+            .pathGroup summary::-webkit-details-marker{display:none}
+            .pathGroup summary:hover{background:rgba(125,211,252,.04)}
+            .pathGroup summary .dot{
+              width:8px;height:8px;border-radius:50%;background:#7dd3fc;
+              box-shadow:0 0 10px rgba(125,211,252,.5);flex-shrink:0;
+            }
+            .pathGroup summary::after{
+              content:"▾";margin-left:auto;color:var(--muted);
+              transition:transform .2s ease;font-size:12px;
+            }
+            .pathGroup[open] summary::after{transform:rotate(180deg)}
+            .pathLinks{padding:4px 14px 14px;display:flex;flex-direction:column;gap:8px}
+            .pathLinks .btn{
+              text-align:left;padding:10px 14px;font-size:14px;
+              border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);
+              border-radius:10px;color:#e8eeff;text-decoration:none;font-weight:600;
+              transition:background .14s ease, border-color .14s ease, transform .1s ease;
+              cursor:pointer;
+            }
+            .pathLinks .btn:hover{background:rgba(125,211,252,.08);border-color:rgba(125,211,252,.3);transform:translateX(2px)}
+
+            .btnVoyage{
+              border:1px solid rgba(125,211,252,.4)!important;
+              background:linear-gradient(135deg,rgba(125,211,252,.16),rgba(196,181,253,.12))!important;
+              color:#bae6fd!important;font-weight:700!important;
+            }
+            .btnVoyage:hover{
+              background:linear-gradient(135deg,rgba(125,211,252,.26),rgba(196,181,253,.2))!important;
+              border-color:rgba(125,211,252,.6)!important;
+            }
+          </style>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <span class="copy">All rights reserved</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
+          ✉️ Contact
+        </a>
+      </div>
+    </footer>
+  </div>
+
+
+  <script src="/assets/js/en/app.js?v=200"></script>
+
+  <script>
+  (function(){
+    if(sessionStorage.getItem('ennea_intro_done')) return;
+    sessionStorage.setItem('ennea_intro_done','1');
+
+    var svg = document.getElementById('enneaSvg');
+    if(!svg) return;
+
+    /* --- 1. Cercles : dessiner progressivement --- */
+    var rings = svg.querySelectorAll('.ring');
+    rings.forEach(function(el){
+      var len = Math.round(el.getTotalLength());
+      el.style.setProperty('--len', len);
+      el.classList.add('anim-draw');
+    });
+
+    /* --- 2. Lignes internes (hex, tri) --- */
+    var lines = svg.querySelectorAll('.hex, .tri');
+    lines.forEach(function(el, i){
+      var len = Math.round(el.getTotalLength());
+      el.style.setProperty('--len', len);
+      el.classList.add('anim-draw');
+      el.style.animationDelay = (0.3 + i * 0.1) + 's';
+    });
+
+    /* --- 3. Labels de centre --- */
+    var labels = svg.querySelectorAll('.centerLabel');
+    labels.forEach(function(el){
+      el.classList.add('anim-center');
+    });
+    setTimeout(function(){
+      labels.forEach(function(el){ el.classList.add('anim-center-in'); });
+    }, 900);
+
+    /* --- 4. Texte central "ENNÉAGRAMME" --- */
+    var centerText = svg.querySelector('text[style*="serif"]');
+    if(centerText){
+      centerText.classList.add('anim-center');
+      setTimeout(function(){ centerText.classList.add('anim-center-in'); }, 1100);
+    }
+
+    /* --- 5. Noeuds : apparition échelonnée --- */
+    function animNodes(){
+      var nodes = svg.querySelectorAll('#nodesLayer .node');
+      if(!nodes.length){ requestAnimationFrame(animNodes); return; }
+      nodes.forEach(function(n){ n.classList.add('anim-node'); });
+      var order = [9,1,2,3,4,5,6,7,8];
+      nodes.forEach(function(n, i){
+        setTimeout(function(){ n.classList.add('anim-node-in'); }, 800 + i * 80);
+      });
+    }
+    animNodes();
+  })();
+  </script>
+
+  <script>
+  (function(){
+    const btn = document.getElementById('btnChooseProfiles');
+    const stage = document.getElementById('stage');
+    const svg = document.getElementById('enneaSvg');
+    const subtitle = document.getElementById('subtitle');
+
+    let chooseMode = false;
+    let subtitleBackup = subtitle ? subtitle.textContent : '';
+
+    function getNodes(){
+      return Array.from(document.querySelectorAll('#nodesLayer .node'));
+    }
+
+    function setHint(on){
+      const nodes = getNodes();
+      nodes.forEach(n => n.classList.toggle('hint', on));
+    }
+
+    function scrollToDiagram(){
+      if (!stage) return;
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      const offset = isMobile ? 8 : 16;
+      const top = stage.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: Math.max(0, top), behavior:'smooth' });
+    }
+
+    function enterChooseMode(){
+      chooseMode = true;
+      /* Reset sélection en cours (flèches, panneau) */
+      const resetBtn = document.getElementById('btnReset');
+      if (resetBtn) resetBtn.click();
+      setHint(true);
+      pulseNodes();
+      if (subtitle){
+        subtitleBackup = subtitle.textContent || subtitleBackup;
+        subtitle.textContent = "Choose a type on the diagram to open its profile directly.";
+      }
+      scrollToDiagram();
+      setTimeout(scrollToDiagram, 220);
+      setTimeout(()=>setHint(true), 250);
+    }
+
+    function pulseNodes(){
+      const nodes = getNodes();
+      nodes.forEach((n, i) => {
+        n.classList.remove('node-invite');
+        void n.offsetWidth;
+        n.style.animationDelay = (i * 70) + 'ms';
+        n.classList.add('node-invite');
+      });
+    }
+
+    function exitChooseMode(){
+      chooseMode = false;
+      setHint(false);
+      if (subtitle) subtitle.textContent = subtitleBackup;
+    }
+
+    btn && btn.addEventListener('click', function(){
+      if (!chooseMode) enterChooseMode();
+      else exitChooseMode();
+    });
+
+    svg && svg.addEventListener('click', function(e){
+      if (!chooseMode) return;
+
+      const node = e.target && e.target.closest ? e.target.closest('.node') : null;
+      if (!node) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+      let num = node.getAttribute('data-num') || node.getAttribute('data-type') || '';
+      if (!num){
+        const t = node.querySelector('text');
+        num = t ? (t.textContent || '').trim() : '';
+      }
+      if (!/^[1-9]$/.test(num)) return;
+
+      window.location.href = '/en/profils/type' + num + '.html';
+    }, true);
+
+    function waitNodes(){
+      const nodes = getNodes();
+      if (nodes.length){
+        nodes.forEach(n=>{
+          if (!n.hasAttribute('tabindex')) n.setAttribute('tabindex','0');
+        });
+        return;
+      }
+      requestAnimationFrame(waitNodes);
+    }
+    waitNodes();
+  })();
+  </script>
+
+
+  <script>
+  (function () {
+    const badgeNum = document.getElementById("badgeNum");
+    const openFull = document.getElementById("openFull");
+    if (!badgeNum || !openFull) return;
+
+    function currentType() {
+      const t = (badgeNum.textContent || "").trim();
+      return /^[1-9]$/.test(t) ? t : null;
+    }
+
+    function syncLink() {
+      const t = currentType();
+      if (!t) {
+        openFull.setAttribute("aria-disabled", "true");
+        openFull.dataset.forcedHref = "";
+        return;
+      }
+      const href = `/en/profils/type${t}.html`;
+      openFull.href = href;
+      openFull.dataset.forcedHref = href;
+      openFull.setAttribute("aria-disabled", "false");
+    }
+
+    syncLink();
+
+    const obs = new MutationObserver(syncLink);
+    obs.observe(badgeNum, { childList: true, characterData: true, subtree: true });
+
+    openFull.addEventListener("click", (e) => {
+      syncLink();
+      const href = openFull.dataset.forcedHref;
+      if (!href) e.preventDefault();
+    }, true);
+  })();
+  </script>
+
+  <!-- 🪞 Pastille flottante — accès discret au carnet de bord, pour qui veut le travailler -->
+  <a href="/en/pages/carnet/" id="quick-carnet" title="My journal — for working on your type every day">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="12" rx="7" ry="9"/>
+      <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+    </svg>
+    <span class="qc-label">My journal</span>
+  </a>
+  <style>
+    #quick-carnet {
+      position:fixed;bottom:20px;right:20px;z-index:950;
+      display:flex;align-items:center;gap:.5rem;
+      padding:.55rem .9rem .55rem .7rem;
+      background:linear-gradient(135deg,#1a2540,#0e1528);
+      border:1px solid rgba(245,215,123,.55);
+      border-radius:999px;
+      color:#f5d77b;
+      text-decoration:none;
+      box-shadow:0 6px 20px rgba(245,215,123,.22),0 2px 6px rgba(0,0,0,.35);
+      transition:all .25s ease;
+      font-family:'Cormorant Garamond',serif;
+      font-style:italic;
+      font-size:.95rem;
+    }
+    #quick-carnet .qc-label { font-weight:500; }
+    #quick-carnet:hover {
+      background:linear-gradient(135deg,#f5d77b,#fbbf24);
+      color:#0e1528;
+      transform:translateY(-2px);
+      box-shadow:0 10px 28px rgba(245,215,123,.45);
+      border-color:#f5d77b;
+    }
+    @media (max-width:480px) {
+      #quick-carnet { padding:.5rem .75rem .5rem .6rem; font-size:.88rem; }
+    }
+  </style>
+
+  <!-- 🫧 Pulse — compteur anonyme léger -->
+  <script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

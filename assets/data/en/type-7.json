@@ -1,0 +1,151 @@
+{
+  "type": 7,
+  "name": "The Epicure",
+  "tagline": "The Enthusiast",
+  "quick": {
+    "center": "Mental",
+    "wings": "6 and 8",
+    "integr": "→ 5",
+    "disint": "→ 1"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, central issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Mental (Head)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Mental." },
+            { "label": "Support center", "value": "Instinctive." },
+            { "label": "Repressed center", "value": "Emotional (Heart)." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Inward: uses the mind to build a pleasant inner structure and protect itself from the outer world." },
+        { "label": "Central issue", "value": "Anxiety and insecurity tied to a felt lack of inner guidance and support." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoid suffering (physical and moral), limitations, and boredom at all costs." },
+        { "label": "Passion (Vice)", "value": "Gluttony: an insatiable desire for experiences/pleasures to fill an inner void." },
+        { "label": "Fixation", "value": "Planning: filling the mind with exciting future projects so as not to feel the discomfort of the present." },
+        { "label": "Defense mechanism", "value": "Rationalization: positive justifications of the negative in order to avoid pain." },
+        { "label": "Egotic pride", "value": "I am optimistic, I am happy." },
+        { "label": "Basic fear", "value": "Being deprived of everything or trapped in pain." },
+        { "label": "Basic desire", "value": "Being satisfied, fulfilled, and happy." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Family / Clan (Defender): security through networks of alliances and protection to ensure comfort." },
+            { "label": "Social", "value": "Sacrifice (countertype): sacrifices personal gluttony in service of a collective ideal in order to feel good." },
+            { "label": "One-to-one (Sexual)", "value": "Suggestibility / fascination: rose-tinted glasses, idealization of reality." }
+          ]
+        },
+        { "label": "Social style", "value": "Assertive (aggressive): approaches people to get what it needs for its happiness." },
+        { "label": "Conflict management", "value": "Positive Outlook: reframes positively in order to avoid discomfort." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 6 (more anxious and loyal) and wing 8 (more direct, powerful, grounded)." },
+        { "label": "Integration (Growth)", "value": "→ 5: deeper, focused, quiet, assimilates experiences at depth." },
+        { "label": "Disintegration (Stress)", "value": "→ 1: rigidity, criticism, impatience, demands, and perfectionism." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Wisdom, Holy Work, Holy Plan: reality unfolds harmoniously without the ego's intervention." },
+        { "label": "Virtue", "value": "Sobriety (temperance): staying with a single experience at a time without seeking distraction." },
+        { "label": "Idealized aspect", "value": "Vehicle of pleasure (Markabah): the multidimensional richness of Being." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Disorientation / the feeling of being lost." },
+            { "label": "Specific reaction", "value": "Planning: creating a false sense of direction." },
+            { "label": "Specific illusion", "value": "Separate unfolding: believing it must direct its own fulfillment." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner little 5: felt empty/deprived, escaped through imagination." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, misunderstanding.",
+      "items": [
+        { "label": "Speaking style", "value": "Stories (sagas, anecdotes, jokes) and planning." },
+        { "label": "Communication misunderstanding", "value": "Lightness-Superficiality: joy can be perceived as a lack of seriousness or commitment." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Evolution and relationships",
+      "desc": "Warning signs, growth practices, confusions, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "A racing mind, a frantic multiplication of activities, avoidance of any serious/painful topic." },
+        { "label": "Growth practices", "value": "Silence, presence with pain without fleeing, realizing that happiness comes from within." },
+        { "label": "Common confusions", "value": "3 (energy), 2 (charm), 9 (optimism)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "Overview", "value": "Stimulating and funny, but can exhaust those around it through the flow of activities and difficulty committing." },
+            { "label": "In love", "value": "Adventurous, fears being smothered and any final commitment that would limit its options." },
+            { "label": "At work", "value": "Visionary, strong at brainstorming, but follow-through can be weak after the initial excitement." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and consciousness",
+      "desc": "Levels 1–9, consciousness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Ecstatic appreciator: gratitude, joyful presence." },
+            { "n": 2, "text": "Free-spirited enthusiast: creativity, lucid optimism." },
+            { "n": 3, "text": "Accomplished generalist: links experiences, practical wisdom." },
+            { "n": 4, "text": "Experienced sophisticate: the pursuit of experiences, refinement." },
+            { "n": 5, "text": "Hyperactive extrovert: scattering, fleeing discomfort." },
+            { "n": 6, "text": "Excessive hedonist: overconsumption, impulsiveness, addictions." },
+            { "n": 7, "text": "Impulsive escapist: panicked avoidance, erratic decisions." },
+            { "n": 8, "text": "Compulsive maniac: extreme agitation, unable to stop." },
+            { "n": 9, "text": "Panic-stricken hysteric: collapse, terror, disorganization." }
+          ]
+        },
+        { "label": "Consciousness", "value": "Moving from the trance of distraction to self-remembering in the present moment." },
+        { "label": "Spiral Dynamics", "value": "ORANGE (success/opportunism/progress) and sometimes RED (impulsiveness/force)." },
+        { "label": "Analogy", "value": "Monkey mind: leaping from branch to branch, forgetting it is already at the top of the tree of its own Essence." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Understanding the Enneagram</title>
+
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 56px;padding:0 16px}
+
+    /* Top bar */
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background .14s ease,border-color .14s ease,transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Hero */
+    .hero{
+      max-width:920px;margin:0 auto 40px;padding:42px 30px 38px;
+      text-align:center;
+      border:1px solid rgba(125,211,252,.22);
+      background:
+        radial-gradient(ellipse at top, rgba(125,211,252,.10), transparent 60%),
+        linear-gradient(180deg, rgba(196,181,253,.06), transparent);
+      border-radius:var(--radius);
+    }
+    .hero .kicker{
+      font-size:12px;letter-spacing:2px;text-transform:uppercase;
+      color:#bae6fd;font-weight:800;margin:0 0 10px;
+    }
+    .hero h1{
+      margin:0;font-size:clamp(30px,5vw,48px);line-height:1.08;letter-spacing:.2px;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 50%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero .lead{
+      margin:18px auto 0;max-width:60ch;color:#e8eeff;
+      font-size:17px;line-height:1.55;
+    }
+    .hero .strong{color:#fff;font-weight:700}
+
+    /* Sommaire */
+    .toc{
+      max-width:920px;margin:0 auto 50px;padding:22px 26px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.02);
+    }
+    .toc h2{
+      margin:0 0 14px;font-size:13px;letter-spacing:1.6px;
+      text-transform:uppercase;color:#bae6fd;font-weight:800;text-align:center;
+    }
+    .toc ol{
+      margin:0;padding:0;list-style:none;
+      display:grid;grid-template-columns:repeat(2,1fr);gap:8px;counter-reset:tocnum;
+    }
+    @media(max-width:640px){.toc ol{grid-template-columns:1fr}}
+    .toc li{counter-increment:tocnum}
+    .toc a{
+      display:flex;align-items:baseline;gap:10px;
+      padding:8px 12px;border-radius:8px;color:#cfe9ff;
+      text-decoration:none;font-size:14px;line-height:1.4;
+      border:1px solid transparent;
+    }
+    .toc a:hover{background:rgba(125,211,252,.07);border-color:rgba(125,211,252,.18)}
+    .toc a::before{
+      content:counter(tocnum,decimal-leading-zero);
+      color:#7dd3fc;font-weight:850;font-size:13px;flex:0 0 auto;
+    }
+
+    /* Sections */
+    .mvt{
+      max-width:920px;margin:0 auto 56px;
+      scroll-margin-top:24px;
+    }
+    .mvt .num{
+      display:inline-block;font-size:11px;letter-spacing:2px;
+      text-transform:uppercase;color:#7dd3fc;font-weight:850;
+      margin:0 0 6px;
+    }
+    .mvt h2{
+      margin:0 0 8px;font-size:clamp(24px,3.4vw,32px);line-height:1.15;letter-spacing:.2px;
+      color:#fff;
+    }
+    .mvt .lead{
+      margin:0 0 22px;color:#cfe9ff;font-size:16px;line-height:1.55;
+      max-width:62ch;
+    }
+    .mvt p{margin:0 0 14px;line-height:1.7;font-size:15.5px;color:#e8eeff}
+    .mvt p:last-of-type{margin-bottom:0}
+    .mvt strong{color:#fff}
+    .mvt em{color:#cfe9ff;font-style:normal;font-weight:600}
+    .mvt h3{
+      margin:24px 0 10px;font-size:17px;color:#fff;
+      letter-spacing:.2px;line-height:1.3;
+    }
+
+    /* Cartes contenu */
+    .panel{
+      margin:18px 0;padding:22px 24px;
+      border:1px solid var(--line);border-radius:14px;
+      background:rgba(255,255,255,.025);
+    }
+    .panel.feature{
+      border-color:rgba(125,211,252,.25);
+      background:linear-gradient(135deg, rgba(125,211,252,.06), rgba(196,181,253,.03));
+    }
+
+    /* Schémas SVG */
+    .schema{
+      margin:22px auto;padding:24px;
+      border:1px solid var(--line);border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .schema svg{width:100%;height:auto;display:block;max-width:760px;margin:0 auto}
+    .schema .caption{
+      margin:14px 0 0;font-size:13.5px;color:var(--muted);
+      text-align:center;font-style:italic;line-height:1.5;
+    }
+
+    /* Encart À retenir */
+    .keypoints{
+      margin:26px 0 8px;padding:18px 22px;
+      border:1px solid rgba(252,211,77,.30);
+      background:linear-gradient(135deg, rgba(252,211,77,.07), rgba(252,211,77,.02));
+      border-left:4px solid #fcd34d;
+      border-radius:12px;
+    }
+    .keypoints .label{
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+      color:#fcd34d;font-weight:850;margin:0 0 10px;
+    }
+    .keypoints ul{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+    .keypoints li{
+      padding-left:22px;position:relative;
+      font-size:14.5px;line-height:1.55;color:#fef3c7;
+    }
+    .keypoints li::before{
+      content:"◆";position:absolute;left:0;top:1px;
+      color:rgba(252,211,77,.7);font-size:9px;
+    }
+    .keypoints li strong{color:#fff}
+
+    /* Tableaux */
+    .gridTable{
+      display:grid;gap:8px;margin:18px 0;
+    }
+    .row3{display:grid;grid-template-columns:auto 1fr 1fr;gap:10px;align-items:center}
+    .pairTable{
+      display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;
+      margin:18px 0;
+    }
+    .pairTable .head{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:800;color:#bae6fd;padding:6px 10px;
+    }
+    .pairTable .cell{
+      padding:10px 12px;border-radius:8px;
+      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+      font-size:14px;line-height:1.5;color:#e8eeff;
+    }
+    .pairTable .cell.n{
+      font-size:18px;font-weight:850;color:#fff;
+      background:rgba(125,211,252,.10);border-color:rgba(125,211,252,.25);
+      text-align:center;
+    }
+
+    /* Section 1 — pas figeant */
+    .myths{display:grid;gap:12px;margin:18px 0}
+    .myth{
+      display:grid;grid-template-columns:auto 1fr;gap:14px;
+      padding:16px 18px;border-radius:12px;
+      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+    }
+    .myth .tag{
+      font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:850;padding:6px 10px;border-radius:6px;height:max-content;
+    }
+    .myth .tag.no{background:rgba(253,164,175,.10);color:#fda4af;border:1px solid rgba(253,164,175,.30)}
+    .myth .tag.yes{background:rgba(134,239,172,.10);color:#86efac;border:1px solid rgba(134,239,172,.30)}
+    .myth p{margin:0;font-size:14.5px;line-height:1.55}
+
+    /* Section 2 — 3 centres */
+    .threeCenters{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0;
+    }
+    @media(max-width:720px){.threeCenters{grid-template-columns:1fr}}
+    .centerCard{
+      padding:18px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);border-top:3px solid currentColor;
+    }
+    .centerCard h4{
+      margin:0 0 6px;font-size:16px;letter-spacing:.3px;color:#fff;
+    }
+    .centerCard .types{
+      font-size:22px;font-weight:850;color:#fff;
+      letter-spacing:6px;margin:6px 0 10px;
+    }
+    .centerCard .focus{
+      font-size:11px;letter-spacing:1.2px;text-transform:uppercase;
+      color:inherit;font-weight:800;margin:0 0 6px;
+    }
+    .centerCard p{margin:0 0 8px;font-size:14px;line-height:1.55;color:#e8eeff}
+    .centerCard p:last-child{margin-bottom:0}
+    .centerCard.c-mental{color:#7dd3fc}
+    .centerCard.c-emo{color:#f9a8d4}
+    .centerCard.c-instinct{color:#fcd34d}
+
+    /* Section 3 — grille triades × Horney */
+    .horneyGrid{
+      display:grid;grid-template-columns:auto repeat(3,1fr);gap:8px;
+      margin:18px 0;
+    }
+    .horneyGrid .h{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:850;padding:8px 10px;color:#bae6fd;
+      border-bottom:1px solid rgba(125,211,252,.15);
+    }
+    .horneyGrid .triadLabel{
+      display:flex;align-items:center;
+      padding:8px 10px;font-size:13px;font-weight:800;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    .horneyGrid .htype{
+      padding:14px 14px;border-radius:10px;
+      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+    .horneyGrid .htype .tn{
+      font-size:24px;font-weight:850;color:#fff;display:block;line-height:1.1;
+    }
+    .horneyGrid .htype .tname{
+      font-size:11.5px;color:var(--muted);letter-spacing:.3px;display:block;margin-top:2px;
+    }
+    .horneyGrid .htype.cmp{border-color:rgba(125,211,252,.35);background:rgba(125,211,252,.06)}
+    .horneyGrid .htype.agg{border-color:rgba(252,165,165,.35);background:rgba(252,165,165,.06)}
+    .horneyGrid .htype.wdr{border-color:rgba(196,181,253,.35);background:rgba(196,181,253,.06)}
+    @media(max-width:640px){
+      .horneyGrid{grid-template-columns:1fr}
+      .horneyGrid .h{display:none}
+      .horneyGrid .triadLabel{border:none;background:rgba(255,255,255,.04);border-radius:6px;margin-top:10px}
+    }
+
+    /* Section 4 — peur/désir */
+    .fearDesire{margin:18px 0}
+    .fdrow{
+      display:grid;grid-template-columns:auto 1fr 1fr;gap:10px;align-items:stretch;
+      padding:0;
+    }
+    .fdrow + .fdrow{margin-top:8px}
+    .fdrow .n{
+      width:42px;display:grid;place-items:center;
+      font-size:18px;font-weight:850;color:#fff;
+      background:rgba(125,211,252,.10);border:1px solid rgba(125,211,252,.25);
+      border-radius:8px;
+    }
+    .fdrow .fear, .fdrow .desire{
+      padding:10px 12px;border-radius:8px;font-size:14px;line-height:1.5;
+      border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+    }
+    .fdrow .fear{color:#fecdd3;border-color:rgba(253,164,175,.20);background:rgba(253,164,175,.04)}
+    .fdrow .desire{color:#bbf7d0;border-color:rgba(134,239,172,.20);background:rgba(134,239,172,.04)}
+    .fdHead{
+      display:grid;grid-template-columns:42px 1fr 1fr;gap:10px;
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:850;margin-bottom:8px;
+    }
+    .fdHead .h1{color:#7dd3fc;text-align:center}
+    .fdHead .h2{color:#fda4af;padding-left:12px}
+    .fdHead .h3{color:#86efac;padding-left:12px}
+
+    /* Section 5 — niveaux */
+    .levels{margin:18px 0;padding:16px 18px;border-radius:14px;background:rgba(0,0,0,.18);border:1px solid var(--line)}
+    .levels .head{
+      display:flex;justify-content:space-between;align-items:center;
+      flex-wrap:wrap;gap:10px;margin-bottom:14px;
+    }
+    .levels .head h4{margin:0;font-size:15px;color:#fff}
+    .levels .head .ex{font-size:12px;color:var(--muted);font-style:italic}
+    .ladder{display:grid;gap:6px;counter-reset:lvl}
+    .lstep{
+      counter-increment:lvl;
+      display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center;
+      padding:10px 14px;border-radius:8px;
+      background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+      border-left-width:4px;
+    }
+    .lstep .ln{
+      width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+      font-size:14px;font-weight:850;color:#fff;
+      background:rgba(0,0,0,.4);
+    }
+    .lstep .lname{font-size:14px;line-height:1.4;color:#e8eeff}
+    .lstep .lname strong{color:#fff;display:block;font-size:14.5px;margin-bottom:2px}
+    .lstep .lname span{font-size:12.5px;color:var(--muted)}
+    .lstep.healthy{border-left-color:#86efac}
+    .lstep.average{border-left-color:#fcd34d}
+    .lstep.unhealthy{border-left-color:#fda4af}
+    .levelGroup{
+      font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;
+      font-weight:850;margin:14px 0 6px;padding:6px 10px;border-radius:6px;
+      display:inline-block;
+    }
+    .levelGroup.healthy{color:#86efac;background:rgba(134,239,172,.07)}
+    .levelGroup.average{color:#fcd34d;background:rgba(252,211,77,.06)}
+    .levelGroup.unhealthy{color:#fda4af;background:rgba(253,164,175,.06)}
+
+    /* Section 6 — flèches */
+    .arrowsLegend{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;
+    }
+    @media(max-width:640px){.arrowsLegend{grid-template-columns:1fr}}
+    .arrowsLegend .col{
+      padding:16px 18px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);
+      border-top:3px solid currentColor;
+    }
+    .arrowsLegend .col.integ{color:#86efac}
+    .arrowsLegend .col.disinteg{color:#fda4af}
+    .arrowsLegend h4{margin:0 0 6px;font-size:14px;letter-spacing:.3px;color:#fff}
+    .arrowsLegend p{margin:0 0 8px;font-size:13.5px;color:#e8eeff;line-height:1.55}
+    .arrowsLegend .seq{
+      font-family:ui-monospace,monospace;font-size:13px;color:inherit;
+      background:rgba(0,0,0,.3);padding:8px 10px;border-radius:6px;
+      letter-spacing:.5px;
+    }
+
+    /* Section 7 — ailes */
+    .wings{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+    @media(max-width:640px){.wings{grid-template-columns:1fr}}
+    .wingCard{
+      padding:18px 18px;border-radius:12px;
+      border:1px solid rgba(125,211,252,.25);
+      background:linear-gradient(135deg, rgba(125,211,252,.06), transparent);
+    }
+    .wingCard h4{margin:0 0 8px;font-size:16px;color:#fff}
+    .wingCard p{margin:0;font-size:14px;line-height:1.55;color:#e8eeff}
+    .wingCard .small{font-size:12.5px;color:var(--muted);margin-top:8px}
+
+    /* Section 8 — sous-types */
+    .instincts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+    @media(max-width:720px){.instincts{grid-template-columns:1fr}}
+    .iCard{
+      padding:18px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);
+      border-top:3px solid currentColor;
+    }
+    .iCard.sp{color:#fcd34d}
+    .iCard.so{color:#7dd3fc}
+    .iCard.sx{color:#f9a8d4}
+    .iCard h4{margin:0 0 4px;font-size:15.5px;color:#fff}
+    .iCard .sub{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:800;margin:0 0 10px;color:inherit}
+    .iCard p{margin:0 0 8px;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .iCard p:last-child{margin-bottom:0}
+    .iCard .ex{font-style:italic;color:var(--muted);font-size:12.5px}
+
+    /* Section 9 — confusions */
+    .confuse{display:grid;gap:12px;margin:18px 0}
+    .confRow{
+      display:grid;grid-template-columns:auto 1fr;gap:14px;
+      padding:18px 20px;border-radius:12px;
+      background:rgba(255,255,255,.03);border:1px solid rgba(196,181,253,.25);
+      border-left:4px solid #c4b5fd;
+    }
+    .confRow .pair{
+      font-size:22px;font-weight:850;color:#fff;
+      padding:6px 12px;border-radius:8px;background:rgba(196,181,253,.10);
+      height:max-content;letter-spacing:1px;
+    }
+    .confRow h4{margin:0 0 8px;font-size:14.5px;color:#ddd6fe;letter-spacing:.3px}
+    .confRow p{margin:0 0 6px;font-size:14px;line-height:1.55}
+    .confRow p:last-child{margin-bottom:0}
+    .confRow .key{color:#fff;font-weight:700}
+    .traps{margin:24px 0 0}
+    .trapList{
+      display:grid;gap:10px;margin:12px 0 0;padding:0;list-style:none;
+    }
+    .trapList li{
+      padding:14px 16px 14px 50px;border-radius:10px;position:relative;
+      background:rgba(253,164,175,.04);border:1px solid rgba(253,164,175,.20);
+      font-size:14.5px;line-height:1.55;color:#fecdd3;
+    }
+    .trapList li strong{color:#fff;display:block;margin-bottom:3px}
+    .trapList li::before{
+      content:counter(traps);counter-increment:traps;
+      position:absolute;left:14px;top:14px;
+      width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+      font-size:13px;font-weight:850;color:#0b1120;background:#fda4af;
+    }
+    .trapList{counter-reset:traps}
+
+    /* Section 10 — théorie */
+    .theory{display:grid;gap:12px;margin:18px 0}
+    .theoryCard{
+      padding:18px 20px;border-radius:12px;
+      background:rgba(0,0,0,.20);border:1px solid rgba(125,211,252,.20);
+      border-left:3px solid #7dd3fc;
+    }
+    .theoryCard h4{margin:0 0 8px;font-size:15px;color:#cfe9ff;letter-spacing:.3px}
+    .theoryCard p{margin:0;font-size:14px;line-height:1.6;color:#e8eeff}
+
+    /* Closing */
+    .closing{
+      max-width:880px;margin:30px auto 0;padding:30px 28px;text-align:center;
+      border:1px solid rgba(125,211,252,.22);border-radius:var(--radius);
+      background:linear-gradient(135deg, rgba(125,211,252,.06), rgba(196,181,253,.04));
+    }
+    .closing::before{content:"◆";color:rgba(125,211,252,.5);display:block;font-size:18px;margin-bottom:14px}
+    .closing p{margin:0;font-size:17px;line-height:1.6;color:#fff;font-style:italic}
+    .closing p strong{color:#bae6fd;font-style:normal}
+
+    .actions{
+      display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px;
+    }
+
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/explore.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/explore.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/explore.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/index.html">← Home</a>
+      <a class="btn" href="/en/test-enneagramme-sans-indice.html">Take the test →</a>
+    </div>
+
+    <header class="hero">
+      <p class="kicker">Understanding the Enneagram</p>
+      <h1>Nine ways of being in the world<br>— not nine boxes that confine you.</h1>
+      <p class="lead">The Enneagram is not a personality test. It is not a ranking, nor a label to wear. It is a <span class="strong">living map</span> that makes legible what, within us, sees, feels, acts — and that shows how the same type can occupy a whole range running from freedom to confinement.</p>
+    </header>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Table of contents</h2>
+      <ol>
+        <li><a href="#m1">The foundational idea</a></li>
+        <li><a href="#m2">The three centers of intelligence</a></li>
+        <li><a href="#m3">Why nine — the founding grid</a></li>
+        <li><a href="#m4">What animates each type</a></li>
+        <li><a href="#m5">A type is not a block — the nine levels</a></li>
+        <li><a href="#m6">A living diagram — the arrows</a></li>
+        <li><a href="#m7">Wings — no one is a pure type</a></li>
+        <li><a href="#m8">The three instinctual subtypes</a></li>
+        <li><a href="#m9">Classic confusions between types</a></li>
+        <li><a href="#m10">The theory — why it works</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════ M1 ═════ -->
+    <section class="mvt" id="m1">
+      <p class="num">Movement 1</p>
+      <h2>The foundational idea</h2>
+      <p class="lead">First, three misunderstandings need to be cleared away. The Enneagram suffers from a misleading reputation, inherited from magazine personality tests. What it actually offers is something else entirely.</p>
+
+      <div class="myths">
+        <div class="myth">
+          <span class="tag no">Not this</span>
+          <p>A ranking that files each person into a box and locks them there. <em>“I'm a 4, that's just how I am.”</em></p>
+        </div>
+        <div class="myth">
+          <span class="tag no">Not this</span>
+          <p>A fixed description of character, like a star sign. <em>“8s are angry, 9s are nice.”</em></p>
+        </div>
+        <div class="myth">
+          <span class="tag no">Not this</span>
+          <p>A label that sums up a person in a few traits.</p>
+        </div>
+        <div class="myth">
+          <span class="tag yes">More like this</span>
+          <p>A map that makes legible the <strong>filter</strong> through which each person sees, feels, and acts. The same type can occupy nine different levels — from the freest to the most contracted. It is not a nature, it is a <em>functioning</em>.</p>
+        </div>
+        <div class="myth">
+          <span class="tag yes">More like this</span>
+          <p>A <strong>dynamic</strong> system: each type evolves, borrows another's qualities in security, slides toward another's flaws under stress. Nothing is static.</p>
+        </div>
+        <div class="myth">
+          <span class="tag yes">More like this</span>
+          <p>An instrument of <strong>liberation</strong>, not confinement: knowing your type means beginning to see what you were doing unknowingly — and so reclaiming the freedom to no longer do it automatically.</p>
+        </div>
+      </div>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>The Enneagram describes a <strong>functioning</strong>, not a nature.</li>
+          <li>Each type can express itself in a healthy, average, or contracted way.</li>
+          <li>The goal is not to freeze into a type, but to gain freedom from it.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M2 ═════ -->
+    <section class="mvt" id="m2">
+      <p class="num">Movement 2</p>
+      <h2>The three centers of intelligence</h2>
+      <p class="lead">Before reaching the nine types, we need to understand the three territories where they take root. Each of us has three intelligences — of the body, the heart, the head — but we favor one of them, and it becomes both our strength and our blindness.</p>
+
+      <div class="threeCenters">
+        <div class="centerCard c-instinct">
+          <p class="focus">Instinctive center</p>
+          <p class="types">8 · 9 · 1</p>
+          <h4>The body, one's place</h4>
+          <p>How I anchor myself, how I hold my place, how I defend myself. Underlying question: <em>“Am I intact, autonomous?”</em></p>
+          <p>Central emotion: <strong>anger</strong>, expressed (8), numbed (9), or turned against oneself (1).</p>
+        </div>
+        <div class="centerCard c-emo">
+          <p class="focus">Emotional center</p>
+          <p class="types">2 · 3 · 4</p>
+          <h4>The heart, the image</h4>
+          <p>How I connect with others, how I see myself, how I am seen. Underlying question: <em>“Who am I for others?”</em></p>
+          <p>Central emotion: <strong>shame</strong>, projected onto others (2), masked by image (3), or cultivated as distinction (4).</p>
+        </div>
+        <div class="centerCard c-mental">
+          <p class="focus">Mental center</p>
+          <p class="types">5 · 6 · 7</p>
+          <h4>The head, the scenario</h4>
+          <p>How I understand, how I guard myself, how I anticipate. Underlying question: <em>“What is going to happen?”</em></p>
+          <p>Central emotion: <strong>fear</strong>, managed through withdrawal (5), through vigilance (6), or through flight toward pleasure (7).</p>
+        </div>
+      </div>
+
+      <p>Each center contains three types that share the same emotional <em>raw material</em>, but handle it differently. Within each triad, one of the three — the one in the middle (3, 6, 9) — is <strong>the most cut off</strong> from the intelligence of its center. The 3 is the most cut off from feeling, the 6 the most cut off from his own autonomous thinking, the 9 the most cut off from his life force. That is why these three types are placed on the central triangle of the diagram.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>Three centers: <strong>Instinctive</strong> (body), <strong>Emotional</strong> (heart), <strong>Mental</strong> (head).</li>
+          <li>Each center has a central emotion: <strong>anger, shame, fear</strong>.</li>
+          <li>In the middle of each triad (3, 6, 9), the type most cut off from the intelligence of its center.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M3 ═════ -->
+    <section class="mvt" id="m3">
+      <p class="num">Movement 3</p>
+      <h2>Why nine — the founding grid</h2>
+      <p class="lead">Why nine types and not seven, twelve, or sixteen? The answer lies in the crossing of two fundamental structures that everyone goes through: <em>where I perceive from</em> (the three centers) and <em>how I respond</em> (three ways of handling others and the world).</p>
+
+      <p>At the start of the twentieth century, psychoanalyst <strong>Karen Horney</strong> observed in her patients three ways of organizing life in relation to others: <em>moving toward</em> (conforming, pleasing, making oneself indispensable), <em>moving against</em> (opposing, dominating, taking), <em>moving away</em> (withdrawing, sheltering oneself). Three strategies, which she called the three basic neurotic “solutions.”</p>
+
+      <p>The three centers × Horney's three solutions = nine logical boxes. Each box corresponds to a type. This is the founding grid of the Enneagram:</p>
+
+      <div class="schema">
+        <div class="horneyGrid">
+          <div class="h"></div>
+          <div class="h">Compliant — moving toward</div>
+          <div class="h">Aggressive — moving against</div>
+          <div class="h">Withdrawn — setting apart</div>
+
+          <div class="triadLabel" style="color:#f9a8d4">Emotional center<br>(2 · 3 · 4)</div>
+          <div class="htype cmp"><span class="tn">2</span><span class="tname">The Giver</span></div>
+          <div class="htype agg"><span class="tn">3</span><span class="tname">The Performer</span></div>
+          <div class="htype wdr"><span class="tn">4</span><span class="tname">The Romantic</span></div>
+
+          <div class="triadLabel" style="color:#7dd3fc">Mental center<br>(5 · 6 · 7)</div>
+          <div class="htype cmp"><span class="tn">6</span><span class="tname">The Loyal Skeptic</span></div>
+          <div class="htype agg"><span class="tn">7</span><span class="tname">The Epicure</span></div>
+          <div class="htype wdr"><span class="tn">5</span><span class="tname">The Observer</span></div>
+
+          <div class="triadLabel" style="color:#fcd34d">Instinctive center<br>(8 · 9 · 1)</div>
+          <div class="htype cmp"><span class="tn">1</span><span class="tname">The Perfectionist</span></div>
+          <div class="htype agg"><span class="tn">8</span><span class="tname">The Protector</span></div>
+          <div class="htype wdr"><span class="tn">9</span><span class="tname">The Mediator</span></div>
+        </div>
+        <p class="caption">Three territories of experience crossed with three ways of responding. What seemed arbitrary becomes logical.</p>
+      </div>
+
+      <h3>A cross-reading — Horney's three families</h3>
+      <p>The grid can also be read vertically, grouping together the types that share the same solution:</p>
+
+      <div class="panel">
+        <p><strong>The compliant types — 1, 2, 6.</strong> These are the types subject to an inner voice of duty: for the 1, the moral ideal; for the 2, the duty to be loving; for the 6, what authority (internal or external) expects. They seek the approval of an inner authority — the superego, in Freudian terms.</p>
+        <p><strong>The aggressive types — 3, 7, 8.</strong> These are the types that project their ego into their environment: competition (3), acquisition of experiences (7), domination (8). They take their place rather than asking for it.</p>
+        <p><strong>The withdrawn types — 4, 5, 9.</strong> These are the types that withdraw to preserve something: unique identity (4), mental autonomy (5), inner peace (9). They absent themselves — physically, mentally, or emotionally.</p>
+      </div>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>Nine types = <strong>3 centers × 3 solutions</strong> (compliant, aggressive, withdrawn).</li>
+          <li>Each triad contains one type of each solution.</li>
+          <li>Compliant types obey an inner voice; aggressive types impose their own law; withdrawn types set themselves apart.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M4 ═════ -->
+    <section class="mvt" id="m4">
+      <p class="num">Movement 4</p>
+      <h2>What animates each type</h2>
+      <p class="lead">Beneath every surface behavior lies a silent pair: a <strong>basic fear</strong> that took hold early, and a <strong>basic desire</strong> that answers it. The whole mechanics of the type revolves around this pair.</p>
+
+      <div class="fearDesire">
+        <div class="fdHead">
+          <div class="h1">Type</div>
+          <div class="h2">Basic fear</div>
+          <div class="h3">Basic desire</div>
+        </div>
+        <div class="fdrow"><div class="n">1</div><div class="fear">Being bad, defective, corrupt</div><div class="desire">Being good, right, of integrity</div></div>
+        <div class="fdrow"><div class="n">2</div><div class="fear">Being unworthy of love</div><div class="desire">Being loved for oneself</div></div>
+        <div class="fdrow"><div class="n">3</div><div class="fear">Being without inherent value</div><div class="desire">Having value, being admired</div></div>
+        <div class="fdrow"><div class="n">4</div><div class="fear">Having no identity of one's own</div><div class="desire">Being unique, authentic, oneself</div></div>
+        <div class="fdrow"><div class="n">5</div><div class="fear">Being incapable, overwhelmed, invaded</div><div class="desire">Understanding, being competent</div></div>
+        <div class="fdrow"><div class="n">6</div><div class="fear">Being without support, without guidance</div><div class="desire">Finding security, a foothold</div></div>
+        <div class="fdrow"><div class="n">7</div><div class="fear">Being trapped in suffering</div><div class="desire">Being satisfied, free, fulfilled</div></div>
+        <div class="fdrow"><div class="n">8</div><div class="fear">Being controlled, harmed, submissive</div><div class="desire">Protecting oneself and one's own</div></div>
+        <div class="fdrow"><div class="n">9</div><div class="fear">Loss, separation, conflict</div><div class="desire">Inner peace, union</div></div>
+      </div>
+
+      <h3>The tragic law: we produce what we fear</h3>
+      <p>The most striking observation of clinicians who work with the Enneagram: <strong>in pursuing what it desires most through the means of its personality, each type produces exactly what it fears most</strong>.</p>
+
+      <div class="panel feature">
+        <p>The <strong>2</strong> desperately seeks to be loved, but by making themselves indispensable they become overbearing and end up alone, bitter.</p>
+        <p>The <strong>3</strong> seeks recognition and value, but by building their image they drift away from themselves and feel empty.</p>
+        <p>The <strong>5</strong> accumulates knowledge to feel capable, and remains paralyzed when it comes to acting.</p>
+        <p>The <strong>6</strong> builds safeguards, backup plans, alliances — and remains anxious.</p>
+        <p>The <strong>9</strong> avoids all conflict to preserve their peace, and gradually drifts away from themselves.</p>
+        <p>The <strong>1</strong> aims for moral integrity, and lives in permanent inner war with their own imperfections.</p>
+      </div>
+
+      <p>This paradox is perhaps the single most useful aspect of the Enneagram. It points out that <strong>the solutions of our personality are themselves the problem</strong>. And that getting out of it does not call for more effort in the same direction, but a change of perspective.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>Beneath each type: <strong>a basic fear</strong> and <strong>a basic desire</strong>.</li>
+          <li>This pair took hold early and structures the entire functioning.</li>
+          <li><strong>Tragic law</strong>: we produce what we fear while pursuing what we desire.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M5 ═════ -->
+    <section class="mvt" id="m5">
+      <p class="num">Movement 5</p>
+      <h2>A type is not a block — the nine levels</h2>
+      <p class="lead">This is probably the least understood idea, and the most powerful: the same type can express itself across <strong>nine levels of psychological health</strong>, from the freest to the most contracted. Two people of the same type can appear to belong to two different worlds — because they do not occupy the same level of the continuum.</p>
+
+      <p>Each type follows a trajectory. At the top, we find its free, generous, creative quality. In the middle, its characteristic defensive mechanics. At the bottom, its pathological version. <strong>These are not three different types — it is the same type at three moments of its functioning.</strong></p>
+
+      <div class="levels">
+        <div class="head">
+          <h4>The 9-level continuum — example: type 2 (The Giver)</h4>
+          <span class="ex">read from top to bottom</span>
+        </div>
+
+        <p class="levelGroup healthy">Healthy levels (1 — 3)</p>
+        <div class="ladder">
+          <div class="lstep healthy"><div class="ln">1</div><div class="lname"><strong>The selfless altruist</strong><span>loves unconditionally, without forgetting or denying themselves</span></div></div>
+          <div class="lstep healthy"><div class="ln">2</div><div class="lname"><strong>The caring person</strong><span>warmth, empathy, sensitivity to others' needs</span></div></div>
+          <div class="lstep healthy"><div class="ln">3</div><div class="lname"><strong>The nurturing helper</strong><span>actively supports and encourages, knows how to receive</span></div></div>
+        </div>
+
+        <p class="levelGroup average">Average levels (4 — 6)</p>
+        <div class="ladder">
+          <div class="lstep average"><div class="ln">4</div><div class="lname"><strong>The demonstrative friend</strong><span>begins to expect something in return, makes themselves visible</span></div></div>
+          <div class="lstep average"><div class="ln">5</div><div class="lname"><strong>The possessive intimate</strong><span>invests heavily in the other, cannot bear withdrawal, makes themselves needed</span></div></div>
+          <div class="lstep average"><div class="ln">6</div><div class="lname"><strong>The self-inflating saint</strong><span>pride in their generosity, awaits a recognition that never comes</span></div></div>
+        </div>
+
+        <p class="levelGroup unhealthy">Contracted levels (7 — 9)</p>
+        <div class="ladder">
+          <div class="lstep unhealthy"><div class="ln">7</div><div class="lname"><strong>The manipulator in denial</strong><span>sets conditions under the guise of love</span></div></div>
+          <div class="lstep unhealthy"><div class="ln">8</div><div class="lname"><strong>The coercive dominator</strong><span>forces their help on others, blames them for their ingratitude</span></div></div>
+          <div class="lstep unhealthy"><div class="ln">9</div><div class="lname"><strong>The psychosomatic victim</strong><span>somatizes their own distress to obtain the attention they missed</span></div></div>
+        </div>
+      </div>
+
+      <h3>The tipping point and the redeeming grace</h3>
+      <p>Between level 3 and level 4, there is a tipping moment: a <strong>characteristic temptation</strong> specific to each type which, once followed, causes the slide into the mechanics. For the 2, it is feeling <em>“more loving than others.”</em> For the 5, withdrawing into expertise rather than acting. For the 9, choosing inner status quo rather than commitment.</p>
+
+      <p>Conversely, even very low on the continuum, each type retains a <strong>redeeming grace</strong> — a residual quality that can serve as a foothold for climbing back up. For the 2, it is their capacity to feel the other. For the 5, their lucidity. For the 9, their fundamental kindness.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>The same type expresses itself across <strong>9 levels</strong>: healthy (1-3), average (4-6), contracted (7-9).</li>
+          <li>Two people of the same type can seem very different — different levels.</li>
+          <li>The <strong>tipping point</strong> (characteristic temptation) is the key moment to recognize.</li>
+          <li>Even at the lowest point, a <strong>redeeming grace</strong> remains accessible.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M6 ═════ -->
+    <section class="mvt" id="m6">
+      <p class="num">Movement 6</p>
+      <h2>A living diagram — the arrows</h2>
+      <p class="lead">The Enneagram diagram is not a static wheel. Lines run through it, connecting each type to two others: the one it <em>borrows from in security</em>, and the one it <em>borrows from under stress</em>. This is the dynamic dimension of the system — the one that accounts for our temporary transformations.</p>
+
+      <div class="schema">
+        <svg viewBox="0 0 720 720" aria-label="Diagram with integration and disintegration arrows">
+          <defs>
+            <marker id="arrowInteg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#86efac"/>
+            </marker>
+            <marker id="arrowDis" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#fda4af"/>
+            </marker>
+          </defs>
+          <!-- Cercle externe -->
+          <circle cx="360" cy="360" r="260" fill="none" stroke="rgba(125,211,252,.3)" stroke-width="2"/>
+
+          <!-- Triangle 9-3-6 (intégration sens : 9→3→6→9 ; désintégration sens : 9→6→3→9) -->
+          <!-- Lignes intégration (vertes) — sens : 1→7, 7→5, 5→8, 8→2, 2→4, 4→1 (hexagone)
+                                                  3→6, 6→9, 9→3 (triangle) -->
+          <!-- positions points : 9=(360,100), 1=(521,159), 2=(596,310), 3=(577,478),
+                                   4=(410,590), 5=(310,590), 6=(143,478), 7=(124,310), 8=(199,159) -->
+
+          <!-- Désintégration : 1→4, 4→2, 2→8, 8→5, 5→7, 7→1, 3→9, 9→6, 6→3 -->
+          <g stroke="rgba(253,164,175,.6)" stroke-width="1.6" fill="none" stroke-dasharray="6 4" opacity=".75">
+            <line x1="521" y1="159" x2="410" y2="590" marker-end="url(#arrowDis)"/>
+            <line x1="410" y1="590" x2="596" y2="310" marker-end="url(#arrowDis)"/>
+            <line x1="596" y1="310" x2="199" y2="159" marker-end="url(#arrowDis)"/>
+            <line x1="199" y1="159" x2="310" y2="590" marker-end="url(#arrowDis)"/>
+            <line x1="310" y1="590" x2="124" y2="310" marker-end="url(#arrowDis)"/>
+            <line x1="124" y1="310" x2="521" y2="159" marker-end="url(#arrowDis)"/>
+            <line x1="577" y1="478" x2="360" y2="100" marker-end="url(#arrowDis)"/>
+            <line x1="360" y1="100" x2="143" y2="478" marker-end="url(#arrowDis)"/>
+            <line x1="143" y1="478" x2="577" y2="478" marker-end="url(#arrowDis)"/>
+          </g>
+
+          <!-- Intégration (vertes) — sens inverse : 1→7, 7→5, 5→8, 8→2, 2→4, 4→1 / 3→6, 6→9, 9→3 -->
+          <g stroke="rgba(134,239,172,.7)" stroke-width="1.8" fill="none">
+            <line x1="521" y1="159" x2="124" y2="310" marker-end="url(#arrowInteg)"/>
+            <line x1="124" y1="310" x2="310" y2="590" marker-end="url(#arrowInteg)"/>
+            <line x1="310" y1="590" x2="199" y2="159" marker-end="url(#arrowInteg)"/>
+            <line x1="199" y1="159" x2="596" y2="310" marker-end="url(#arrowInteg)"/>
+            <line x1="596" y1="310" x2="410" y2="590" marker-end="url(#arrowInteg)"/>
+            <line x1="410" y1="590" x2="521" y2="159" marker-end="url(#arrowInteg)"/>
+            <line x1="577" y1="478" x2="143" y2="478" marker-end="url(#arrowInteg)"/>
+            <line x1="143" y1="478" x2="360" y2="100" marker-end="url(#arrowInteg)"/>
+            <line x1="360" y1="100" x2="577" y2="478" marker-end="url(#arrowInteg)"/>
+          </g>
+
+          <!-- Points -->
+          <g fill="rgba(15,26,51,.92)" stroke="rgba(125,211,252,.6)" stroke-width="2">
+            <circle cx="360" cy="100" r="24"/>
+            <circle cx="521" cy="159" r="24"/>
+            <circle cx="596" cy="310" r="24"/>
+            <circle cx="577" cy="478" r="24"/>
+            <circle cx="410" cy="590" r="24"/>
+            <circle cx="310" cy="590" r="24"/>
+            <circle cx="143" cy="478" r="24"/>
+            <circle cx="124" cy="310" r="24"/>
+            <circle cx="199" cy="159" r="24"/>
+          </g>
+          <g fill="#fff" font-size="20" font-weight="850" text-anchor="middle" dominant-baseline="middle">
+            <text x="360" y="100">9</text>
+            <text x="521" y="159">1</text>
+            <text x="596" y="310">2</text>
+            <text x="577" y="478">3</text>
+            <text x="410" y="590">4</text>
+            <text x="310" y="590">5</text>
+            <text x="143" y="478">6</text>
+            <text x="124" y="310">7</text>
+            <text x="199" y="159">8</text>
+          </g>
+
+          <!-- Légende -->
+          <g font-size="12" font-weight="700">
+            <line x1="40" y1="690" x2="80" y2="690" stroke="#86efac" stroke-width="2"/>
+            <text x="88" y="694" fill="#86efac">Integration (security)</text>
+            <line x1="270" y1="690" x2="310" y2="690" stroke="#fda4af" stroke-width="1.6" stroke-dasharray="6 4"/>
+            <text x="318" y="694" fill="#fda4af">Disintegration (stress)</text>
+          </g>
+        </svg>
+        <p class="caption">Each type takes the green path when it flourishes, the red path when it contracts. A stressed 1 takes on the flaws of the 4; a secure 1 takes on the qualities of the 7.</p>
+      </div>
+
+      <div class="arrowsLegend">
+        <div class="col integ">
+          <h4>In security — the arrow of integration</h4>
+          <p>When we feel carried, supported, free of pressure, we spontaneously begin drawing on the <strong>qualities</strong> of another type. It's not that we become that type — we pick up its best aspects, which complement our own.</p>
+          <p class="seq">1→7 · 2→4 · 3→6 · 4→1 · 5→8 · 6→9 · 7→5 · 8→2 · 9→3</p>
+        </div>
+        <div class="col disinteg">
+          <h4>Under stress — the arrow of disintegration</h4>
+          <p>When pressure exceeds what we know how to handle, we tip over into the <strong>flaws</strong> of another type. This is often where we recognize ourselves: we catch ourselves doing things that don't feel like us — this is our stress arrow.</p>
+          <p class="seq">1→4 · 2→8 · 3→9 · 4→2 · 5→7 · 6→3 · 7→1 · 8→5 · 9→6</p>
+        </div>
+      </div>
+
+      <p>A remarkable asymmetry: disintegration is <strong>self-limiting</strong> (the stress eventually stops, or breaks the person); <strong>integration is open-ended</strong> — there is no ceiling to maturation. A 4 who integrates toward 1 does not merely borrow a few traits from the 1; they durably gain the capacity for organization, creative discipline, commitment.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>Each type is connected to <strong>two others</strong> by the arrows.</li>
+          <li><strong>In security</strong>: we borrow the qualities of another type.</li>
+          <li><strong>Under stress</strong>: we tip into the flaws of another type.</li>
+          <li>Integration has no ceiling; disintegration is self-limiting.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M7 ═════ -->
+    <section class="mvt" id="m7">
+      <p class="num">Movement 7</p>
+      <h2>Wings — no one is a pure type</h2>
+      <p class="lead">No one is a “pure” 4, 7, or 1. Each of us leans, more or less strongly, toward one of the two types adjacent to our own on the diagram. This is what we call the <strong>wing</strong>. It modulates the base type without replacing it.</p>
+
+      <p>A type 4 is necessarily neighbor to the 3 and the 5. They may have a <strong>3 wing</strong> (4w3) — in which case they will be more extroverted, more image-oriented, more energetic, more socially connected than the 4w5. Or they may have a <strong>5 wing</strong> (4w5) — in which case they will be more introverted, more mental, more solitary, more contemplative. Two 4s, distinct in their overall flavor.</p>
+
+      <div class="wings">
+        <div class="wingCard">
+          <h4>Example: 4 wing 3 (4w3)</h4>
+          <p>The Romantic with a Performer coloring. More visible, more expressive, more stylish, more inclined to put themselves on display. Often found in the visual arts, fashion, performance. Tension between authenticity (4) and image (3).</p>
+        </div>
+        <div class="wingCard">
+          <h4>Example: 4 wing 5 (4w5)</h4>
+          <p>The Romantic with an Observer coloring. More introverted, more intellectual, more solitary. Often found in philosophy, writing, research. Tension between emotional depth (4) and withdrawal (5).</p>
+        </div>
+      </div>
+
+      <p>The wing can be <strong>light</strong> (a 4 with a touch of 5), <strong>moderate</strong> (a clear-cut 4w5), or <strong>heavy</strong> (a 4 and a 5 almost in equal parts). This nuance alone already produces 18 possible subtypes, which fragment further into finer combinations once the instinctual variants are added.</p>
+
+      <p>The classic objection to the system — <em>“people can't be reduced to nine boxes”</em> — loses its edge here: the Enneagram is not a 9-box grid, it is a fine-grained combinatorics that can describe hundreds of distinct configurations.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>No one is a pure type: everyone leans toward <strong>one of the two adjacent types</strong>.</li>
+          <li>The wing modulates the base type — it does not replace it.</li>
+          <li>Combined with the type, wings produce <strong>18 distinct subtypes</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M8 ═════ -->
+    <section class="mvt" id="m8">
+      <p class="num">Movement 8</p>
+      <h2>The three instinctual subtypes</h2>
+      <p class="lead">There is a second nuance, independent of type, that explains why two people of the same type can seem to live in two different worlds: the <strong>dominant instinct</strong>. Three major instincts regulate our relationship to life, and one of the three predominates in each of us.</p>
+
+      <div class="instincts">
+        <div class="iCard sp">
+          <p class="sub">Self-preservation</p>
+          <h4>The body, the material</h4>
+          <p>Central concern: comfort, security, health, resources, material environment.</p>
+          <p class="ex">Will notice the quality of lighting, the temperature of a room, physical tiredness, the cost of things. Likes their nest to be in order.</p>
+        </div>
+        <div class="iCard so">
+          <p class="sub">Social</p>
+          <h4>The group, one's place</h4>
+          <p>Central concern: belonging, status, contribution, what happens collectively.</p>
+          <p class="ex">Wants to know who does what, what the group thinks, where they themselves stand. Likes to be recognized for their contribution.</p>
+        </div>
+        <div class="iCard sx">
+          <p class="sub">Sexual / one-to-one</p>
+          <h4>One-to-one, intensity</h4>
+          <p>Central concern: intense connection with a person, a cause, an all-consuming experience.</p>
+          <p class="ex">Seeks the contact that transforms. May neglect self-preservation and social concerns when captivated. Lives in peaks.</p>
+        </div>
+      </div>
+
+      <p>Combined with the 9 types, the 3 instincts give <strong>27 variants</strong>. This is what explains why a self-preservation type 6 (preoccupied with material security, the reliability of daily life) does not resemble a sexual type 6 (seeking a strong guide or partner in whom to place their loyalty), even though they share the same deep structure.</p>
+
+      <p>The dominant instinct is not the type. It is a <em>second dimension</em>. The same person remains, for instance, a 6 — but the self-preservation 6 and the sexual 6 have very different surface behaviors.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>Three instincts: <strong>self-preservation</strong>, <strong>social</strong>, <strong>sexual/one-to-one</strong>.</li>
+          <li>One is dominant in each of us, independent of type.</li>
+          <li>9 types × 3 instincts = <strong>27 distinct variants</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M9 ═════ -->
+    <section class="mvt" id="m9">
+      <p class="num">Movement 9</p>
+      <h2>Classic confusions between types</h2>
+      <p class="lead">This is probably the most useful passage on the whole page. All types can appear <em>angry, seductive, generous, anxious, authoritarian, withdrawn</em> — for profoundly different reasons. The golden rule for not getting it wrong: <strong>discriminate on motivation, never on surface behavior</strong>.</p>
+
+      <h3>A few emblematic confusions</h3>
+
+      <div class="confuse">
+        <div class="confRow">
+          <div class="pair">1 ↔ 3</div>
+          <div>
+            <h4>Both organized, efficient, high-performing</h4>
+            <p><span class="key">The 1</span> is driven by a <strong>moral ideal</strong>: what is right, what must be done correctly. Their emotion is contained, sometimes irritated. They feel at war with their own imperfections.</p>
+            <p><span class="key">The 3</span> is driven by <strong>achievement and image</strong>: what is valued, what shows well. Their emotion is often absent behind an effective charm. They feel empty once success is taken away.</p>
+          </div>
+        </div>
+
+        <div class="confRow">
+          <div class="pair">4 ↔ 6</div>
+          <div>
+            <h4>Both anxious, self-doubting, sensitive</h4>
+            <p><span class="key">The 4</span> seeks a <strong>unique identity</strong>. Their anxiety is about the authenticity of the self: <em>“am I really me?”</em> They look inward.</p>
+            <p><span class="key">The 6</span> seeks a reliable <strong>external support</strong>. Their anxiety is about security: <em>“who can be trusted?”</em> They scan their environment.</p>
+          </div>
+        </div>
+
+        <div class="confRow">
+          <div class="pair">5 ↔ 9</div>
+          <div>
+            <h4>Both withdrawn, low-presence, observant</h4>
+            <p><span class="key">The 5</span> withdraws into <strong>intense thought</strong>. Their withdrawal is active: they analyze, they accumulate, they build their mental territory.</p>
+            <p><span class="key">The 9</span> withdraws into an <strong>absence of engagement</strong>. Their withdrawal is passive: they drift away, they stall, they let things slide.</p>
+          </div>
+        </div>
+
+        <div class="confRow">
+          <div class="pair">2 ↔ 9</div>
+          <div>
+            <h4>Both in service, attentive to others</h4>
+            <p><span class="key">The 2</span> steps forward, offers, intervenes. Service that is <strong>active and intrusive</strong>. They need the other to recognize their gift.</p>
+            <p><span class="key">The 9</span> fades back, accommodates, smooths over. Service that is <strong>passive and conciliatory</strong>. They prefer not to be noticed.</p>
+          </div>
+        </div>
+
+        <div class="confRow">
+          <div class="pair">6 ↔ 9</div>
+          <div>
+            <h4>Both in loyalty, faithful to the group</h4>
+            <p><span class="key">The 6</span> is loyal but <strong>vigilant</strong>. They constantly scan, doubt, check. Their loyalty is anxious.</p>
+            <p><span class="key">The 9</span> is loyal but <strong>avoidant</strong>. They align to preserve peace. Their loyalty is silent.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="traps">The three classic identification traps</h3>
+      <p>When looking for your type, you almost inevitably fall into one of these three traps. Naming them helps avoid them.</p>
+
+      <ol class="trapList">
+        <li><strong>Choosing the type you'd like to be.</strong> The 8 appeals a great deal to those who would like to have that strength. The 4 attracts those who dream of a poetic uniqueness. But your type is what you <em>are</em>, not what you idealize.</li>
+        <li><strong>Identifying with a single trait.</strong> <em>“I'm nice, so I must be a 2”</em> — when all types can be nice. A single trait is never enough: it is the coherence of the whole that reveals the type.</li>
+        <li><strong>Shopping across several descriptions.</strong> <em>“I'll take what I like from the 4, what resembles me from the 9”</em>. But the traits of a type form a <em>coherent whole</em>: they hold together through their shared motivation. Picking and choosing across several types cancels out the grid.</li>
+      </ol>
+
+      <p>The right method: read the whole. Identify the type that describes not your surface behavior but your <em>deep motivation</em>. Watch for the defenses that arise as you read (a shiver down the spine, a knot in the stomach — these are signals). Be patient: identification sharpens over time, and it is normal to get it wrong at first.</p>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>All types can <strong>share surface behaviors</strong>.</li>
+          <li>Discriminate on <strong>deep motivation</strong>, never on an isolated trait.</li>
+          <li>Three traps: choosing what you want to be, stopping at a single trait, picking and choosing across several descriptions.</li>
+          <li>Identification sharpens <strong>over time</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ M10 ═════ -->
+    <section class="mvt" id="m10">
+      <p class="num">Movement 10 — to go further</p>
+      <h2>The theory — why it works</h2>
+      <p class="lead">This last movement is for those who want to understand the theoretical foundations. Why is this typology so accurate? Its coherence is not an isolated intuition: it can be set alongside the great models of modern psychology, which it meets without being reduced to any one of them.</p>
+
+      <p>The best authors who have theorized the Enneagram — particularly Riso and Hudson in their <em>Personality Types</em> — show that it operates <strong>simultaneously at several levels of abstraction</strong>. It contradicts no major psychological model of the twentieth century; it offers an integration of them.</p>
+
+      <div class="theory">
+        <div class="theoryCard">
+          <h4>Karen Horney and the three solutions</h4>
+          <p>We saw this in movement 3. Horney clinically observed three ways of organizing life in relation to others: moving toward (compliant), moving against (aggressive), moving away (withdrawn). Crossed with the three centers, this grid naturally produces nine types. It is the most direct and most operational explanation of the diagram's structure.</p>
+        </div>
+
+        <div class="theoryCard">
+          <h4>Sigmund Freud — id, ego, superego</h4>
+          <p>The great Freudian structure (drive, self-image, moral conscience) finds a resonance in the three centers. The instinctive center (8-9-1) relates to raw drive and its control; the emotional center (2-3-4) to self-image and its relation to others; the mental center (5-6-7) to anticipation and caution. The Enneagram shows how these abstract structures crystallize into nine concrete modes of functioning.</p>
+        </div>
+
+        <div class="theoryCard">
+          <h4>Carl Jung — functions and attitudes</h4>
+          <p>Jung distinguished four psychological functions (thinking, feeling, sensation, intuition) and two attitudes (introversion, extraversion). But his typology left little room for instinctive <em>action</em> as an autonomous register. The Enneagram, by positing the instinctive center as one of the three great territories, completes without contradicting — it integrates Jung into a broader framework.</p>
+        </div>
+
+        <div class="theoryCard">
+          <h4>Modern clinical categories</h4>
+          <p>Contemporary psychiatric manuals describe about a dozen personality disorders (paranoid, narcissistic, avoidant, dependent, etc.). Each finds its correspondence in the contracted version of an Enneagram type. But unlike the manuals, the Enneagram does not only describe pathologies: it <strong>integrates the healthy, the average, and the contracted on the same continuum</strong>. The same type can be very free — something clinical nosography has no way of saying.</p>
+        </div>
+
+        <div class="theoryCard">
+          <h4>The meaning of this convergence</h4>
+          <p>The more accurate a typology is, the more grounds we have to feel that its categories are not artificially imposed on human nature, but reflect something real within it. If the same system can be read through Horney, Freud, Jung, and clinical psychiatry without any one of them containing it entirely, it is because it operates at a more fundamental level than any of these models taken alone. The Enneagram's categories seem <em>discovered</em> rather than invented — that is its hallmark.</p>
+        </div>
+      </div>
+
+      <div class="keypoints">
+        <p class="label">Key points</p>
+        <ul>
+          <li>The Enneagram contradicts no major psychological model — it <strong>integrates</strong> them.</li>
+          <li>It operates <strong>simultaneously at several levels</strong> (interpersonal, intrapsychic, dynamic, clinical).</li>
+          <li>Its solidity rests on this convergence, which sets it apart from more partial typologies.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p>Understanding your type is not freezing into a role.<br><strong>It is beginning to see the role you were playing unknowingly — and reclaiming the freedom to step out of it.</strong></p>
+      <div class="actions">
+        <a class="btn" href="/en/test-enneagramme-sans-indice.html">Take the test</a>
+        <a class="btn" href="/en/index.html">Go to the diagram</a>
+      </div>
+    </section>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Journey — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    [hidden]{display:none!important}
+    .wrap{max-width:760px;margin:0 auto;padding:0 18px;min-height:100vh;display:flex;flex-direction:column}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0 8px}
+    .topBar a{font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;text-decoration:none}
+    .topBar a:hover{color:var(--text)}
+
+    /* Fil de progression */
+    .trail{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 0 0;flex-wrap:wrap}
+    .trail .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.14);transition:all .4s ease}
+    .trail .dot.done{background:rgba(125,211,252,.5)}
+    .trail .dot.cur{background:#7dd3fc;width:22px;border-radius:4px;box-shadow:0 0 12px rgba(125,211,252,.5)}
+
+    /* Scène */
+    .scene{flex:1;display:flex;flex-direction:column;justify-content:center;padding:30px 0 50px;animation:fadeUp .5s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    .kicker{
+      text-align:center;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;
+      color:var(--muted);font-weight:700;margin:0 0 18px;
+    }
+
+    .situation{
+      font-size:clamp(20px,3.2vw,26px);line-height:1.45;text-align:center;
+      color:#fff;font-weight:600;margin:0 auto 8px;max-width:30ch;
+      letter-spacing:.2px;
+    }
+    .situation em{font-style:italic;color:#cfe9ff;font-weight:600}
+    .prompt{
+      text-align:center;color:var(--muted);font-size:15.5px;line-height:1.5;
+      margin:0 auto 28px;max-width:42ch;
+    }
+
+    .options{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:0 auto;width:100%}
+    .option{
+      text-align:left;padding:16px 20px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.035);
+      color:#e8eeff;font-size:15.5px;line-height:1.5;cursor:pointer;
+      transition:transform .12s ease, background .18s ease, border-color .18s ease;
+      position:relative;
+    }
+    @media(hover:hover){
+      .option:hover{
+        background:rgba(125,211,252,.08);
+        border-color:rgba(125,211,252,.35);
+        transform:translateY(-2px);
+      }
+    }
+    .option:active{transform:translateY(0)}
+    .option.picked{
+      background:linear-gradient(135deg,rgba(125,211,252,.28),rgba(196,181,253,.18));
+      border-color:rgba(125,211,252,.7);
+      color:#fff;transform:translateY(0);
+      box-shadow:0 0 18px rgba(125,211,252,.35);
+    }
+    .option .lead{display:block}
+
+    /* Embarquement */
+    .embark{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 0 60px;animation:fadeUp .6s ease}
+    .embark .glyph{
+      font-size:42px;color:#7dd3fc;letter-spacing:10px;margin-bottom:22px;
+      text-shadow:0 0 30px rgba(125,211,252,.4);
+    }
+    .embark h1{
+      margin:0 0 18px;font-size:clamp(30px,5vw,44px);letter-spacing:.3px;line-height:1.1;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 55%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .embark p{color:#cfe9ff;font-size:16.5px;line-height:1.65;max-width:46ch;margin:0 0 14px}
+    .embark p.muted{color:var(--muted);font-size:14.5px;max-width:44ch}
+    .embark .startBtn{
+      margin-top:26px;padding:15px 32px;border-radius:999px;
+      border:1px solid rgba(125,211,252,.45);
+      background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.12));
+      color:#fff;font-weight:800;font-size:16px;cursor:pointer;letter-spacing:.3px;
+      transition:transform .12s ease, background .18s ease;
+    }
+    .embark .startBtn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.2))}
+
+    /* Apparition progressive, paragraphe par paragraphe */
+    .reveal-step{opacity:0;transform:translateY(24px);transition:opacity 1s ease, transform 1s ease}
+    .reveal-step.shown{opacity:1;transform:translateY(0)}
+
+    .embark .example{
+      font-size:14.5px;color:var(--muted);max-width:44ch;font-style:italic;
+      border-left:2px solid rgba(125,211,252,.3);padding-left:14px;text-align:left;
+    }
+    .embark .quote{
+      margin:6px 0 4px;max-width:44ch;border:0;
+      font-size:16px;line-height:1.6;color:#cfe9ff;font-style:italic;
+    }
+    .embark .quote cite{
+      display:block;margin-top:10px;font-style:normal;font-size:13px;
+      letter-spacing:1px;color:var(--muted);
+    }
+
+    /* Transition / révélation */
+    .reveal{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px 0 50px;animation:fadeUp .6s ease}
+    .reveal .kicker{margin-bottom:10px}
+    .reveal h2{margin:0 0 8px;font-size:clamp(26px,4vw,36px);letter-spacing:.3px}
+    .reveal .centerName,.reveal .typeName{font-weight:850}
+    .reveal .instinctif{color:#fbbf24}
+    .reveal .emotionnel{color:#f472b6}
+    .reveal .mental{color:#60a5fa}
+    .reveal p{color:#cfe9ff;font-size:16px;line-height:1.65;max-width:50ch;margin:14px 0 0}
+    .reveal .small{color:var(--muted);font-size:14px;max-width:46ch;margin-top:18px}
+
+    /* Diagramme */
+    .diagram{width:min(360px,82vw);margin:6px auto 4px;display:block}
+    .diagram .ring{fill:none;stroke:rgba(125,211,252,.18);stroke-width:2}
+    .diagram .node circle{
+      fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.18);stroke-width:2;
+      transition:all .6s ease;
+    }
+    .diagram .node text{
+      fill:rgba(255,255,255,.4);font-size:26px;font-weight:800;
+      text-anchor:middle;dominant-baseline:central;transition:all .6s ease;
+    }
+    /* centre allumé */
+    .diagram .node.inCenter circle{fill:rgba(125,211,252,.10)}
+    .diagram .node.inCenter.instinctif circle{stroke:#fbbf24;fill:rgba(251,191,36,.12)}
+    .diagram .node.inCenter.emotionnel circle{stroke:#f472b6;fill:rgba(244,114,182,.12)}
+    .diagram .node.inCenter.mental circle{stroke:#60a5fa;fill:rgba(96,165,250,.12)}
+    .diagram .node.inCenter text{fill:#fff}
+    /* type final */
+    .diagram .node.active circle{stroke-width:3.5}
+    .diagram .node.active.instinctif circle{stroke:#fbbf24;fill:rgba(251,191,36,.28);filter:drop-shadow(0 0 10px rgba(251,191,36,.6))}
+    .diagram .node.active.emotionnel circle{stroke:#f472b6;fill:rgba(244,114,182,.28);filter:drop-shadow(0 0 10px rgba(244,114,182,.6))}
+    .diagram .node.active.mental circle{stroke:#60a5fa;fill:rgba(96,165,250,.28);filter:drop-shadow(0 0 10px rgba(96,165,250,.6))}
+    .diagram .node.active text{fill:#fff;font-size:30px}
+    .diagram .arrowSec{stroke:rgba(134,239,172,.8);stroke-width:2.5;fill:none;opacity:0;transition:opacity 1s ease}
+    .diagram .arrowStr{stroke:rgba(253,164,175,.8);stroke-width:2.5;fill:none;opacity:0;transition:opacity 1s ease}
+    .diagram .arrowSec.show,.diagram .arrowStr.show{opacity:1}
+
+    .dynBox{
+      display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;width:100%;
+    }
+    .dynCard{
+      flex:1 1 200px;max-width:260px;text-align:left;padding:14px 16px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);
+    }
+    .dynCard h4{margin:0 0 6px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+    .dynCard.detente h4{color:#86efac}
+    .dynCard.stress h4{color:#fda4af}
+    .dynCard p{color:#cfe9ff;font-size:14px;line-height:1.55;margin:0;max-width:none}
+
+    .reveal .actions{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .reveal .btn{
+      padding:12px 22px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);
+      color:var(--text);font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;
+      transition:background .14s ease,border-color .14s ease;
+    }
+    .reveal .btn:hover{background:rgba(255,255,255,.12)}
+    .reveal .btn.primary{border-color:rgba(125,211,252,.45);background:rgba(125,211,252,.16);color:#bae6fd}
+
+    .continueBtn{
+      margin-top:24px;padding:14px 30px;border-radius:999px;
+      border:1px solid rgba(125,211,252,.45);
+      background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.12));
+      color:#fff;font-weight:800;font-size:15px;cursor:pointer;
+      transition:transform .12s ease, background .18s ease;
+    }
+    .continueBtn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.2))}
+
+    .siteFooter{text-align:center;color:var(--muted);font-size:12px;padding:16px 0 24px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/voyage-enneagramme.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/voyage-enneagramme.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/voyage-enneagramme.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a href="/en/">← Home</a>
+      <span class="trail" id="trail" hidden></span>
+      <a href="/en/test-enneagramme-sans-indice.html">Quick test</a>
+    </div>
+
+    <!-- Embarquement -->
+    <section class="embark" id="embark">
+      <div class="glyph reveal-step">◌</div>
+      <h1 class="reveal-step">The Inner Journey</h1>
+      <p class="reveal-step">Here, there's no test to pass, no boxes to tick to define yourself. Just a journey, through scenes from your everyday life.</p>
+      <p class="reveal-step">Along the way, your profile takes shape, little by little — your unique way of functioning, what carries you forward, what weighs on you when stress rises.</p>
+      <p class="reveal-step">Your type is your starting point: it doesn't change over the course of your life. But it can be lived in a thousand different ways. Someone who has matured deeply remains the same type — they simply express its best, freed from their automatic patterns.</p>
+      <p class="reveal-step example">For example: someone who was once very much a perfectionist, now more flexible and at peace, remains deeply of this type — they have simply moved beyond its rigidity, without losing any of their sense of what is right.</p>
+      <blockquote class="reveal-step quote">“The personality mistakes imitation for the real. The journey begins when we dare to look behind the image.”<cite>— A.H. Almaas</cite></blockquote>
+      <p class="reveal-step muted">Simply answer with your first instinct, without worrying about the “right answer”. There isn't one. Let yourself be carried along.</p>
+      <button class="startBtn reveal-step" id="startBtn">Begin the journey →</button>
+    </section>
+
+    <!-- Scène (injectée par JS) -->
+    <section class="scene" id="scene" hidden></section>
+
+    <!-- Révélation (centre, puis type final) -->
+    <section class="reveal" id="reveal" hidden></section>
+
+    <footer class="siteFooter">A journey, not a verdict.</footer>
+  </div>
+
+  <script>
+  // ============================================================
+  // MOTEUR DE LECTURE INVISIBLE
+  // ============================================================
+  const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+  const CENTERS = {
+    instinctif: [8,9,1],
+    emotionnel: [2,3,4],
+    mental: [5,6,7]
+  };
+  const CENTER_LABEL = { instinctif:"Instinctive", emotionnel:"Emotional", mental:"Mental" };
+
+  // Positions des noeuds (viewBox 0 0 720 720)
+  const NODE_POS = {
+    9:[360,100], 1:[521,159], 2:[596,310], 3:[577,478], 4:[410,590],
+    5:[310,590], 6:[143,478], 7:[124,310], 8:[199,159]
+  };
+
+  // Dynamique : sécurité (intégration) / stress (désintégration)
+  const SECURITY = {1:7,2:4,3:6,4:1,5:8,6:9,7:5,8:2,9:3};
+  const STRESS   = {1:4,2:8,3:9,4:2,5:7,6:3,7:1,8:5,9:6};
+
+  const TYPES = {
+    1:{name:"The Perfectionist", center:'instinctif',
+       essence:"You aspire to rightness, to integrity, to a better world. When you are at peace, you become wise, tolerant, and deeply serene.",
+       detente:"You let go of rigidity: you allow yourself pleasure, spontaneity, and lightness (like type 7).",
+       stress:"You withdraw, become darker and dissatisfied, turning disappointment inward on yourself (like type 4)."},
+    2:{name:"The Helper", center:'emotionnel',
+       essence:"You are turned toward others, warm, attentive to their needs. At peace, you give freely, expecting nothing in return.",
+       detente:"You return to yourself, listening honestly to your own needs and emotions (like type 4).",
+       stress:"You can become demanding, possessive, even harsh when your help goes unrecognized (like type 8)."},
+    3:{name:"The Achiever", center:'emotionnel',
+       essence:"You are energetic, efficient, capable of turning a dream into achievement. When aligned, you act with authenticity, for the common good.",
+       detente:"You commit, become loyal, cooperative, attentive to the group rather than to your image alone (like type 6).",
+       stress:"You disengage, shut down, lose touch with what you truly feel (like type 9)."},
+    4:{name:"The Individualist", center:'emotionnel',
+       essence:"You are sensitive, deep, in search of the authentic and the beautiful. Balanced, you transform your intensity into creation.",
+       detente:"You move into action, structuring and accomplishing, without waiting for perfect inspiration (like type 1).",
+       stress:"You cling to others, becoming dependent on the need for reassurance (like type 2)."},
+    5:{name:"The Observer", center:'mental',
+       essence:"You are curious, lucid, capable of great depth of understanding. Open, you share your knowledge and engage with the world.",
+       detente:"You come out of your head, become self-assured, energetic, and present in action (like type 8).",
+       stress:"You become scattered, restless, fleeing the concentration you cherish (like type 7)."},
+    6:{name:"The Loyalist", center:'mental',
+       essence:"You are faithful, vigilant, attentive to dangers as much as to people. Trusting, you become a solid and courageous support for others.",
+       detente:"You relax, become serene, optimistic, and open to possibilities (like type 9).",
+       stress:"You become competitive, harsh, masking your anxiety behind action (like type 3)."},
+    7:{name:"The Epicure", center:'mental',
+       essence:"You are enthusiastic, quick, full of plans and joy. Grounded, you savor the present deeply, without fleeing toward what's next.",
+       detente:"You focus, become deep, attentive to one thing at a time (like type 5).",
+       stress:"You become critical, perfectionistic, impatient with what's wrong (like type 1)."},
+    8:{name:"The Leader", center:'instinctif',
+       essence:"You are powerful, direct, protective of the weaker. At peace, you put your strength at the service of others, with great generosity.",
+       detente:"You open up, become attentive, caring, capable of tenderness (like type 2).",
+       stress:"You withdraw, become secretive and distrustful, on the defensive (like type 5)."},
+    9:{name:"The Mediator", center:'instinctif',
+       essence:"You are peaceful, welcoming, capable of bringing people together. Awake, you act with calm presence and real determination.",
+       detente:"You assert yourself, become active, ambitious, present to your own desires (like type 3).",
+       stress:"You close off, become anxious, overwhelmed with doubts (like type 6)."}
+  };
+
+  // ============================================================
+  // ACTE 2 — Détection du centre
+  // ============================================================
+  const SCENES = [
+    {
+      kicker:"A scene from everyday life",
+      situation:"A last-minute change throws your day into disarray.",
+      prompt:"Before you even have time to think, what rises in you first?",
+      options:[
+        { text:"A tension in the body, the immediate urge to take back control.", w:{8:3, 1:1, 9:1} },
+        { text:"A thought toward others: who's affected, how will this impact them?", w:{2:3, 4:1, 9:1} },
+        { text:"A mental film reel: I'm already calculating the consequences and scenarios.", w:{6:3, 5:2, 7:1} },
+        { text:"An irritation that things aren't going as they should.", w:{1:3, 6:1} }
+      ]
+    },
+    {
+      kicker:"A moment to yourself",
+      situation:"A completely free evening opens up before you.",
+      prompt:"Where does your energy turn most naturally?",
+      options:[
+        { text:"Doing something concrete: moving, tidying, keeping my hands busy.", w:{8:1, 9:2, 1:2} },
+        { text:"Connecting with someone: calling, sharing, being in another's presence.", w:{2:3, 3:1} },
+        { text:"Retreating into my own world: reading, thinking, understanding, imagining.", w:{5:3, 4:1} },
+        { text:"Filling the time with stimulating possibilities, letting nothing slip by.", w:{7:3} }
+      ]
+    },
+    {
+      kicker:"When there's friction",
+      situation:"Tension erupts with someone who matters to you.",
+      prompt:"What is your very first inner reaction?",
+      options:[
+        { text:"I hold my ground, I won't be pushed around.", w:{8:3, 1:1} },
+        { text:"I wonder if the bond is damaged, how to repair it.", w:{2:2, 9:1, 6:1} },
+        { text:"I close off and step back to analyze.", w:{5:3, 4:1} },
+        { text:"I want it acknowledged what's right, who's correct.", w:{1:3, 6:1} }
+      ]
+    },
+    {
+      kicker:"The moment of choice",
+      situation:"An important decision awaits you, and you hesitate.",
+      prompt:"What do you rely on first to decide?",
+      options:[
+        { text:"What my gut tells me, the sensation in my body.", w:{8:2, 9:2} },
+        { text:"The effect on my loved ones and what I feel toward them.", w:{2:2, 4:2} },
+        { text:"The information, the analysis, whatever is safest and most logical.", w:{5:2, 6:2} },
+        { text:"The option that keeps the most doors open and momentum going.", w:{7:3, 3:1} }
+      ]
+    },
+    {
+      kicker:"Waking up",
+      situation:"You think back to a day when you felt fully yourself.",
+      prompt:"What made that moment feel so right?",
+      options:[
+        { text:"I was in my place, solid, present, in command of the situation.", w:{8:2, 1:2, 9:1} },
+        { text:"I felt connected, appreciated, important to someone.", w:{2:2, 3:2} },
+        { text:"I had understood something, seen clearly, been in my inner element.", w:{5:2, 6:1, 4:1} },
+        { text:"Everything was light, open, alive — full of promise.", w:{7:3} }
+      ]
+    },
+    {
+      kicker:"When things go off the rails",
+      situation:"Something important slips out of your control and goes wrong.",
+      prompt:"Just before any reflection, what goes through you first?",
+      options:[
+        { text:"A surge of energy, the urge to react, to set the situation right.", w:{8:3, 1:2, 9:1} },
+        { text:"A pang: “does this say something about me, about my worth?”", w:{2:2, 3:2, 4:2} },
+        { text:"A vigilance kicks in: “now what could happen next?”", w:{6:3, 5:2, 7:1} }
+      ]
+    },
+    {
+      kicker:"Facing the unknown",
+      situation:"You arrive somewhere where everything is new, nothing is marked out.",
+      prompt:"What is your very first move, almost without thinking?",
+      options:[
+        { text:"I move forward, I take up space, I take charge of things.", w:{8:3, 1:1} },
+        { text:"I sense the mood, I watch how I'm welcomed, perceived.", w:{2:2, 3:2, 4:1} },
+        { text:"I observe from a distance, I gather information before committing.", w:{5:3, 6:2} }
+      ]
+    },
+    {
+      kicker:"In the silence",
+      situation:"Everything is calm, you have nothing to do and no one to see.",
+      prompt:"What inner undercurrent do you recognize most, when nothing occupies you anymore?",
+      options:[
+        { text:"An urge to act, a difficulty simply staying still.", w:{8:2, 1:2, 9:1} },
+        { text:"A need for presence, the faint absence of a connection or a glance.", w:{2:2, 4:2, 3:1} },
+        { text:"A rumination, thoughts turning over, an undertone of anticipation.", w:{6:2, 5:2, 7:1} }
+      ]
+    }
+  ];
+
+  // ============================================================
+  // ACTE 3 — Départage des 3 types DANS le centre
+  // Chaque option pèse fortement vers UN des trois types du centre.
+  // ============================================================
+  const ACT3 = {
+    instinctif: [
+      {
+        kicker:"At the heart of the action",
+        situation:"Facing a disagreement that matters to you.",
+        prompt:"Which is most like you?",
+        options:[
+          { text:"I charge ahead, I assert my position forcefully, I don't back down.", w:{8:4} },
+          { text:"I avoid confrontation, I seek to soothe things and keep the peace.", w:{9:4} },
+          { text:"I rely on what is right, correct, in line with principles.", w:{1:4} }
+        ]
+      },
+      {
+        kicker:"Your energy",
+        situation:"Day to day, how does your inner strength show itself?",
+        prompt:"Most often…",
+        options:[
+          { text:"Intense and direct: I want impact, concrete results, control.", w:{8:4} },
+          { text:"Calm and steady: I avoid stress, I preserve my comfort and peace of mind.", w:{9:4} },
+          { text:"Controlled and demanding: I want to do things right, leave nothing to chance.", w:{1:4} }
+        ]
+      },
+      {
+        kicker:"What gets to you",
+        situation:"What makes you angriest, deep down?",
+        prompt:"",
+        options:[
+          { text:"Someone trying to control me, or taking advantage of the weak.", w:{8:4} },
+          { text:"Being pressured, having my peace disturbed — even if I don't show it.", w:{9:4} },
+          { text:"Carelessness, injustice, whatever is sloppy or poorly done.", w:{1:4} }
+        ]
+      }
+    ],
+    emotionnel: [
+      {
+        kicker:"How others see you",
+        situation:"What do you need most deeply, in your bond with others?",
+        prompt:"",
+        options:[
+          { text:"Feeling useful, loved, indispensable to someone.", w:{2:4} },
+          { text:"Being recognized, admired for what I achieve and who I become.", w:{3:4} },
+          { text:"Being seen as unique, true to who I really am.", w:{4:4} }
+        ]
+      },
+      {
+        kicker:"Facing your emotions",
+        situation:"When a wave of emotion passes through you…",
+        prompt:"Most often…",
+        options:[
+          { text:"I mostly attend to other people's, I forget about my own a little.", w:{2:4} },
+          { text:"I set them aside to stay efficient and keep moving forward.", w:{3:4} },
+          { text:"I explore them fully, I feel them completely, even when it hurts.", w:{4:4} }
+        ]
+      },
+      {
+        kicker:"What wounds you",
+        situation:"What affects you most, deep down?",
+        prompt:"",
+        options:[
+          { text:"Feeling that I don't matter, that no one needs me.", w:{2:4} },
+          { text:"Failing, losing face, not measuring up.", w:{3:4} },
+          { text:"Not being understood, being seen as ordinary.", w:{4:4} }
+        ]
+      }
+    ],
+    mental: [
+      {
+        kicker:"When difficulty strikes",
+        situation:"A hardship or an annoyance settles in.",
+        prompt:"Your most natural inner movement?",
+        options:[
+          { text:"I withdraw, I preserve my energy, I isolate myself to recover.", w:{5:4} },
+          { text:"I go on alert, I imagine what could go wrong, I prepare.", w:{6:4} },
+          { text:"I quickly look for something else positive, I refuse to dwell on it.", w:{7:4} }
+        ]
+      },
+      {
+        kicker:"Your relationship with others",
+        situation:"In your relationships, which is most like you?",
+        prompt:"",
+        options:[
+          { text:"I keep my distance, I protect my privacy and my time.", w:{5:4} },
+          { text:"I look for reliable support, I test trust before opening up.", w:{6:4} },
+          { text:"I multiply contacts, I like things to be light, lively, joyful.", w:{7:4} }
+        ]
+      },
+      {
+        kicker:"What costs you the most",
+        situation:"What is hardest for you to live with?",
+        prompt:"",
+        options:[
+          { text:"Having my space encroached on, being asked for too much energy.", w:{5:4} },
+          { text:"Uncertainty: not knowing what, or whom, to trust.", w:{6:4} },
+          { text:"Being bored, feeling limited, stuck, deprived of options.", w:{7:4} }
+        ]
+      }
+    ]
+  };
+
+  // ============================================================
+  // OUTILS
+  // ============================================================
+  function addWeights(w){ for(const t in w){ scores[t] += w[t]; } }
+  function centerScore(c){ return CENTERS[c].reduce((s,t)=> s + scores[t], 0); }
+  function leadingCenter(){
+    let best=null, bestVal=-Infinity;
+    for(const c in CENTERS){ const v=centerScore(c); if(v>bestVal){bestVal=v;best=c;} }
+    return best;
+  }
+  function leadingTypeIn(center){
+    let best=null, bestVal=-Infinity;
+    CENTERS[center].forEach(t=>{ if(scores[t]>bestVal){bestVal=scores[t];best=t;} });
+    return best;
+  }
+
+  // ============================================================
+  // DÉROULEMENT
+  // ============================================================
+  let phase = 'act2';      // 'act2' | 'act3'
+  let idx = 0;
+  let act3Scenes = [];
+  let detectedCenter = null;
+
+  const embarkEl = document.getElementById('embark');
+  const sceneEl  = document.getElementById('scene');
+  const revealEl = document.getElementById('reveal');
+  const trailEl  = document.getElementById('trail');
+
+  function totalSteps(){ return phase==='act2' ? SCENES.length : act3Scenes.length; }
+  function curList(){ return phase==='act2' ? SCENES : act3Scenes; }
+
+  function renderTrail(){
+    trailEl.hidden = false;
+    trailEl.innerHTML = '';
+    const total = totalSteps();
+    for(let i=0;i<total;i++){
+      const d = document.createElement('span');
+      d.className = 'dot' + (i<idx?' done':'') + (i===idx?' cur':'');
+      trailEl.appendChild(d);
+    }
+  }
+
+  function renderScene(){
+    const s = curList()[idx];
+    renderTrail();
+    sceneEl.innerHTML = `
+      <p class="kicker">${s.kicker}</p>
+      <p class="situation">${s.situation}</p>
+      ${s.prompt ? `<p class="prompt">${s.prompt}</p>` : `<div style="height:8px"></div>`}
+      <div class="options"></div>
+    `;
+    const optsWrap = sceneEl.querySelector('.options');
+    s.options.forEach(opt=>{
+      const b = document.createElement('button');
+      b.className = 'option';
+      b.innerHTML = `<span class="lead">${opt.text}</span>`;
+      b.addEventListener('click', ()=> pick(b, opt));
+      optsWrap.appendChild(b);
+    });
+    sceneEl.style.animation='none'; void sceneEl.offsetWidth; sceneEl.style.animation='';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function pick(btn, opt){
+    const all = sceneEl.querySelectorAll('.option');
+    all.forEach(b=>{ b.classList.remove('picked'); b.style.pointerEvents='none'; });
+    btn.classList.add('picked');
+    setTimeout(()=> choose(opt), 320);
+  }
+
+  function choose(opt){
+    addWeights(opt.w);
+    idx++;
+    if(idx < totalSteps()){
+      renderScene();
+    } else if(phase==='act2'){
+      showCenterReveal();
+    } else {
+      showFinalReveal();
+    }
+  }
+
+  // ---- Diagramme SVG ----
+  function buildDiagram(center, activeType){
+    let nodes = '';
+    for(let t=1;t<=9;t++){
+      const [x,y] = NODE_POS[t];
+      const inC = CENTERS[center].includes(t);
+      const cls = 'node ' + (inC?center+' inCenter ':'') + (t===activeType?'active '+center:'');
+      nodes += `<g class="${cls.trim()}"><circle cx="${x}" cy="${y}" r="34"/><text x="${x}" y="${y}">${t}</text></g>`;
+    }
+    let arrows='';
+    if(activeType){
+      const [ax,ay]=NODE_POS[activeType];
+      const [sx,sy]=NODE_POS[SECURITY[activeType]];
+      const [tx,ty]=NODE_POS[STRESS[activeType]];
+      arrows = `
+        <line class="arrowSec" id="arrSec" x1="${ax}" y1="${ay}" x2="${sx}" y2="${sy}"/>
+        <line class="arrowStr" id="arrStr" x1="${ax}" y1="${ay}" x2="${tx}" y2="${ty}"/>`;
+    }
+    return `<svg class="diagram" viewBox="0 0 720 720" aria-hidden="true">
+      <circle class="ring" cx="360" cy="360" r="260"/>
+      ${arrows}
+      ${nodes}
+    </svg>`;
+  }
+
+  // ---- Révélation du centre (fin Acte 2) ----
+  function showCenterReveal(){
+    sceneEl.hidden = true;
+    trailEl.hidden = true;
+    revealEl.hidden = false;
+
+    detectedCenter = leadingCenter();
+    const c = detectedCenter;
+    const label = CENTER_LABEL[c];
+
+    const desc = {
+      instinctif: "You approach the world first through the body, instinct, and action. Your energy comes from the gut: acting, holding your place, sensing what is right.",
+      emotionnel: "You approach the world first through relationship and feeling. Your attention goes to connection, image, the place you hold in others' hearts.",
+      mental: "You approach the world first through thought. Your energy comes from the head: understanding, anticipating, securing, imagining possibilities."
+    };
+
+    revealEl.innerHTML = `
+      <p class="kicker">Your center is taking shape</p>
+      ${buildDiagram(c, null)}
+      <h2>Center <span class="centerName ${c}">${label}</span></h2>
+      <p>${desc[c]}</p>
+      <p class="small">There are three ways of inhabiting this center. Let's continue, to see which one is yours.</p>
+      <button class="continueBtn" id="continueBtn">Continue the journey →</button>
+    `;
+    window.scrollTo({top:0, behavior:'smooth'});
+    document.getElementById('continueBtn').addEventListener('click', startAct3);
+  }
+
+  function startAct3(){
+    phase = 'act3';
+    idx = 0;
+    act3Scenes = ACT3[detectedCenter];
+    revealEl.hidden = true;
+    sceneEl.hidden = false;
+    renderScene();
+  }
+
+  // ---- Révélation finale (type + dynamique) ----
+  function showFinalReveal(){
+    sceneEl.hidden = true;
+    trailEl.hidden = true;
+    revealEl.hidden = false;
+
+    const c = detectedCenter;
+    const t = leadingTypeIn(c);
+    const T = TYPES[t];
+
+    revealEl.innerHTML = `
+      <p class="kicker">Your type is revealed</p>
+      ${buildDiagram(c, t)}
+      <h2><span class="typeName ${c}">Type ${t} — ${T.name}</span></h2>
+      <p>${T.essence}</p>
+      <p class="small">Center <strong class="${c}">${CENTER_LABEL[c]}</strong> · your starting point, the same your whole life.</p>
+
+      <div class="dynBox">
+        <div class="dynCard detente">
+          <h4>When you are at peace</h4>
+          <p>${T.detente}</p>
+        </div>
+        <div class="dynCard stress">
+          <h4>When stress rises</h4>
+          <p>${T.stress}</p>
+        </div>
+      </div>
+
+      <p class="small">Remember: this type is not a label or a limitation. It's a doorway to better understand yourself — and to grow, from within.</p>
+
+      <div class="actions">
+        <a class="btn primary" href="/en/profils/type${t}.html">Go further: your complete profile →</a>
+        <button class="btn" id="restart">↺ Restart the journey</button>
+      </div>
+    `;
+    window.scrollTo({top:0, behavior:'smooth'});
+    document.getElementById('restart').addEventListener('click', restart);
+
+    // Faire apparaître les flèches de dynamique après un instant
+    setTimeout(()=>{
+      const s=document.getElementById('arrSec'); if(s) s.classList.add('show');
+    }, 700);
+    setTimeout(()=>{
+      const x=document.getElementById('arrStr'); if(x) x.classList.add('show');
+    }, 1100);
+  }
+
+  function restart(){
+    for(const k in scores) scores[k]=0;
+    phase='act2'; idx=0; detectedCenter=null; act3Scenes=[];
+    revealEl.hidden=true; sceneEl.hidden=false;
+    renderScene();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  document.getElementById('startBtn').addEventListener('click', ()=>{
+    embarkEl.hidden = true;
+    sceneEl.hidden = false;
+    renderScene();
+  });
+
+  // Apparition progressive des paragraphes de l'embarquement
+  (function(){
+    const steps = embarkEl.querySelectorAll('.reveal-step');
+    steps.forEach((el, i)=>{
+      setTimeout(()=> el.classList.add('shown'), 350 + i * 1200);
+    });
+  })();
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

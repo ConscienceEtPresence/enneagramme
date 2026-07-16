@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enneagram Test</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1XYJK71TC4');
+</script>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <style>
+    :root{
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.08);
+      --txt:rgba(255,255,255,.92);
+      --accent:#8bd3ff;
+      --good:#9ff2b1;
+      --warn:#ffd18b;
+      --bad:#ff8b8b;
+    }
+
+    .scrollProg{
+      position:fixed;
+      left:0; top:0;
+      width:100%;
+      height:6px;
+      z-index:1000;
+      pointer-events:none;
+      opacity:.95;
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(6px);
+    }
+    .scrollProgTrack{
+      width:100%;
+      height:100%;
+      background: rgba(255,255,255,.10);
+    }
+    .scrollProgFill{
+      width:0%;
+      height:100%;
+      background: linear-gradient(90deg, rgba(96,165,250,.98), rgba(139,211,255,.92));
+      box-shadow: 0 0 16px rgba(96,165,250,.20);
+      border-radius: 0 999px 999px 0;
+      transition: width .06s linear;
+    }
+
+    body{color:var(--txt);min-height:100vh}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px;padding-bottom:110px}
+
+    header{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+      padding:18px 18px 14px;border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius:var(--radius);
+      backdrop-filter: blur(10px);
+    }
+    h1{margin:0;font-size:22px;letter-spacing:.2px}
+    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+    button{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--txt);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+      transition: transform .04s ease, background .18s ease, border-color .18s ease;
+    }
+    button:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
+    button:active{transform: translateY(1px)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .actions{justify-content:flex-start}
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+    .cardHead{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .cardHead h2{margin:0;font-size:15px}
+    .pill{
+      font-size:12px;color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px;border-radius:999px;
+      background: rgba(255,255,255,.04);
+    }
+    .cardBody{padding:14px 16px}
+
+    .scaleHint{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.4}
+
+    .q{
+      padding:12px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      border-radius:14px;
+      margin-bottom:10px;
+    }
+    .qTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .qText{font-size:14px;line-height:1.35}
+    .qMeta{color:var(--muted);font-size:12px;white-space:nowrap}
+
+    .row{display:flex;gap:10px;align-items:center;margin-top:10px}
+    input[type="range"]{width:100%}
+
+    .val{
+      min-width:42px;text-align:center;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius:10px;
+      padding:6px 8px;
+      font-size:12px;
+    }
+
+    .legend{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
+
+    .resultBox{
+      padding:14px 16px;
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .resTitle{margin:0;font-size:15px}
+    .resLine{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
+
+    @keyframes breatheHint{
+      0%,100%{ opacity:.72; transform: translateY(0); }
+      50%{ opacity:1; transform: translateY(-1px); }
+    }
+    .clickHint{
+      margin-top:10px;
+      font-size:13px;
+      line-height:1.35;
+      color:var(--muted);
+      animation: breatheHint 3.8s ease-in-out infinite;
+      user-select:none;
+    }
+    .clickHint .verb{
+      color:var(--accent);
+      font-weight:850;
+      letter-spacing:.2px;
+    }
+
+    .top3{margin-top:12px;display:grid;gap:10px}
+    .topItem{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      border-radius:14px;
+      padding:10px 12px;
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
+      cursor: pointer;
+      transition: background .15s ease, transform .1s ease;
+    }
+    .topItem:hover{
+      background: rgba(255,255,255,.08);
+      transform: translateX(2px);
+    }
+    .topLeft{display:flex;flex-direction:column;gap:2px}
+    .topName{font-weight:900}
+    .topDesc{color:var(--muted);font-size:12px;line-height:1.25}
+    .topScore{
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      border-radius:12px;
+      padding:8px 10px;
+      min-width:64px;
+      text-align:center;
+      font-size:12px;
+    }
+
+    .bars{margin-top:20px; display:grid; gap:8px}
+    .barRow{
+      display:grid;
+      grid-template-columns: 120px 1fr 40px;
+      gap:10px;
+      align-items:center;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 8px;
+      transition: background .1s;
+    }
+    .barRow:hover{ background: rgba(255,255,255,.05); }
+
+    .barK{color:var(--txt); font-size:12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+    .barV{color:var(--muted); font-size:12px; text-align:right;}
+    .barTrack{
+      height:8px; border-radius:999px; background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+    }
+    .barFill{height:100%;width:0%}
+    .small{color:var(--muted);font-size:12px;line-height:1.4;margin-top:12px}
+
+    .twoBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+    .ghost{background: rgba(255,255,255,.03)}
+    .danger{border-color: rgba(255,139,139,.30)}
+    .ok{border-color: rgba(159,242,177,.30)}
+
+    .toast{
+      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+      background: rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.18);
+      padding:10px 12px; border-radius: 999px; color: var(--txt);
+      font-size: 12px; display:none; z-index: 20; backdrop-filter: blur(8px);
+      max-width: 92vw;
+    }
+
+    a{color:var(--accent);text-decoration:none}
+
+    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+    .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+    .siteFooter a:hover{opacity:1}
+
+    .bottomBar{
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 0;
+      z-index: 15;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, rgba(7,11,20,.12), rgba(7,11,20,.82));
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    .bottomInner{
+      max-width: 1100px;
+      margin: 0 auto;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .bottomInner .linkBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--txt);
+      font-weight:600;
+      font-size:13px;
+      cursor:pointer;
+      transition: transform .04s ease, background .18s ease, border-color .18s ease;
+      text-decoration:none;
+    }
+    .bottomInner .linkBtn:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
+    .bottomInner .linkBtn:active{transform: translateY(1px)}
+    .bottomInner .mutedBtn{opacity:.92}
+  </style>
+
+
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/test-enneagramme-sans-indice.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/test-enneagramme-sans-indice.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/test-enneagramme-sans-indice.html" />
+</head>
+<body>
+  <div class="scrollProg" id="scrollProg" aria-hidden="true">
+    <div class="scrollProgTrack">
+      <div class="scrollProgFill" id="scrollProgFill"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Enneagram Test — Sample</h1>
+        <div class="sub">
+          Answer spontaneously. Scale 0–4: 0 not at all, 1 rather not, 2 sometimes, 3 often, 4 very often.<br>
+          This test is indicative, not a diagnosis. The result is meant for exploration, then to be compared with the type descriptions.
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btnCalc" class="ok" type="button">Calculate</button>
+        <button id="btnReset" class="danger" type="button">Reset</button>
+        <button id="btnExport" class="ghost" type="button">Export</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-label="Questionnaire">
+        <div class="cardHead">
+          <h2>Questionnaire</h2>
+          <div class="pill"><span id="answered">0</span>/<span id="total">0</span> answered</div>
+        </div>
+        <div class="cardBody">
+          <p class="scaleHint">Tip: if you're hesitating between two values, choose the one that most often describes your automatic pattern.</p>
+          <div id="questions"></div>
+          <div class="legend">
+            <span>0 not at all</span><span>1</span><span>2</span><span>3</span><span>4 very often</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card" aria-label="Results">
+        <div class="cardHead">
+          <h2>Results</h2>
+          <div class="pill">Ranking</div>
+        </div>
+        <div class="cardBody" id="resultBody">
+          <p class="scaleHint">Click Calculate to see your likely profile. Your answers remain saved on your browser.</p>
+        </div>
+        <div class="resultBox" id="resultBox" style="display:none">
+          <p class="resTitle" id="resTitle">—</p>
+          <div class="resLine" id="resLine"></div>
+
+          <div class="clickHint" id="clickHint">
+            <span class="verb">Click👇</span> on a type to open the detailed profile
+          </div>
+
+          <div class="top3" id="top3"></div>
+          <div class="bars" id="bars"></div>
+
+          <div class="small">
+            Click on any bar above to open the corresponding profile.
+            Close scores (e.g. 1 or 2 points apart) often indicate hesitation or a strong wing.
+          </div>
+
+          <div class="twoBtns" id="actionButtons">
+            <button id="btnCopy" class="ghost" type="button">Copy summary</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <span class="copy">All rights reserved</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
+          ✉️ Contact
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="bottomBar" role="navigation" aria-label="Quick actions">
+    <div class="bottomInner">
+      <button id="btnCalc2" class="ok" type="button">Calculate</button>
+      <button id="btnReset2" class="danger" type="button">Reset</button>
+      <a id="btnBack" class="linkBtn mutedBtn" href="/en/explore.html">Back</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+  (function() {
+    const TYPES = {
+      1:{name:"The Perfectionist", desc:"Rigor, principles, improvement, inner criticism."},
+      2:{name:"The Helper", desc:"Helping, connection, need to be appreciated, attention to others."},
+      3:{name:"The Achiever", desc:"Efficiency, image, success, performance, adaptability."},
+      4:{name:"The Individualist", desc:"Identity, depth, meaning, emotional intensity."},
+      5:{name:"The Observer", desc:"Understanding, withdrawal, conserving energy, expertise."},
+      6:{name:"The Loyalist", desc:"Security, vigilance, doubt, loyalty, anticipation."},
+      7:{name:"The Epicure", desc:"Options, enthusiasm, pleasure, avoiding pain."},
+      8:{name:"The Protector", desc:"Strength, autonomy, justice, confrontation, leadership."},
+      9:{name:"The Mediator", desc:"Peace, harmony, avoidance of conflict, possible inertia."}
+    };
+
+    const ITEMS = [
+      {t:3, s:"I feel valued when I am efficient and get visible results."},
+      {t:6, s:"I scan for risks and anticipate what could go wrong."},
+      {t:1, s:"I spontaneously notice what could be corrected, improved, or optimized."},
+      {t:8, s:"I quickly step up when it's time to decide, protect, or act."},
+      {t:4, s:"I feel different, and I look for deep meaning in what I experience."},
+      {t:9, s:"I try to keep the peace and avoid direct conflict."},
+      {t:5, s:"I need a lot of mental space and solitude to recharge."},
+      {t:2, s:"I feel naturally responsible for helping, supporting, or taking care of others."},
+      {t:7, s:"I naturally seek out options, ideas, and stimulating experiences."},
+      {t:7, s:"I prefer to reframe things positively rather than dwell in pain or sadness."},
+      {t:2, s:"I tend to sense others' needs before my own."},
+      {t:5, s:"I prefer to observe and understand before acting or committing."},
+      {t:8, s:"I hate feeling controlled; I want to keep my autonomy."},
+      {t:1, s:"I find it hard to relax if everything isn't done correctly."},
+      {t:6, s:"I can doubt for a long time before deciding, and look for guarantees."},
+      {t:4, s:"I easily notice what's missing or what makes life feel incomplete."},
+      {t:9, s:"I can lose track of my priorities by merging into others' needs or routine."},
+      {t:3, s:"I easily adapt to what's expected in order to succeed."},
+      {t:5, s:"I protect my energy and my time; I don't like being constantly solicited."},
+      {t:8, s:"I prefer bluntness, even if it confronts or shocks."},
+      {t:2, s:"I can feel hurt if my help isn't recognized or appreciated."},
+      {t:6, s:"Loyalty and reliability are essential for me to feel secure."},
+      {t:9, s:"When things get tense, I tend to switch into “autopilot” mode."},
+      {t:3, s:"I avoid showing failure or vulnerability; I prefer to maintain a solid image."},
+      {t:1, s:"I judge myself (or situations) according to high principles and standards."},
+      {t:7, s:"I can scatter my energy if I feel limited, bored, or hemmed in."},
+      {t:4, s:"My emotions often guide my identity and my choices."}
+    ];
+
+    const LS_KEY = "ennea_test_sample_v2";
+    const PROFILE_PREFIX = "/en/profils/type";
+
+    const elQuestions = document.getElementById("questions");
+    const elAnswered = document.getElementById("answered");
+    const elTotal = document.getElementById("total");
+    const btnCalc = document.getElementById("btnCalc");
+    const btnReset = document.getElementById("btnReset");
+    const btnExport = document.getElementById("btnExport");
+    const resultBody = document.getElementById("resultBody");
+    const resultBox = document.getElementById("resultBox");
+    const resTitle = document.getElementById("resTitle");
+    const resLine = document.getElementById("resLine");
+    const top3 = document.getElementById("top3");
+    const bars = document.getElementById("bars");
+    const btnCopy = document.getElementById("btnCopy");
+    const toast = document.getElementById("toast");
+    const btnCalc2 = document.getElementById("btnCalc2");
+    const btnReset2 = document.getElementById("btnReset2");
+    const btnBack = document.getElementById("btnBack");
+    const scrollProgFill = document.getElementById("scrollProgFill");
+
+    function goProfile(t){ location.href = PROFILE_PREFIX + t + ".html"; }
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.style.display = "block";
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.style.display="none", 2200);
+    }
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(!raw) return {};
+        return JSON.parse(raw) || {};
+      }catch{ return {}; }
+    }
+
+    function saveState(st){
+      localStorage.setItem(LS_KEY, JSON.stringify(st));
+    }
+
+    let state = loadState();
+
+    function renderQuestions(){
+      elQuestions.innerHTML = "";
+      elTotal.textContent = String(ITEMS.length);
+
+      ITEMS.forEach((it, idx) => {
+        const q = document.createElement("div");
+        q.className = "q";
+
+        const top = document.createElement("div");
+        top.className = "qTop";
+
+        const text = document.createElement("div");
+        text.className = "qText";
+        text.textContent = it.s;
+
+        const meta = document.createElement("div");
+        meta.className = "qMeta";
+        meta.style.display = "none";
+
+        top.appendChild(text);
+        top.appendChild(meta);
+
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const range = document.createElement("input");
+        range.type = "range";
+        range.min = "0";
+        range.max = "4";
+        range.step = "1";
+        range.value = (state[idx] !== undefined) ? state[idx] : 0;
+
+        const val = document.createElement("div");
+        val.className = "val";
+        val.textContent = range.value;
+
+        range.addEventListener("input", () => {
+          val.textContent = range.value;
+          state[idx] = parseInt(range.value, 10);
+          saveState(state);
+          updateAnswered();
+        });
+
+        row.appendChild(range);
+        row.appendChild(val);
+        q.appendChild(top);
+        q.appendChild(row);
+        elQuestions.appendChild(q);
+      });
+
+      updateAnswered();
+    }
+
+    function updateAnswered(){
+      let n = 0;
+      for(let i=0; i<ITEMS.length; i++){
+        if (state[i] !== undefined) n++;
+      }
+      elAnswered.textContent = String(n);
+    }
+
+    function score(){
+      const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+      const maxPerType = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+
+      ITEMS.forEach((it, idx) => {
+        const v = (typeof state[idx] === "number") ? state[idx] : 0;
+        scores[it.t] += v;
+        maxPerType[it.t] += 4;
+      });
+
+      const arr = Object.keys(scores).map(k => {
+        const t = parseInt(k,10);
+        const raw = scores[t];
+        const max = maxPerType[t] || 1;
+        const pct = Math.round((raw / max) * 100);
+        return {t, raw, max, pct};
+      }).sort((a,b)=> b.raw - a.raw);
+
+      return {arr};
+    }
+
+    function colorForType(t){
+      if ([8,9,1].includes(t)) return "rgba(255,139,139,.85)";
+      if ([2,3,4].includes(t)) return "rgba(255,209,139,.85)";
+      return "rgba(139,211,255,.85)";
+    }
+
+    function renderResults(){
+      const {arr} = score();
+      const first = arr[0];
+      const second = arr[1];
+      const third = arr[2];
+
+      resTitle.textContent = "Your results";
+      resLine.textContent = "Max score: " + first.pct + "% (Type " + first.t + ").";
+
+      top3.innerHTML = "";
+      [first, second, third].forEach((x) => {
+        const div = document.createElement("div");
+        div.className = "topItem";
+        div.style.borderLeft = "4px solid " + colorForType(x.t);
+        div.title = "Click to open Type " + x.t;
+        div.onclick = () => goProfile(x.t);
+
+        const left = document.createElement("div");
+        left.className = "topLeft";
+
+        const nm = document.createElement("div");
+        nm.className = "topName";
+        nm.textContent = "Type " + x.t + " • " + TYPES[x.t].name;
+
+        const ds = document.createElement("div");
+        ds.className = "topDesc";
+        ds.textContent = TYPES[x.t].desc;
+
+        left.appendChild(nm);
+        left.appendChild(ds);
+
+        const sc = document.createElement("div");
+        sc.className = "topScore";
+        sc.textContent = x.raw + "/" + x.max;
+
+        div.appendChild(left);
+        div.appendChild(sc);
+        top3.appendChild(div);
+      });
+
+      bars.innerHTML = "";
+      arr.forEach(x => {
+        const row = document.createElement("div");
+        row.className = "barRow";
+        row.title = "Open the profile for Type " + x.t;
+        row.onclick = () => goProfile(x.t);
+
+        const k = document.createElement("div");
+        k.className = "barK";
+        k.textContent = "Type " + x.t + " • " + TYPES[x.t].name;
+
+        const track = document.createElement("div");
+        track.className = "barTrack";
+
+        const fill = document.createElement("div");
+        fill.className = "barFill";
+        fill.style.width = x.pct + "%";
+        fill.style.background = colorForType(x.t);
+
+        track.appendChild(fill);
+
+        const v = document.createElement("div");
+        v.className = "barV";
+        v.textContent = x.pct + "%";
+
+        row.appendChild(k);
+        row.appendChild(track);
+        row.appendChild(v);
+
+        bars.appendChild(row);
+      });
+
+      btnCopy.onclick = async () => {
+        const txt = [
+          "Result (sample):",
+          "#1 Type " + first.t + " (" + first.pct + "%)",
+          "#2 Type " + second.t + " (" + second.pct + "%)",
+          "#3 Type " + third.t + " (" + third.pct + "%)"
+        ].join("\n");
+        try{
+          await navigator.clipboard.writeText(txt);
+          showToast("Summary copied");
+        }catch{
+          showToast("Copy failed (browser)");
+        }
+      };
+
+      resultBody.style.display = "none";
+      resultBox.style.display = "block";
+    }
+
+    function updateScrollProgress(){
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop || 0;
+      const scrollHeight = (doc.scrollHeight || document.body.scrollHeight || 0) - doc.clientHeight;
+      const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      scrollProgFill.style.width = Math.max(0, Math.min(100, pct)) + "%";
+    }
+
+    window.addEventListener("scroll", updateScrollProgress, {passive:true});
+    window.addEventListener("resize", updateScrollProgress);
+
+    if(btnCalc) btnCalc.addEventListener("click", () => {
+      renderResults();
+      showToast("Results calculated");
+      updateScrollProgress();
+    });
+
+    if(btnReset) btnReset.addEventListener("click", () => {
+      if (!confirm("Reset all your answers?")) return;
+      state = {};
+      saveState(state);
+      renderQuestions();
+      resultBox.style.display = "none";
+      resultBody.style.display = "block";
+      showToast("Reset");
+      updateScrollProgress();
+    });
+
+    if(btnExport) btnExport.addEventListener("click", () => {
+      const {arr} = score();
+      const payload = {
+        version: "sample-v1",
+        date: new Date().toISOString(),
+        answers: ITEMS.map((it, idx)=> ({index: idx+1, type: it.t, value: (state[idx] ?? 0), statement: it.s})),
+        scores: arr.map(x => ({type: x.t, raw: x.raw, max: x.max, pct: x.pct}))
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "enneagram-test-sample.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=> URL.revokeObjectURL(a.href), 1200);
+      showToast("JSON export created");
+    });
+
+    if(btnCalc2) btnCalc2.addEventListener("click", () => btnCalc.click());
+    if(btnReset2) btnReset2.addEventListener("click", () => btnReset.click());
+
+    if(btnBack) btnBack.addEventListener("click", (e) => {
+      const ref = (document.referrer || "").toLowerCase();
+      const cameFromSite = ref.includes("explore.html") || ref.includes("index.html");
+      if (cameFromSite && history.length > 1){
+        e.preventDefault();
+        history.back();
+      }
+    });
+
+    renderQuestions();
+
+    const answeredCount = Object.keys(state).length;
+    if(answeredCount >= ITEMS.length){
+      renderResults();
+    }
+
+    updateScrollProgress();
+  })();
+  </script>
+
+
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

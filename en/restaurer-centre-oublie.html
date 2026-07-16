@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restoring Your Forgotten Center — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    .head{text-align:center;max-width:820px;margin:0 auto 22px}
+    .head h1{margin:0;font-size:clamp(30px,4.6vw,46px);letter-spacing:.3px;line-height:1.08}
+    .head .sub{margin:12px auto 0;color:var(--muted);font-size:16.5px;line-height:1.55;max-width:72ch}
+
+    .intro{
+      margin:22px auto 26px;max-width:880px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(196,181,253,.06), rgba(96,165,250,.04));
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:22px;
+    }
+    .intro p{margin:0 0 12px;line-height:1.65;font-size:15.5px}
+    .intro p:last-child{margin-bottom:0}
+    .intro strong{color:#fff}
+
+    /* Les 3 centres */
+    .centers3{
+      max-width:920px;margin:0 auto 32px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+    }
+    @media(max-width:720px){.centers3{grid-template-columns:1fr}}
+    .centerCard{
+      padding:18px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-top-width:4px;
+    }
+    .centerCard h3{margin:0 0 8px;font-size:16px;letter-spacing:.3px;display:flex;align-items:center;gap:8px}
+    .centerCard .ico{
+      display:inline-grid;place-items:center;width:32px;height:32px;border-radius:10px;
+      font-size:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);
+    }
+    .centerCard p{margin:0 0 8px;font-size:14px;line-height:1.55;color:#e8eeff}
+    .centerCard .types{
+      margin-top:8px;font-size:12.5px;color:var(--muted);
+      letter-spacing:.4px;
+    }
+    .centerCard.mental{border-top-color:#93c5fd}
+    .centerCard.mental h3{color:#bfdbfe}
+    .centerCard.emotionnel{border-top-color:#f9a8d4}
+    .centerCard.emotionnel h3{color:#fbcfe8}
+    .centerCard.instinctif{border-top-color:#fcd34d}
+    .centerCard.instinctif h3{color:#fde68a}
+
+    .sectionTitle{
+      text-align:center;font-size:13px;letter-spacing:1.2px;
+      text-transform:uppercase;color:var(--muted);font-weight:700;
+      margin:0 0 14px;
+    }
+
+    /* Les 4 rôles */
+    .roles{
+      max-width:920px;margin:0 auto 32px;
+      display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+    }
+    @media(max-width:720px){.roles{grid-template-columns:1fr}}
+    .role{
+      padding:16px 18px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .role h3{
+      margin:0 0 6px;font-size:14px;letter-spacing:.5px;text-transform:uppercase;
+      font-weight:800;display:flex;align-items:center;gap:8px;
+    }
+    .role h3 .num{
+      display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;
+      border:1.5px solid currentColor;font-size:12px;font-weight:850;
+    }
+    .role p{margin:0;font-size:14px;line-height:1.55;color:#e8eeff}
+    .role .meta{margin-top:6px;font-size:12.5px;color:var(--muted);font-style:italic}
+    .role.r1{border-left-color:#fbbf24;color:#fde68a}
+    .role.r2{border-left-color:#86efac;color:#bbf7d0}
+    .role.r3{border-left-color:#93c5fd;color:#bfdbfe}
+    .role.r4{border-left-color:#c4b5fd;color:#ddd6fe}
+
+    /* Métaphore moteur */
+    .metaphor{
+      max-width:880px;margin:0 auto 32px;
+      padding:18px 22px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left:3px solid rgba(255,255,255,.4);
+    }
+    .metaphor h4{margin:0 0 8px;font-size:14px;letter-spacing:.4px;color:var(--muted);text-transform:uppercase}
+    .metaphor p{margin:0;font-size:15px;line-height:1.6;font-style:italic}
+
+    /* Paradoxe 3-6-9 */
+    .paradox{
+      max-width:920px;margin:0 auto 32px;
+      padding:22px 24px;border-radius:var(--radius);
+      border:1px solid rgba(196,181,253,.30);
+      background:linear-gradient(180deg, rgba(196,181,253,.10), rgba(196,181,253,.03));
+      box-shadow:var(--shadow);
+    }
+    .paradox h2{margin:0 0 8px;font-size:22px;letter-spacing:.3px;color:#fff}
+    .paradox .sub{color:#ddd6fe;margin:0 0 14px;font-size:14.5px}
+    .paradox p{margin:0 0 10px;line-height:1.65;font-size:15px}
+    .paradox p:last-child{margin-bottom:0}
+    .paradox strong{color:#fff}
+    .paradox .pillars{
+      display:flex;justify-content:center;gap:14px;margin:14px 0;flex-wrap:wrap;
+    }
+    .paradox .pillar{
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      padding:12px 18px;border-radius:14px;
+      border:1px solid rgba(196,181,253,.4);
+      background:rgba(196,181,253,.06);min-width:120px;
+    }
+    .paradox .pillar .n{font-size:24px;font-weight:850;color:#fff}
+    .paradox .pillar .lbl{font-size:11px;color:#ddd6fe;text-transform:uppercase;letter-spacing:.6px;font-weight:800}
+
+    /* Sélecteur de type */
+    .selector{margin:30px auto 18px;max-width:880px}
+    .pills{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px}
+    @media(max-width:640px){.pills{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    .pill{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background:rgba(15,26,51,.72);color:var(--text);
+      border-radius:14px;padding:12px 6px 10px;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      transition:transform .12s ease, border-color .14s ease, background .14s ease;
+      min-height:64px;position:relative;
+    }
+    .pill:hover{transform:translateY(-2px);background:rgba(255,255,255,.06)}
+    .pill .num{font-size:22px;font-weight:850;line-height:1}
+    .pill .lbl{font-size:11px;color:var(--muted);font-weight:600;text-align:center}
+    .pill.instinctif{border-color:rgba(251,191,36,.55)}
+    .pill.emotionnel{border-color:rgba(244,114,182,.55)}
+    .pill.mental{border-color:rgba(96,165,250,.55)}
+    .pill.bp::after{
+      content:"♦";position:absolute;top:4px;right:6px;
+      font-size:11px;color:#c4b5fd;
+    }
+    .pill.active{background:rgba(255,255,255,.10);border-width:2px;transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .pill.instinctif.active{box-shadow:0 8px 22px rgba(251,191,36,.18)}
+    .pill.emotionnel.active{box-shadow:0 8px 22px rgba(244,114,182,.18)}
+    .pill.mental.active{box-shadow:0 8px 22px rgba(96,165,250,.18)}
+    .legend{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:12.5px}
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+    .legend .i-inst{background:#fbbf24}
+    .legend .i-emo{background:#f472b6}
+    .legend .i-ment{background:#60a5fa}
+    .legend .i-bp{color:#c4b5fd;font-size:14px}
+
+    /* Type card */
+    .typeCard{
+      margin:24px auto 0;max-width:920px;
+      border:1px solid var(--line);background:var(--card);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      overflow:hidden;animation:fadeUp .35s ease;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .typeHead{
+      padding:22px 24px 18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+    }
+    .typeHead .num{
+      width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+      font-size:30px;font-weight:850;border:2px solid rgba(255,255,255,.2);
+      background:rgba(15,26,51,.7);flex:0 0 auto;
+    }
+    .typeHead .titles{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+    .typeHead h2{margin:0;font-size:clamp(22px,3vw,30px);letter-spacing:.2px}
+    .typeHead .nick{color:var(--muted);font-weight:600;font-size:14px;letter-spacing:.4px}
+    .typeHead .nick em{color:#c4b5fd;font-style:normal}
+    .typeHead .stanceTag{
+      margin-left:auto;
+      padding:6px 12px;border-radius:999px;
+      font-size:11.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.18);
+      white-space:nowrap;
+    }
+    @media(max-width:560px){
+      .typeHead{flex-direction:column;align-items:flex-start;gap:10px}
+      .typeHead .titles{flex:none;width:100%}
+      .typeHead .stanceTag{margin-left:0}
+    }
+    .stanceTag.aggressive{color:#fda4af;border-color:rgba(253,164,175,.45);background:rgba(253,164,175,.08)}
+    .stanceTag.dependent{color:#fde68a;border-color:rgba(252,211,77,.45);background:rgba(252,211,77,.08)}
+    .stanceTag.withdrawing{color:#bfdbfe;border-color:rgba(96,165,250,.45);background:rgba(96,165,250,.08)}
+
+    .typeBody{padding:22px 26px 26px}
+
+    /* Le diagramme des 4 rôles pour ce type */
+    .typeMap{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 20px;
+    }
+    @media(max-width:560px){.typeMap{grid-template-columns:1fr}}
+    .typeMapBox{
+      padding:14px 14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      display:flex;flex-direction:column;gap:6px;min-height:110px;
+      position:relative;
+    }
+    .typeMapBox .cName{
+      font-size:13px;letter-spacing:.5px;text-transform:uppercase;
+      font-weight:800;display:flex;align-items:center;gap:6px;
+    }
+    .typeMapBox .cIco{font-size:16px}
+    .typeMapBox.mental{border-color:rgba(96,165,250,.35)}
+    .typeMapBox.mental .cName{color:#bfdbfe}
+    .typeMapBox.emotionnel{border-color:rgba(244,114,182,.35)}
+    .typeMapBox.emotionnel .cName{color:#fbcfe8}
+    .typeMapBox.instinctif{border-color:rgba(251,191,36,.35)}
+    .typeMapBox.instinctif .cName{color:#fde68a}
+    .typeMapBox.dim{opacity:.45}
+    .roleBadge{
+      display:inline-block;padding:3px 9px;border-radius:999px;
+      font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+      margin-top:2px;width:fit-content;
+    }
+    .rb-pref{background:rgba(251,191,36,.18);color:#fde68a;border:1px solid rgba(251,191,36,.4)}
+    .rb-dom{background:rgba(134,239,172,.16);color:#bbf7d0;border:1px solid rgba(134,239,172,.4)}
+    .rb-sup{background:rgba(147,197,253,.16);color:#bfdbfe;border:1px solid rgba(147,197,253,.4)}
+    .rb-rep{background:rgba(196,181,253,.16);color:#ddd6fe;border:1px solid rgba(196,181,253,.4)}
+    .rb-paradox{background:rgba(253,164,175,.16);color:#fecdd3;border:1px solid rgba(253,164,175,.4);font-style:italic}
+
+    /* Variants pour 3-6-9 */
+    .variantSwitch{
+      display:flex;gap:8px;margin:0 0 16px;
+      padding:6px;border-radius:14px;
+      background:rgba(196,181,253,.08);
+      border:1px solid rgba(196,181,253,.28);
+    }
+    .variantSwitch button{
+      flex:1;padding:10px 12px;border-radius:10px;border:none;cursor:pointer;
+      background:transparent;color:var(--muted);font-weight:700;font-size:13px;
+      transition:background .14s ease, color .14s ease;
+    }
+    .variantSwitch button.active{background:rgba(196,181,253,.20);color:#fff}
+    .variantSwitch button:hover:not(.active){background:rgba(255,255,255,.04);color:var(--text)}
+
+    /* Sections d'analyse */
+    .analysisSec{
+      margin:0 0 16px;padding:16px 18px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);
+      border-left-width:4px;
+    }
+    .analysisSec h3{
+      margin:0 0 10px;font-size:13px;letter-spacing:.7px;text-transform:uppercase;
+      font-weight:800;display:inline-flex;align-items:center;gap:8px;
+      padding:5px 12px;border-radius:999px;
+    }
+    .analysisSec p{margin:0 0 10px;line-height:1.7;font-size:15px;color:#e8eeff}
+    .analysisSec p:last-child{margin-bottom:0}
+    .analysisSec ul{margin:6px 0 0;padding-left:20px}
+    .analysisSec li{margin:4px 0;line-height:1.55;color:#e8eeff}
+    .analysisSec.s-pref{border-left-color:#fbbf24;background:rgba(251,191,36,.05)}
+    .analysisSec.s-pref h3{background:rgba(251,191,36,.14);color:#fde68a}
+    .analysisSec.s-dom{border-left-color:#86efac;background:rgba(134,239,172,.05)}
+    .analysisSec.s-dom h3{background:rgba(134,239,172,.14);color:#bbf7d0}
+    .analysisSec.s-sup{border-left-color:#93c5fd;background:rgba(96,165,250,.05)}
+    .analysisSec.s-sup h3{background:rgba(96,165,250,.14);color:#bfdbfe}
+    .analysisSec.s-rep{border-left-color:#c4b5fd;background:rgba(196,181,253,.07)}
+    .analysisSec.s-rep h3{background:rgba(196,181,253,.18);color:#ddd6fe}
+
+    .practices{
+      margin-top:12px;padding:14px 16px;border-radius:12px;
+      background:rgba(255,255,255,.04);border-left:2px solid #c4b5fd;
+    }
+    .practices h4{margin:0 0 8px;font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:#ddd6fe;font-weight:800}
+    .practices ul{margin:0;padding-left:18px}
+    .practices li{margin:4px 0;font-size:14.5px;line-height:1.55}
+
+    .navTypes{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:14px 22px;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+    .navTypes .btn{font-size:13px;padding:9px 14px}
+
+    /* 3 postures */
+    .stances{
+      margin:36px auto 0;max-width:920px;
+      border:1px solid var(--line);background:rgba(255,255,255,.03);
+      border-radius:var(--radius);padding:22px 24px;
+    }
+    .stances h2{margin:0 0 8px;font-size:22px;letter-spacing:.3px}
+    .stances .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+    .stancesGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+    .stanceCard{
+      padding:16px 18px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18);
+      border-top:3px solid currentColor;
+    }
+    .stanceCard h3{margin:0 0 6px;font-size:16px;letter-spacing:.3px;color:inherit}
+    .stanceCard .types{font-size:13px;color:var(--muted);margin:0 0 8px;font-weight:700}
+    .stanceCard p{margin:0 0 6px;font-size:14px;line-height:1.55;color:#e8eeff}
+    .stanceCard p:last-child{margin-bottom:0}
+    .stanceCard .lacks{
+      margin-top:8px;padding:8px 10px;border-radius:8px;
+      background:rgba(255,255,255,.04);font-size:13px;
+    }
+    .stanceCard .lacks b{color:#fff;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase}
+    .stanceCard.aggressive{color:#fda4af}
+    .stanceCard.dependent{color:#fde68a}
+    .stanceCard.withdrawing{color:#bfdbfe}
+
+    .closing{
+      margin:30px auto 0;max-width:880px;padding:22px 24px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(196,181,253,.05), rgba(96,165,250,.04));
+      line-height:1.7;font-size:15.5px;
+    }
+    .closing strong{color:#fff}
+
+    .placeholder{max-width:880px;margin:8px auto 0;text-align:center;color:var(--muted);font-size:14.5px;padding:14px}
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/restaurer-centre-oublie.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/restaurer-centre-oublie.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/restaurer-centre-oublie.html" />
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/index.html">← Home</a>
+      <a class="btn" href="/en/approches.html">← Paths of Transformation</a>
+    </div>
+
+    <header class="head">
+      <h1>Restoring Your Forgotten Center</h1>
+      <p class="sub">You have three intelligences within you: mental, emotional, instinctive. You favor one, you express one, you use one in support — and you repress one. Restoring the one that sleeps is becoming whole.</p>
+    </header>
+
+    <section class="intro">
+      <p>This path of transformation offers a <strong>structural reading</strong> of the Enneagram: for each type, it distinguishes <strong>four roles</strong> played by the three centers of intelligence (mental, emotional, instinctive). This approach reveals <em>why</em> you function the way you do, and above all <em>which intelligence sleeps within you</em> and asks to be restored.</p>
+      <p>The work does not consist in changing type, nor in fighting your mechanism. It consists in <strong>awakening the center you learned to set aside</strong>, to recover the balance between your three intelligences. It is a path of inner unification: thinking, feeling, and acting, together.</p>
+      <p>Three types — <strong>3, 6, and 9</strong> — live a paradoxical situation that must be understood on its own: they repress <em>their own preferred center</em>. This is the most precious subtlety of this approach, and it explains why two people of the same type can seem so different.</p>
+    </section>
+
+    <p class="sectionTitle">The Three Centers of Intelligence</p>
+    <section class="centers3">
+      <div class="centerCard mental">
+        <h3>Mental</h3>
+        <p>The center of <strong>vision, awareness, and understanding</strong>. It serves to observe, analyze, foresee, make sense, step back, discern.</p>
+        <p class="types">Types preferring this center: <b>5 · 6 · 7</b></p>
+      </div>
+      <div class="centerCard emotionnel">
+        <h3>Emotional</h3>
+        <p>The center of <strong>connection, relationship, and unity</strong>. It makes inner life visible through words, feelings, images, symbols, stories.</p>
+        <p class="types">Types preferring this center: <b>2 · 3 · 4</b></p>
+      </div>
+      <div class="centerCard instinctif">
+        <h3>Instinctive</h3>
+        <p>The center of <strong>the body, action, and creative vitality</strong>. It advances through imagination and innovation, turns intention into gesture, brings things into existence.</p>
+        <p class="types">Types preferring this center: <b>8 · 9 · 1</b></p>
+      </div>
+    </section>
+
+    <p class="sectionTitle">The Four Roles Played by the Centers</p>
+    <section class="roles">
+      <div class="role r1">
+        <h3><span class="num">1</span>Preferred center</h3>
+        <p>The <strong>invisible source</strong> of deep motivation. This is where the type's compulsion is born — where the energy that drives the whole mechanism comes from.</p>
+        <p class="meta">Question: where does my deep motivation come from?</p>
+      </div>
+      <div class="role r2">
+        <h3><span class="num">2</span>Dominant center</h3>
+        <p>The <strong>visible expression</strong> of the motivation. This is what others see of your personality, the way you appear in the world.</p>
+        <p class="meta">Question: through which center does my motivation manifest?</p>
+      </div>
+      <div class="role r3">
+        <h3><span class="num">3</span>Support center</h3>
+        <p>The <strong>secondary resource</strong>. It is often your <em>healthiest</em> center, because your ego is not invested in it — where your most recognized talents come from.</p>
+        <p class="meta">Question: what resource can help me neutralize my automatic patterns?</p>
+      </div>
+      <div class="role r4">
+        <h3><span class="num">4</span>Repressed center</h3>
+        <p>The <strong>intelligence to restore</strong>. The neglected center, underused, sometimes feared. This is where transformation plays out — restoring this center is becoming whole.</p>
+        <p class="meta">Question: which intelligence must I restore to become more complete?</p>
+      </div>
+    </section>
+
+    <section class="metaphor">
+      <h4>An image to help understand</h4>
+      <p>Imagine your personality as a car. The <strong>preferred center</strong> is the engine — invisible but supplying all the energy. The <strong>dominant center</strong> is the bodywork, the paint, what you see. The <strong>support center</strong> is the transmission that helps it move forward. And the <strong>repressed center</strong> is that essential part left forgotten in the garage — without it, the car still runs, but lamely.</p>
+    </section>
+
+    <section class="paradox">
+      <h2>The Paradox of the Pillars: 3, 6, and 9</h2>
+      <p class="sub">Three types occupy a place apart — they are the points of the Enneagram's inner triangle.</p>
+      <div class="pillars">
+        <div class="pillar"><div class="n">3</div><div class="lbl">Emotional pillar</div></div>
+        <div class="pillar"><div class="n">6</div><div class="lbl">Mental pillar</div></div>
+        <div class="pillar"><div class="n">9</div><div class="lbl">Instinctive pillar</div></div>
+      </div>
+      <p>These three types are the <strong>pillars</strong> of each triad. But paradoxically, <strong>each pillar represses its own intelligence</strong>. The 3 is at the heart of the emotional triad… but cuts off its real heart. The 6 is at the heart of the mental triad… but does not trust its own thinking. The 9 is at the heart of the instinctive triad… but represses its energy for action.</p>
+      <p>For these three types, the preferred center and the dominant center <strong>are different</strong>. Motivation comes from the preferred (repressed) center, but expression passes through another center. This is why there are <strong>two flavors of each 3, each 6, and each 9</strong> — depending on the dominant center chosen to express the personality. In total, nine types become twelve.</p>
+    </section>
+
+    <p class="sectionTitle">Choose your type to discover the configuration of your centers</p>
+    <section class="selector" aria-label="Type selection">
+      <div class="pills" id="pills"></div>
+      <div class="legend">
+        <span><i class="i-inst"></i> Instinctive (8·9·1)</span>
+        <span><i class="i-emo"></i> Emotional (2·3·4)</span>
+        <span><i class="i-ment"></i> Mental (5·6·7)</span>
+        <span><i class="i-bp">♦</i> Pillar (3·6·9)</span>
+      </div>
+    </section>
+
+    <p class="placeholder" id="placeholder">↑ Select a type to see the configuration of its four centers and the restoration work.</p>
+
+    <article class="typeCard" id="typeCard" hidden></article>
+
+    <section class="stances">
+      <h2>The Three Stances by Repressed Center</h2>
+      <p class="sub">When we look at the types by <em>what they lack</em> rather than by what they show, they group into three broad stances.</p>
+      <div class="stancesGrid">
+        <div class="stanceCard aggressive">
+          <h3>Aggressive stance</h3>
+          <p class="types">Types 3 · 7 · 8 — Emotional repressed</p>
+          <p>Facing forward, toward impact, accomplishment. Energetic, optimistic, task-oriented. They shape the world to their idea.</p>
+          <div class="lacks"><b>What's missing:</b> real warmth, vulnerability, depth of connection. Without them, impact does not nourish.</div>
+        </div>
+        <div class="stanceCard dependent">
+          <h3>Dependent stance</h3>
+          <p class="types">Types 1 · 2 · 6 — Mental repressed</p>
+          <p>Turned toward others to know what to do, how to be validated, what is right. Social, accommodating, watchful of outside expectations.</p>
+          <div class="lacks"><b>What's missing:</b> free thinking, personal discernment, the capacity to think without fear or need for approval.</div>
+        </div>
+        <div class="stanceCard withdrawing">
+          <h3>Withdrawing stance</h3>
+          <p class="types">Types 4 · 5 · 9 — Instinctive repressed</p>
+          <p>Turned inward, toward observation, imagination, reflection. They process life first within themselves before — or instead of — living it outside.</p>
+          <div class="lacks"><b>What's missing:</b> embodiment, taking action, the capacity to start and finish things in the real world.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p>Restoring your forgotten center is not quick work. It is a <strong>tender and patient discipline</strong> that lasts for years — noticing each day how you avoid this center, and consciously choosing to use it, even clumsily, until it reclaims its natural place. The goal is not to become another type; it is to become <strong>whole</strong> within your own.</p>
+    </section>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+
+  <script>
+  // Données : centres et contenu psycho-spirituel pour chaque type
+  // Source : K. Hurley & T. Dobson, My Best Self
+  // Centres : creative=instinctif, relational=émotionnel, intellectual=mental
+  const TYPES = [
+    {
+      n:1, name:"The Perfectionist", hd:"Achiever", center:"instinctif",
+      isBP:false, stance:"dependent",
+      preferred:"instinctif", dominant:"instinctif", support:"emotionnel", repressed:"mental",
+      preface:"Type 1 uses a focused intensity of energy like a laser beam to try to create perfection in a chaotic world. Its deep motivation is born from the instinctive center (energy to do), turned inward — toward what is not yet right, what must be corrected, what must measure up.",
+      pref:"Type 1's deep motivation comes from the <strong>instinctive center</strong>: an energy for action, a taut will. This energy is turned <em>inward</em> and focused on what should be improved — in itself, in others, in the world. This is where its vital tension, its seriousness, its moral fatigue come from.",
+      dom:"The dominant center is also <strong>instinctive</strong>. On the outside, the 1 appears determined, intense, upright, demanding, energetic. It acts, corrects, organizes, mobilizes. Its presence is strong and its commitment palpable.",
+      sup:"Its hidden resource is <strong>emotional</strong>: a genuine sensitivity to what is right, to human dignity, to what touches deeply. It is through this center that it can move beyond its rigidity to become a caring guide, an educator of the heart.",
+      rep:"The center to restore is the <strong>mental</strong> center — not the anxious or critical mental activity it already knows, but thinking that is <em>free, objective, settled, capable of stepping back</em>. The ability to see the big picture rather than focus on the detail to correct. The ability to distinguish its inner standards from reality as it is. Without this center, the 1 remains a prisoner of its inner judge.",
+      practices:[
+        "Take time to reflect before acting, without moral urgency.",
+        "Make long-term plans by asking: \"What is the real priority here?\"",
+        "Read for the pleasure of understanding, not to improve yourself.",
+        "Cultivate humor as a tool for perspective.",
+        "Distinguish every day: \"What I really think\" vs. \"What I should think.\""
+      ]
+    },
+    {
+      n:2, name:"The Giver", hd:"Helper", center:"emotionnel",
+      isBP:false, stance:"dependent",
+      preferred:"emotionnel", dominant:"emotionnel", support:"instinctif", repressed:"mental",
+      preface:"Type 2 approaches the world through personal feelings and needs. Very sensitive to others' emotions, it forgets its own — creating an inner void that only the act of helping temporarily fills.",
+      pref:"Type 2's deep motivation comes from the <strong>emotional center</strong>: warmth, connection, a fine capacity to perceive others' needs. But this sensitivity is turned outward — it senses others far better than itself.",
+      dom:"The dominant center is also <strong>emotional</strong>. On the outside, the 2 appears warm, attentive, devoted, anticipatory. It guesses, offers, takes care. Its generosity is its signature.",
+      sup:"Its hidden resource is <strong>instinctive</strong>: a real energy for action to help concretely, set things in motion, be physically present. It is through this center that it can be of service without collapsing.",
+      rep:"The center to restore is the <strong>mental</strong> center — the ability to <em>think for itself</em>, to plan its own life, to clarify its own goals independently of others' needs. The discernment between what I am and what is expected of me. Without this center, the 2 lives perpetually in others' immediate present, without direction of its own.",
+      practices:[
+        "Take time alone, with no one to help, no phone.",
+        "Identify 3 personal goals for the next 6 months — that help no one else.",
+        "Practice \"I don't know yet, I'll tell you\" before saying yes.",
+        "Read books or take courses unrelated to people and relationships.",
+        "Write every evening: \"What did I myself want today?\""
+      ]
+    },
+    {
+      n:3, name:"The Performer", hd:"Succeeder", center:"emotionnel",
+      isBP:true, stance:"aggressive",
+      preferred:"emotionnel", dominantOptions:["mental","instinctif"], repressed:"emotionnel",
+      preface:"Type 3 is a pillar of the emotional triad, but it <strong>represses its own emotional center</strong>. It radiates a surface relational warmth that masks an underlying attitude strongly oriented toward accomplishment. It wears the shell of the emotional center without inhabiting its heart.",
+      pref:"Type 3's deep motivation comes from the <strong>emotional center</strong> — but repressed. It sensed very early that worth came through image, performance, recognition. The center of connection is used on the surface (charm, adaptability, attentiveness to others) but cut off from its true root.",
+      dom:"Depending on the dominant center chosen to express this motivation, there are <strong>two flavors of Type 3</strong>. Choose the one that resembles you:",
+      variants:{
+        mental:{
+          name:"The mentally dominant 3",
+          dom:"More introverted, idealistic, intuitive. Its leadership operates through vision, new ideas, strategy. It inspires others to mobilize for a future. Calmer, less flashy, more serious and intense than its counterpart. Tends to read to find the best methods, applying its realism to the world of ideas and to the spiritual.",
+          sup:"Its hidden resource is <strong>instinctive</strong>: a real capacity for accomplishment, for effectiveness in the concrete when it decides to go for it."
+        },
+        instinctif:{
+          name:"The instinctively dominant 3",
+          dom:"More extraverted, direct, down-to-earth. It knows how to <em>make things move</em> in the real world — business, social life, action. Light in public, approachable, knows how to strike up a conversation. Seemingly natural, sometimes hiding a cynicism. Capable of manipulating material reality and people to get ahead.",
+          sup:"Its hidden resource is <strong>mental</strong>: a real capacity for reflection, strategy, fine-grained planning when it takes the time."
+        }
+      },
+      rep:"The center to restore is the <strong>emotional center</strong> itself — paradoxically. Not the surface relational charm, but <em>the depth of feeling</em>: truly feeling its emotions, accepting its vulnerability, accepting being loved for who it is and not for what it accomplishes. Without this work, the 3 remains brilliant but hollow inside.",
+      practices:[
+        "Take time regularly with no goal, no productivity at all.",
+        "Name one true emotion each day — not a useful emotion, not a facade emotion.",
+        "Receive love or a compliment without \"earning\" it through a performance in return.",
+        "Cultivate friendships that are free of use, without networking value.",
+        "Before each action, ask: \"Am I doing this to be seen, or for what it is?\""
+      ]
+    },
+    {
+      n:4, name:"The Romantic", hd:"Individualist", center:"emotionnel",
+      isBP:false, stance:"withdrawing",
+      preferred:"emotionnel", dominant:"emotionnel", support:"mental", repressed:"instinctif",
+      preface:"Type 4 approaches the world first through its own feelings, then those of others. Its deep desire is to understand and to be deeply understood by at least one other person.",
+      pref:"Type 4's deep motivation comes from the <strong>emotional center</strong>, turned inward. It lives in feeling, identity, nuance. Its compass is what it feels, and it seeks to give shape to this inner life.",
+      dom:"The dominant center is also <strong>emotional</strong>. On the outside, the 4 appears sensitive, deep, expressive, sometimes melancholic, original, an aesthete. It inhabits its emotions and makes them visible.",
+      sup:"Its hidden resource is <strong>mental</strong>: a real capacity for psychological analysis, fine understanding, structured introspection. It is through this center that it can transform its feelings into wisdom.",
+      rep:"The center to restore is the <strong>instinctive</strong> center — the ability to <em>act, embody, finish</em> what one starts. Stepping out of the inner world of projects, ideas, and emotions to bring something concretely into existence in the world. Without this center, the 4 remains an eternal beginner, rich in inner life but poor in accomplishments.",
+      practices:[
+        "Finish one project a day, even small, even imperfect.",
+        "Practice a regular physical activity — dance, sport, walking — to inhabit the body.",
+        "Commit to a concrete schedule and keep it, even when the mood doesn't follow.",
+        "Make concrete, quick choices rather than waiting for the \"right moment.\"",
+        "Measure the value of a day by what was accomplished, not by what was felt."
+      ]
+    },
+    {
+      n:5, name:"The Observer", hd:"Observer", center:"mental",
+      isBP:false, stance:"withdrawing",
+      preferred:"mental", dominant:"mental", support:"emotionnel", repressed:"instinctif",
+      preface:"Type 5 sees the world from an abstract perspective, oriented toward knowledge. It preserves its energy by staying at a distance, and finds its security in understanding.",
+      pref:"Type 5's deep motivation comes from the <strong>mental center</strong>: observing, understanding, knowing, keeping its intelligence like a treasure. Its compass is information, coherence, intellectual mastery.",
+      dom:"The dominant center is also <strong>mental</strong>. On the outside, the 5 appears calm, observant, knowledgeable, sometimes distant or detached. It thinks before speaking, and often speaks only to summarize.",
+      sup:"Its hidden resource is <strong>emotional</strong>: a fine sensitivity, often tender, hidden behind the distance. Once it trusts, the 5 can be deeply attached and feel intensely.",
+      rep:"The center to restore is the <strong>instinctive</strong> center — <em>embodied action, bodily presence, shared energy</em>. Stepping out of the ivory tower to participate, acting before understanding everything, accepting to spend its energy without fear of running out. Without this center, the 5 knows a great deal but lives little.",
+      practices:[
+        "A regular bodily practice (sport, yoga, dance, walking) — with no intellectual goal.",
+        "Get involved in a collective project where its physical presence matters.",
+        "Share its time and energy without calculating the cost.",
+        "Act before understanding everything — accept learning through experience.",
+        "Touch, hug, embrace — let the body take part in relationships."
+      ]
+    },
+    {
+      n:6, name:"The Loyal Skeptic", hd:"Guardian", center:"mental",
+      isBP:true, stance:"dependent",
+      preferred:"mental", dominantOptions:["instinctif","emotionnel"], repressed:"mental",
+      preface:"Type 6 is a pillar of the mental triad, but it <strong>represses its own mental center</strong>. It wears the shell of the mental center — curiosity, questioning, vigilance — without trusting its own thinking. This is why it constantly seeks to validate its ideas with a group or an authority.",
+      pref:"Type 6's deep motivation comes from the <strong>mental center</strong> — but repressed. It learned very early not to rely on its own judgment. The center of thought is used on the surface (questioning, anticipatory anxiety) but cut off from its confident root.",
+      dom:"Depending on the dominant center chosen to express this motivation, there are <strong>two flavors of Type 6</strong>. Choose the one that resembles you:",
+      variants:{
+        emotionnel:{
+          name:"The emotionally dominant 6",
+          dom:"More introverted, more sensitive to relationships and emotions. Its world is smaller — fewer relationships, but stronger bonds. Sacrifices its own desires for loved ones, often lives through the accomplishments of those it loves. Hospitable on its own turf, less at ease in large gatherings. Keeps its opinion in public; expresses it strongly in private to a trusted friend. Insecurity often economic, financially conservative.",
+          sup:"Its hidden resource is <strong>instinctive</strong>: a real capacity for action and defense when it comes to protecting its own."
+        },
+        instinctif:{
+          name:"The instinctively dominant 6",
+          dom:"More extraverted, direct, active, sometimes aggressive (\"counterphobic\"). Knows how to connect with the \"right\" people, widens its social network. Can become the life of the party. Communicates strong values with biting humor. More of a spender, less self-sacrificing than its counterpart. Expresses its opinions openly, not very tolerant of different values. Practical, realistic, common sense.",
+          sup:"Its hidden resource is <strong>emotional</strong>: a real capacity for warmth, for loyal commitment to loved ones, behind the combative façade."
+        }
+      },
+      rep:"The center to restore is the <strong>mental center</strong> itself — paradoxically. Not the anxious mental activity that anticipates dangers, but <em>thinking that is free, calm, autonomous, capable of discernment</em>. Trusting its own judgment without validating it with others. Distinguishing intuition, fear, and mental scenario. Deciding despite uncertainty. Without this work, the 6 remains a prisoner of a mind that spins without being able to decide.",
+      practices:[
+        "Make a decision without asking anyone's opinion, for one whole day.",
+        "Write its own convictions clearly and reread them to see what is truly <em>its own</em>.",
+        "Distinguish every day: \"This is my fear talking\" / \"This is my free thinking talking.\"",
+        "Act despite uncertainty — choose the best option with what is known, without waiting for a guarantee.",
+        "Limit the number of people consulted before a decision (for example: no more than one)."
+      ]
+    },
+    {
+      n:7, name:"The Epicure", hd:"Dreamer", center:"mental",
+      isBP:false, stance:"aggressive",
+      preferred:"mental", dominant:"mental", support:"instinctif", repressed:"emotionnel",
+      preface:"Type 7 lives in a mind running at full speed, full of ideas, plans, anticipations. It wants to live in a happy world, free of pain, and uses its mental agility to flee anything heavy.",
+      pref:"Type 7's deep motivation comes from the <strong>mental center</strong>, turned inward. It lives in the possible, the future, the plan. Its compass is the stimulating idea, the open option, joyful anticipation.",
+      dom:"The dominant center is also <strong>mental</strong>. On the outside, the 7 appears optimistic, joyful, charming, creative, full of energy. Its face is turned toward what is possible, not toward what is heavy.",
+      sup:"Its hidden resource is <strong>instinctive</strong>: a real capacity for action and accomplishment when the desire is there. When it commits fully, it can accomplish an enormous amount.",
+      rep:"The center to restore is the <strong>emotional</strong> center — <em>emotional depth, acceptance of sadness, vulnerability, faithfulness over time</em>. Truly loving rather than being likable. Staying when the experience becomes painful. Without this center, the 7 remains forever on the surface, brilliant but incapable of real intimacy.",
+      practices:[
+        "Stay with an unpleasant emotion for at least 5 minutes without fleeing it, without transforming it.",
+        "Finish what has been started before moving on to something else.",
+        "Listen to another person without joking, without jumping in, without already preparing a reply.",
+        "Practice faithfulness in a long relationship — accept routine without fleeing it.",
+        "Choose one option and give up the others — feel the loss and stay anyway."
+      ]
+    },
+    {
+      n:8, name:"The Protector", hd:"Confronter", center:"instinctif",
+      isBP:false, stance:"aggressive",
+      preferred:"instinctif", dominant:"instinctif", support:"mental", repressed:"emotionnel",
+      preface:"Type 8 uses an intensity of energy to confront and overcome every challenge the world presents. Its inner life feels solitary and sterile to it, so it flees into action, confrontation, total engagement with the outside world.",
+      pref:"Type 8's deep motivation comes from the <strong>instinctive center</strong>, turned outward. It experiences energy like a tidal wave — challenging, protecting, acting, leading. Its compass is justice, the balance of power, raw vitality.",
+      dom:"The dominant center is also <strong>instinctive</strong>. On the outside, the 8 appears powerful, direct, courageous, confrontational, protective. Its presence is massive, its commitment total, its speech straightforward.",
+      sup:"Its hidden resource is <strong>mental</strong>: a real strategic capacity, a clear intelligence, an accurate sense of what is right and what is not. It is through this center that it can channel its power with discernment.",
+      rep:"The center to restore is the <strong>emotional</strong> center — <em>tenderness, vulnerability, the capacity to receive, to let itself be touched</em>. Recognizing its emotional needs without mistaking them for weakness. Without this center, the 8 lives in a shell of strength that ends up cutting it off from everyone, including those it protects.",
+      practices:[
+        "Express a true emotion (fear, sadness, need) before moving into action.",
+        "Ask for help once a week — really ask for help, not just collaboration.",
+        "Let its guard down in front of a trusted person and accept being seen without armor.",
+        "Practice listening without stepping in, without correcting, without steering the conversation.",
+        "Acknowledge out loud what touches it, even if it's small."
+      ]
+    },
+    {
+      n:9, name:"The Mediator", hd:"Preservationist", center:"instinctif",
+      isBP:true, stance:"withdrawing",
+      preferred:"instinctif", dominantOptions:["emotionnel","mental"], repressed:"instinctif",
+      preface:"Type 9 is a pillar of the instinctive triad, but it <strong>represses its own instinctive center</strong>. It radiates the quiet strength of the shell (presence, endurance, calm) but uses this strength to <em>prevent</em> life from arriving in the personal realm — a passive, defensive force, rather than an energy for action.",
+      pref:"Type 9's deep motivation comes from the <strong>instinctive center</strong> — but repressed. It learned very early not to assert its own energy. The center of action is used on the surface (presence, endurance, passive refusal) but cut off from its living root.",
+      dom:"Depending on the dominant center chosen to express this motivation, there are <strong>two flavors of Type 9</strong>. Choose the one that resembles you:",
+      variants:{
+        emotionnel:{
+          name:"The emotionally dominant 9",
+          dom:"More extraverted, sociable, attentive to people. Knows how to connect personally, takes others' feelings into account in its decisions. Well put together, pleasant image, sometimes sensual. Aware of the effect of its words, makes the effort to learn to communicate. Socially pleasant, professionally respected. Enjoys reading psychology, biographies, human stories.",
+          sup:"Its hidden resource is <strong>mental</strong>: a capacity for analysis and understanding that it deploys to understand the people around it."
+        },
+        mental:{
+          name:"The mentally dominant 9",
+          dom:"More introverted, distant, objective, less relational. Tends to be absent-minded, forgetting personal obligations. Not very sensitive to emotions (its own and others'), sometimes not very put together in appearance. Uncomfortable when asked to express its needs. Lives much of the time alone, in thought or in a hobby. Strong analytical abilities for practical, impersonal problems. Reads professional journals, technical magazines.",
+          sup:"Its hidden resource is <strong>emotional</strong>: a quiet, faithful warmth it can offer, behind its apparent distance."
+        }
+      },
+      rep:"The center to restore is the <strong>instinctive center</strong> itself — paradoxically. Not the passive strength of endurance, but <em>the energy to act for oneself, decision, the expression of one's own will</em>. Recognizing its desire and setting it in motion. Choosing, taking its place, saying no, saying yes consciously. Without this work, the 9 remains present but absent from its own life.",
+      practices:[
+        "Every day, do one thing that expresses <em>its own</em> personal desire — small, but its own.",
+        "Start the important task before the secondary ones, even briefly.",
+        "Say \"no\" out loud at least once a day, without justifying it.",
+        "Move physically every morning to activate its energy before thinking.",
+        "Write every evening: \"What did I myself want today, and did I act accordingly?\""
+      ]
+    }
+  ];
+
+  const CENTER_NAMES = {mental:"Mental", emotionnel:"Emotional", instinctif:"Instinctive"};
+  const CENTER_ICONS = {mental:"", emotionnel:"", instinctif:""};
+  const STANCE_LABELS = {aggressive:"Aggressive stance", dependent:"Dependent stance", withdrawing:"Withdrawing stance"};
+
+  // Build pills
+  const pillsEl = document.getElementById('pills');
+  TYPES.forEach(t=>{
+    const b = document.createElement('button');
+    b.className = `pill ${t.center}${t.isBP?' bp':''}`;
+    b.dataset.n = t.n;
+    b.innerHTML = `<span class="num">${t.n}</span><span class="lbl">${t.name.replace(/^The /, '')}</span>`;
+    b.addEventListener('click', ()=> selectType(t.n));
+    pillsEl.appendChild(b);
+  });
+
+  function buildTypeMap(t, dominant, support){
+    const roles = {
+      [t.preferred]: ['pref'],
+      [dominant]: roles_add(roles_get(t.preferred, dominant), 'dom'),
+      [support]: ['sup'],
+      [t.repressed]: roles_add(roles_get(t.preferred, dominant, support, t.repressed), 'rep')
+    };
+    // Manual approach
+    const map = {mental:[], emotionnel:[], instinctif:[]};
+    map[t.preferred].push('pref');
+    if (dominant !== t.preferred) map[dominant].push('dom');
+    else map[t.preferred].push('dom');
+    map[support].push('sup');
+    map[t.repressed].push('rep');
+
+    function roleHTML(centerKey){
+      const labels = {pref:['Preferred','rb-pref'], dom:['Dominant','rb-dom'], sup:['Support','rb-sup'], rep:['Repressed','rb-rep']};
+      const list = map[centerKey];
+      const isParadox = list.includes('pref') && list.includes('rep');
+      const isEmpty = list.length === 0;
+      const dimClass = isEmpty ? ' dim' : '';
+      let badges = list.map(r=>`<span class="roleBadge ${labels[r][1]}">${labels[r][0]}</span>`).join('');
+      if (isParadox) badges += `<span class="roleBadge rb-paradox">Paradox</span>`;
+      return `<div class="typeMapBox ${centerKey}${dimClass}">
+        <span class="cName"><span class="cIco">${CENTER_ICONS[centerKey]}</span>${CENTER_NAMES[centerKey]}</span>
+        ${badges || '<span class="roleBadge" style="opacity:.4;background:rgba(255,255,255,.04);color:var(--muted);border:1px dashed rgba(255,255,255,.18)">Not used</span>'}
+      </div>`;
+    }
+    return `<div class="typeMap">${roleHTML('mental')}${roleHTML('emotionnel')}${roleHTML('instinctif')}</div>`;
+  }
+
+  // dummy helpers (not used after manual approach above)
+  function roles_get(){return [];}
+  function roles_add(arr, x){return [...arr, x];}
+
+  function renderTypeBody(t, currentVariant){
+    let dominant, support, domHtml, supHtml;
+    if (t.isBP){
+      dominant = currentVariant;
+      support = t.dominantOptions.find(c=>c!==currentVariant);
+      const v = t.variants[currentVariant];
+      domHtml = `<p>${t.dom}</p>
+        <div class="variantSwitch" id="variantSwitch">
+          ${t.dominantOptions.map(opt=>{
+            const lbl = t.variants[opt].name;
+            return `<button data-variant="${opt}" class="${opt===currentVariant?'active':''}">${lbl}</button>`;
+          }).join('')}
+        </div>
+        <p>${v.dom}</p>`;
+      supHtml = v.sup;
+    } else {
+      dominant = t.dominant;
+      support = t.support;
+      domHtml = `<p>${t.dom}</p>`;
+      supHtml = t.sup;
+    }
+
+    const map = buildTypeMap(t, dominant, support);
+
+    return `
+      ${map}
+      <div class="analysisSec s-pref">
+        <h3>① Preferred center — Invisible motivation</h3>
+        <p>${t.pref}</p>
+      </div>
+      <div class="analysisSec s-dom">
+        <h3>② Dominant center — How you appear</h3>
+        ${domHtml}
+      </div>
+      <div class="analysisSec s-sup">
+        <h3>③ Support center — Your hidden resource</h3>
+        <p>${supHtml}</p>
+      </div>
+      <div class="analysisSec s-rep">
+        <h3>④ Repressed center — The intelligence to restore</h3>
+        <p>${t.rep}</p>
+        <div class="practices">
+          <h4>Practices to restore this center</h4>
+          <ul>${t.practices.map(p=>`<li>${p}</li>`).join('')}</ul>
+        </div>
+      </div>
+    `;
+  }
+
+  let currentTypeN = null;
+  let currentVariant = null;
+
+  function selectType(n, variant){
+    const t = TYPES.find(x=>x.n===n);
+    if(!t) return;
+    currentTypeN = n;
+
+    if (t.isBP){
+      currentVariant = variant || t.dominantOptions[0];
+    } else {
+      currentVariant = null;
+    }
+
+    document.querySelectorAll('.pill').forEach(p=>{
+      p.classList.toggle('active', Number(p.dataset.n)===n);
+    });
+
+    const card = document.getElementById('typeCard');
+    document.getElementById('placeholder').hidden = true;
+    card.hidden = false;
+
+    const prev = n===1 ? 9 : n-1;
+    const next = n===9 ? 1 : n+1;
+
+    card.innerHTML = `
+      <div class="typeHead">
+        <div class="num">${t.n}</div>
+        <div class="titles">
+          <h2>Type ${t.n} — ${t.name}</h2>
+          <span class="nick">Center configuration · <em>${t.hd}</em>${t.isBP?' · Pillar ♦':''}</span>
+        </div>
+        <span class="stanceTag ${t.stance}">${STANCE_LABELS[t.stance]}</span>
+      </div>
+      <div class="typeBody">
+        <div style="margin:0 0 14px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.04);border-left:3px solid rgba(255,255,255,.4);font-size:14.5px;line-height:1.6">${t.preface}</div>
+        ${renderTypeBody(t, currentVariant)}
+      </div>
+      <div class="navTypes">
+        <button class="btn" type="button" data-go="${prev}">← Type ${prev}</button>
+        <a class="btn" href="/en/profils/type${t.n}.html">See the complete profile for Type ${t.n} →</a>
+        <button class="btn" type="button" data-go="${next}">Type ${next} →</button>
+      </div>
+    `;
+
+    card.querySelectorAll('[data-go]').forEach(b=>{
+      b.addEventListener('click', ()=> selectType(Number(b.dataset.go)));
+    });
+    card.querySelectorAll('[data-variant]').forEach(b=>{
+      b.addEventListener('click', ()=> selectType(currentTypeN, b.dataset.variant));
+    });
+
+    requestAnimationFrame(()=>{
+      const y = card.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({top: Math.max(0, y), behavior:'smooth'});
+    });
+  }
+
+  const m = (location.hash||'').match(/type([1-9])/i);
+  if(m) selectType(Number(m[1]));
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

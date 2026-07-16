@@ -1,0 +1,150 @@
+{
+  "type": 5,
+  "name": "The Observer",
+  "tagline": "The Investigator",
+  "quick": {
+    "center": "Mental",
+    "wings": "4 and 6",
+    "integr": "→ 8",
+    "disint": "→ 7"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, core issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Mental (Head)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Mental." },
+            { "label": "Support center", "value": "Emotional or Instinctive." },
+            { "label": "Repressed center", "value": "Instinctive or Emotional." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Outward: uses the mind to observe/understand the world in order to protect against intrusion." },
+        { "label": "Core issue", "value": "Anxiety and a feeling of lacking the resources to meet the demands of the world." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, ego pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoiding inner emptiness at all costs." },
+        { "label": "Passion (Vice)", "value": "Avarice: conserving energy, time and knowledge." },
+        { "label": "Fixation", "value": "Stinginess (detachment): emotional distance, staying a spectator rather than an actor." },
+        { "label": "Defense mechanism", "value": "Isolation / compartmentalization: separating ideas and feelings, isolating areas of life to avoid being overwhelmed." },
+        { "label": "Ego pride", "value": "I know; I understand." },
+        { "label": "Basic fear", "value": "Being helpless, useless, incapable or overwhelmed by the world." },
+        { "label": "Basic desire", "value": "Being capable and competent." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Castle (Refuge): withdraws into a protected space to conserve their resources." },
+            { "label": "Social", "value": "Totem (Specialist): becoming a recognized expert within an intellectual elite/hierarchy." },
+            { "label": "One-to-one (Sexual)", "value": "Confidence (Trust): a secret, absolute connection with one person, sharing their inner world." }
+          ]
+        },
+        { "label": "Social style", "value": "Withdrawn: withdraws to protect their integrity and process information." },
+        { "label": "Conflict management", "value": "Competency: stays objective, relies on facts rather than feelings." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 4 (more emotional/creative) and wing 6 (more analytical/loyal)." },
+        { "label": "Integration (Growth)", "value": "→ 8: becomes embodied, direct action, confident assertiveness." },
+        { "label": "Disintegration (Stress)", "value": "→ 7: agitation, scattering, hyperactivity, distractions to flee anxiety." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Omniscience / Holy Transparency: perceiving the total interconnection of reality." },
+        { "label": "Virtue", "value": "Non-attachment: presence without clinging out of fear." },
+        { "label": "Idealized aspect", "value": "Diamond Guidance: the essential intellect that discerns the objective truth of experience." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Deficient isolation: feeling small, empty and impoverished." },
+            { "label": "Specific reaction", "value": "Withdrawal (hiding) to avoid confronting reality." },
+            { "label": "Specific illusion", "value": "Separation: believing oneself to be an isolated, independent entity." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner Little 8: vigor/activity repressed in favor of intellectual withdrawal." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, miscommunication.",
+      "items": [
+        { "label": "Speaking style", "value": "Treatise / dissertations: structured, factual, often lengthy on their areas of expertise." },
+        { "label": "Communication miscommunication", "value": "Truth-Obscurity: precision perceived as cold, confusing or distant." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Growth and relationships",
+      "desc": "Warning signs, practices, mix-ups, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Cutting off from physical needs, social isolation, abstract theories disconnected from reality." },
+        { "label": "Growth practices", "value": "Coming back into the body, sharing their knowledge, tolerating emotions in real time, daring to act without waiting for all the facts." },
+        { "label": "Frequent mix-ups", "value": "4 (depth), 9 (apparent calm), 1 (analytical/perfectionistic)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Loyal but needs autonomy; often communicates better nonverbally." },
+            { "label": "At work", "value": "A valuable expert, calm in a crisis; may seem inaccessible or slow to act due to over-preparation." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and awareness",
+      "desc": "Levels 1–9, awareness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Visionary: clarity and creativity in service of reality." },
+            { "n": 2, "text": "Perceptive observer: sharp analysis, open curiosity." },
+            { "n": 3, "text": "Innovator: integrated knowledge, useful sharing." },
+            { "n": 4, "text": "Studious expert: accumulation, specialization, increased withdrawal." },
+            { "n": 5, "text": "Intense conceptualizer: mentalizing, emotional distance, isolation." },
+            { "n": 6, "text": "Provocative cynic: hard detachment, sarcasm, defensive contempt." },
+            { "n": 7, "text": "Isolated nihilist: loss of meaning, extreme withdrawal." },
+            { "n": 8, "text": "Terrified alien: raw anxiety, the world experienced as intrusive and threatening." },
+            { "n": 9, "text": "Imploded schizoid: collapse, shutting down, breaking off connection." }
+          ]
+        },
+        { "label": "Awareness", "value": "Moving from the trance of mental withdrawal to self-remembering and presence in the moment." },
+        { "label": "Spiral Dynamics", "value": "ORANGE (rationality/expertise) and YELLOW (systemic thinking/complexity)." },
+        { "label": "Analogy", "value": "A remote-control station / fortress: watches the battle from afar, from its tower, so as not to be worn out by direct combat." }
+      ]
+    }
+  ]
+}

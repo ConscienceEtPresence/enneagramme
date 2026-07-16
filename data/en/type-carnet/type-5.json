@@ -1,0 +1,156 @@
+{
+  "type": 5,
+  "nom": "The Observer",
+  "centre": {
+    "prefere": "mental",
+    "support": "instinctif",
+    "reprime": "emotionnel",
+    "prefere_libelle": "Mental (observation, knowledge)",
+    "reprime_libelle": "Emotional",
+    "reprime_invitation": "Today, the center you are working with is the emotional: feeling, sharing, descending into the heart. Not with your head. Knowing is not enough — contact doesn't have to be known first either."
+  },
+
+  "dynamique_ego": {
+    "passion": "Avarice",
+    "passion_explication": "Not a stinginess with money. A stinginess of self: of your energy, your time, your presence, what you know. You hold back, you protect, because it seems to you that you don't have enough.",
+    "fixation": "Withdrawal, distant observation",
+    "compulsion_evitement": "Avoiding being invaded, dispossessed, drained of one's resources.",
+    "peur_de_base": "Being incompetent, incapable, without resources.",
+    "desir_de_base": "Being capable, competent, understanding."
+  },
+
+  "essence": {
+    "qualite_principale": "Direct Knowledge",
+    "qualite_phrase": "You don't have to know everything to be safe — you are already in connection with the real.",
+    "horizons": [
+      "Feeling instead of understanding",
+      "Coming out of observation to be inside",
+      "Sharing a resource, and seeing that it doesn't diminish",
+      "Touching the inner richness that cannot be calculated"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Come out of my head at least once",
+    "Engage my body in a concrete action",
+    "Share a bit of myself, without calculating everything",
+    "Give someone my time — truly",
+    "Feel without needing to understand",
+    "Not withdraw when emotion rises",
+    "Hold a conversation beyond what's necessary",
+    "Have the experience before analyzing it",
+    "Receive a presence, without dissecting it"
+  ],
+
+  "pratiques_du_matin": [
+    "Before noon, call someone without having prepared what you'll say.",
+    "One physical thing — a walk, a stretch, a gesture — to inhabit the body.",
+    "Leave home without an intellectual destination. Just be in the world.",
+    "When asked for something, say yes faster than you normally would.",
+    "Eat slowly, taste the food, don't read while eating.",
+    "Share a thought out loud — not to explain it, so it exists outside of you."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Luminous",    "description": "Engaged presence. You know AND you feel. You share your resources, and they renew themselves. Your knowledge serves the encounter.",        "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Functional", "description": "You observe, you analyze — you notice the reflex to withdraw but you can choose to engage in contact.",                                   "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Reactive",     "description": "You retreat into your tower. Contact exhausts you. You accumulate knowledge but flee feeling. The world becomes hostile.",                "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Buried",    "description": "Total isolation, paranoia, depersonalization. The body is no longer there. A very heavy day that calls for a gentle, concrete connection.",                       "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Liberated",        "texte": "Pioneer, visionary, present. You perceive what others don't see, and you embody it." },
+      { "n": 2, "titre": "Healthy",          "texte": "Observer, perceptive, curious. You see clearly without withdrawing." },
+      { "n": 3, "titre": "Competent",     "texte": "Expert, focused, deep. Your knowledge serves something." },
+      { "n": 4, "titre": "Average-high",    "texte": "Thinker, conceptual. You begin to favor the idea over experience." },
+      { "n": 5, "titre": "Average",         "texte": "Detached, isolated, secretive. You keep to yourself, you economize, you calculate your commitments." },
+      { "n": 6, "titre": "Average-low",     "texte": "Provocative, nihilistic, contemptuous. You attack from a distance." },
+      { "n": 7, "titre": "Unhealthy",       "texte": "Cynical, antagonistic, eccentric. The world is an enemy." },
+      { "n": 8, "titre": "Very unhealthy",  "texte": "Paranoia, hallucinations, disconnection from the body. Withdrawal becomes psychosis." },
+      { "n": 9, "titre": "Pathological",  "texte": "Schizoid, total depersonalization. Asking for help is vital here." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "retrait",     "label": "I withdrew into my head",          "detail": "Safer, more controllable." },
+      { "id": "economise",   "label": "I rationed my energy",                  "detail": "As if I lacked it." },
+      { "id": "garde",       "label": "I kept a thought to myself alone",       "detail": "Sharing it felt too costly." },
+      { "id": "analyse",     "label": "I analyzed instead of feeling",               "detail": "Safer than feeling." },
+      { "id": "evite",       "label": "I avoided a contact that required heart", "detail": "Too much commitment." },
+      { "id": "savoir-avant","label": "I wanted to know before acting",               "detail": "And I didn't act." }
+    ],
+    "pieges": [
+      { "id": "ecran",       "label": "I hid behind a screen or a book",  "detail": "The real was waiting." },
+      { "id": "non-bref",    "label": "I said no reflexively",                            "detail": "Because it required time." },
+      { "id": "minimum",     "label": "I did the bare minimum",                          "detail": "To preserve my resources." },
+      { "id": "froid",       "label": "I appeared cold without meaning to",                  "detail": "The heart didn't follow." },
+      { "id": "expert-pas",  "label": "I didn't speak because I wasn't an expert","detail": "And the conversation closed." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "engage",       "label": "I committed without having planned everything" },
+      { "id": "partage-soi",  "label": "I shared a part of myself, simply" },
+      { "id": "corps",        "label": "I inhabited my body, truly" },
+      { "id": "senti-pas-su", "label": "I felt without needing to understand" },
+      { "id": "donne-temps",  "label": "I gave someone my time, generously" },
+      { "id": "richesse",     "label": "I felt the richness in me, which cannot be calculated" },
+      { "id": "vivant-monde", "label": "The world felt alive to me, not threatening" },
+      { "id": "savoir-libre", "label": "I let go of a piece of knowledge to have the experience" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "retire",      "label": "I withdrew" },
+    { "id": "engage",      "label": "I committed" },
+    { "id": "garde-pour-soi", "label": "I kept something to myself that wanted to come out" },
+    { "id": "partage",     "label": "I shared a resource" },
+    { "id": "froid-paru",  "label": "I appeared cold despite myself" },
+    { "id": "senti",       "label": "I felt, without analyzing" },
+    { "id": "tete-corps",  "label": "I moved from my head to my body" },
+    { "id": "donne-temps", "label": "I gave time generously" },
+    { "id": "obscur",      "label": "I don't understand yet" }
+  ],
+
+  "remedes": [
+    { "id": "engage",     "label": "Engagement — descending into the real" },
+    { "id": "partager",   "label": "Sharing — the resource renews itself" },
+    { "id": "corps",      "label": "The body — inhabiting what one has" },
+    { "id": "sentir",     "label": "Feeling — without needing to know" },
+    { "id": "generosite", "label": "Generosity — there is enough" },
+    { "id": "presence",   "label": "Presence — not observation" },
+    { "id": "humilite-savoir","label": "Humility of knowledge — accepting not to understand" }
+  ],
+
+  "ressources_site": [
+    { "label": "My full profile",          "href": "/en/profils/type5.html",          "icon": "📖" },
+    { "label": "The diamond of essence",     "href": "/en/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restoring the forgotten center",  "href": "/en/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "The journey through the type", "href": "/en/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions between types",      "href": "/en/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Morning begins. Do you want to descend into the body today?",
+      "A day opens — can you bring your presence to it?",
+      "What do you want to share — even a little?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Are you in your head or in life?",
+      "Here you are. Does someone deserve your time now?",
+      "A pause is possible. But let it be inhabited, not a refuge."
+    ],
+    "soir": [
+      "The day fades. What did you let in?",
+      "You can just come, without needing to understand.",
+      "The evening is gentle. A sharing, if possible."
+    ],
+    "nuit": [
+      "The night watches. A feeling, then sleep.",
+      "You are still here, and that is already shared."
+    ]
+  }
+}

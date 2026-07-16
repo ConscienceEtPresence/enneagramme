@@ -1,0 +1,150 @@
+{
+  "type": 9,
+  "name": "The Mediator",
+  "tagline": "The Peacemaker or the Preservationist",
+  "quick": {
+    "center": "Instinctive",
+    "wings": "8 and 1",
+    "integr": "→ 3",
+    "disint": "→ 6"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, central issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Instinctive (Body/Gut)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Instinctive." },
+            { "label": "Support center", "value": "Emotional or Mental." },
+            { "label": "Repressed center", "value": "Instinctive: the paradox of the 9, uses bodily energy to stabilize the environment rather than to act on it." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Both inward and outward: seeking balance to avoid disturbance." },
+        { "label": "Central issue", "value": "Maintaining autonomy and inner peace in the face of a world perceived as intrusive." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoid conflict and tension at all costs." },
+        { "label": "Passion (Vice)", "value": "Sloth (Acedia): a laziness of consciousness, a reluctance to mobilize and fully engage." },
+        { "label": "Fixation", "value": "Indolence / self-forgetting: setting aside one's priorities for secondary things." },
+        { "label": "Defense mechanism", "value": "Narcotization: numbing itself with routines/distractions (TV, food, habits) so as not to feel discomfort or anger." },
+        { "label": "Egotic pride", "value": "I am fine, calm, and easygoing." },
+        { "label": "Basic fear", "value": "Loss of connection, separation, fragmentation." },
+        { "label": "Basic desire", "value": "Peace of mind and wholeness." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Appetite (comfort seeker): small material pleasures to compensate for a lack of attention to being." },
+            { "label": "Social", "value": "Participation: works hard for the group, forgets its own needs to offset a feeling of not belonging." },
+            { "label": "One-to-one (Sexual)", "value": "Union / merging: fusion with a person or an ideal in order to feel that it exists." }
+          ]
+        },
+        { "label": "Social style", "value": "Withdrawn: withdraws to protect its autonomy and avoid being pushed around." },
+        { "label": "Conflict management", "value": "Positive Outlook: minimizes, focuses on the positive to maintain harmony." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 8 (more assertive, down-to-earth) and wing 1 (more idealistic, conscientious)." },
+        { "label": "Integration (Growth)", "value": "→ 3: becomes active, values itself, takes charge of its priorities, acts for itself." },
+        { "label": "Disintegration (Stress)", "value": "→ 6: anxious, distrustful, reactive, preoccupied with others' opinions." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Love: reality is fundamentally good and loving, in a non-localized way." },
+        { "label": "Virtue", "value": "Right action (activity): engaging with vitality and intention in what is essential." },
+        { "label": "Idealized aspect", "value": "Living Daylight (gold): the support of a benevolent, universal presence." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Inferiority: feeling unimportant or unworthy of love." },
+            { "label": "Specific reaction", "value": "Falling asleep: becoming unconscious of one's desires and of objective reality." },
+            { "label": "Specific illusion", "value": "Localized love: believing that goodness is outside oneself and inaccessible within." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner little 3: a need to be seen and to shine, hidden behind the 9's modesty." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, misunderstanding.",
+      "items": [
+        { "label": "Speaking style", "value": "Sagas / epic tales: details and multiple points of view, at the risk of drowning out the essential." },
+        { "label": "Communication misunderstanding", "value": "Appeasement-Vagueness: peaceful neutrality perceived as indecision or a lack of clarity." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Evolution and relationships",
+      "desc": "Warning signs, growth practices, confusions, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Getting lost in routines, becoming stubborn/inert, denying obvious health or financial problems." },
+        { "label": "Growth practices", "value": "Identifying anger, defining one's priorities, practicing self-remembering, acting even amid discomfort." },
+        { "label": "Common confusions", "value": "2 (helpfulness), 5 (calm/withdrawal)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Supportive and gentle; can become emotionally absent out of fear of conflict." },
+            { "label": "At work", "value": "Stable mediator; can passively sabotage if pushed too hard." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and consciousness",
+      "desc": "Levels 1–9, consciousness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Self-possessed guide: presence, active peace, quiet strength." },
+            { "n": 2, "text": "Receptive person: deep listening, openness, stability." },
+            { "n": 3, "text": "Supportive peacemaker: harmony, mediation, firm kindness." },
+            { "n": 4, "text": "Accommodating role-player: adapts, forgets itself, avoids tension." },
+            { "n": 5, "text": "Disengaged participant: inertia, procrastination, numbness." },
+            { "n": 6, "text": "Resigned fatalist: gives up, dissolves, passivity." },
+            { "n": 7, "text": "Reality-denying doormat: self-effacement, denial, flight from the real." },
+            { "n": 8, "text": "Dissociated automaton: numbness, routines, inner cutoff." },
+            { "n": 9, "text": "Self-abandoning ghost: the disappearance of desire, the extinguishing of the self." }
+          ]
+        },
+        { "label": "Consciousness", "value": "Moving from a zombie-like sleep state to self-remembering." },
+        { "label": "Spiral Dynamics", "value": "GREEN (consensus, group harmony, empathy)." },
+        { "label": "Analogy", "value": "A mirror: absorbs the other's image until it forgets its own presence." }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
     {
       "name": "enneagramme",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "--directory", "/Users/brahms/Documents/GitHub/enn-agramme-"],
+      "runtimeArgs": ["-m", "http.server", "--directory", "/Users/brahms/Documents/GitHub/ConscienceEtPresence/enneagramme"],
       "port": 8092
     }
   ]

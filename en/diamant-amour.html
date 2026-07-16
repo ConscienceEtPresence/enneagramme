@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Love — its many faces</title>
+
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       Palette signature « Amour »
+       rose tendre #f9a8d4 → or fondant #fcd34d → grenade #dc2626
+       ═══════════════════════════════════════════════════ */
+    :root{
+      --c-rose:#f9a8d4;
+      --c-or:#fcd34d;
+      --c-grenade:#dc2626;
+      --c-grenade-soft:#f87171;
+      --c-divin:#bae6fd;
+      --c-mystique:#c4b5fd;
+      --c-ivoire:#fef3c7;
+    }
+
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 60px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background .14s ease,border-color .14s ease,transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+
+    /* ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ */
+    .hero{
+      max-width:920px;margin:0 auto 40px;padding:54px 32px 44px;
+      text-align:center;
+      border:1px solid rgba(249,168,212,.30);
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(249,168,212,.14), transparent 55%),
+        radial-gradient(ellipse at 70% 80%, rgba(252,211,77,.12), transparent 55%),
+        radial-gradient(ellipse at center, rgba(220,38,38,.08), transparent 70%),
+        linear-gradient(180deg, rgba(196,181,253,.04), transparent);
+      border-radius:var(--radius);
+    }
+    .hero .ornament{
+      font-size:14px;color:var(--c-rose);letter-spacing:14px;margin:0 0 18px;
+      opacity:.8;
+    }
+    .hero .kicker{
+      font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;
+      color:#fde68a;font-weight:800;margin:0 0 14px;
+    }
+    .hero h1{
+      margin:0;font-size:clamp(32px,5.4vw,52px);line-height:1.06;letter-spacing:.2px;
+      background:linear-gradient(135deg,#fce7f3 0%,#fef3c7 45%,#fecaca 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero .lead{
+      margin:22px auto 0;max-width:62ch;color:#fef3c7;
+      font-size:17.5px;line-height:1.65;font-style:italic;font-weight:300;
+    }
+    .hero .author{
+      margin:18px 0 0;color:#fbcfe8;font-size:13px;
+      letter-spacing:1.4px;text-transform:uppercase;font-weight:700;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       SOMMAIRE
+       ═══════════════════════════════════════════════════ */
+    .toc{
+      max-width:920px;margin:0 auto 60px;padding:24px 28px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.02);
+    }
+    .toc h2{
+      margin:0 0 18px;font-size:12.5px;letter-spacing:2px;
+      text-transform:uppercase;color:#fde68a;font-weight:800;text-align:center;
+    }
+    .toc .actGroup{margin:0 0 14px}
+    .toc .actGroup:last-child{margin-bottom:0}
+    .toc .actTitle{
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+      font-weight:850;margin:0 0 6px;padding:0 6px;
+      color:var(--actColor,#cfe9ff);
+    }
+    .toc .a1{--actColor:var(--c-rose)}
+    .toc .a2{--actColor:var(--c-divin)}
+    .toc .a3{--actColor:var(--c-mystique)}
+    .toc ul{
+      margin:0;padding:0;list-style:none;
+      display:grid;grid-template-columns:repeat(2,1fr);gap:4px;
+    }
+    @media(max-width:640px){.toc ul{grid-template-columns:1fr}}
+    .toc a{
+      display:block;padding:7px 12px;border-radius:8px;color:#cfe9ff;
+      text-decoration:none;font-size:13.5px;line-height:1.4;
+      border:1px solid transparent;
+    }
+    .toc a:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10)}
+    .toc a strong{color:var(--actColor,#fff);margin-right:6px;font-weight:850}
+
+    /* ═══════════════════════════════════════════════════
+       SECTIONS COMMUNES
+       ═══════════════════════════════════════════════════ */
+    .preambule, .acte, .cloture{
+      max-width:920px;margin:0 auto 60px;
+    }
+    .scroll-target{scroll-margin-top:24px}
+
+    .actHeader{
+      text-align:center;margin:0 0 36px;
+      padding:30px 24px;
+      border:1px solid currentColor;border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.025), transparent);
+      position:relative;
+    }
+    .actHeader::before, .actHeader::after{
+      content:"◆";position:absolute;top:18px;
+      font-size:11px;letter-spacing:8px;opacity:.5;
+    }
+    .actHeader::before{left:24px}
+    .actHeader::after{right:24px}
+    .actHeader .actNum{
+      display:inline-block;font-size:11px;letter-spacing:2.4px;
+      text-transform:uppercase;font-weight:850;color:inherit;margin:0 0 10px;
+    }
+    .actHeader h2{
+      margin:0;font-size:clamp(26px,3.8vw,36px);line-height:1.1;letter-spacing:.2px;
+      color:#fff;
+    }
+    .actHeader .actLead{
+      margin:14px auto 0;max-width:60ch;color:#cfe9ff;
+      font-size:15.5px;line-height:1.6;font-style:italic;
+    }
+    .acte.a1 .actHeader{color:var(--c-rose)}
+    .acte.a2 .actHeader{color:var(--c-divin)}
+    .acte.a3 .actHeader{color:var(--c-mystique)}
+
+    .scene{
+      max-width:880px;margin:0 auto 44px;
+      scroll-margin-top:24px;
+    }
+    .scene .num{
+      display:inline-block;font-size:10.5px;letter-spacing:1.8px;
+      text-transform:uppercase;color:inherit;font-weight:850;
+      margin:0 0 6px;
+    }
+    .acte.a1 .scene .num{color:var(--c-rose)}
+    .acte.a2 .scene .num{color:var(--c-divin)}
+    .acte.a3 .scene .num{color:var(--c-mystique)}
+    .scene h3{
+      margin:0 0 14px;font-size:clamp(22px,3vw,28px);line-height:1.18;letter-spacing:.2px;
+      color:#fff;
+    }
+    .scene p{
+      margin:0 0 14px;line-height:1.78;font-size:15.5px;color:#e8eeff;
+    }
+    .scene p:last-of-type{margin-bottom:0}
+    .scene strong{color:#fff;font-weight:700}
+    .scene em{color:#fef3c7;font-style:normal;font-weight:600}
+    .scene h4{
+      margin:24px 0 10px;font-size:17px;letter-spacing:.2px;color:#fff;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       ENCART À CERNER (définitions / mots-clés)
+       ═══════════════════════════════════════════════════ */
+    .acerner{
+      margin:18px 0;padding:14px 18px;border-radius:10px;
+      background:rgba(125,211,252,.04);
+      border:1px dashed rgba(125,211,252,.30);
+      font-size:13.5px;line-height:1.55;color:#cfe9ff;
+    }
+    .acerner .lab{
+      font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;
+      color:#7dd3fc;font-weight:850;margin-right:8px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       ENCART EXEMPLE
+       ═══════════════════════════════════════════════════ */
+    .exemple{
+      margin:18px 0;padding:18px 22px;border-radius:12px;
+      background:rgba(255,255,255,.025);
+      border:1px solid rgba(255,255,255,.08);
+      border-left:3px solid #86efac;
+    }
+    .exemple .lab{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      color:#86efac;font-weight:850;margin:0 0 6px;
+    }
+    .exemple p{margin:0;font-size:14.5px;line-height:1.7;color:#e8eeff}
+    .exemple p strong{color:#fff}
+
+    /* ═══════════════════════════════════════════════════
+       ENCART À RETENIR
+       ═══════════════════════════════════════════════════ */
+    .keypoints{
+      margin:24px 0 8px;padding:18px 22px;
+      border:1px solid rgba(252,211,77,.30);
+      background:linear-gradient(135deg, rgba(252,211,77,.06), rgba(252,211,77,.02));
+      border-left:4px solid var(--c-or);
+      border-radius:12px;
+    }
+    .keypoints .lab{
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+      color:var(--c-or);font-weight:850;margin:0 0 10px;
+    }
+    .keypoints ul{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+    .keypoints li{
+      padding-left:22px;position:relative;
+      font-size:14.5px;line-height:1.55;color:#fef3c7;
+    }
+    .keypoints li::before{
+      content:"◆";position:absolute;left:0;top:1px;
+      color:rgba(252,211,77,.7);font-size:9px;
+    }
+    .keypoints li strong{color:#fff}
+
+    /* ═══════════════════════════════════════════════════
+       PANNEAU CITATION POÉTIQUE (fond ivoire — Option C light)
+       ═══════════════════════════════════════════════════ */
+    .poesie{
+      margin:28px auto;max-width:680px;
+      padding:30px 36px;
+      background:linear-gradient(180deg, #fef9e8, #fef3c7);
+      color:#5b4424;
+      border-radius:14px;
+      box-shadow:0 16px 48px rgba(0,0,0,.4), 0 0 0 1px rgba(252,211,77,.25);
+      position:relative;
+    }
+    .poesie::before{
+      content:"";position:absolute;top:14px;left:14px;right:14px;bottom:14px;
+      border:1px solid rgba(91,68,36,.18);border-radius:10px;
+      pointer-events:none;
+    }
+    .poesie .ornament{
+      text-align:center;color:#a78327;letter-spacing:14px;
+      font-size:12px;margin:0 0 10px;
+    }
+    .poesie .auteur{
+      text-align:center;font-size:11px;letter-spacing:1.8px;
+      text-transform:uppercase;color:#a78327;font-weight:800;margin:0 0 18px;
+    }
+    .poesie blockquote{
+      margin:0;padding:0;
+      font-family:Georgia,Cambria,'Times New Roman',serif;
+      font-style:italic;font-size:15.5px;line-height:1.85;
+      color:#5b4424;text-align:center;
+      white-space:pre-line;
+    }
+    .poesie .ornament-end{
+      text-align:center;color:#a78327;letter-spacing:14px;
+      font-size:12px;margin:14px 0 0;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       AVERTISSEMENT (Acte III)
+       ═══════════════════════════════════════════════════ */
+    .avertissement{
+      margin:0 auto 36px;max-width:880px;padding:22px 26px;
+      background:linear-gradient(180deg, #fef9e8, #fef3c7);
+      color:#5b4424;
+      border-radius:14px;
+      box-shadow:0 12px 36px rgba(0,0,0,.35), 0 0 0 1px rgba(196,181,253,.30);
+      font-size:14px;line-height:1.65;
+    }
+    .avertissement .lab{
+      font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;
+      color:#7c3aed;font-weight:850;margin:0 0 10px;display:block;
+    }
+    .avertissement p{margin:0 0 10px;color:#4a3015}
+    .avertissement p:last-child{margin-bottom:0}
+    .avertissement strong{color:#1f1410;font-weight:700}
+
+    /* ═══════════════════════════════════════════════════
+       SCHÉMAS SVG
+       ═══════════════════════════════════════════════════ */
+    .schema{
+      margin:24px auto;padding:28px 24px;
+      border:1px solid var(--line);border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .schema svg{width:100%;height:auto;display:block;max-width:680px;margin:0 auto}
+    .schema .caption{
+      margin:14px 0 0;font-size:13.5px;color:var(--muted);
+      text-align:center;font-style:italic;line-height:1.55;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       PRÉAMBULE — schéma 3 cercles
+       ═══════════════════════════════════════════════════ */
+    .preambule h2{
+      text-align:center;font-size:13px;letter-spacing:2px;
+      text-transform:uppercase;color:#fde68a;font-weight:800;margin:0 0 18px;
+    }
+    .preambule h2::before, .preambule h2::after{
+      content:"◆";color:rgba(252,211,77,.45);margin:0 14px;font-size:10px;
+    }
+    .preambule p{
+      max-width:760px;margin:0 auto 14px;line-height:1.78;font-size:15.5px;color:#e8eeff;
+    }
+    .preambule p strong{color:#fff}
+    .preambule p em{color:#fef3c7;font-style:normal;font-weight:600}
+
+    /* ═══════════════════════════════════════════════════
+       SAVEURS (3 cartes : ROSE / OR / GRENADE)
+       ═══════════════════════════════════════════════════ */
+    .saveurs{display:grid;gap:24px;margin:30px 0}
+    .saveur{
+      padding:24px 26px;border-radius:16px;
+      border:1px solid currentColor;
+      background:linear-gradient(135deg, rgba(255,255,255,.03), transparent 70%);
+      border-left:5px solid currentColor;
+      box-shadow:inset 0 0 60px rgba(255,255,255,.02);
+    }
+    .saveur.rose{color:var(--c-rose);background:linear-gradient(135deg, rgba(249,168,212,.08), rgba(249,168,212,.02))}
+    .saveur.or{color:var(--c-or);background:linear-gradient(135deg, rgba(252,211,77,.08), rgba(252,211,77,.02))}
+    .saveur.grenade{color:var(--c-grenade-soft);background:linear-gradient(135deg, rgba(220,38,38,.10), rgba(220,38,38,.02))}
+    .saveur .ornament{font-size:13px;letter-spacing:8px;color:inherit;opacity:.7;margin:0 0 6px}
+    .saveur .nom{
+      font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;
+      font-weight:850;color:inherit;margin:0 0 4px;
+    }
+    .saveur h4{
+      margin:0 0 14px;font-size:22px;color:#fff;letter-spacing:.2px;line-height:1.2;
+    }
+    .saveur .item{margin:14px 0}
+    .saveur .item .lab{
+      display:inline-block;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:850;color:inherit;margin:0 0 4px;opacity:.85;
+    }
+    .saveur .item p{margin:0;font-size:14.5px;line-height:1.6;color:#e8eeff}
+    .saveur .item p strong{color:#fff}
+
+    /* ═══════════════════════════════════════════════════
+       SYNTHÈSE 3 SAVEURS
+       ═══════════════════════════════════════════════════ */
+    .synthese3{
+      margin:18px 0;padding:18px 22px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(249,168,212,.06), rgba(252,211,77,.06), rgba(220,38,38,.06));
+      border:1px solid rgba(255,255,255,.10);
+      font-size:15px;line-height:1.7;text-align:center;color:#fff;
+      font-style:italic;
+    }
+    .synthese3 strong{font-style:normal;color:#fef3c7;font-weight:800}
+
+    /* ═══════════════════════════════════════════════════
+       NOMS DU BIEN-AIMÉ (Acte III - III.3)
+       ═══════════════════════════════════════════════════ */
+    .nomsGrid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:22px 0;
+    }
+    .nomCard{
+      padding:14px 16px;border-radius:10px;
+      background:rgba(196,181,253,.05);border:1px solid rgba(196,181,253,.20);
+      text-align:center;
+    }
+    .nomCard .nom{
+      font-size:13.5px;font-weight:800;color:#fff;letter-spacing:.3px;margin:0 0 4px;
+    }
+    .nomCard .src{
+      font-size:11px;color:#c4b5fd;font-style:italic;letter-spacing:.3px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       CLÔTURE
+       ═══════════════════════════════════════════════════ */
+    .cloture{
+      max-width:880px;margin:50px auto 0;padding:40px 32px;text-align:center;
+      border-radius:var(--radius);
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(249,168,212,.08), transparent 60%),
+        radial-gradient(ellipse at 70% 70%, rgba(252,211,77,.06), transparent 60%),
+        linear-gradient(135deg, rgba(196,181,253,.04), rgba(220,38,38,.03));
+      border:1px solid rgba(252,211,77,.22);
+    }
+    .cloture .ornament{
+      font-size:14px;color:var(--c-or);letter-spacing:14px;opacity:.6;margin:0 0 18px;
+    }
+    .cloture h2{
+      margin:0 0 22px;font-size:13px;letter-spacing:2px;
+      text-transform:uppercase;color:#fde68a;font-weight:800;
+    }
+    .cloture p{
+      max-width:64ch;margin:0 auto 16px;line-height:1.78;font-size:15.5px;color:#e8eeff;
+    }
+    .cloture p:last-of-type{margin-bottom:0}
+    .cloture p strong{color:#fff}
+    .cloture p em{color:#fef3c7;font-style:normal;font-weight:600}
+    .cloture .signature{
+      margin:24px 0 0;font-size:14px;color:var(--c-or);font-style:italic;
+    }
+    .actions{
+      display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px;
+    }
+
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/diamant-amour.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/diamant-amour.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/diamant-amour.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/approche-diamant.html">← The Diamond Approach</a>
+      <a class="btn" href="/en/">Home</a>
+    </div>
+
+    <header class="hero">
+      <p class="ornament">◆ ◆ ◆</p>
+      <p class="kicker">The Diamond Approach — the trilogy of love</p>
+      <h1>Love — its many faces</h1>
+      <p class="lead">Three summits, a single love. Three languages, one experience. A journey faithful to Almaas, from love as presence in the heart to the mystical path toward the Beloved.</p>
+      <p class="author">A.H. Almaas</p>
+    </header>
+
+    <nav class="toc" aria-label="Contents">
+      <h2>Contents</h2>
+      <div class="actGroup a1">
+        <p class="actTitle">Act I — love as an essential aspect</p>
+        <ul>
+          <li><a href="#i1"><strong>I.1</strong>Love is not what you think</a></li>
+          <li><a href="#i2"><strong>I.2</strong>The three flavors of personal love</a></li>
+          <li><a href="#i3"><strong>I.3</strong>Why we lost it</a></li>
+          <li><a href="#i4"><strong>I.4</strong>Love as the fuel of unfoldment</a></li>
+        </ul>
+      </div>
+      <div class="actGroup a2">
+        <p class="actTitle">Act II — love as the nature of reality</p>
+        <ul>
+          <li><a href="#ii1"><strong>II.1</strong>A new dimension opens</a></li>
+          <li><a href="#ii2"><strong>II.2</strong>Divine love — not as god, but as field</a></li>
+          <li><a href="#ii3"><strong>II.3</strong>The body of light, the real world</a></li>
+          <li><a href="#ii4"><strong>II.4</strong>The obstacles: separate identity</a></li>
+          <li><a href="#ii5"><strong>II.5</strong>Surrender — the posture of the threshold</a></li>
+          <li><a href="#ii6"><strong>II.6</strong>Grace</a></li>
+        </ul>
+      </div>
+      <div class="actGroup a3">
+        <p class="actTitle">Act III — the path of the heart toward the Beloved</p>
+        <ul>
+          <li><a href="#iii1"><strong>III.1</strong>The divided heart — starting point</a></li>
+          <li><a href="#iii2"><strong>III.2</strong>The fidelity of the heart</a></li>
+          <li><a href="#iii3"><strong>III.3</strong>The names of the Beloved</a></li>
+          <li><a href="#iii4"><strong>III.4</strong>The poverty of the heart</a></li>
+          <li><a href="#iii5"><strong>III.5</strong>Desire as the engine</a></li>
+          <li><a href="#iii6"><strong>III.6</strong>Bedazzlement and the dark night</a></li>
+          <li><a href="#iii7"><strong>III.7</strong>The unity of love, intimacy</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════ PRÉAMBULE ═══════════════════════════ -->
+    <section class="preambule">
+      <h2>Preamble</h2>
+
+      <p>Love, in this trilogy by Almaas, is not a feeling that comes and goes. It is a <strong>substance of consciousness</strong>, a <strong>dimension of reality</strong>, and finally a <strong>direction of the soul</strong>. Three successive books, written as a descent, approach love at three different depths: first as a quality of essence lived within the individual body, then as the very nature of boundless reality, and finally as the soul's path toward its ultimate origin. These are three concentric circles of one and the same thing. Not three mandatory stages: three ways of looking, which reveal themselves successively because we are not ready to see everything at once.</p>
+
+      <div class="schema">
+        <svg viewBox="0 0 600 360" aria-label="Three concentric circles of the trilogy">
+          <defs>
+            <radialGradient id="centerOr" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+              <stop offset="1" stop-color="#fcd34d" stop-opacity=".4"/>
+            </radialGradient>
+          </defs>
+          <!-- Cercle externe : Acte III - mystique -->
+          <circle cx="300" cy="180" r="170" fill="rgba(196,181,253,.04)" stroke="rgba(196,181,253,.40)" stroke-width="1.4"/>
+          <!-- Cercle moyen : Acte II - non-duel -->
+          <circle cx="300" cy="180" r="115" fill="rgba(125,211,252,.05)" stroke="rgba(125,211,252,.40)" stroke-width="1.4"/>
+          <!-- Cercle intérieur : Acte I - essence -->
+          <circle cx="300" cy="180" r="65" fill="rgba(249,168,212,.08)" stroke="rgba(249,168,212,.50)" stroke-width="1.4"/>
+          <!-- Centre lumineux -->
+          <circle cx="300" cy="180" r="22" fill="url(#centerOr)"/>
+
+          <!-- Étiquettes -->
+          <text x="300" y="183" fill="#0b1120" font-size="11" font-weight="850" text-anchor="middle">love</text>
+
+          <text x="300" y="105" fill="#fbcfe8" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1.2">PRESENCE</text>
+          <text x="300" y="120" fill="rgba(251,207,232,.6)" font-size="9.5" text-anchor="middle">Act I</text>
+
+          <text x="300" y="50" fill="#bae6fd" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1.2">DIMENSION OF THE REAL</text>
+          <text x="300" y="65" fill="rgba(186,230,253,.6)" font-size="9.5" text-anchor="middle">Act II</text>
+
+          <text x="300" y="338" fill="#c4b5fd" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1.2">PATH OF THE HEART</text>
+          <text x="300" y="353" fill="rgba(196,181,253,.6)" font-size="9.5" text-anchor="middle">Act III</text>
+        </svg>
+        <p class="caption">Three concentric circles, one love seen from three depths.</p>
+      </div>
+
+      <p>The first circle (◆ Act I) speaks of personal love — a quality that can be tasted within one's own heart, recognizable by precise flavors, presenting itself in three colors: a <em>rose</em> love, made of primordial softness; a <em>golden</em> love, made of fusion without loss of self; a <em>pomegranate</em> love, made of magnetic passion. These are the <strong>three flavors of love</strong> that Almaas distinguishes clinically — three different functions of the heart.</p>
+
+      <p>The second circle (◆ Act II) opens onto a dimension where there is no longer any separation between the one who loves and what is loved. Love is no longer in the heart: it is everywhere, it is the very fabric of the world. Almaas calls it <strong>Divine Love</strong>, specifying that it is neither a god nor a belief, but a verifiable phenomenological experience.</p>
+
+      <p>The third circle (◆ Act III) is the openly devotional path — that of the great mystics (Rumi, Kabir, Hafiz, John of the Cross). The heart, having become faithful to a single <strong>Beloved</strong>, passes through the classic stations: poverty, desire, the dark night, bedazzlement, unity.</p>
+
+      <p style="text-align:center;font-style:italic;color:#fde68a;margin-top:24px">Three summits, the same love seen from three heights.</p>
+    </section>
+
+    <!-- ═══════════════════════════ ACTE I ═══════════════════════════ -->
+    <section class="acte a1">
+      <header class="actHeader scroll-target" id="acte1">
+        <p class="actNum">◆ Act I</p>
+        <h2>Love as an essential aspect</h2>
+        <p class="actLead">A presence recognizable within the heart, expressed in three precise flavors — rose, gold, pomegranate. The most immediate, the most accessible, the most directly verifiable.</p>
+      </header>
+
+      <!-- I.1 -->
+      <article class="scene scroll-target" id="i1">
+        <p class="num">Scene I.1</p>
+        <h3>Love is not what you think</h3>
+        <p>Most people, on hearing the word “love,” think immediately of an emotion: a wave of warmth, a tenderness, sometimes an excitement. Almaas begins by shifting this understanding. For him, love is not an emotion. It is a <strong>presence</strong> — a quality of consciousness that has a texture, a density, a flavor, and that is as real in the body as warmth or light can be.</p>
+        <p>Emotions come and go; they depend on circumstances, on moods, on the person across from us. The presence of love, by contrast, is not reactive: it does not depend on having been “treated well” by life, nor on having found the right partner. It manifests as a <strong>subtle substance</strong> that can be felt directly in the heart, sometimes down into the belly, and that needs no object to be there. It is a state of the soul, not a reaction to something.</p>
+        <p>This distinction is central. As long as we believe love is a feeling, we wait for it from outside, we look for it in someone, we complain of not receiving enough of it. As soon as we discover that love is a presence, the relationship reverses: we stop begging for it, we begin to recognize it when it is there — sometimes discreet, sometimes obvious — and to give it room.</p>
+        <p>Almaas insists: love as presence is recognized by a characteristic blend of <strong>softness</strong> and <strong>clarity</strong>. Softness alone would be sentimentality; clarity alone would be coldness. It is the conjunction of the two that marks true love — a tender lucidity, a softness that sees, a gentle illumination.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>presence · substance · lucid softness · non-reactivity
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>You are sitting in a café. Someone you don't know holds the door for an elderly woman. Without deciding anything, without thinking anything, your chest opens slightly, something warm and soft settles into the area of the heart. This is not an emotion — you don't “feel” anything you could name — it is a presence that has risen on its own because the situation allowed it. Almaas says: <strong>this is love</strong>. Not the inner drama of loving, but this substance that appears when the heart is not barricaded.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Love is a <strong>presence</strong>, not an emotion</li>
+            <li>It has a <strong>recognizable bodily texture</strong></li>
+            <li>It needs no object to exist</li>
+            <li>It is marked by the conjunction of <strong>softness + clarity</strong></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- I.2 — LE CŒUR PÉDAGOGIQUE -->
+      <article class="scene scroll-target" id="i2">
+        <p class="num">Scene I.2 — the heart of Act I</p>
+        <h3>The three flavors of personal love</h3>
+        <p>Within this presence of love, Almaas distinguishes <strong>three essential qualities</strong>, three flavors that the soul can precisely recognize. He designates them by their phenomenological colors (perceived inwardly, not symbolic): <em>rose</em>, <em>molten gold</em>, <em>pomegranate</em>. These are the three aspects of personal love — love as lived within the dimension of the individual soul. Each has a function, a texture, a role in life. None is superior — they complete one another.</p>
+
+        <div class="schema">
+          <svg viewBox="0 0 600 220" aria-label="The three flavors: rose, gold, pomegranate">
+            <defs>
+              <radialGradient id="roseGl" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#fce7f3" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#f9a8d4" stop-opacity=".4"/>
+              </radialGradient>
+              <radialGradient id="orGl" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#fcd34d" stop-opacity=".5"/>
+              </radialGradient>
+              <radialGradient id="grenGl" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#fecaca" stop-opacity=".9"/>
+                <stop offset="1" stop-color="#dc2626" stop-opacity=".5"/>
+              </radialGradient>
+            </defs>
+            <circle cx="130" cy="110" r="70" fill="url(#roseGl)"/>
+            <text x="130" y="108" fill="#fff" font-size="13" font-weight="800" text-anchor="middle">ROSE</text>
+            <text x="130" y="125" fill="rgba(255,255,255,.8)" font-size="10.5" text-anchor="middle">softness</text>
+
+            <circle cx="300" cy="110" r="70" fill="url(#orGl)"/>
+            <text x="300" y="108" fill="#0b1120" font-size="13" font-weight="800" text-anchor="middle">GOLD</text>
+            <text x="300" y="125" fill="rgba(11,17,32,.7)" font-size="10.5" text-anchor="middle">fusion</text>
+
+            <circle cx="470" cy="110" r="70" fill="url(#grenGl)"/>
+            <text x="470" y="108" fill="#fff" font-size="13" font-weight="800" text-anchor="middle">POMEGRANATE</text>
+            <text x="470" y="125" fill="rgba(255,255,255,.85)" font-size="10.5" text-anchor="middle">passion</text>
+
+            <text x="130" y="200" fill="#fbcfe8" font-size="11" text-anchor="middle">nourishes</text>
+            <text x="300" y="200" fill="#fde68a" font-size="11" text-anchor="middle">connects</text>
+            <text x="470" y="200" fill="#fca5a5" font-size="11" text-anchor="middle">magnetizes</text>
+          </svg>
+          <p class="caption">Three distinct flavors, three different functions of the heart.</p>
+        </div>
+
+        <div class="saveurs">
+
+          <!-- ROSE -->
+          <div class="saveur rose">
+            <p class="ornament">◆ ◆ ◆</p>
+            <p class="nom">Rose love</p>
+            <h4>Primordial softness</h4>
+
+            <div class="item">
+              <span class="lab">Phenomenological texture</span>
+              <p>A pale pink substance, light and downy, which Almaas compares to melting cotton candy or to an infant's skin. It is located mainly in the center of the chest and radiates outward. Its inner flavor is sweet but not cloying — not like sugar, more like a tender strawberry touched with rosewater. It is warm, never scorching. When it rises, the face softens, the jaw relaxes, the eyes cloud over with an involuntary tenderness.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Function</span>
+              <p>Rose love is the <strong>primordial nourishment of the heart</strong> — the emotional equivalent of milk for the body. It is the quality of love that says, without words: <em>“you exist, and that is good.”</em> It nourishes the soul at its very depth. Without it, the heart remains arid, even in a materially successful life.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Recognition</span>
+              <p>When rose love presents itself, there is a sensation of full lungs and a melting chest, accompanied by a <strong>gratuitous benevolence</strong> toward whatever is there. One loves without reason. One loves an object, a light, a face passed in the street, without this requiring effort or merit.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Imitation by the ego</span>
+              <p>The ego offers a counterfeit of it: <strong>emotional dependency</strong>. Here, one seeks the rose sensation in another, begs for it, suffers from its absence. Authentic rose presence does not depend on the other; the ego-version does. The difference in signature: the true one is calm and giving, the false one is agitated and demanding.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Example</span>
+              <p>A mother watches her sleeping child. Expecting nothing, with no plans for him, simply because he is there. What rises in her chest — that blend of softness, tenderness, and peace — is precisely rose love in its purity.</p>
+            </div>
+          </div>
+
+          <!-- OR -->
+          <div class="saveur or">
+            <p class="ornament">◆ ◆ ◆</p>
+            <p class="nom">Golden love (Merging Gold)</p>
+            <h4>Fusion without loss of self</h4>
+
+            <div class="item">
+              <span class="lab">Phenomenological texture</span>
+              <p>A liquid substance, golden, clear, almost transparent — not a metallic gold, more like “the light of the late-afternoon sun turned liquid,” syrupy yet slippery, neither thick nor sticky. It has a gentle warmth, a subtle taste one cannot quite place. It presents itself as a <strong>fountain</strong> welling up at the bottom of the heart and spreading outward. When it takes hold, the body literally melts: shoulders drop, structures let go, one becomes “a happy puddle.”</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Function</span>
+              <p>Golden love dissolves boundaries. It is the quality that allows <strong>union without dissolution</strong> — being deeply with the other, without losing oneself, without being engulfed. It undoes ontological solitude. It makes true intimacy possible: not the juxtaposition of two islands, but the permeability of two presences.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Recognition</span>
+              <p>A sensation of inner melting, of total release, of a silly smile rising for no reason. The mind stops clicking along. One becomes incapable of holding a position, a firm opinion, a defense. It is a contagious state: being with someone in this state makes them melt too.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Imitation by the ego</span>
+              <p><strong>Regressive fusion</strong> — wanting to disappear into the other, losing one's contours out of fear of existing. Ego-fusion erases; golden love connects without erasing. The signature: in true essential fusion, one is <em>more</em> present, not less.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Example</span>
+              <p>Two very close friends who meet again after a long absence and walk in silence. They do not touch, they do not speak, and yet something between them has dissolved — the separation, without either one disappearing. This is golden love functioning naturally.</p>
+            </div>
+          </div>
+
+          <!-- GRENADE -->
+          <div class="saveur grenade">
+            <p class="ornament">◆ ◆ ◆</p>
+            <p class="nom">Pomegranate love</p>
+            <h4>The passion that draws</h4>
+
+            <div class="item">
+              <span class="lab">Phenomenological texture</span>
+              <p>A dense, deep, fleshy red — the color of pomegranate juice. Not vermillion: a dark, rich, pulpy red. Its temperature is hot, sometimes scorching. It settles in the heart like a <strong>flame</strong>. When it takes hold, it consumes — there is an intensity, an imperious call, sometimes an exquisite pain. This is the love that draws, that pulls toward, that gives no rest.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Function</span>
+              <p>Pomegranate love is the <strong>fuel of unfoldment</strong> — it is what pushes the soul to seek beyond its comfortable habits, what makes it possible to move through resistances, what turns the path into a passionate adventure. Without it, the spiritual path stays lukewarm, utilitarian, methodical. With it, it becomes a <em>love story</em>.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Recognition</span>
+              <p>A gentle burning in the heart, a pulling magnetism, a feeling of being drawn by something one cannot name but knows to be essential. It is no longer seeking: it is <strong>being called</strong>. The classic image is the moth drawn to the flame.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Imitation by the ego</span>
+              <p><strong>Obsessive passion</strong> — becoming inflamed for a person or a project in an addictive mode, to the point of losing one's balance. Authentic pomegranate passion burns without destroying lucidity; the ego-version burns by blinding. The difference: one always leads you deeper into yourself, the other takes you away from yourself.</p>
+            </div>
+
+            <div class="item">
+              <span class="lab">Example</span>
+              <p>A musician who, at three in the morning, is still at the piano without having noticed time pass, because something opens in the music that draws him in. No discipline, no duty: a magnetism. This is pomegranate passion in its simplest working.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="synthese3">
+          <strong>Synthesis:</strong> rose nourishes, gold connects, pomegranate magnetizes. Three functions of the heart, three qualities of one same essence of love.
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li><strong>Rose</strong> = primordial softness, nourishment of the heart</li>
+            <li><strong>Gold</strong> = fusion without loss of self, intimacy</li>
+            <li><strong>Pomegranate</strong> = magnetic passion, fuel for the path</li>
+            <li>Each quality has its <strong>imitation by the ego</strong> — the signature lies in non-dependency</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- I.3 -->
+      <article class="scene scroll-target" id="i3">
+        <p class="num">Scene I.3</p>
+        <h3>Why we lost this love</h3>
+        <p>If love is a native presence of the soul, how is it so rare in our lives? Why so many hard, closed, wounded hearts? Almaas does not moralize — he describes a history. The infant, he says, comes into the world <strong>open to love in its fullness</strong>. Its skin, its gaze, its smell: everything in it is an invitation to receive and give this subtle substance. The baby knows, without any thought, whether it is loved or not.</p>
+        <p>Now, loving an infant does not consist of feeding it, washing it, putting it to bed. That can be done without love. <strong>Loving an infant means letting one's own presence of love meet the infant's own</strong> — it is an exchange of substance between two hearts. When this exchange does not take place, or not enough, the child experiences a lack it cannot name. Not a lack of attention, not a lack of care: an ontological lack of <em>essential nourishment</em>.</p>
+        <p>This lack creates a <strong>deep affective deficiency</strong>, which lodges in the heart like a hole, an emptiness, a wound. To survive, the child develops strategies: closing off so as not to suffer the lack any longer, demanding love to fill the void, simulating love to obtain a few crumbs, or resigning itself to the idea that it is not worthy of being loved. All these strategies, which become adult structures, <strong>block access</strong> to the native presence of love. Not that it has disappeared: it is there, beneath the defensive layer, intact. But the heart no longer dares open it.</p>
+        <p>To this is added what Almaas calls <strong>fusion wounds</strong>: early experiences in which union with the mother was broken too soon, or on the contrary was too fused (engulfing), which subsequently makes both separation and closeness painful. Golden-fusion love then becomes a minefield.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>affective deficiency · essential nourishment · fusion wounds · defensive structures
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>An adult who says “I can't manage to receive a compliment” discovers, by observing what happens in their body when something kind is said to them, that there is a contraction at the level of the heart — like a shutter closing the moment something gentle approaches. This shutter is the trace of the old wound. The work consists of seeing the shutter, understanding why it was put there, and progressively letting the presence of love soften it.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Love is native, but its <strong>reception</strong> by the baby can be missing</li>
+            <li>The lack of essential nourishment creates an <strong>ontological deficiency</strong></li>
+            <li>Defensive structures block access to presence</li>
+            <li>Presence is not lost, it is only <strong>covered over</strong></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- I.4 -->
+      <article class="scene scroll-target" id="i4">
+        <p class="num">Scene I.4</p>
+        <h3>Love as the fuel of unfoldment</h3>
+        <p>Why devote an entire book to love when speaking of awakening? Because for Almaas, <strong>love is not a side effect of spiritual practice</strong>: it is its engine. Without love, inner work dries up into method. Without love, meditation becomes performance. Without love, the quest for truth becomes a cold inquiry that goes nowhere — for truth gives itself only to what loves it.</p>
+        <p>Almaas here takes up a universal mystical intuition: it is <strong>love that unveils</strong> what effort alone cannot reach. The heart in the presence of love becomes permeable; the defense relaxes; the successive layers of the personality allow themselves to be passed through. Each quality of love has its role: rose love nourishes the soul and gives it the strength to go further; golden love dissolves the boundaries that prevent union; pomegranate love pulls toward what is not yet known, turning curiosity into a burning quest.</p>
+        <p>The term Almaas uses is precise: “<em>love fuels the unfoldment</em>.” Unfoldment is that movement by which the soul allows its successive essential qualities to appear, without manufacturing them, simply letting them emerge when the conditions are met. Those conditions are attention, presence, inquiry — and love. Without this last one, nothing truly opens.</p>
+        <p>This overturns a certain image of the spiritual path as effort, discipline, austerity. These dimensions have their place, but they are not enough. The path is in reality a <strong>love story between the soul and its source</strong>. We do not advance by will, we advance by attraction. We do not transform by decision, we transform because we are touched. The path is erotic in the Platonic sense: pulled by a desire, moved by a passion.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>fuel · unfoldment · attraction · love story
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>A meditator who has practiced with discipline for years, without much inner movement, discovers one day, on the occasion of an overwhelming event — an encounter, a loss, an unexpected beauty — that their practice catches fire. Suddenly there is something to live. The same method, the same posture, but now shot through with warmth. This ignition is <strong>love taking on its function as fuel</strong>.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Love is not an effect of the work, it is <strong>its engine</strong></li>
+            <li>Unfoldment happens through attraction, not through effort</li>
+            <li>Each quality of love has its role in the crossing</li>
+            <li>The path is a <strong>love story</strong> between the soul and its source</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══════════════════════════ ACTE II ═══════════════════════════ -->
+    <section class="acte a2">
+      <header class="actHeader scroll-target" id="acte2">
+        <p class="actNum">◆ Act II</p>
+        <h2>Love as the nature of reality</h2>
+        <p class="actLead">Love is no longer in me: it becomes the fabric of the world. A dimension perceived directly when separate identity relaxes.</p>
+      </header>
+
+      <!-- II.1 -->
+      <article class="scene scroll-target" id="ii1">
+        <p class="num">Scene II.1</p>
+        <h3>A new dimension opens</h3>
+        <p>The second volume marks a change of plane. Until now, we have spoken of love as a <strong>quality of essence</strong> lived by an individual soul — a substance one can taste within oneself. Almaas now introduces another type of experience: the <strong>boundless dimensions</strong>. This is a mode of being in which the separation between self and world is erased, not as an erasing of consciousness, but on the contrary as an <em>expansion</em> of it to the whole of reality.</p>
+        <p>Almaas distinguishes several boundless dimensions. The one he addresses in this book, because it is the closest to the heart and the most accessible, is that of <strong>Divine Love</strong>. This is no longer love as content of the soul, it is love as the <strong>very substance of the universe</strong>, as the fabric of reality.</p>
+        <p>This dimension is not a metaphor, nor is it a religious belief. It is a precise phenomenological experience: one perceives that everything, absolutely everything — walls, air, bodies, objects — is pervaded and made up of a <strong>loving presence</strong> of exquisite refinement. The world appears bathed in a golden, warm, soft light that is not a metaphor for love: <em>it is love, perceived directly as the very matter of the real</em>.</p>
+        <p>Almaas adds an important philosophical precision: he distinguishes himself here from a certain non-dual reading that would say this dimension is <em>always already there</em>, and that we are simply blind to its presence. For Almaas, the non-dual dimension manifests <strong>only when the soul is ready and open to it</strong>. It is not an indifferent truth we would merely be ignorant of; it is a progressive unveiling that requires maturation.</p>
+        <p>This dimension changes the entire relationship to the world. What was object becomes presence. What was separation becomes the rippling of one same substance. What was relationship becomes continuity.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>boundless dimension · Divine Love · conditional manifestation · fabric of the real
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>A walk in a garden at dusk. Suddenly, with no identifiable cause, the light on the leaves, the breath of the air, the ground underfoot, the body itself — all of this ceases to be an assemblage of distinct elements and becomes <strong>a single vibrant, soft, loving substance</strong>. One is no longer the one taking the walk: one is this substance, taking a walk through itself.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Love ceases to be in me, it becomes <strong>the fabric of the world</strong></li>
+            <li>A boundless dimension, directly perceptible, not merely believed</li>
+            <li>Not a state that is always already there: a <strong>conditional manifestation</strong></li>
+            <li>Phenomenology, not religion</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- II.2 -->
+      <article class="scene scroll-target" id="ii2">
+        <p class="num">Scene II.2</p>
+        <h3>Divine love — not as god, but as field</h3>
+        <p>Almaas takes an important precaution here. He uses words with a heavy religious charge: “divine,” “God,” “supreme being.” And he takes care to say: <em>when I use the word God, I am not designating an entity that would dwell somewhere in a heaven, that would create things in time, that would send messengers to reward or punish. In the boundless dimensions, there is no separate entity, neither human nor divine.</em></p>
+        <p>This defusing is central. The word “divine” serves to designate a <strong>quality of reality</strong> — its fundamental benevolence, its purity, its refinement. Not a person. Almaas calls this quality “divine” because no other word does justice to its subtlety, to its refinement, to its impersonal beauty. Human consciousness has one quality; animal consciousness has another; there also exists a <strong>divine</strong> quality of consciousness, directly perceptible when one enters this dimension.</p>
+        <p>Divine love is recognized by several marks: a <strong>weightless softness</strong>, an infinite tenderness, a quiet joy, a feeling of permanent blessing. It is no one's love in particular — it is not directed. It permeates everything, the way daylight permeates the landscape without addressing anyone. Almaas also sometimes calls it “<em>living daylight</em>” — to evoke this diffuse, omnipresent, gratuitous quality.</p>
+        <p>Living in this dimension profoundly changes one's relationship to existence. The feeling of <strong>basic trust</strong> in the goodness of reality, which is so difficult to acquire through psychological means, is given here as perceptual evidence. One does not believe the universe is loving: <em>one sees it</em>.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>field · divinity as quality · defusing the word God · basic trust
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone who has long struggled with a feeling of ontological abandonment — the impression of being alone in an indifferent universe — experiences, during a moment of great inner silence, that <strong>the air itself is tender</strong>. That the chair, the table, the wall are loving. Not symbolically: actually, as a quality one can touch.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>“Divine” designates a <strong>quality</strong>, not an entity</li>
+            <li>Divine love is diffuse, without a specific recipient, omnipresent</li>
+            <li>It is perceived as <strong>“living daylight”</strong></li>
+            <li>It grounds <strong>trust</strong> in the goodness of the real</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- II.3 -->
+      <article class="scene scroll-target" id="ii3">
+        <p class="num">Scene II.3</p>
+        <h3>The body of light, the real world</h3>
+        <p>When one settles into this dimension, the body itself ceases to be perceived as a material object among others. Almaas gives a precise description of this: the body <strong>becomes a body of light</strong>. This is not a symbolic vision. It is a perceptual experience in which one recognizes that what was called “body” is in reality a condensation of the same luminous substance that makes up everything else.</p>
+        <p>This body of light is not immaterial in the sense of being disembodied. On the contrary, it is <strong>more present</strong> than the ordinary physical body — more sensitive, more pervaded, more vibrant. But it is perceived as dense light, no longer as opaque flesh.</p>
+        <p>At this point, what we called the “real world” — the world of separate objects, physical bodies, utilitarian relationships — is revealed as a <strong>partial perceptual construction</strong>. Not an illusion (Almaas avoids that vocabulary), but an impoverished reading of a far richer reality. The <strong>real world</strong>, properly speaking, is the one perceived within the dimension of divine love: a world of luminous presences, pervading one another, bathed in love.</p>
+        <p>This transformation has practical consequences. What used to be frightening no longer has the same density. What seemed final (the walls between beings, existential solitude, separation from what one loves) appears as one possible reading among others. Without denying physical reality, one ceases to be its prisoner.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>body of light · real world · perceptual reading · densification
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone who looks at their own hand during deep meditation and sees the skin, the bones, the flesh — all at once — as an <strong>agglomeration of golden light</strong> held in shape by who-knows-what. The hand does not disappear, but it changes status. It is exactly the same substance as the air around it, as the lamp, as the wall.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>The body reveals itself as a <strong>body of light</strong></li>
+            <li>The “real” world is richer than the ordinary material world</li>
+            <li>Not an illusion, a <strong>partial reading</strong></li>
+            <li>This liberates without disembodying</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- II.4 -->
+      <article class="scene scroll-target" id="ii4">
+        <p class="num">Scene II.4</p>
+        <h3>The obstacles: separate identity, the devouring ego</h3>
+        <p>If this dimension is so beautiful, why don't we live in it permanently? Because a deep structure of the ego opposes it — the <strong>conviction of being a separate entity</strong>, an individual body, a subject facing a world of objects. This conviction is not an intellectual belief, it is an energetic knot in consciousness, which Almaas says is often felt as a <strong>shell</strong> surrounding the sense of self.</p>
+        <p>This shell has a defensive function — it protects us from the feeling of losing our identity. But it also has a terrible downside: it condemns us to live as an isolated fragment in an alien universe. It is this structure that produces existential anguish, ontological solitude, and the compulsive need to <strong>accumulate</strong> — accumulating possessions, pleasures, recognition, to fill the inner void.</p>
+        <p>Almaas gives a striking, almost comical image of this: <strong>Jabba the Hutt</strong>, the character from Star Wars. Why? Because when the soul reduces itself to its identification with the physical body and the material world, it gradually becomes this creature: a mass of fatty flesh, voracious, obsessed with swallowing whatever it can, possessed by a primal greed. It is a caricature, but an exact one: every convinced materialist, says Almaas, is at bottom Jabba the Hutt — not in appearance, but in the <em>structure of their desire</em>.</p>
+        <p>The opposition is radical: on one side, the body of light, refined, permeable, pervaded by softness; on the other, the ego-body, opaque, dense, voracious. These are not two people: it is the same soul, read at two different levels. But as long as the second dominates, the first cannot reveal itself.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>separate identity · shell · devouring ego · compulsive accumulation
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone in the middle of an anxiety attack notices, by observing themselves, an <strong>irrepressible urge</strong> to go to the fridge, or to order something online, or to turn on their phone. This is neither hunger nor a real need: it is the Jabba-shell reacting to the void by trying to fill it from outside. Seeing this dynamic live is already the beginning of disengaging from it.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Separate identity is a <strong>structure</strong>, not a truth</li>
+            <li>It manifests as a <strong>shell</strong> around the self</li>
+            <li>Its natural slope is the <strong>greed of accumulation</strong></li>
+            <li>Liberation does not come from forcing oneself, it comes from seeing the structure</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- II.5 -->
+      <article class="scene scroll-target" id="ii5">
+        <p class="num">Scene II.5</p>
+        <h3>Surrender — the posture of the threshold</h3>
+        <p>How does one move from separate identity to the experience of the dimension of divine love? Not through effort, Almaas says. Effort is still an activity of the separate ego. The only attitude that opens the way is what he calls <strong>surrender</strong> — a word imperfectly translated as “letting go,” “yielding,” or “relinquishment.”</p>
+        <p>But Almaas warns: even the word “surrender” is tricky. If I say “I surrender,” there is still an “I” deciding on an act, which maintains the very structure that the surrender was supposed to dissolve. True surrender is not an act, it is a <strong>non-act</strong>, a ceasing to hold on, a consent to what is happening without seeking any longer to control it. <em>It is letting melt what wants to melt.</em></p>
+        <p>When this posture is held, what arises is not effort that has borne fruit — it is a <strong>grace</strong> that gives itself. The dimension of Divine Love manifests, and one notices that one did not enter it: one has simply stopped pushing it away.</p>
+        <p>Surrender is experienced phenomenologically as a <strong>deep release</strong> in the chest, a release that descends into the belly, that communicates itself to the face, the shoulders, the knees. It is accompanied by a feeling of passive softness — not the passivity of depression, but the passivity of the swimmer who stops fighting the current and lets themselves be carried.</p>
+        <p>This posture is paradoxical: it is at once the most active of attitudes (it demands a full and lucid presence) and the most inactive (it does nothing). It is the <strong>tipping point</strong> between the world of effort and that of grace.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>surrender · non-act · release · tipping point
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone who has long struggled with a personal problem — a grief, a conflict, an impossible decision — discovers one evening, in a moment of exhaustion, that they <strong>simply stop fighting</strong>. Not out of resignation. Out of sheer fatigue with the fight. And in this having-stopped-fighting, something larger settles in — not a solution, but a presence that makes the thing bearable. This is a phenomenological foretaste of surrender.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Surrender is not an act, it is <strong>the stopping of an effort</strong></li>
+            <li>One must consent to melting, not force it</li>
+            <li>The <strong>tipping point</strong> between effort and grace</li>
+            <li>A posture active in its vigilance, inactive in its content</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- II.6 -->
+      <article class="scene scroll-target" id="ii6">
+        <p class="num">Scene II.6</p>
+        <h3>Grace</h3>
+        <p>The final movement of the second volume is devoted to grace — another weighty word, which Almaas takes up while stripping it of its religious connotations. Grace, in his vocabulary, is what <strong>gives itself</strong> without having been conquered. It is the part of spiritual experience that does not depend on us.</p>
+        <p>Almaas insists on this point because the culture of inner work tends to forget it. We grow accustomed to thinking that everything depends on effort, on practice, on discipline. This is partly true. But at a certain point, one discovers that the most decisive openings are not the result of our work: they are <strong>given</strong>. Something presents itself that we did not summon, that we had not earned, and that nevertheless transforms everything.</p>
+        <p>This discovery is liberating and humbling at once. Liberating, because it undoes the illusion of mastery. Humbling, because it reveals that we are not the principal architects of our own transformation. Grace is the <strong>other face of surrender</strong>: one yields, and something gives itself.</p>
+        <p>Almaas notes a particular trait of the dimension of divine love: it is <strong>doubly graceful</strong> — graceful in the aesthetic sense (everything within it appears harmonious, beautiful, elegant), and graced in the spiritual sense (it is a gift). Graceful <em>and</em> graced. When one is within it, one perceives that the beauty of the thing is not separable from the fact that it is given.</p>
+        <p>This articulation of surrender/grace is, for Almaas, the final posture of the non-dual: neither pure effort nor pure passivity, but a <strong>consenting disposition</strong> that lets the gift come to pass.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>grace · gift · double sense (aesthetic and spiritual) · consenting disposition
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone who has practiced for years without much movement, then, on an ordinary day, suddenly lives through an hour of peaceful unity with everything. When they try to reproduce it the next day, nothing comes. They then discover what grace is: <strong>not an acquisition but a gift</strong>. Inner work makes one available for it, but it is the gift that opens the door.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Grace is what gives itself, independent of effort</li>
+            <li>It reveals the <strong>limits of mastery</strong></li>
+            <li>Surrender and grace are the two faces of one same posture</li>
+            <li>The dimension is at once graceful (beautiful) and graced (given)</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══════════════════════════ ACTE III ═══════════════════════════ -->
+    <section class="acte a3">
+      <header class="actHeader scroll-target" id="acte3">
+        <p class="actNum">◆ Act III</p>
+        <h2>The path of the heart toward the Beloved</h2>
+        <p class="actLead">The openly devotional path — that of the great mystics. The heart, having become faithful to a single Beloved, passes through the classic stations all the way to unity.</p>
+      </header>
+
+      <div class="avertissement">
+        <span class="lab">◆ Preliminary warning</span>
+        <p>This third part deliberately uses the vocabulary of the great mystical traditions — <strong>Beloved</strong>, divine, poverty of the heart, dark night, mystical desire. Almaas does not invent these words: he takes them up because they precisely describe phenomenological stages of the path of the heart.</p>
+        <p>The <strong>Beloved</strong> does not designate a personal entity in the religious sense — not a god in person. It designates what Almaas, in the second volume, called the <strong>Absolute</strong>: ultimate reality under all its names (Shiva in Kashmir Shaivism, Parabrahman in Advaita Vedanta, Dharmakaya in Mahayana, Ain Sof for the Kabbalists, the Father for Christian mystics, the divine essence for the Sufis). It is this Absolute, lived <em>as the object of the heart</em>, that the trilogy names the Beloved.</p>
+        <p>Keeping this vocabulary intact is not a concession to religion: it is <strong>respecting the phenomenological precision</strong> of the path. A corollary precaution: the poverty of the heart and the dark night discussed here are <strong>not depressions</strong>, are not psychological breakdowns. They are stages of stripping-away on the path, which presuppose a framework, a maturity, and companionship. They are not to be sought out of curiosity.</p>
+      </div>
+
+      <!-- III.1 -->
+      <article class="scene scroll-target" id="iii1">
+        <p class="num">Scene III.1</p>
+        <h3>The divided heart — starting point</h3>
+        <p>The path of the heart begins with a sober observation: our heart, as it is, is <strong>divided</strong>. It loves a thousand things, a thousand people, a thousand projects, and changes the object of its love with disconcerting ease. Almaas borrows a formula from Freud — the human heart is “polymorphously perverse” — to say that it can attach itself to anything at all: a person, an animal, an ice cream, a phone, a cause, an idea. And that this scattering is not an accident: it is its initial nature.</p>
+        <p>Far from being a moral flaw, this scattering <strong>testifies to a profound truth</strong>: the heart is made to love, and it will love whatever is at hand until it has found its true object. But it comes at a cost: as long as the heart remains scattered, it experiences no lasting satisfaction. Whatever the loved object, something is missing. A love affair ends, a passion goes out, a desire dissolves as soon as it is satisfied, and the quest starts over.</p>
+        <p>This inconstancy is what Almaas calls, following the Sufis, the <strong>fickleness</strong> of the heart — its native unfaithfulness. It is not to be condemned, it is to be <em>observed</em>. For in observing it, one discovers something precious: the heart knows, primordially, without knowing it consciously, that none of these objects is its true Beloved. That is why it moves from one to the next. <strong>It is searching.</strong></p>
+        <p>The work begins when this inconstancy stops being experienced as a failure and becomes <strong>information</strong>: if nothing satisfies you, it is because you are seeking elsewhere what is not there. The heart is, in Pascal's phrase implicitly taken up by Almaas, a hollow made for something that is in no object of this world.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>divided heart · native polygamy · fickleness · the information carried by scattering
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone who collects romantic passions, and who notices, by the tenth one, that the same story repeats itself each time — fascination, fulfillment, weariness, departure. It is not that the partners are bad. It is that none of them could be what he was looking for, because <strong>what he was looking for is not a partner</strong>.</p>
+        </div>
+
+        <div class="poesie">
+          <p class="ornament">◆ ◆ ◆</p>
+          <p class="auteur">Kabir</p>
+          <blockquote><em>In this brief poem, Kabir marvels that the entire cosmos — its vast landscapes, its oceans and stars, the very source of all things — is somehow folded into the small vessel of the body, and that the God he loves is found not somewhere beyond, but within that vessel itself.</em></blockquote>
+          <p class="ornament-end">◆ ◆ ◆</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>The heart is natively divided, polygamous, inconstant</li>
+            <li>This scattering testifies to a <strong>search</strong>, not a flaw</li>
+            <li>No object of this world can fill this hollow</li>
+            <li>Seeing this transforms inconstancy into <strong>information</strong></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- III.2 -->
+      <article class="scene scroll-target" id="iii2">
+        <p class="num">Scene III.2</p>
+        <h3>The fidelity of the heart</h3>
+        <p>The first true stage of the path is what Almaas calls the <strong>fidelity of the heart</strong>. Not a moral fidelity (remaining faithful to a partner, to an outward commitment), but an ontological fidelity: <em>remaining faithful to what the heart truly loves</em>, even when one does not yet know what that is.</p>
+        <p>It begins with an intuition. Something in us knows, without being able to name it, that there is a true object to our love. As long as we scatter our love among a thousand substitute objects, this intuition stays muffled. But as we recognize that none of these objects is enough, the intuition becomes clearer, more insistent. The heart begins to gather itself.</p>
+        <p>Fidelity, at this stage, does not consist of renouncing human loves, nor of withdrawing from the world. It consists of <strong>no longer confusing</strong> things: recognizing that the loved person is precious in themselves, but that they are not what the heart is fundamentally seeking. Loving each thing in its rightful measure, without asking it to be what it cannot be.</p>
+        <p>This fidelity is demanding. It requires <strong>bearing the void</strong> when the substitute objects withdraw. It requires holding an orientation without yet knowing its outcome. It is, to borrow the mystical vocabulary, an act of faith — not dogmatic faith, but faith-as-trust, trust in an intuition that does not yet have its object.</p>
+        <p>Almaas insists: without this fidelity, the path of the heart does not hold. With every disappointment we fall back into the old scattering. With it, every disappointment becomes a <em>clarification</em> — it prunes away one more illusion, and the heart concentrates a little more on its true direction.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>ontological fidelity · not confusing · bearing the void · faith-as-trust
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone comes out of a painful love affair. Instead of rushing into the next one to fill the lack, they choose to <strong>stay with the lack</strong>, to observe it, to see what it has to say. After a few months, they discover that this lack is not a hole left by the other person: it is an old hollow, never filled by anyone, that speaks of another thirst. This discovery is the beginning of fidelity.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Fidelity <strong>ontological</strong>, not moral</li>
+            <li>Loving things without asking them to be what they are not</li>
+            <li>Bearing the void when the substitutes withdraw</li>
+            <li>An act of <strong>faith-as-trust</strong> in an intuition without an object</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- III.3 -->
+      <article class="scene scroll-target" id="iii3">
+        <p class="num">Scene III.3</p>
+        <h3>The names of the Beloved</h3>
+        <p>How to name what the heart is looking for, when it has no proper name? All the mystical traditions have stumbled over this question, and all have produced <strong>multiple names</strong>, aware that none suffices. Kabir calls it “the Guest,” “the Friend,” “the Secret.” Rumi speaks of “the Beloved,” “the Face,” “the Wine.” Hafiz of “the Saki” (the cupbearer). The Sufis have their list of the “beautiful names” of Allah. John of the Cross speaks of “the Beloved.” Almaas takes up this same gesture: he calls the ultimate object of the heart <strong>the Beloved</strong>.</p>
+
+        <div class="nomsGrid">
+          <div class="nomCard"><p class="nom">The Guest</p><p class="src">Kabir</p></div>
+          <div class="nomCard"><p class="nom">The Friend</p><p class="src">Kabir, Hafiz</p></div>
+          <div class="nomCard"><p class="nom">The Beloved</p><p class="src">Rumi, Almaas</p></div>
+          <div class="nomCard"><p class="nom">The Face</p><p class="src">Rumi</p></div>
+          <div class="nomCard"><p class="nom">The Wine</p><p class="src">Rumi, Hafiz</p></div>
+          <div class="nomCard"><p class="nom">The Saki</p><p class="src">Hafiz</p></div>
+          <div class="nomCard"><p class="nom">The Secret</p><p class="src">Kabir</p></div>
+          <div class="nomCard"><p class="nom">The Beloved</p><p class="src">John of the Cross</p></div>
+          <div class="nomCard"><p class="nom">Shiva</p><p class="src">Kashmir Shaivism</p></div>
+          <div class="nomCard"><p class="nom">Parabrahman</p><p class="src">Advaita Vedanta</p></div>
+          <div class="nomCard"><p class="nom">Dharmakaya</p><p class="src">Mahayana</p></div>
+          <div class="nomCard"><p class="nom">Ain Sof</p><p class="src">Kabbalah</p></div>
+          <div class="nomCard"><p class="nom">The Father</p><p class="src">Christian mysticism</p></div>
+          <div class="nomCard"><p class="nom">The Absolute</p><p class="src">Almaas</p></div>
+        </div>
+
+        <p>Why so many names? Because each name <strong>speaks to one facet</strong> without exhausting the thing itself. Guest evokes an intimate encounter, like with an awaited visitor. Friend evokes familiarity, closeness. Secret evokes interiority, the hidden. Beloved evokes magnetic love. No single name is accurate on its own; all of them together circle something that none of them captures.</p>
+        <p>Almaas notes something important: <strong>having names is useful, but clinging to a name is treacherous</strong>. If we crystallize the object of the heart into a figure (a face, a character, a representation), we turn the living quest into a quiet idolatry. The Beloved is not an image. It is what presents itself once all images have fallen away.</p>
+        <p>Here, as in the second volume, Almaas defuses the word “God.” He reminds us that in this teaching, the Beloved designates the <strong>Absolute</strong> — not a personal entity, but ultimate reality under all its names, across all traditions. Quoting Rumi does not mean adopting Islam; quoting John of the Cross does not mean adopting Catholicism. It means recognizing that these paths have each mapped, in their own language, the same inner territory.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>multiple names · facets of the unnameable · not idolizing · the Absolute under all its names
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone in meditation inwardly calls out “Beloved” — not a figure, just the orientation of the heart. After a while, they notice that this address <strong>opens something</strong>, whereas decades of abstract thought about “ultimate reality” had never touched the heart. The name, here, is not a belief: it is a language of love that reaches a place speculation cannot touch.</p>
+        </div>
+
+        <div class="poesie">
+          <p class="ornament">◆ ◆ ◆</p>
+          <p class="auteur">Kabir</p>
+          <blockquote><em>Here Kabir describes the ache of separation — sleepless nights, a private fear, no one to confide in — before turning, in its final lines, to the one thing that brings any true rest: meeting the Guest.</em></blockquote>
+          <p class="ornament-end">◆ ◆ ◆</p>
+        </div>
+
+        <div class="poesie">
+          <p class="ornament">◆ ◆ ◆</p>
+          <p class="auteur">Hafiz</p>
+          <blockquote><em>Hafiz tells of meeting a saki — a wine-pourer — whose light dissolves the boundary between the light and the cup itself, and concludes that every name for this presence is at once true and false; the heart, in the end, holds only silence.</em></blockquote>
+          <p class="ornament-end">◆ ◆ ◆</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>All the names <strong>speak to one facet</strong>, none captures the thing itself</li>
+            <li>Having a name opens a door, clinging to it closes it</li>
+            <li>The Beloved = the <strong>Absolute</strong> under all its designations</li>
+            <li>Quoting a tradition does not commit one to its religion</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- III.4 -->
+      <article class="scene scroll-target" id="iii4">
+        <p class="num">Scene III.4</p>
+        <h3>The poverty of the heart</h3>
+        <p>As the heart gathers itself and concentrates on its true direction, its former objects of love gradually stop occupying it. Not through willful renunciation, but through <strong>natural disinterest</strong> — they no longer contain what one is looking for, and the heart knows it. This settling produces a precise and difficult stage: the <strong>poverty of the heart</strong>, a term taken directly from John of the Cross.</p>
+        <p>The poverty of the heart is not a sad emotion. It is not a depression. Nor is it the feeling of being alone or abandoned. It is a very precise <strong>phenomenological experience</strong>: the heart, emptied of its former objects, has not yet met its true Beloved. It thus finds itself in a state of <em>intermediate stripping-away</em> — it no longer has anything to love, and it does not yet know what it loves.</p>
+        <p>Almaas describes this state with delicacy. One has the feeling of <strong>having nothing</strong>. Not only nothing on the outside — nothing on the inside either. One possesses no qualities, one possesses no capacities, one does not even possess the feeling of fully existing. This is what mystics call <strong>mystical poverty</strong>: the recognition that one has, properly speaking, nothing of one's own.</p>
+        <p>This state would be unbearable if taken for a final truth. But it is only a threshold. The heart, in emptying itself, <strong>makes room</strong> for what cannot enter it while it is full. Poverty is the antechamber of the Beloved. Without it, the space would never have been cleared. With it, the Beloved can begin to reveal itself — often silently, almost imperceptibly at first.</p>
+        <p>Almaas insists that the poverty of the heart is a <strong>stage</strong>, and that it is not to be sought for its own sake. It presents itself when the time has come, to a heart that has been prepared. Provoking it artificially would be dangerous and useless.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>mystical poverty · intermediate stripping-away · antechamber · a stage (not a depression)
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone, after several years on the inner path, goes through a period where nothing “does it” for them anymore the way it used to. What used to excite them now bores them. What used to comfort them no longer comforts. It is not a crisis — they are calm — but it is a great hollow. Rather than rushing into a new quest, they learn to <strong>stay with this hollow</strong>, not to fill it. This is a phenomenological form of the poverty of the heart.</p>
+        </div>
+
+        <div class="poesie">
+          <p class="ornament">◆ ◆ ◆</p>
+          <p class="auteur">Rumi</p>
+          <blockquote><em>Rumi describes lovers bound by a single sacred calling — the search for the Beloved — and the paradox at its heart: that the seeker, without knowing it, is already sitting beside the very one being sought, and that a single word from the Beloved outweighs all human speech.</em></blockquote>
+          <p class="ornament-end">◆ ◆ ◆</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Poverty = a precise phenomenological state, <strong>not a depression</strong></li>
+            <li>The heart, emptied of its substitutes, makes room for what is coming</li>
+            <li>Antechamber, not destination</li>
+            <li>It cannot be provoked, only passed through when it comes</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- III.5 -->
+      <article class="scene scroll-target" id="iii5">
+        <p class="num">Scene III.5</p>
+        <h3>Desire as the engine</h3>
+        <p>At the heart of the devotional path lies a paradox: it is <strong>desire</strong> — the very thing so many spiritual traditions urge us to quiet — that becomes the main engine of the path. Almaas here takes up the great tradition of <strong>yearning</strong> (mystical longing) that runs through Rumi, Kabir, Hafiz, and John of the Cross.</p>
+        <p>This desire is not the desire of the ego — the one that wants to possess, accumulate, reassure itself. It is a desire of a different nature: a <strong>desire-as-magnetism</strong>, a desire-as-arrow, that pulls the heart toward what is not yet there. It is not quieted by obtaining: it <em>intensifies</em> the closer one gets.</p>
+        <p>Almaas describes it as a <strong>burning</strong> in the chest. A flame. A fire that seizes the soul. Those who are truly engaged on the path, he says, burn with their desire, like the mystics of every tradition. They do not approach life in a utilitarian way, they are not trying to solve their problems in order to move on to something else: they are <em>passionately in love</em>, even when they do not exactly know with what.</p>
+        <p>This desire is precious for two reasons. First, because it is the <strong>indicator</strong> that the heart is alive and oriented. A heart that no longer desires anything is a heart that has gone out. Second, because it is the <strong>energy</strong> that allows one to get through what one would not otherwise have the strength to get through. Without mystical desire, the poverty of the heart would become a desert; with it, it becomes a burning wait.</p>
+        <p>Almaas takes up a crucial mystical intuition: desire is not a flaw to be overcome, it is a <strong>prayer without words</strong>. It says, in its own way, what the soul is seeking. It must therefore not be repressed, but <em>honored</em> — felt, allowed to be what it is, and followed.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>yearning · desire-as-magnetism · burning · prayer without words
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone experiences, for no identifiable reason, a kind of chronic melancholy — a nostalgia for who-knows-what. Instead of treating it as a symptom to eliminate, they learn to listen to it. They discover that it speaks of an ontological lack, of a call toward something they have never known yet somehow remember. This nostalgia is <strong>yearning in its raw state</strong>.</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Mystical desire is not the desire of the ego</li>
+            <li>It <strong>intensifies</strong> the closer one gets</li>
+            <li>It burns, and it is this burning that is the engine</li>
+            <li><strong>Prayer without words</strong>: do not repress it, honor it</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- III.6 -->
+      <article class="scene scroll-target" id="iii6">
+        <p class="num">Scene III.6</p>
+        <h3>Bedazzlement and the dark night</h3>
+        <p>As the Beloved draws near, two alternating experiences present themselves, which seem contrary but are the two faces of one same encounter: <strong>bedazzlement</strong> and the <strong>dark night</strong> (divine darkness).</p>
+        <p>Bedazzlement is the experience in which the heart is literally enchanted, overwhelmed by the beauty of the Beloved. The beauty of the Absolute is so intense that it exceeds the capacities of ordinary consciousness; one comes out of it as if giddy, as if drunk. Almaas speaks of an “intoxication of the spirit.” This is what Rumi calls the intoxication of divine wine, what Hafiz celebrates as the mystical tavern. It is not a metaphor: it is a precise phenomenological quality, a bedazzlement in which the rational mind can no longer operate.</p>
+        <p>The dark night is the other face. When the Beloved draws still closer, bedazzlement turns into a <strong>luminous darkness</strong>. Rational consciousness, which oriented itself by the visible, the image, the concept, loses its bearings. It enters what John of the Cross called the <em>noche oscura</em> — not a depressive night, but a night in which the light is so different from what we know that it appears to us as darkness. Almaas takes up the exact term of the Christian mystics: <strong>divine darkness</strong>, in which the soul no longer sees anything because it sees otherwise.</p>
+        <p>These two experiences are not rewards; they are <strong>trials</strong>. They strip the heart of its last representations, its last mental hold on the Beloved. It is through them that the heart passes from knowledge by concept to knowledge by <em>pure immediacy</em>, which is the only way of knowing the Absolute.</p>
+        <p>Almaas insists, as he did for the poverty of the heart: these are not pathologies, they are not breakdowns, they are <strong>stations</strong> on the path. They assert themselves when one is ready, and they are meant to be passed through.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>bedazzlement · divine darkness · mystical intoxication · the stripping-away of representations
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone in very deep meditation experiences an inner light so intense that they come out of it “drunk” for hours, unable to resume ordinary activities. At other times, it is the reverse: a great, dark, luminous silence, in which no image, no thought forms any longer, yet in which there is nonetheless a dense presence. <strong>These are the two sides of the encounter.</strong></p>
+        </div>
+
+        <div class="poesie">
+          <p class="ornament">◆ ◆ ◆</p>
+          <p class="auteur">Kabir</p>
+          <blockquote><em>Kabir insists that the Guest already dwells within every one of us, as the shoot already lies hidden in the seed, and that a single love runs through the whole universe — a joy we rarely let ourselves feel, kept at bay by reason's pride.</em></blockquote>
+          <p class="ornament-end">◆ ◆ ◆</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Bedazzlement and the dark night = <strong>two faces of one same encounter</strong></li>
+            <li>The dark night is not depressive: it is light perceived otherwise</li>
+            <li>These stations strip away the last representations</li>
+            <li>These are not pathologies, they are <strong>stages</strong></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- III.7 -->
+      <article class="scene scroll-target" id="iii7">
+        <p class="num">Scene III.7</p>
+        <h3>The unity of love, intimacy</h3>
+        <p>The culmination of the path is not a fusion that would make the one who loves disappear into what they love. It is what Almaas calls the <strong>unity of love</strong> — a state in which the distinction between the one who loves and the Beloved ceases to be a separation, without either one disappearing into the other.</p>
+        <p>In the most complete experience, which Almaas describes drawing on a passage from his journal, there comes a moment when <strong>one no longer knows who loves whom</strong>. <em>Is it I who love the Absolute, or the Absolute who loves me?</em> The question itself loses its meaning. There are no longer two poles with a love circulating between them: there is a single love, recognizing itself.</p>
+        <p>This recognition does not erase the singularity of the soul. On the contrary: it is only in the unity of love that the soul is fully itself, because it is within its own proper element. This is what Almaas calls <strong>intimacy</strong> — a state in which the soul is as close as possible to what grounds it, with no distance, no effort to draw near, no longing. <em>It is home.</em></p>
+        <p>Intimacy is not a summit to be reached once and for all. It is a <strong>way of being</strong> that then radiates into every area of life. Intimacy with the Beloved becomes intimacy with oneself, intimacy with others, intimacy with ordinary things. Everything becomes a closer presence.</p>
+        <p>This is where the trilogy closes. The same love that we first met as <strong>presence in the heart</strong> (Act I), then as a <strong>dimension of reality</strong> (Act II), finally reveals itself as a <strong>living unity</strong> between the soul and its source (Act III). Three phenomenological descriptions of one single thing, which lets itself be discovered successively as consciousness matures.</p>
+
+        <div class="acerner">
+          <span class="lab">Key ideas</span>unity of love · intimacy · non-disappearance · a way of being
+        </div>
+
+        <div class="exemple">
+          <p class="lab">Concrete example</p>
+          <p>Someone, after years on the path, meets a friend they haven't seen in a long time. Nothing extraordinary happens — they have a coffee, talk about small things. And yet the whole exchange is pervaded by a dense, gentle, joyful presence. <strong>The ordinary distance between two people has melted, without either one disappearing.</strong> This is intimacy in its everyday form — and it is, on a small scale, the same state that Almaas describes as the culmination.</p>
+        </div>
+
+        <div class="poesie">
+          <p class="ornament">◆ ◆ ◆</p>
+          <p class="auteur">Almaas — from his journal</p>
+          <blockquote><em>In this journal passage, Almaas describes a moment where love grows so intense that the line between lover and Beloved dissolves — he can no longer say whether he loves the Absolute or the Absolute loves him, since the Beloved turns out to be the heart's own truest inhabitant.</em></blockquote>
+          <p class="ornament-end">◆ ◆ ◆</p>
+        </div>
+
+        <div class="keypoints">
+          <p class="lab">Key takeaways</p>
+          <ul>
+            <li>Unity of love: neither separation nor disappearance</li>
+            <li>Intimacy: <strong>being at home</strong> in what grounds us</li>
+            <li>A radiant state: it radiates through all of daily life</li>
+            <li>The same love runs through the three acts: presence, dimension, unity</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══════════════════════════ CLÔTURE ═══════════════════════════ -->
+    <section class="cloture">
+      <p class="ornament">◆ ◆ ◆</p>
+      <h2>The same love, seen from three summits</h2>
+      <p>What Almaas's trilogy accomplishes, in three movements, is a <strong>complete traversal</strong> of the question of love. At the outset, love was this thing we thought we knew — an emotion, a feeling, sometimes a drug, sometimes a lack. By the end, love reveals itself to be what we are, what everything is, and what everything tends toward.</p>
+      <p>The first act taught us to recognize love as <strong>essential presence</strong>, to distinguish its three flavors — the rose softness that nourishes, the golden fusion that connects, the pomegranate passion that magnetizes — to see how and why we had lost it, and to understand that it is the true fuel of the inner path.</p>
+      <p>The second act shifted us up a level: love is no longer only within us, it is everywhere, it is the fabric of the real, directly perceptible when separate identity relaxes. Divine love is not a religious belief, it is a <strong>phenomenological dimension</strong> in which consciousness discovers that benevolence is not an option, it is <em>the very ground of things</em>.</p>
+      <p>The third act led us to the mystical threshold: love as the <strong>path of the heart toward the Absolute</strong>, passing through the classic stations — fidelity, poverty, desire, bedazzlement, dark night, intimacy. The Beloved who appears at the end is not a personal god: it is ultimate reality, the same reality named by all the great traditions, seen through the eyes of the heart rather than those of the intellect.</p>
+      <p>Three summits, a single love. Three languages, one experience. The trilogy does not ask that we adhere to a belief; it invites an <strong>inner verification</strong>. On every page, Almaas says: <em>here is what I have seen, here is how it presents itself, see for yourself whether it corresponds to something in your own experience</em>. The path is open. The heart is on its way, whether it knows it or not. And love, in all its forms, is at once what it seeks and what carries it.</p>
+      <p class="signature">◆</p>
+      <div class="actions">
+        <a class="btn" href="/en/approche-diamant.html">← Back to the Diamond Approach</a>
+      </div>
+    </section>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

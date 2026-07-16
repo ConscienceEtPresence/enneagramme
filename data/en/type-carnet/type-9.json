@@ -1,0 +1,156 @@
+{
+  "type": 9,
+  "nom": "The Mediator",
+  "centre": {
+    "prefere": "instinctif",
+    "support": "emotionnel",
+    "reprime": "instinctif-affirmation",
+    "prefere_libelle": "Instinctive (but asleep, numbed)",
+    "reprime_libelle": "The instinct of assertion",
+    "reprime_invitation": "Today, the center you are working is your instinct of assertion: taking up space, voicing your desire, acting for yourself. You exist — it's time that it shows."
+  },
+
+  "dynamique_ego": {
+    "passion": "Spiritual sloth",
+    "passion_explication": "Not a laziness about work. A laziness about self: not feeling oneself, not naming oneself, not waking up to what one truly wants. Comfort as avoidance of the urgency of existing.",
+    "fixation": "Self-forgetting, fusion with what is comfortable",
+    "compulsion_evitement": "Avoiding conflict, separation, loss of harmony.",
+    "peur_de_base": "Being in conflict, separated, losing connection.",
+    "desir_de_base": "Having peace, unity, harmony."
+  },
+
+  "essence": {
+    "qualite_principale": "Living Love (that includes without erasing itself)",
+    "qualite_phrase": "You don't have to disappear to make peace — your presence IS peace.",
+    "horizons": [
+      "Naming yourself, claiming yourself, tending to yourself",
+      "Feeling your own desire — and following it",
+      "Recognizing conflict as alive, not as rupture",
+      "Touching the unity that doesn't erase difference"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Feel what I truly want, today",
+    "Take up a place — verbal, physical, symbolic",
+    "Name a disagreement, gently",
+    "Do something that matters to me — not something 'useful'",
+    "Not merge into what the other wants",
+    "Start something instead of postponing it",
+    "Feel my body — not to move, to exist",
+    "Make a clear-cut choice, without diluting it",
+    "Honor an anger that wants to rise"
+  ],
+
+  "pratiques_du_matin": [
+    "Before noon, feel what you truly feel like eating and eat it.",
+    "When someone asks your opinion, take 3 seconds and say the truth — not the diplomatic answer.",
+    "Start something you've postponed. Small, but started.",
+    "Feel a tension in the body. Let it be there. Tell it: 'you are welcome.'",
+    "Choose a place where you will take up space today. Go there.",
+    "Before saying yes by reflex, ask yourself: do I want to?"
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Luminous",    "description": "Awakened presence. You are there — fully, distinctly. Your peace doesn't erase your desire. Your love doesn't erase your 'I'.",      "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Functional", "description": "You hold steady. You see escape through comfort when it comes. You can choose to name yourself, sometimes.",                                  "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Reactive",     "description": "Self-forgetting leads. You postpone. You dissolve into what is soft. You avoid through comfort. The 'I' becomes blurred.",                       "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Buried",    "description": "Total numbness, dissociation, dazedness. Contact is lost. A very heavy day that calls for a gentle, grounded, bodily awakening.",            "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Liberated",        "texte": "Present, unified, awakened. Your peace is active, full. You include without erasing yourself." },
+      { "n": 2, "titre": "Healthy",          "texte": "Soothing, patient, welcoming. You see others as equals." },
+      { "n": 3, "titre": "Competent",     "texte": "Supportive, mediating, reconciling. Harmony felt, not manufactured." },
+      { "n": 4, "titre": "Upper-average",    "texte": "Amiable, accommodating. You begin to merge. The 'I' politely fades." },
+      { "n": 5, "titre": "Average",         "texte": "Avoidant, passive, procrastinating. You forget yourself. Routine covers feeling." },
+      { "n": 6, "titre": "Lower-average",     "texte": "Resigned, numbed, stubborn. You resist through inertia instead of acting." },
+      { "n": 7, "titre": "Unhealthy",       "texte": "Neglect, dissociation, disconnection. You are no longer there in your own life." },
+      { "n": 8, "titre": "Very unhealthy",  "texte": "Complete erasure, dazedness, depression. You float." },
+      { "n": 9, "titre": "Pathological",  "texte": "Disintegration, fugue, total self-abandonment. Asking for help is vital here." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "fond",       "label": "I merged into what the other wanted",  "detail": "Without even thinking about it." },
+      { "id": "report",     "label": "I postponed something important",                 "detail": "For 'later'." },
+      { "id": "evite-conflit","label": "I avoided a conflict worth having",        "detail": "Peace at the cost of myself." },
+      { "id": "engourdi",   "label": "I numbed myself — TV, eating, screen",          "detail": "So as not to feel." },
+      { "id": "auto-oubli", "label": "I forgot what I wanted",                       "detail": "For the sake of the collective." },
+      { "id": "rester-confort","label": "I stayed in my comfort zone",         "detail": "Even when it no longer nourished me." }
+    ],
+    "pieges": [
+      { "id": "oui-reflexe","label": "I said yes by reflex",                          "detail": "Without knowing if I wanted to." },
+      { "id": "diffus",     "label": "I gave a diplomatic opinion instead of the true one",    "detail": "So as not to offend." },
+      { "id": "fade",       "label": "I let an emotion that wanted to rise pass by",  "detail": "Control through blandness." },
+      { "id": "lent",       "label": "I was slow, so as not to have to choose",      "detail": "Inertia as protection." },
+      { "id": "remplis",    "label": "I filled the silence out of habit",                "detail": "The absence of self as noise." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "voulu",        "label": "I felt what I truly wanted" },
+      { "id": "pris-place",   "label": "I took a place — visibly" },
+      { "id": "nomme-desac",  "label": "I named a disagreement, gently" },
+      { "id": "commence",     "label": "I started something I'd postponed" },
+      { "id": "colere-honore","label": "I honored an anger that wanted to rise" },
+      { "id": "vrai-avis",    "label": "I gave my true opinion" },
+      { "id": "present",      "label": "I was fully present, without erasing myself" },
+      { "id": "amour-vrai",   "label": "True love came — that doesn't erase the 'I'" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "fond",        "label": "I merged" },
+    { "id": "pris-place",  "label": "I took my place" },
+    { "id": "report",      "label": "I postponed" },
+    { "id": "commence",    "label": "I started" },
+    { "id": "evite-conflit","label": "I avoided a necessary conflict" },
+    { "id": "vrai",        "label": "I said the truth" },
+    { "id": "engourdi",    "label": "I numbed myself" },
+    { "id": "eveille",     "label": "I awoke to a desire" },
+    { "id": "obscur",      "label": "I don't understand yet" }
+  ],
+
+  "remedes": [
+    { "id": "action",      "label": "Action — instead of inertia" },
+    { "id": "je",          "label": "The 'I' — distinguishing myself, without breaking" },
+    { "id": "desir",       "label": "Desire — feeling what calls me" },
+    { "id": "presence",    "label": "Presence — being here, truly" },
+    { "id": "vrai-place",  "label": "My true place — taking it, without apologizing" },
+    { "id": "amour-distinct","label": "Love that distinguishes — instead of merging" },
+    { "id": "reveil-corps","label": "Awakening the body — feeling, existing" }
+  ],
+
+  "ressources_site": [
+    { "label": "My full profile",          "href": "/en/profils/type9.html",          "icon": "📖" },
+    { "label": "The diamond of love",       "href": "/en/diamant-amour.html",          "icon": "💎" },
+    { "label": "Restore the forgotten center",  "href": "/en/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "The journey through the type", "href": "/en/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions between types",      "href": "/en/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Morning begins. What do YOU want, today?",
+      "A day opens up — what place do you want to take in it?",
+      "What desire deserves your attention, not your postponement?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Are you truly there?",
+      "Here you are. Have you felt your own voice today?",
+      "A possible pause. Feel your body, not the routine."
+    ],
+    "soir": [
+      "The day is fading. Have you inhabited yourself a little?",
+      "You can simply arrive, present to yourself.",
+      "Evening is gentle. An 'I want', that's very good."
+    ],
+    "nuit": [
+      "Night keeps watch. Something wanted, then sleep.",
+      "You are still here, distinct. And that is very beautiful."
+    ]
+  }
+}

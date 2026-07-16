@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Torn between two types? — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1200px;margin:18px auto 40px;padding:0 14px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .topBar .title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:800}
+    .topBar .badge{
+      font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;
+      padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(252,211,77,.4);background:rgba(252,211,77,.10);
+      color:#fde68a;font-weight:800;
+    }
+
+    .head{max-width:880px;margin:0 auto 18px;text-align:center}
+    .head h1{margin:0;font-size:clamp(26px,4vw,36px);letter-spacing:.3px;line-height:1.1}
+    .head .sub{margin:10px auto 0;color:var(--muted);font-size:14.5px;line-height:1.5;max-width:64ch}
+
+    /* Main two-column layout */
+    .stage{
+      display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:18px;
+      align-items:start;
+    }
+    @media(max-width:1000px){
+      .stage{grid-template-columns:1fr}
+    }
+
+    /* Diagram */
+    .diagram{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.02);box-shadow:var(--shadow);padding:16px;
+    }
+    .diagram svg{width:100%;height:auto;max-width:640px;margin:0 auto;display:block}
+    .stepHint{
+      text-align:center;color:var(--muted);font-size:12.5px;
+      letter-spacing:.6px;margin:8px 0 0;
+    }
+    .stepHint b{color:#7dd3fc}
+
+    /* SVG styles */
+    .ring{stroke:rgba(147,197,253,.4);stroke-width:2;fill:none}
+    .hex{stroke:rgba(255,255,255,.07);stroke-width:1.5;fill:none}
+    .tri{stroke:rgba(255,255,255,.05);stroke-width:1.5;fill:none}
+    .node{cursor:pointer;transition:all .3s ease}
+    .node circle{
+      fill:rgba(15,26,51,.85);
+      stroke:rgba(255,255,255,.22);stroke-width:2;
+      transition:all .3s ease;
+    }
+    .node text{
+      fill:#e8eeff;font-size:17px;font-weight:850;
+      text-anchor:middle;dominant-baseline:middle;pointer-events:none;
+      transition:all .3s ease;
+    }
+    .node.dim{opacity:.30}
+    .node.dim circle{stroke:rgba(255,255,255,.10)}
+
+    .node.A circle{
+      fill:rgba(125,211,252,.20);stroke:#7dd3fc;stroke-width:3.5;
+      filter:drop-shadow(0 0 14px rgba(125,211,252,.6));
+    }
+    .node.A text{font-size:20px;fill:#fff}
+
+    .node.B circle{
+      fill:rgba(196,181,253,.20);stroke:#c4b5fd;stroke-width:3.5;
+      filter:drop-shadow(0 0 14px rgba(196,181,253,.6));
+    }
+    .node.B text{font-size:20px;fill:#fff}
+
+    /* When first type is selected, show relationships */
+    .node.rel-wing circle{stroke:#fcd34d;stroke-width:2.8}
+    .node.rel-growth circle{stroke:#86efac;stroke-width:2.8}
+    .node.rel-stress circle{stroke:#fda4af;stroke-width:2.8}
+
+    /* Connection lines from A to others */
+    .conn{stroke-width:2;fill:none;opacity:0;transition:opacity .35s ease;stroke-dasharray:5 4}
+    .conn.show{opacity:.7}
+    .conn.wing{stroke:#fcd34d}
+    .conn.growth{stroke:#86efac}
+    .conn.stress{stroke:#fda4af}
+    .conn.none{stroke:rgba(255,255,255,.20)}
+
+    /* Panel */
+    .panel{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);box-shadow:var(--shadow);
+      padding:20px 22px;
+      display:flex;flex-direction:column;
+      min-height:540px;
+    }
+
+    .panel h2{margin:0 0 8px;font-size:20px;letter-spacing:.2px;color:#fff}
+    .panel .sub{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.55}
+
+    /* Empty state */
+    .empty{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;flex:1;padding:20px 10px}
+    .empty .num{
+      font-size:48px;line-height:1;color:#7dd3fc;font-weight:850;margin-bottom:14px;
+      text-shadow:0 0 28px rgba(125,211,252,.5);
+    }
+    .empty p{color:#cfe9ff;font-size:15px;margin:6px 0;max-width:30ch;line-height:1.55}
+    .empty p.muted{color:var(--muted);font-size:13.5px}
+
+    /* Pair detail */
+    .pairDetail{display:flex;flex-direction:column;gap:14px;flex:1}
+    .pairHeader{
+      display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+      padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .pairHeader .who{
+      display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;
+    }
+    .pairHeader .bigNum{
+      display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;
+      font-size:18px;font-weight:850;
+      border:2px solid currentColor;
+    }
+    .pairHeader .A{color:#7dd3fc}
+    .pairHeader .B{color:#c4b5fd}
+    .pairHeader .vs{color:var(--muted);font-size:14px;font-weight:600}
+
+    /* Structural relationship badge */
+    .relBadge{
+      padding:10px 14px;border-radius:12px;
+      font-size:13.5px;line-height:1.45;
+      border:1px solid currentColor;
+      display:flex;align-items:center;gap:10px;
+    }
+    .relBadge .icon{font-size:18px;line-height:1;flex:0 0 auto}
+    .relBadge.wing{color:#fde68a;background:rgba(252,211,77,.08);border-color:rgba(252,211,77,.35)}
+    .relBadge.growth{color:#bbf7d0;background:rgba(134,239,172,.08);border-color:rgba(134,239,172,.35)}
+    .relBadge.stress{color:#fecdd3;background:rgba(253,164,175,.08);border-color:rgba(253,164,175,.35)}
+    .relBadge.none{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18)}
+    .relBadge.mixed{background:linear-gradient(135deg,rgba(134,239,172,.08),rgba(253,164,175,.08));border-color:rgba(255,255,255,.20);color:#e8eeff}
+
+    /* Sections */
+    .sec{
+      padding:12px 14px;border-radius:10px;
+      border-left:3px solid currentColor;
+      background:rgba(255,255,255,.03);
+    }
+    .sec h3{
+      margin:0 0 6px;font-size:11.5px;letter-spacing:.9px;text-transform:uppercase;
+      font-weight:800;color:inherit;
+    }
+    .sec p{margin:0;font-size:14px;line-height:1.55;color:#e8eeff}
+    .sec.s1{color:#fde68a}
+    .sec.s2{color:#bfdbfe}
+    .sec.s3{color:#fbcfe8}
+    .sec.s4{color:#bbf7d0}
+
+    .panelFooter{
+      margin-top:auto;padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;gap:8px;flex-wrap:wrap;
+    }
+    .panelFooter .btn{
+      flex:1;min-width:0;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);font-weight:700;font-size:13px;cursor:pointer;text-decoration:none;
+      text-align:center;
+      transition:background .14s ease, border-color .14s ease;
+    }
+    .panelFooter .btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+    .panelFooter .btn.reset{flex:0 0 auto;color:#fda4af;border-color:rgba(253,164,175,.30)}
+
+    /* Filter bar */
+    .filterBar{
+      margin:22px auto 14px;max-width:1100px;
+      padding:14px 16px;border-radius:var(--radius);
+      border:1px solid var(--line);background:rgba(255,255,255,.02);
+    }
+    .filterBar .lbl{
+      font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;margin:0 0 10px;
+    }
+    .filterPills{display:flex;flex-wrap:wrap;gap:8px}
+    .filterPills button{
+      padding:8px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);
+      color:var(--text);font-weight:700;font-size:13px;cursor:pointer;
+      transition:all .14s ease;
+    }
+    .filterPills button:hover{background:rgba(255,255,255,.10)}
+    .filterPills button.active{
+      background:rgba(125,211,252,.16);border-color:rgba(125,211,252,.45);color:#bae6fd;
+    }
+
+    /* Matrix */
+    .matrixWrap{
+      margin:0 auto;max-width:1100px;
+      padding:18px 16px;border-radius:var(--radius);
+      border:1px solid var(--line);background:rgba(255,255,255,.02);
+    }
+    .matrixWrap .lbl{
+      font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;margin:0 0 12px;text-align:center;
+    }
+    .matrix{
+      display:grid;grid-template-columns:36px repeat(9, minmax(0,1fr));gap:4px;
+      max-width:680px;margin:0 auto;
+    }
+    .matrix .corner{}
+    .matrix .head{
+      display:grid;place-items:center;
+      font-size:13px;font-weight:800;color:var(--muted);
+      padding:6px 0;
+    }
+    .matrix .head.col{border-bottom:1px solid rgba(255,255,255,.06)}
+    .matrix .head.row{border-right:1px solid rgba(255,255,255,.06)}
+    .matrix .cell{
+      aspect-ratio:1;display:grid;place-items:center;
+      border-radius:8px;cursor:pointer;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.02);
+      font-size:11px;font-weight:700;color:var(--muted);
+      transition:all .14s ease;
+    }
+    .matrix .cell:hover{transform:scale(1.08);border-color:rgba(125,211,252,.6)}
+    .matrix .cell.dimmed{opacity:.25;cursor:default;pointer-events:none}
+    .matrix .cell.diag{background:rgba(0,0,0,.25);cursor:default;color:rgba(255,255,255,.18);border:none}
+    .matrix .cell.diag:hover{transform:none}
+    .matrix .cell.wing{background:rgba(252,211,77,.12);border-color:rgba(252,211,77,.40);color:#fde68a}
+    .matrix .cell.growth{background:rgba(134,239,172,.12);border-color:rgba(134,239,172,.40);color:#bbf7d0}
+    .matrix .cell.stress{background:rgba(253,164,175,.12);border-color:rgba(253,164,175,.40);color:#fecdd3}
+    .matrix .cell.mixed{background:linear-gradient(135deg,rgba(134,239,172,.10),rgba(253,164,175,.10));border-color:rgba(255,255,255,.30);color:#fff}
+
+    .matrixLegend{
+      margin-top:14px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+      font-size:12px;color:var(--muted);
+    }
+    .matrixLegend span{display:inline-flex;align-items:center;gap:6px}
+    .matrixLegend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+    .matrixLegend i.wing{background:rgba(252,211,77,.4)}
+    .matrixLegend i.growth{background:rgba(134,239,172,.4)}
+    .matrixLegend i.stress{background:rgba(253,164,175,.4)}
+    .matrixLegend i.mixed{background:linear-gradient(135deg,rgba(134,239,172,.4),rgba(253,164,175,.4))}
+    .matrixLegend i.none{background:rgba(255,255,255,.10)}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/confusions-entre-types.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/confusions-entre-types.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/confusions-entre-types.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="title" href="/en/" style="text-decoration:none;color:var(--muted)">← Home</a>
+      <span class="badge">36 pairs</span>
+    </div>
+
+    <header class="head">
+      <h1>Torn between two types?</h1>
+      <p class="sub">First click your tentative type on the diagram, then the other type that speaks to you. The pair's profile appears, along with the structural link that explains why this confusion is so common.</p>
+    </header>
+
+    <div class="stage">
+      <!-- Diagram -->
+      <div class="diagram">
+        <svg id="ennea" viewBox="0 0 700 700" aria-label="Diagram">
+          <circle class="ring" cx="350" cy="350" r="250"/>
+          <polygon class="tri" points="350,100 566,475 134,475"/>
+          <polygon class="hex" points="511,159 435,585 596,307 189,159 104,307 566,475"/>
+
+          <!-- Connection lines layer -->
+          <g id="connLayer"></g>
+
+          <!-- Nodes -->
+          <g id="nodesLayer">
+            <g class="node" data-n="9"><circle cx="350" cy="100" r="22"/><text x="350" y="100">9</text></g>
+            <g class="node" data-n="1"><circle cx="511" cy="159" r="22"/><text x="511" y="159">1</text></g>
+            <g class="node" data-n="2"><circle cx="596" cy="307" r="22"/><text x="596" y="307">2</text></g>
+            <g class="node" data-n="3"><circle cx="566" cy="475" r="22"/><text x="566" y="475">3</text></g>
+            <g class="node" data-n="4"><circle cx="435" cy="585" r="22"/><text x="435" y="585">4</text></g>
+            <g class="node" data-n="5"><circle cx="265" cy="585" r="22"/><text x="265" y="585">5</text></g>
+            <g class="node" data-n="6"><circle cx="134" cy="475" r="22"/><text x="134" y="475">6</text></g>
+            <g class="node" data-n="7"><circle cx="104" cy="307" r="22"/><text x="104" y="307">7</text></g>
+            <g class="node" data-n="8"><circle cx="189" cy="159" r="22"/><text x="189" y="159">8</text></g>
+          </g>
+        </svg>
+        <p class="stepHint" id="stepHint"><b>Step 1</b> · click your tentative type</p>
+      </div>
+
+      <!-- Panel -->
+      <aside class="panel" id="panel">
+        <!-- Empty state by default -->
+        <div class="empty" id="empty">
+          <div class="num">?</div>
+          <p>Click a point on the diagram.</p>
+          <p class="muted">Once selected, the other types will appear colored according to their link with yours — wing, growth point, stress point.</p>
+        </div>
+        <div class="pairDetail" id="pairDetail" hidden></div>
+      </aside>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filterBar">
+      <p class="lbl">Filter pairs by type of structural link</p>
+      <div class="filterPills" id="filterPills">
+        <button class="active" data-f="all">All (36)</button>
+        <button data-f="wing">Wings (9)</button>
+        <button data-f="growth">Growth (9)</button>
+        <button data-f="stress">Stress (9)</button>
+        <button data-f="none">No structural link (18)</button>
+      </div>
+    </div>
+
+    <!-- Matrix -->
+    <div class="matrixWrap">
+      <p class="lbl">Or choose a pair directly</p>
+      <div class="matrix" id="matrix"></div>
+      <div class="matrixLegend">
+        <span><i class="wing"></i> Wing</span>
+        <span><i class="growth"></i> Growth</span>
+        <span><i class="stress"></i> Stress</span>
+        <span><i class="mixed"></i> Growth + Stress (both types have an arrow toward the other)</span>
+        <span><i class="none"></i> No direct link</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  // === Relations classiques ===
+  const POS = {
+    1:{x:511,y:159}, 2:{x:596,y:307}, 3:{x:566,y:475},
+    4:{x:435,y:585}, 5:{x:265,y:585}, 6:{x:134,y:475},
+    7:{x:104,y:307}, 8:{x:189,y:159}, 9:{x:350,y:100}
+  };
+  const INTEGRATION =    {1:7, 2:4, 3:6, 4:1, 5:8, 6:9, 7:5, 8:2, 9:3};
+  const DISINTEGRATION = {1:4, 2:8, 3:9, 4:2, 5:7, 6:3, 7:1, 8:5, 9:6};
+  const WINGS = {1:[9,2], 2:[1,3], 3:[2,4], 4:[3,5], 5:[4,6], 6:[5,7], 7:[6,8], 8:[7,9], 9:[8,1]};
+
+  const TYPE_NAMES = {
+    1:"The Perfectionist", 2:"The Giver", 3:"The Performer",
+    4:"The Romantic", 5:"The Observer", 6:"The Loyal Skeptic",
+    7:"The Epicure", 8:"The Protector", 9:"The Mediator"
+  };
+
+  // Get relationship from a's perspective to b
+  function relFromTo(a, b){
+    if(WINGS[a].includes(b)) return 'wing';
+    if(INTEGRATION[a]===b) return 'growth';
+    if(DISINTEGRATION[a]===b) return 'stress';
+    return 'none';
+  }
+
+  // === Contenu des 36 paires (synthèse fidèle de Riso, Understanding the Enneagram, chap. 5) ===
+  function k(a,b){ return Math.min(a,b)+'-'+Math.max(a,b); }
+  const PAIRS = {
+    "1-2": {
+      common: "Both are serious, driven by conscience, and like to feel of service. Both can be deeply altruistic.",
+      difference: "The One transcends the personal, relying on principles and the “rightness” of their position; the Two is highly personal, sees service in emotional terms, and seeks fusion.",
+      direction: "Often confusion between a wing and the dominant type (1w2 ↔ 2w1). Gender plays a role: 1w2 women often mistake themselves for 2w1, and 2w1 men for 1w2.",
+      discernment: "The One defends their autonomy, holds back positive impulses but expresses irritation. The Two seeks intimacy, freely expresses affection but struggles with anger."
+    },
+    "1-3": {
+      common: "Both are efficient, organized, task-oriented, and set their emotions aside to reach their goals. Both hold high standards.",
+      difference: "The One is an idealist driven by inner conscience; the Three is a pragmatist driven by goals, who changes tactics if results aren't forthcoming.",
+      direction: "The confusion can go either way, depending on whether one identifies with standards (thinking One) or with achievement (thinking Three).",
+      discernment: "The One doesn't hide their irritation — their emotions show through; the Three projects whatever emotion suits the moment. The One says “listen to me, I know how it's done”; the Three says “be like me, I've succeeded.”"
+    },
+    "1-4": {
+      common: "Both are perfectionistic, dissatisfied, sometimes critical and picky about their surroundings. Both can go through depressive episodes and feel frustrated.",
+      difference: "The One attends to their responsibilities first and deals with emotions afterward; the Four wants to process emotions first and duties after.",
+      direction: "More often it's a stressed One who mistakes themselves for a Four — because Four is their disintegration point: they slide there to avoid falling into the low levels of One.",
+      discernment: "The One doesn't withdraw — they impose their opinions on the other with mounting urgency; the Four withdraws emotionally and physically when hurt, and refuses to communicate."
+    },
+    "1-5": {
+      common: "Both are philosophical, love knowledge, and can be reserved and cerebral. Both correspond to thinking types in the Jungian sense.",
+      difference: "The One is instinctive, a person of action, who only cares for ideas that lead to a practical result; the Five is purely mental, and can immerse themselves in ideas with no practical application.",
+      direction: "Confusion is uncommon.",
+      discernment: "The One is deductive (from principles to applications), a teacher and moralist; the Five is inductive (from data to theories), an inventor and iconoclast. The One lives in certainty, the Five in permanent doubt."
+    },
+    "1-6": {
+      common: "Both are compliant types with a severe superego, feel bound by duty, and can feel guilty. Both have an inner critical voice (the One) or an inner committee (the Six).",
+      difference: "The One is self-controlled, certain, knows their opinion and defends it; the Six is anxious, indecisive, ambivalent, and oscillates between dependency and rebellion.",
+      direction: "Rare as a self-confusion. More often observed from the outside, especially a 6w5 who resembles a One in their seriousness.",
+      discernment: "The One has strong opinions and tries to convince; the Six seeks reassurance and relies on external authority. The One suffers from contained anger and moral indignation; the Six suffers from fear, suspicion, and anxiety."
+    },
+    "1-7": {
+      common: "Both are idealists with a sense of “mission,” and both carry the idea of perfection.",
+      difference: "The Seven is optimistic about the future; the One expects to be disappointed by people and the world. The Seven is spontaneous and dislikes procedures; the One is methodical and plans ahead.",
+      direction: "Sevens under prolonged stress may believe themselves to be Ones — because One is their disintegration point: they notice perfectionism and a need for order in themselves.",
+      discernment: "The Seven is driven by anxiety, scattered, curious; the One is driven by simmering anger, focused, narrow-minded. The Seven's “perfectionism” = momentary frustration over the quality of an experience; the One's = relentless self-criticism over the smallest comma."
+    },
+    "1-8": {
+      common: "Both belong to the Instinctive center, have a powerful will, are action-oriented, hold strong ideas about how things should be done, and have a keen sense of justice.",
+      difference: "The One persuades through moral argument (“this is what must be done”); the Eight imposes themselves through gut conviction and charisma (“this is my way”).",
+      direction: "More often a One mistakes themselves for an Eight (desire for authority and influence) than the reverse. Eights tend to look down on Ones, seeing them as moralizing and weak.",
+      discernment: "The One is compliant (to their ideals); the Eight is the aggressive type par excellence. The One's justice = abstract principles; the Eight's justice = gut-level protection of “their own.”"
+    },
+    "1-9": {
+      common: "Both are idealistic, philosophical, and rather withdrawn. Both are uncomfortable with their own anger.",
+      difference: "The Nine wants to preserve peace and avoids conflict, even when they hold convictions; the One defends their principles and imposes their point of view, even at the cost of an argument.",
+      direction: "Often confusion between a One's 9-wing and a Nine's 1-wing (1w9 ↔ 9w1) — very close neighboring wings.",
+      discernment: "The Nine loves breaks and struggles to move from relaxation back into activity; the One feels guilty when not working. Under stress, the Nine moves toward Six (anxiety); the One moves toward Four (sullen withdrawal)."
+    },
+    "2-3": {
+      common: "Both are charming and want to be loved and to please. Both can be “seductive,” each in their own style.",
+      difference: "The Two seduces by attending to the other (“how are you feeling?”); the Three seduces by presenting themselves as desirable and brilliant — “look at who I am.”",
+      direction: "Often confusion between 2w3 and 3w2 (two neighboring wings very similar on the surface).",
+      discernment: "The Two seeks intimacy and closeness; the Three fears intimacy as soon as it gets too close. The Two is openly sentimental and moved easily; the Three is more composed and has trouble accessing their emotions."
+    },
+    "2-4": {
+      common: "Both are Emotional types (Heart center), and place great importance on the ups and downs of personal relationships.",
+      difference: "The Two moves toward others to help, sometimes excessively; the Four withdraws from others while hoping to be sought after.",
+      direction: "Confusion is rare. A Two who has gone through a depression may believe themselves to be a Four — but every type can go through depression; it is not a marker specific to Four.",
+      discernment: "The Two looks for someone to save; the Four looks for someone who will save them. The Two is blind to their own needs and motivations; the Four is blind to their impact on others."
+    },
+    "2-5": {
+      common: "Fives who form their rare emotional attachments can become clingy with those close to them, which can look like a Two.",
+      difference: "The Two is emotionally expressive and people-oriented; the Five is emotionally detached, the true loner of the Enneagram.",
+      direction: "Confusion is extremely rare. Mostly a Five in a dependent attachment who gets mistaken, from the outside, for a Two.",
+      discernment: "The Two handles rejection by winning the other person over; the Five handles rejection by detaching and isolating further. The Two operates through feeling; the Five through intellectual concept and complexity."
+    },
+    "2-6": {
+      common: "Both are warm, engaging, and want to be appreciated. Both are emotional types in the Jungian sense.",
+      difference: "The Six wants approval and support, seeks reassuring partnerships but grows uneasy if it becomes too fused; the Two wants to be loved and important, and cultivates fused intimacy.",
+      direction: "Confusion is fairly common, given the many shared traits (warmth, the desire to be appreciated).",
+      discernment: "The Two wears their heart on their sleeve, demonstrative; the Six is ambivalent, sending mixed signals. The Two becomes an authority (dispensing advice to everyone); the Six looks for an external authority to consult."
+    },
+    "2-7": {
+      common: "Both can be emotional and histrionic, dramatizing their feelings, sociable, and fond of being around people.",
+      difference: "The Two wants to be needed by the other and cultivates lasting intimacy; the Seven doesn't want to be needed by anyone, and sees others as companions in adventure.",
+      direction: "More often Sevens mistake themselves for Twos than the reverse.",
+      discernment: "The Seven's emotions = labile, a wide range shifting quickly (from elation to anger in an instant). The Two's emotions = lasting, personal warmth. The Two is possessive and lets go with difficulty; the Seven can close out a relationship quickly, without regrets."
+    },
+    "2-8": {
+      common: "Both have strong egos and a tendency to dominate. Both struggle with underlying feelings of rejection.",
+      difference: "The Eight is openly aggressive and direct in communication; the Two is aggressive under a veneer of love, indirect, and manipulates through guilt.",
+      direction: "Twos (especially men, for cultural reasons) may believe themselves to be Eights. Under stress, the Two slides toward Eight — their disintegration point — and becomes authoritarian and accusatory.",
+      discernment: "The Eight dominates for self-protection and to extend their power; the Two dominates to keep others from leaving. The Eight communicates anger directly; the Two makes their suffering felt to induce guilt (“after everything I've done for you!”)."
+    },
+    "2-9": {
+      common: "Both are interpersonal, put others' needs before their own, believe in service, and keep things positive.",
+      difference: "The Two has a sharp awareness of their identity, and knows what they feel and their own qualities; the Nine has a diffuse sense of self, and naturally fades into the background.",
+      direction: "More often a Nine mistakes themselves for a Two — women especially — because they see themselves as loving. But loving is not the exclusive province of the Two.",
+      discernment: "The Two actively moves toward people, going out to “fetch” the other; the Nine waits patiently, accommodating. The Two tells others how much they owe them; the Nine stays silent and accommodating. The Two's ego swells; the Nine's ego fades."
+    },
+    "3-4": {
+      common: "Both can recognize themselves in a certain sensitivity, and at times in artistic creativity.",
+      difference: "The Three sets emotions aside for the task and performance; the Four stops everything to process their emotions before resuming — the less healthy they are, the more emotional time they need.",
+      direction: "More often Threes mistake themselves for Fours — especially in families where artistic expression was valued. The Three may wrongly believe that only the Four is creative.",
+      discernment: "The Three sees the Four's emotional preoccupation as immature and unprofessional; the Four sees the Three's obsession with performance as inauthentic and superficial."
+    },
+    "3-5": {
+      common: "Intelligent Threes may want to see themselves as “thinkers” and believe themselves to be Fives. Both can excel intellectually.",
+      difference: "The Five is process-oriented, loving knowledge for its own sake, with no concern for practical purpose or recognition; the Three pursues intellectual matters with a personal aim — glory, prestige, being recognized.",
+      direction: "Almost exclusively Threes who believe themselves to be Fives — to claim the flattering identity of a thinker. Fives almost never confuse themselves with Threes.",
+      discernment: "The Three is sociable, polished, attentive to their image and to others' opinions; the Five is solitary, little concerned with appearance, indifferent to opinion. The Three changes subject if success is slow in coming; the Five can stay with a subject for years out of sheer love of knowledge."
+    },
+    "3-6": {
+      common: "Both are focused on work and performance, and can be hard workers.",
+      difference: "The Three sees themselves as a soloist, wants to excel, and needs recognition; the Six prefers to stay in the shadows (“the one who stands out takes the hits”), and seeks to convince others of their reliability.",
+      direction: "Under stress, a Six may believe themselves to be a Three — this is their disintegration point: they become competitive and mind their image. The sexual variant of the Six (charm, magnetism) can also superficially resemble the Three.",
+      discernment: "The Three projects calm and emotional mastery; the Six projects nervousness and volatile emotions, and can be awkward in their interactions."
+    },
+    "3-7": {
+      common: "Both are Aggressive types, interested in success and acquisition. Both can appear narcissistic on the surface.",
+      difference: "The Seven seeks a variety of experiences to maintain their sense of self through stimulation; the Three seeks status symbols that reinforce their personal worth.",
+      direction: "More often manic Sevens (grandiosity about their plans) are mistaken for narcissistic Threes (grandiosity about their personal worth). Threes may want to appear as Sevens (freer).",
+      discernment: "The Three is cool, under control, perfectly composed; the Seven has rough edges, and can be crude, funny, unrestrained. The Seven's grandiosity = escaping anxiety; the Three's = compensating for the fear of failure."
+    },
+    "3-8": {
+      common: "Both are Aggressive types, ambitious, competitive, wanting to rise above others.",
+      difference: "The Eight seeks power, concrete domination, and leadership; the Three seeks prestige and recognition from others.",
+      direction: "Threes sometimes mistake themselves for Eights (the flattering image of a leader). Eights almost never mistake themselves for Threes.",
+      discernment: "Failure for the Three = dreaded public humiliation; failure for the Eight = a chance to learn and come back stronger. The Eight doesn't compare themselves to others; the Three compares constantly. The Eight “takes the heat” of a conflict; the Three flees open confrontation."
+    },
+    "3-9": {
+      common: "Both are highly adaptable, and interested in others' acceptance. Both can struggle to know who they truly are.",
+      difference: "The Three is a motivated self-starter, launching projects; the Nine often needs someone close to keep them motivated toward their goals.",
+      direction: "The disintegrating Three moves toward Nine (becoming disengaged, unmotivated). Nines in integration touch upon Three (they may believe themselves to be Threes during periods of success).",
+      discernment: "The Three actively seeks attention; the Nine hesitates to ask for attention and undervalues themselves. The Three grows enthusiastic about their projects; the Nine about their free time and comfort."
+    },
+    "4-5": {
+      common: "Both are Withdrawn types, individualistic and eccentric by ordinary standards, and can be creative.",
+      difference: "The Four is emotionally volatile, and their art is autobiographical, about relationships and the subjective; the Five has intense but private emotions, and their art is more abstract, experimental, about a vision of reality.",
+      direction: "More often Fives mistake themselves for Fours — women Fives especially, because Four is wrongly assumed to be the “emotionally feminine” type.",
+      discernment: "The Four explores their romantic disappointments, their childhood, their pain, and expresses their emotions; the Five explores inner emptiness and the absence of meaning, and intellectually penetrates beneath the surface of things."
+    },
+    "4-6": {
+      common: "Both can experience depression, self-doubt, feelings of inferiority, and despair.",
+      difference: "The Four relates to their inner emotional states; the Six relates to people, and knows how to engage their emotions to create connection.",
+      direction: "Sixes often mistake themselves for Fours when they identify with the negative traits (depression, inferiority, despair).",
+      discernment: "The Four's depression = anger turned against themselves for having wasted a chance. The Six's depression = repressed anxiety, fear of having angered an authority. The Six's art = traditions or rebellion against tradition; the Four's art = personal, outside traditions."
+    },
+    "4-7": {
+      common: "Both can be excessive and sensually decadent, love beautiful things, and live at extremes.",
+      difference: "The Seven flees pain and anxiety through outward, material extravagance; the Four plunges into sensuality to intensify their emotions and numb their self-consciousness.",
+      direction: "Sevens may believe themselves to be Fours if they have gone through a depression.",
+      discernment: "The Seven = a seeker of positive experiences, who doesn't dwell in sadness; the Four = a languishing aesthete, who feels comfortable with sadness because it is part of their identity. The Four cherishes a beautiful object for a long time; the Seven accumulates without lasting appreciation."
+    },
+    "4-8": {
+      common: "Both can feel passionate and intense, and carry childhood wounds and a sense of alienation.",
+      difference: "The Eight hardens themselves to overcome and maintain their independence (“you have to move on”); the Four doesn't want to move on, and keeps their wounds as the raw material of identity.",
+      direction: "More often Eights mistake themselves for Fours — claiming passion and emotional intensity.",
+      discernment: "The Four shows their vulnerability openly, and is more resilient than they believe; the Eight armors themselves against any appearance of weakness, and is more vulnerable than they admit."
+    },
+    "4-9": {
+      common: "Both are Withdrawn types. Both can be gentle, distracted, creative, and disconnected from the outside world.",
+      difference: "The Four withdraws to digest painful emotions; the Nine disconnects from anything that threatens their peace, idealizing a simple, fantastical version of reality.",
+      direction: "Nines often mistake themselves for Fours when they have artistic talents. But art is not the exclusive province of the Four.",
+      discernment: "The Nine's art = myths, archetypes, happy endings (“they lived happily ever after”). The Four's art = tragic, a sense of lack, redemption through pain understood. The Four sees the world outside their window as alien; the Nine sees it through rose-colored glasses."
+    },
+    "5-6": {
+      common: "Both are Thinking types, intellectual when educated.",
+      difference: "The Six is linear, analytical, given to troubleshooting and procedure; the Five is non-linear, iconoclastic, and shakes up established structures.",
+      direction: "More often Sixes mistake themselves for Fives — it's flattering to see oneself as “the thinker.”",
+      discernment: "The Five trusts their own mind, and considers others less well-informed; the Six doesn't trust their own mind, and seeks an external reference (mentor, authority, citation). The academic world belongs more to Sixes (citations, sources, procedures) than to Fives."
+    },
+    "5-7": {
+      common: "Both are Thinking types, curious, exploratory, with a tendency to collect things or ideas, and both are nervous.",
+      difference: "The Five is socially isolated, withdrawn, and loves cerebral entertainment and long hours alone; the Seven is gregarious, active, and impatient with stillness.",
+      direction: "Under stress, the Five resembles the Seven — this is their disintegration point: they become scattered and distracted.",
+      discernment: "The Five sees optimism as unrealistic, and is drawn to the macabre and to nihilism; the Seven sees the positive and avoids anything dark, painful, or heavy."
+    },
+    "5-8": {
+      common: "Both see themselves as outsiders, and are quick to sense rejection. Both are highly independent, ready to fight for that independence. Both communicate directly.",
+      difference: "The Eight takes problems head-on, assertive, and goes after what they want; the Five withdraws from others and cuts themselves off from their needs to avoid any dependency.",
+      direction: "Eights under stress move toward Five (withdrawing to reflect and plan), and may believe themselves to be Fives.",
+      discernment: "The Eight is instinctive, intimately connected to their body, practical action, and sensuality; the Five stays in their head, has an ambivalent relationship to the body, and is disconnected from practical life."
+    },
+    "5-9": {
+      common: "Both are Withdrawn types. Both use a schizoid defense (detaching from their emotions). Both can be brilliant.",
+      difference: "The Nine is gentle, open, welcoming, and trusting; the Five is intense, angular, wary, and suspicious.",
+      direction: "Very often Nines (educated men especially) mistake themselves for Fives — because they feel they have “deep ideas.”",
+      discernment: "The Nine's thinking = impressionistic, general, imaginatively synthetic, idealized fantasies. The Five's thinking = laser-focused, microscopic, specific, technical. The Nine simplifies; the Five complicates. The Nine = a utopian; the Five = a nihilist. The Nine fantasizes; the Five theorizes."
+    },
+    "6-7": {
+      common: "Both are Thinking types, driven by anxiety.",
+      difference: "The Six reacts to anxiety by worrying more and seeking guarantees; the Seven flees it by seeking pleasant distractions and maintaining optimism.",
+      direction: "Confusion is possible between 6w7 and 7w6 (neighboring wings).",
+      discernment: "The Six has a strong sense of responsibility, and won't allow themselves to “let go” before their obligations are done; the Seven is spontaneous, resists heavy commitments, and wants to stay free. The Six seeks structures; the Seven resists them."
+    },
+    "6-8": {
+      common: "Both are Aggressive types (though only the Eight is fully so). At Level 6 of the health scale, the similarities are striking: combative, intimidating, quick to anger, threatening violence.",
+      difference: "The Six wavers, ambivalent, passive-aggressive, evasive; the Eight has a solid ego and a formidable will, and doesn't give in.",
+      direction: "Confusion is uncommon.",
+      discernment: "Under pressure, the Six eventually gives in and their defenses collapse; the Eight redoubles their aggression when resisted. The Six seeks protection; the Eight offers protection. The Six is dangerous because impulsive and irrational; the Eight is dangerous because calculated and ruthless."
+    },
+    "6-9": {
+      common: "Both are concerned with security and maintaining the status quo. Both are family-oriented, and modest about themselves.",
+      difference: "The Nine stays unruffled and bland despite difficulties; the Six displays their nervousness and doubts, and cannot hide their emotions.",
+      direction: "Under stress, the Nine moves toward Six (becoming anxious and reactive), and may briefly believe themselves to be a Six. But it doesn't last — they quickly return to their easygoing mode.",
+      discernment: "The Nine is silent in their inner peace; the Six needs to vent their fears to others in order to discharge them. The Nine trusts easily (sometimes too easily); the Six tests before letting anyone get close."
+    },
+    "7-8": {
+      common: "Both are Aggressive types, powerful personalities, who go after what they want in life.",
+      difference: "The Seven seeks a variety of experiences; the Eight seeks intensity and power as means to independence and domination.",
+      direction: "Confusion is uncommon.",
+      discernment: "The Eight is instinctive, gut-driven, down-to-earth, pragmatic, and sensual; the Seven is mental, quick, and can lose their footing in their own plans. The Seven = an optimistic idealist; the Eight = an unsentimental realist."
+    },
+    "7-9": {
+      common: "Both can be extremely busy, effervescent, and happy. Both repress their darker sides (the Nine to maintain an idealized self-image, the Seven to flee pain). Both are Jungian sensation types.",
+      difference: "The Seven is extraverted, hyperactive, and seeks stimulation and excitement; the Nine is introverted, easygoing, and avoids excessive stimulation.",
+      direction: "Confusion is possible but uncommon.",
+      discernment: "The Seven wants to be stimulated; the Nine wants to avoid any excessive stimulation. The Seven seeks euphoria; the Nine seeks placid contentment. The Seven seeks emotionally charged activities; the Nine seeks neutral, non-threatening activities."
+    },
+    "8-9": {
+      common: "Confusion possible between 8w9 and 9w8 (neighboring wings).",
+      difference: "The Eight is openly assertive, enjoys debate, and seeks out conflicts that energize them; the Nine avoids all contention and prefers to accommodate to keep the peace.",
+      direction: "Confusion is rare.",
+      discernment: "Under stress, the Eight becomes angrier, more aggressive and domineering; the Nine becomes more passive, disengaged, and depressed."
+    }
+  };
+
+  // === Encart structurel adapté à la perspective ===
+  function structuralBadge(first, second){
+    if(!first || !second) return {cls:'none', icon:'•', text:''};
+    const r = relFromTo(first, second);
+    if(r === 'wing'){
+      return {cls:'wing', icon:'◆', text:`Type <b>${second}</b> is the <b>wing</b> of your type ${first} — one of its two neighboring shades. This confusion happens very often between 1w2 / 2w1, 2w3 / 3w2, and so on.`};
+    }
+    if(r === 'growth'){
+      return {cls:'growth', icon:'↗', text:`Type <b>${second}</b> is your <b>growth point</b> (you take on its qualities as you grow). That's why you may recognize yourself in it.`};
+    }
+    if(r === 'stress'){
+      return {cls:'stress', icon:'↘', text:`Type <b>${second}</b> is your <b>stress point</b> (you slide toward its traits under pressure). Recognizing yourself in it is typical of difficult periods.`};
+    }
+    return {cls:'none', icon:'∙', text:'There is no direct structural link between these two types on the diagram. The confusion comes from a <b>surface resemblance</b>, which is subtler to untangle.'};
+  }
+
+  // === État et rendu ===
+  let state = { A: null, B: null, filter: 'all' };
+
+  function selectNode(n){
+    if(state.A === null){
+      state.A = n;
+      renderAll();
+      return;
+    }
+    if(state.B === null){
+      if(n === state.A){ state.A = null; renderAll(); return; }
+      state.B = n;
+      renderAll();
+      return;
+    }
+    // Both set : reset and start over with new selection
+    state.A = n; state.B = null;
+    renderAll();
+  }
+
+  function openPair(a, b){
+    state.A = Math.min(a,b);
+    state.B = Math.max(a,b);
+    renderAll();
+    // scroll to panel on mobile
+    if(window.innerWidth < 1000){
+      document.getElementById('panel').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  function reset(){
+    state.A = null; state.B = null;
+    renderAll();
+  }
+
+  // === Render diagram ===
+  function renderDiagram(){
+    document.querySelectorAll('.node').forEach(n => {
+      n.classList.remove('A','B','dim','rel-wing','rel-growth','rel-stress');
+    });
+    const connLayer = document.getElementById('connLayer');
+    connLayer.innerHTML = '';
+
+    if(state.A === null) return;
+
+    const selA = document.querySelector(`.node[data-n="${state.A}"]`);
+    selA.classList.add('A');
+
+    if(state.B !== null){
+      const selB = document.querySelector(`.node[data-n="${state.B}"]`);
+      selB.classList.add('B');
+      // Dim others
+      document.querySelectorAll('.node').forEach(n=>{
+        const num = Number(n.dataset.n);
+        if(num !== state.A && num !== state.B) n.classList.add('dim');
+      });
+      // Draw single line between A and B
+      drawConn(state.A, state.B, relFromTo(state.A, state.B));
+    } else {
+      // First selected, show all 8 connections
+      for(let i=1; i<=9; i++){
+        if(i === state.A) continue;
+        const r = relFromTo(state.A, i);
+        const node = document.querySelector(`.node[data-n="${i}"]`);
+        if(r === 'wing') node.classList.add('rel-wing');
+        else if(r === 'growth') node.classList.add('rel-growth');
+        else if(r === 'stress') node.classList.add('rel-stress');
+        drawConn(state.A, i, r);
+      }
+    }
+  }
+
+  function drawConn(a, b, rel){
+    const A = POS[a], B = POS[b];
+    const dx = B.x - A.x, dy = B.y - A.y;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    const off = 24;
+    const x1 = A.x + (dx*off)/len;
+    const y1 = A.y + (dy*off)/len;
+    const x2 = B.x - (dx*off)/len;
+    const y2 = B.y - (dy*off)/len;
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+    line.setAttribute('class', `conn show ${rel}`);
+    document.getElementById('connLayer').appendChild(line);
+  }
+
+  // === Render panel ===
+  function renderPanel(){
+    const empty = document.getElementById('empty');
+    const detail = document.getElementById('pairDetail');
+    const hint = document.getElementById('stepHint');
+
+    if(state.A === null){
+      empty.hidden = false; detail.hidden = true;
+      hint.innerHTML = '<b>Step 1</b> · click your tentative type';
+      return;
+    }
+    if(state.B === null){
+      empty.hidden = true; detail.hidden = false;
+      hint.innerHTML = `<b>Step 2</b> · click the other type that speaks to you (you chose <b>${state.A}</b>)`;
+      // Show "first selected" intermediate panel
+      detail.innerHTML = `
+        <div class="pairHeader">
+          <div class="who A"><span class="bigNum">${state.A}</span> Type ${state.A}</div>
+        </div>
+        <p class="sub">You chose <strong>Type ${state.A} — ${TYPE_NAMES[state.A]}</strong>. Now click the other type you're torn with on the diagram.</p>
+        <div class="sec s1" style="border-left-color:#fcd34d">
+          <h3>The colors on the diagram</h3>
+          <p><b style="color:#fde68a">Yellow</b> = wing (your neighbor on the circle).<br>
+          <b style="color:#bbf7d0">Green</b> = your growth point (where you evolve toward).<br>
+          <b style="color:#fecdd3">Pink</b> = your stress point (where you slide under pressure).<br>
+          <b style="color:#9fb1da">Gray</b> = no direct structural link.</p>
+        </div>
+        <div class="panelFooter">
+          <button class="btn reset" onclick="reset()">Cancel</button>
+        </div>
+      `;
+      return;
+    }
+
+    // Both selected
+    empty.hidden = true; detail.hidden = false;
+    hint.innerHTML = `Profile of pair <b>${state.A} ↔ ${state.B}</b>`;
+    const a = state.A, b = state.B;
+    const data = PAIRS[k(a,b)];
+    const badge = structuralBadge(a, b);
+
+    detail.innerHTML = `
+      <div class="pairHeader">
+        <div class="who A"><span class="bigNum">${a}</span> Type ${a}</div>
+        <span class="vs">↔</span>
+        <div class="who B"><span class="bigNum">${b}</span> Type ${b}</div>
+      </div>
+      <div class="relBadge ${badge.cls}">
+        <span class="icon">${badge.icon}</span>
+        <span>${badge.text}</span>
+      </div>
+      <div class="sec s1"><h3>Why they get confused</h3><p>${data.common}</p></div>
+      <div class="sec s2"><h3>Fundamental difference</h3><p>${data.difference}</p></div>
+      <div class="sec s3"><h3>Usual direction of the mistake</h3><p>${data.direction}</p></div>
+      <div class="sec s4"><h3>How to tell them apart</h3><p>${data.discernment}</p></div>
+      <div class="panelFooter">
+        <a class="btn" href="/en/profils/type${a}.html">Type ${a} Profile</a>
+        <a class="btn" href="/en/profils/type${b}.html">Type ${b} Profile</a>
+        <button class="btn reset" onclick="reset()">↺ New pair</button>
+      </div>
+    `;
+  }
+
+  // === Matrix ===
+  function renderMatrix(){
+    const m = document.getElementById('matrix');
+    m.innerHTML = '';
+    // Corner
+    const corner = document.createElement('div');
+    corner.className = 'corner';
+    m.appendChild(corner);
+    // Column headers
+    for(let c=1; c<=9; c++){
+      const h = document.createElement('div');
+      h.className = 'head col';
+      h.textContent = c;
+      m.appendChild(h);
+    }
+    // Rows
+    for(let r=1; r<=9; r++){
+      const rh = document.createElement('div');
+      rh.className = 'head row';
+      rh.textContent = r;
+      m.appendChild(rh);
+      for(let c=1; c<=9; c++){
+        const cell = document.createElement('div');
+        if(r === c){
+          cell.className = 'cell diag';
+          cell.textContent = '·';
+        } else {
+          const a = Math.min(r,c), b = Math.max(r,c);
+          // Determine relationship category from a's perspective
+          const r1 = relFromTo(a, b);
+          const r2 = relFromTo(b, a);
+          let cls = 'cell';
+          if(r1 === 'wing'){ cls += ' wing'; }
+          else if((r1 === 'growth' && r2 === 'stress') || (r1 === 'stress' && r2 === 'growth')){
+            cls += ' mixed';
+          }
+          else if(r1 === 'growth' || r2 === 'growth') cls += ' growth';
+          else if(r1 === 'stress' || r2 === 'stress') cls += ' stress';
+          cell.className = cls;
+          cell.textContent = `${a}·${b}`;
+          cell.dataset.a = a; cell.dataset.b = b;
+          // Apply filter
+          if(state.filter !== 'all'){
+            let inFilter = false;
+            if(state.filter === 'wing' && cls.includes('wing')) inFilter = true;
+            if(state.filter === 'growth' && (cls.includes('growth') || cls.includes('mixed'))) inFilter = true;
+            if(state.filter === 'stress' && (cls.includes('stress') || cls.includes('mixed'))) inFilter = true;
+            if(state.filter === 'none' && !cls.match(/wing|growth|stress|mixed/)) inFilter = true;
+            if(!inFilter) cell.classList.add('dimmed');
+          }
+          cell.addEventListener('click', ()=> openPair(Number(cell.dataset.a), Number(cell.dataset.b)));
+        }
+        m.appendChild(cell);
+      }
+    }
+  }
+
+  function renderAll(){
+    renderDiagram();
+    renderPanel();
+    renderMatrix();
+  }
+
+  // === Event bindings ===
+  document.querySelectorAll('.node').forEach(n=>{
+    n.addEventListener('click', ()=> selectNode(Number(n.dataset.n)));
+  });
+  document.querySelectorAll('#filterPills button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('#filterPills button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      state.filter = b.dataset.f;
+      renderMatrix();
+    });
+  });
+
+  // Expose reset for inline use
+  window.reset = reset;
+
+  // Initial render
+  renderAll();
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

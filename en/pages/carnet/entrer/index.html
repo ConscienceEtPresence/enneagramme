@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Enter — The Inner Mirror</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=8">
+  <style>
+    .mi-types{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;margin:.4rem 0 0}
+    @media (max-width:430px){.mi-types{grid-template-columns:repeat(2,1fr)}}
+    .mi-type{position:relative;display:flex;flex-direction:column;gap:.15rem;padding:.7rem .6rem;border:1px solid rgba(168,182,220,.25);border-radius:12px;cursor:pointer;background:rgba(255,255,255,.02);transition:border-color .15s,background .15s,transform .1s}
+    .mi-type:hover{border-color:rgba(245,215,123,.6)}
+    .mi-type input{position:absolute;opacity:0;pointer-events:none}
+    .mi-type__n{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#f5d77b;line-height:1}
+    .mi-type__nom{font-size:.82rem;color:#a8b6dc;line-height:1.2}
+    .mi-type:has(input:checked),.mi-type.is-checked{border-color:#f5d77b;background:rgba(245,215,123,.12);transform:translateY(-1px)}
+    .mi-help{margin-top:1.4rem;font-size:.92rem;color:#a8b6dc;font-style:italic;font-family:'Cormorant Garamond',serif;line-height:1.6}
+    .mi-help a{color:#f5d77b}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/pages/carnet/entrer/" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/pages/carnet/entrer/" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/pages/carnet/entrer/" />
+</head>
+<body class="miroir">
+  <div class="miroir-wrap">
+    <a href="/en/pages/carnet/" class="miroir-back">← The threshold</a>
+
+    <div class="miroir-form-wrap fade-in-up">
+      <h1 class="miroir-h1">Enter <em>your journal</em></h1>
+      <p class="miroir-sub">No code, no sign-up. Enter your type — you can change it at any time.</p>
+
+      <form id="enter-form" autocomplete="off">
+        <div class="miroir-field">
+          <label class="miroir-field__label" for="prenom">Your first name <span style="opacity:.6">(optional)</span></label>
+          <input class="miroir-input" type="text" id="prenom" maxlength="40" placeholder="What should we call you?" autocomplete="given-name" />
+        </div>
+
+        <div class="miroir-field">
+          <label class="miroir-field__label">Your type</label>
+          <div class="mi-types" id="types"></div>
+        </div>
+
+        <div class="miroir-actions">
+          <button type="submit" class="miroir-btn" id="submit">Enter the journal</button>
+        </div>
+
+        <div id="err" style="display:none;margin-top:1rem;padding:.8rem 1rem;background:rgba(253,164,175,.15);border:1px solid rgba(253,164,175,.5);border-radius:10px;color:#fda4af;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;text-align:center;"></div>
+      </form>
+
+      <p class="mi-help">
+        Not sure about your type? <a href="/en/comprendre-son-type.html">Understand my type</a>
+        or <a href="/en/test-enneagramme-sans-indice.html">take the test</a>.
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { enterAnon, getSession } from '/assets/js/en/carnet/session.js';
+
+    const NOMS = {1:"The Idealist",2:"The Giver",3:"The Performer",4:"The Individualist",5:"The Observer",6:"The Loyalist",7:"The Enthusiast",8:"The Leader",9:"The Mediator"};
+    const typesEl = document.getElementById('types');
+    typesEl.innerHTML = Object.entries(NOMS).map(([n, nom]) => `
+      <label class="mi-type">
+        <input type="radio" name="type" value="${n}">
+        <span class="mi-type__n">${n}</span>
+        <span class="mi-type__nom">${nom}</span>
+      </label>`).join('');
+
+    function syncChecked() {
+      typesEl.querySelectorAll('.mi-type').forEach(l => l.classList.remove('is-checked'));
+      const c = typesEl.querySelector('input:checked');
+      if (c) c.closest('.mi-type').classList.add('is-checked');
+    }
+    typesEl.querySelectorAll('input[name="type"]').forEach(r => r.addEventListener('change', syncChecked));
+
+    // Pre-fill if the person already has a journal (this page also serves to "change type")
+    const s = getSession();
+    if (s) {
+      if (s.prenom) document.getElementById('prenom').value = s.prenom;
+      if (s.type) { const r = typesEl.querySelector(`input[value="${s.type}"]`); if (r) { r.checked = true; syncChecked(); } }
+      document.querySelector('.miroir-h1').innerHTML = 'Your <em>journal</em>';
+      document.querySelector('.miroir-sub').textContent = 'Check your type (you can change it), then continue.';
+      document.getElementById('submit').textContent = 'Continue';
+    }
+
+    const form = document.getElementById('enter-form');
+    const errBox = document.getElementById('err');
+    const btn = document.getElementById('submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errBox.style.display = 'none';
+      const prenom = document.getElementById('prenom').value.trim();
+      const type = document.querySelector('input[name="type"]:checked')?.value;
+      if (!type) { errBox.textContent = 'Choose your type to continue.'; errBox.style.display = 'block'; return; }
+      btn.disabled = true; btn.textContent = 'One moment…';
+      try {
+        await enterAnon({ prenom, type });
+        window.location.href = '/en/pages/carnet/aujourdhui/';
+      } catch (err) {
+        errBox.textContent = "Something went wrong. Please try again in a moment.";
+        errBox.style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Enter the journal';
+      }
+    });
+  </script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

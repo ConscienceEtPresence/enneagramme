@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>The Inner Mirror — Journal</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=3">
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/pages/carnet/" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/pages/carnet/" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/pages/carnet/" />
+</head>
+<body class="miroir">
+  <div class="miroir-wrap">
+
+    <div class="miroir-seuil">
+      <div class="miroir-seuil__ornament">✦ ✦ ✦</div>
+
+      <h1 class="fade-in-up">The <em>Inner Mirror</em></h1>
+      <p class="miroir-seuil__intro fade-in-up delay-1">
+        A journal for those who want to work with their type as a path of
+        awakening. Not a test. A companion — every day, truly.
+        <em>No code, no sign-up.</em>
+      </p>
+
+      <div class="miroir-seuil__portes">
+        <a href="/en/pages/carnet/entrer/" class="miroir-seuil__porte fade-in-up delay-2" id="porte-entrer">
+          <div class="miroir-seuil__porte-ar">🪞</div>
+          <div class="miroir-seuil__porte-titre">Open my journal</div>
+          <p class="miroir-seuil__porte-sub">Enter your type and begin — right away, no code.</p>
+        </a>
+        <a href="/en/comprendre-son-type.html" class="miroir-seuil__porte miroir-seuil__porte--soft fade-in-up delay-3">
+          <div class="miroir-seuil__porte-ar">🌱</div>
+          <div class="miroir-seuil__porte-titre">I don't know my type yet</div>
+          <p class="miroir-seuil__porte-sub">Understand my type before starting.</p>
+        </a>
+      </div>
+
+      <a href="/en/" class="miroir-back">← Back to the site</a>
+    </div>
+
+  </div>
+
+  <script type="module">
+    // If a journal is already open on this device, offer to resume it directly.
+    import { getSession } from '/assets/js/en/carnet/session.js';
+    const s = getSession();
+    if (s && s.type) {
+      const link = document.getElementById('porte-entrer');
+      if (link) {
+        link.href = '/en/pages/carnet/aujourdhui/';
+        link.querySelector('.miroir-seuil__porte-titre').textContent = 'Resume my journal';
+        link.querySelector('.miroir-seuil__porte-sub').textContent =
+          `${s.prenom ? s.prenom + ', resume' : 'Resume'} today's work — type ${s.type}.`;
+      }
+    }
+  </script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

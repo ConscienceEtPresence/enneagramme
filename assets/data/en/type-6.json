@@ -1,0 +1,150 @@
+{
+  "type": 6,
+  "name": "The Loyalist",
+  "tagline": "The Loyal Skeptic or the Trooper",
+  "quick": {
+    "center": "Mental",
+    "wings": "5 and 7",
+    "integr": "→ 9",
+    "disint": "→ 3"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, central issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Mental (Head)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Mental." },
+            { "label": "Support center", "value": "Instinctive or Emotional." },
+            { "label": "Repressed center", "value": "Mental: the paradox of the 6 — over-analyzes yet doesn't trust its own inner guidance." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Inward and outward: seeks a balance between its own understanding and external rules." },
+        { "label": "Central issue", "value": "Anxiety and a lack of support or guidance." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoid deviance at all costs: stepping outside the framework, the rules, or the group's protection." },
+        { "label": "Passion (Vice)", "value": "Fear: chronic anxiety, apprehension about the future." },
+        { "label": "Fixation", "value": "Doubt / suspicion: questions others' motives and its own decisions." },
+        { "label": "Defense mechanism", "value": "Projection: attributing to others its own unacceptable fears/anger/motives in order to justify mistrust." },
+        { "label": "Egotic pride", "value": "I am loyal, I do my duty." },
+        { "label": "Basic fear", "value": "Being without support or guidance, alone and unable to survive." },
+        { "label": "Basic desire", "value": "Finding security and support." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Warmth: friendly, gentle, vulnerable — disarming aggression and attracting protectors." },
+            { "label": "Social", "value": "Duty: scrupulously follows rules, laws, and systems (ideologies) to feel secure." },
+            { "label": "One-to-one (Sexual)", "value": "Strength / beauty (counterphobic): intimidates so as not to be intimidated; uses strength or charm to test and secure the bond." }
+          ]
+        },
+        { "label": "Social style", "value": "Compliant / dutiful: approaches people according to the dictates of the superego and the group." },
+        { "label": "Conflict management", "value": "Reactive: reacts intensely to stress, needs others to validate the anxiety or the grievances." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 5 (introverted, secretive, intellectual) and wing 7 (extroverted, sociable, avoids anxiety through activity)." },
+        { "label": "Integration (Growth)", "value": "→ 9: more serene, relaxed, trusting, grounded." },
+        { "label": "Disintegration (Stress)", "value": "→ 3: hyperactive, competitive, preoccupied with an image of success to mask insecurity." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Faith and Holy Strength: the certainty that Essence exists within oneself and supports reality." },
+        { "label": "Virtue", "value": "Courage: acting despite fear, grounded in inner guidance." },
+        { "label": "Idealized aspect", "value": "Personal Will (White / Silver): a solid, indestructible inner support." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Fearful insecurity / castration: the feeling of being cut off from one's foundation." },
+            { "label": "Specific reaction", "value": "Defensive suspicion: staying on guard to anticipate danger." },
+            { "label": "Specific illusion", "value": "Cynicism: believing humans are fundamentally selfish and that support is impossible." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner little 9: wants peace/fusion, frightened by instability." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, misunderstanding.",
+      "items": [
+        { "label": "Speaking style", "value": "Limits / \"Yes, but…\": caution, constant second-guessing, verbal procrastination." },
+        { "label": "Communication misunderstanding", "value": "Caution-Negativity: realistic warnings perceived as pessimism or hostility." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Evolution and relationships",
+      "desc": "Warning signs, growth practices, confusions, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Catastrophic scenarios, paranoia, aggressive tests of loyalty." },
+        { "label": "Growth practices", "value": "Return to physical sensations, recognize projections, act without waiting to be 100% sure." },
+        { "label": "Common confusions", "value": "1 (rules), 4 (anxiety/emotions), 8 (if counterphobic), 9 (if phobic)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Very loyal and protective (us against the world); can be smothering out of a need for reassurance." },
+            { "label": "At work", "value": "Devoted, forward-thinking collaborator; struggles to make risky decisions without hierarchical approval." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and consciousness",
+      "desc": "Levels 1–9, consciousness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Valiant hero: inner faith, quiet courage, rightful commitment." },
+            { "n": 2, "text": "Engaged friend: loyalty, reliability, protection of the bond." },
+            { "n": 3, "text": "Cooperative worker: sense of duty, team spirit, steadiness." },
+            { "n": 4, "text": "Worried loyalist: heightened vigilance, rumination, need for guarantees." },
+            { "n": 5, "text": "Ambivalent pessimist: doubt, mistrust, oscillation, testing." },
+            { "n": 6, "text": "Authoritarian rebel: counterattack, rigidity, polarization." },
+            { "n": 7, "text": "Panicked dependent: frantic search for support, submission/attachment." },
+            { "n": 8, "text": "Paranoid hysteric: threat everywhere, extreme reactions." },
+            { "n": 9, "text": "Self-destructive masochist: collapse, guilt, sabotage." }
+          ]
+        },
+        { "label": "Consciousness", "value": "Moving from anxious vigilance to self-remembering and faith in one's own strength." },
+        { "label": "Spiral Dynamics", "value": "BLUE (order, loyalty, discipline) and sometimes PURPLE (tribal security)." },
+        { "label": "Analogy", "value": "A high-frequency radar: scans the horizon for storms, forgetting that the ship's hull (Essence) is unsinkable." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "type": 1,
+  "name": "The Perfectionist",
+  "tagline": "The Perfectionist or the Reformer.",
+  "quick": {
+    "center": "Instinctive",
+    "wings": "9 and 2",
+    "integr": "→ 7",
+    "disint": "→ 4"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, core issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Instinctive (body center)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Instinctive." },
+            { "label": "Support center", "value": "Emotional or Mental." },
+            { "label": "Repressed center", "value": "Mental or Emotional." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Inward: acting on oneself before wanting to transform the world." },
+        { "label": "Core issue", "value": "Anger: a tendency to repress or control through principles." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, ego pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (avoidance)", "value": "Avoids anger (their own and others') and imperfection / mistakes." },
+        { "label": "Passion (vice)", "value": "Anger, often experienced as resentment toward what isn't as it should be." },
+        { "label": "Fixation", "value": "Perfectionism: the conviction that there is only one right way." },
+        { "label": "Defense mechanism", "value": "Reaction formation: turns anger/desire into acceptable opposites (discipline, forced kindness…)." },
+        { "label": "Ego pride", "value": "I am upright, I am hardworking." },
+        { "label": "Basic fear", "value": "Being bad, corrupt, defective or perverse." },
+        { "label": "Basic desire", "value": "Being good, virtuous and in balance." }
+      ]
+    },
+    {
+      "id": "soustypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Anxiety / worry: self-control, meticulous organization for survival." },
+            { "label": "Social", "value": "Nonadaptability / crusader: a model of righteousness, reforming institutions/society." },
+            { "label": "One-to-one (sexual)", "value": "Jealousy / warmth: perfection projected onto the partner, relational intensity." }
+          ]
+        },
+        { "label": "Social style", "value": "Compliant (duty): approaches people through rules and a sense of duty." },
+        { "label": "Conflict management", "value": "Competency: sets emotions aside for a correct, objective solution." }
+      ]
+    },
+    {
+      "id": "mouvements",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 9: calmer and more reserved. Wing 2: warmer and more helpful." },
+        { "label": "Integration (growth)", "value": "Toward 7: joy, spontaneity, curiosity, permission for pleasure." },
+        { "label": "Disintegration (stress)", "value": "Toward 4: melancholy, a feeling of being misunderstood, withdrawal, irrationality under pressure." }
+      ]
+    },
+    {
+      "id": "spirituel",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Perfection: reality is intrinsically perfect just as it is." },
+        { "label": "Virtue", "value": "Serenity / patience." },
+        { "label": "Idealized aspect", "value": "Brilliancy: the pure intelligence of Being, wholeness and rightness." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Being bad / deficiency of rightness." },
+            { "label": "Specific reaction", "value": "Self-improvement." },
+            { "label": "Specific illusion", "value": "Comparative judgment." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner Little 7: playing, exploring without being judged." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, miscommunication.",
+      "items": [
+        { "label": "Speaking style", "value": "Preach and teach." },
+        { "label": "Communication miscommunication", "value": "Perceived as rigid or cold when the message is aimed at integrity." }
+      ]
+    },
+    {
+      "id": "relationnel",
+      "icon": "🤝",
+      "title": "Growth and relationships",
+      "desc": "Warning signs, practices, mix-ups, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Intense sense of personal obligation, increased physical tension." },
+        { "label": "Growth practices", "value": "Distinguishing doing right from wanting to be right, temperance, recognizing mistakes as human." },
+        {
+          "label": "Frequent mix-ups with other types",
+          "value": "Often confused with 6, 5 or 8 depending on context."
+        },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Loyal and devoted, but critical when the ideal isn't respected." },
+            { "label": "At work", "value": "Reliable and ethical, has difficulty delegating for fear of mistakes." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "niveaux",
+      "icon": "📈",
+      "title": "Levels and awareness",
+      "desc": "Levels 1–9, awareness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Wise realist: serenity, acceptance of reality." },
+            { "n": 2, "text": "Reasonable person: objective, moderate." },
+            { "n": 3, "text": "Responsible reformer: ethical, hardworking." },
+            { "n": 4, "text": "Zealous critic: rigidity, focus on errors." },
+            { "n": 5, "text": "Orderly person: tension, irritability, detail-focused." },
+            { "n": 6, "text": "Critical perfectionist: judgment, sarcasm." },
+            { "n": 7, "text": "Intolerant dogmatist: inflexibility." },
+            { "n": 8, "text": "Obsessive compulsive: obsession with disorder, harshness." },
+            { "n": 9, "text": "Punitive avenger: punishment, risk of depression." }
+          ]
+        },
+        { "label": "Awareness", "value": "Moving from subjective awareness (the trance of perfectionism) to self-remembering." },
+        { "label": "Spiral Dynamics", "value": "Affinity with BLUE: order, law, absolute truth, sacrifice for a higher cause." },
+        { "label": "Analogy", "value": "A polished mirror: wipes away the dust without seeing that what matters is the light it reflects." }
+      ]
+    }
+  ]
+}

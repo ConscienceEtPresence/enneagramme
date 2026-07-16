@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Three Subtypes — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    [hidden]{display:none!important}
+    .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0 8px}
+    .topBar a{font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;text-decoration:none}
+    .topBar a:hover{color:var(--text)}
+    .badge{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#7dd3fc;font-weight:700}
+
+    .hero{text-align:center;padding:24px 0 18px}
+    .hero h1{
+      margin:0 0 14px;font-size:clamp(28px,4.6vw,40px);line-height:1.15;letter-spacing:.3px;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 55%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero p{color:#cfe9ff;max-width:60ch;margin:0 auto;font-size:16px;line-height:1.6}
+    .hero .lead{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:62ch}
+
+    /* Trois cartes instincts */
+    .threeCards{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;
+      margin:30px 0 40px;
+    }
+    .iCard{
+      padding:18px 20px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .iCard:hover{transform:translateY(-2px)}
+    .iCard.sp{border-color:rgba(251,191,36,.45)}
+    .iCard.so{border-color:rgba(96,165,250,.45)}
+    .iCard.sx{border-color:rgba(244,114,182,.45)}
+    .iCard h3{margin:0 0 4px;font-size:18px;letter-spacing:.3px}
+    .iCard.sp h3{color:#fbbf24}
+    .iCard.so h3{color:#60a5fa}
+    .iCard.sx h3{color:#f472b6}
+    .iCard .alt{display:block;font-size:11.5px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:10px}
+    .iCard p{color:#e8eeff;font-size:14.5px;line-height:1.55;margin:0 0 10px}
+    .iCard .kw{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+    .iCard .kw span{font-size:11.5px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.06);color:#cfe9ff}
+    .iCard h4{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:12px 0 6px}
+    .iCard ul{margin:0;padding-left:18px;color:#cfe9ff;font-size:13.5px;line-height:1.55}
+    .iCard .pit{margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.04);font-size:13.5px;color:#cfe9ff;font-style:italic;border-left:2px solid rgba(255,255,255,.15)}
+
+    /* Sélecteur de type */
+    .picker{
+      margin:40px 0 18px;padding:20px;border-radius:16px;
+      border:1px solid rgba(125,211,252,.25);
+      background:linear-gradient(135deg,rgba(125,211,252,.06),rgba(196,181,253,.04));
+    }
+    .picker h2{margin:0 0 6px;font-size:20px;letter-spacing:.2px}
+    .picker p{color:var(--muted);font-size:14px;margin:0 0 14px}
+    .typeGrid{display:flex;flex-wrap:wrap;gap:8px}
+    .typeBtn{
+      width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);color:#e8eeff;font-weight:800;font-size:16px;cursor:pointer;
+      transition:all .15s ease;
+    }
+    .typeBtn:hover{border-color:rgba(125,211,252,.5);background:rgba(125,211,252,.08)}
+    .typeBtn.active{border-color:#7dd3fc;background:rgba(125,211,252,.2);color:#fff;transform:scale(1.08);box-shadow:0 0 14px rgba(125,211,252,.4)}
+
+    /* Le détail des 3 sous-types pour le type choisi */
+    .detail{margin:18px 0 40px}
+    .typeName{font-size:22px;font-weight:800;margin:0 0 4px}
+    .typeName small{font-weight:600;color:var(--muted);font-size:14px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:6px}
+    .subCards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+    @media(min-width:700px){.subCards{grid-template-columns:repeat(3,1fr)}}
+    .subCard{
+      padding:16px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .subCard.sp{border-top:3px solid #fbbf24}
+    .subCard.so{border-top:3px solid #60a5fa}
+    .subCard.sx{border-top:3px solid #f472b6}
+    .subCard .label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+    .subCard.sp .label{color:#fbbf24}
+    .subCard.so .label{color:#60a5fa}
+    .subCard.sx .label{color:#f472b6}
+    .subCard h4{margin:0;font-size:16px;color:#fff}
+    .subCard p{color:#cfe9ff;font-size:14px;line-height:1.55;margin:0}
+    .subCard .meta{color:var(--muted);font-size:12.5px;font-style:italic;margin-top:auto}
+    .subCard .counter{
+      display:inline-block;align-self:flex-start;margin-top:4px;
+      font-size:10.5px;padding:3px 8px;border-radius:999px;
+      background:rgba(125,211,252,.12);color:#bae6fd;letter-spacing:.5px;
+    }
+
+    /* Section identifier son sous-type */
+    .identify{
+      margin:30px 0 20px;padding:22px 22px 20px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);
+    }
+    .identify h2{margin:0 0 14px;font-size:20px}
+    .qBlock{margin-bottom:18px}
+    .qBlock h3{margin:0 0 8px;font-size:15px;color:#cfe9ff}
+    .qBlock ul{margin:0;padding-left:18px;color:#cfe9ff;font-size:14px;line-height:1.65}
+    .qBlock li strong{color:#fff}
+    .qBlock li .sp{color:#fbbf24}
+    .qBlock li .so{color:#60a5fa}
+    .qBlock li .sx{color:#f472b6}
+    .pitBox{
+      margin-top:12px;padding:14px 16px;border-radius:12px;
+      border:1px solid rgba(244,114,182,.25);background:rgba(244,114,182,.06);
+      color:#fbcfe8;font-size:14px;line-height:1.55;
+    }
+    .pitBox strong{color:#fff}
+
+    .sources{
+      margin:30px 0 16px;padding:16px 18px;border-radius:12px;
+      background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);
+      font-size:13px;color:var(--muted);line-height:1.6;
+    }
+    .sources strong{color:#cfe9ff}
+
+    .siteFooter{text-align:center;color:var(--muted);font-size:12px;padding:18px 0 28px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/sous-types.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/sous-types.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/sous-types.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a href="/en/index.html">← Home</a>
+      <span class="badge">3 subtypes · 27 profiles</span>
+      <a href="/en/voyage-enneagramme.html">◌ The Journey</a>
+    </div>
+
+    <section class="hero">
+      <h1>The Three Subtypes</h1>
+      <p>The Enneagram unfolds into 9 types, but each type is lived in <strong>three very different ways</strong> depending on the instinct that occupies us most in daily life. These are what we call the <em>instinctual subtypes</em>.</p>
+      <p class="lead">According to David Daniels, without knowledge of the subtypes, you have roughly a one-in-two chance of misidentifying your type. Here they are, simply put.</p>
+    </section>
+
+    <!-- Trois cartes des instincts -->
+    <section class="threeCards">
+      <div class="iCard sp">
+        <h3>Survival</h3>
+        <span class="alt">Self-preservation · sp</span>
+        <p>My attention goes first to my material security, my physical well-being, the comfort of my home.</p>
+        <div class="kw">
+          <span>home</span><span>comfort</span><span>security</span><span>details</span><span>foresight</span>
+        </div>
+        <h4>In daily life</h4>
+        <ul>
+          <li>A practical sense, good at handling material things</li>
+          <li>Creates a safe, cozy atmosphere</li>
+          <li>Anticipates, organizes, plans ahead</li>
+        </ul>
+        <div class="pit"><strong>The trap:</strong> endless anxiety about “enough” — never enough money, security, or reserves.</div>
+      </div>
+
+      <div class="iCard so">
+        <h3>Social</h3>
+        <span class="alt">Group · so</span>
+        <p>My attention goes first to the group: my place, my connections, what's happening between people, shared causes.</p>
+        <div class="kw">
+          <span>friends</span><span>group</span><span>status</span><span>network</span><span>participation</span>
+        </div>
+        <h4>In daily life</h4>
+        <ul>
+          <li>Understands the dynamics of organizations</li>
+          <li>Loves events, collective projects</li>
+          <li>Knows who's who, builds connections</li>
+        </ul>
+        <div class="pit"><strong>The trap:</strong> confusing one's personal worth with the group's recognition.</div>
+      </div>
+
+      <div class="iCard sx">
+        <h3>One-to-One</h3>
+        <span class="alt">Sexual · sx</span>
+        <p>My attention goes first to the intense relationship, the spark with <em>one</em> person, powerful moments, shared presence.</p>
+        <div class="kw">
+          <span>intensity</span><span>passion</span><span>closeness</span><span>presence</span><span>spark</span>
+        </div>
+        <h4>In daily life</h4>
+        <ul>
+          <li>Experiences time in intense moments</li>
+          <li>Excellent one-on-one, a natural charmer</li>
+          <li>Seeks deep closeness</li>
+        </ul>
+        <div class="pit"><strong>The trap:</strong> needing constant intensity, to the point of confusing passion with fusion.</div>
+      </div>
+    </section>
+
+    <!-- Sélecteur de type -->
+    <section class="picker">
+      <h2>See the subtypes for your type</h2>
+      <p>Choose your type to discover how it takes shape in each of the three instincts.</p>
+      <div class="typeGrid" id="typeGrid"></div>
+    </section>
+
+    <section class="detail" id="detail"></section>
+
+    <!-- Identifier son sous-type -->
+    <section class="identify">
+      <h2>How to recognize your dominant instinct</h2>
+
+      <div class="qBlock">
+        <h3>1. Where does your attention and energy naturally go?</h3>
+        <ul>
+          <li><strong class="sp">Survival ·</strong> toward home, material security, my physical well-being, practical details</li>
+          <li><strong class="sx">One-to-One ·</strong> toward a special relationship, intensity with one person, the present moment</li>
+          <li><strong class="so">Social ·</strong> toward events, friends, my place in the group, networks</li>
+        </ul>
+      </div>
+
+      <div class="qBlock">
+        <h3>2. Under stress, what do you instinctively do?</h3>
+        <ul>
+          <li><strong class="sp">Survival ·</strong> I withdraw home, I organize, I tidy up, I secure things</li>
+          <li><strong class="sx">One-to-One ·</strong> I seek the presence of someone close, I need intensity, contact</li>
+          <li><strong class="so">Social ·</strong> I go out, I call people, I get involved, I surround myself with others</li>
+        </ul>
+      </div>
+
+      <div class="qBlock">
+        <h3>3. A perfect Saturday night looks more like…</h3>
+        <ul>
+          <li><strong class="sp">Survival ·</strong> at home, quiet, good food, a relaxing film</li>
+          <li><strong class="sx">One-to-One ·</strong> an intense one-on-one, deep conversation, focused presence</li>
+          <li><strong class="so">Social ·</strong> surrounded by friends, a lively evening, varied conversations</li>
+        </ul>
+      </div>
+
+      <div class="qBlock">
+        <h3>4. Where are you instinctively gifted?</h3>
+        <ul>
+          <li><strong class="sp">Survival ·</strong> managing practical matters, physical well-being, practical organization</li>
+          <li><strong class="sx">One-to-One ·</strong> persuading one-on-one, creating intimacy, communicating emotion</li>
+          <li><strong class="so">Social ·</strong> building a network, organizing the collective, reading group politics</li>
+        </ul>
+      </div>
+
+      <div class="pitBox">
+        <strong>A classic trap:</strong> people often confuse their dominant instinct with the one they <em>reject</em>. Someone who hates social events may be a <strong>repressed social</strong>, not a dominant survival type. Ask someone close to you — they often know better than you do.
+      </div>
+    </section>
+
+    <div class="sources">
+      <strong>Main sources:</strong> Beatrice Chestnut, <em>The Complete Enneagram — 27 Paths to Greater Self-Knowledge</em> · <em>La Clé de l'Ennéagramme — Les Sous-types</em>. The names of the three instincts are sometimes translated differently: Self-preservation (sp) / Social (so) / Sexual or One-to-One (sx).
+    </div>
+
+    <footer class="siteFooter">A dominant instinct is not a label — it's a doorway to knowing yourself better.</footer>
+  </div>
+
+  <script>
+  // ============================================================
+  // Data for the 27 subtypes (synthesis of Chestnut + The Key)
+  // counterType: true = "countertype" (appears different from the other two)
+  // ============================================================
+  const TYPES = {
+    1:{name:"The Perfectionist",
+       sp:{title:"Anxiety — The Pioneer",
+           desc:"Focuses their rigor on material things: home, order, details. The slightest disorder or mistake throws them off. Disciplined, exemplary, yet inhabited by a quiet, constant anxiety.",
+           distinct:"Controls the concrete (rather than the world or the partner)."},
+       sx:{title:"Zeal — The Preacher", counter:true,
+           desc:"Strives for excellence AND controls the relationship. Jealous of the time the other keeps for themselves. Veiled criticism, hidden authority. Their zeal to be the perfect partner can exhaust the other person.",
+           distinct:"Countertype: passion, intensity — seems less “1” than the other two."},
+       so:{title:"Social Maladjustment — The Reformer",
+           desc:"Anger at a world that isn't running right. Preachy, rigid, superior. Believes they're right about what society should be. Lacks spontaneity in groups.",
+           distinct:"Focused on the collective and what “should” be."}},
+
+    2:{name:"The Helper",
+       sp:{title:"Privilege — The Nanny",
+           desc:"Pours enormous energy into the home, into the material comfort of loved ones. Asks for privileges in return, as a quiet due: the best seat, preferential treatment.",
+           distinct:"More childlike and demanding than the other two — sometimes seems less helpful."},
+       sx:{title:"Seduction — The Lover",
+           desc:"Doubly focused on seduction: charm, a soft voice, body language. Seeks to be irresistible. If the charm doesn't work, can become intrusive or aggressive.",
+           distinct:"Passion and conquest of the other."},
+       so:{title:"Ambition — The Influencer", counter:true,
+           desc:"Seeks recognition through status and networks. Helps important people, understands power. Pride = being recognized by the group that matters.",
+           distinct:"Countertype: more ambitious and strategic — seems less “helpful.”"}},
+
+    3:{name:"The Achiever",
+       sp:{title:"Security — The Entrepreneur", counter:true,
+           desc:"Success measured by material security. Works hard, accumulates, secures the future. The more insecure they feel, the more they produce. Not very demonstrative.",
+           distinct:"Countertype: understated, not much for show — seems less “3.”"},
+       sx:{title:"Charm — The Star",
+           desc:"Seeks to be desirable, seductive, the center of attention. A polished image in service of the relationship, emotional performance. Wants to be admired by key people.",
+           distinct:"Image and charm in service of the one-on-one."},
+       so:{title:"Prestige — The Champion",
+           desc:"Success measured by standing within the group, the network, prestigious clients. Invests in their public image, knows how to shine in society.",
+           distinct:"The collective image above all."}},
+
+    4:{name:"The Individualist",
+       sp:{title:"Recklessness — The Adventurer", counter:true,
+           desc:"Refuses routine comfort. Chooses the authentic at the cost of risk. An adventurous life, unconventional occupations, precarity sometimes embraced. Endures in silence.",
+           distinct:"Countertype: less dramatic, more stoic — seems less “4.”"},
+       sx:{title:"Competition — Passion Squared",
+           desc:"An intense, larger-than-life personality. Builds self-worth through rivalry. Capable of moving mountains, but also of turning passion into hatred.",
+           distinct:"Maximum intensity, bordering on fury."},
+       so:{title:"Shame — The Outcast",
+           desc:"A feeling of exclusion, envy of others' status. Seeks to appear original, refined, above the norm to compensate for an inner shame.",
+           distinct:"Social shame as a driving force."}},
+
+    5:{name:"The Observer",
+       sp:{title:"Fortress — The Minimalist",
+           desc:"Reduces needs, possessions, and contacts. Lives in little space, simply. Autonomy as freedom. Knowledge is worth more than objects.",
+           distinct:"Material isolation, minimalism."},
+       sx:{title:"Confiding — The Confidant",
+           desc:"Allows for a few very intense encounters: timeless confidences, intellectual intimacy. Opens up without restraint, then withdraws again.",
+           distinct:"Chooses ONE intense relationship among few."},
+       so:{title:"Totems — The Initiate", counter:true,
+           desc:"Passionate about important ideas, cultural symbols, prestigious subjects. An observer of the social world more than a participant.",
+           distinct:"Countertype: interested in the social — seems less “solitary.”"}},
+
+    6:{name:"The Loyalist",
+       sp:{title:"Warmth — The Host",
+           desc:"Creates warmth around themselves to guard against aggression. “If people like me, I have less to fear.” A close circle of friends as a personal guard.",
+           distinct:"Security through close affectionate bonds."},
+       sx:{title:"Strength / Beauty — The Rebel", counter:true,
+           desc:"Compensates for fear with an appearance of strength or allure. Exaggerates power (men) or beauty (women). Moves toward danger rather than avoiding it.",
+           distinct:"Countertype: appears confident, even fearless — masking the fear."},
+       so:{title:"Duty — The Loyalist",
+           desc:"Hyper-vigilant about the reliability of the group, the organization. A heightened sense of duty. Seeks a clear framework, can become inquisitorial.",
+           distinct:"Obligation toward the collective."}},
+
+    7:{name:"The Epicure",
+       sp:{title:"Clan — The Entertainer",
+           desc:"Organizes the most enjoyable life possible around family and loved ones. Projects, meals, trips with the clan. Needs a “court” of people around them to thrive.",
+           distinct:"The small, chosen group."},
+       sx:{title:"Fascination — The Enthusiast",
+           desc:"Maximum pleasure in minimum time, in the company of one person. Highly impressionable, a charmer, living in a permanent amusement park.",
+           distinct:"Doubled intensity — voracity and novelty."},
+       so:{title:"Sacrifice — The Devoted One", counter:true,
+           desc:"Gives up personal pleasure for the group, out of a sense of duty. Tension between the urge to flee and collective responsibility.",
+           distinct:"Countertype: sacrifices their fun — seems less “7.”"}},
+
+    8:{name:"The Leader",
+       sp:{title:"Satisfaction — The Fighter",
+           desc:"Controls their territory, resources, tribe. A spartan lifestyle, little luxury. “I need to know who's where and who's doing what.”",
+           distinct:"Direct control of the concrete and of territory."},
+       sx:{title:"Possession — Love-Passion",
+           desc:"All or nothing in the relationship. Total possession or total surrender to the partner. Uncompromising intensity, a burning love-passion.",
+           distinct:"A binary relationship, with no middle ground."},
+       so:{title:"Solidarity — The Patriarch", counter:true,
+           desc:"Protects the group, brings people together, organizes family gatherings. Loyal to those they consider “their own.” Tender beneath the tough exterior.",
+           distinct:"Countertype: more loyal and warm — seems less “tough.”"}},
+
+    9:{name:"The Mediator",
+       sp:{title:"Appetite — The Homebody",
+           desc:"Loses themselves in small material pleasures: routine, TV, food, the garden. Fills their emotional needs through objects and habits.",
+           distinct:"Self-forgetting through material things."},
+       sx:{title:"Union — The Merger",
+           desc:"Loses themselves in fusion with the other. Adopts the partner's tastes, loses their own desires. “One plus one equals one.”",
+           distinct:"Self-forgetting through relational fusion."},
+       so:{title:"Participation — The Engaged One", counter:true,
+           desc:"Loses themselves in the group, causes, volunteering. Very active for the collective — which becomes their excuse for not meeting themselves.",
+           distinct:"Countertype: more engaged and active — seems less “9.”"}}
+  };
+
+  // ============================================================
+  // Selector
+  // ============================================================
+  const grid = document.getElementById('typeGrid');
+  const detail = document.getElementById('detail');
+
+  function renderGrid(active){
+    grid.innerHTML = '';
+    for(let t=1;t<=9;t++){
+      const b = document.createElement('button');
+      b.className = 'typeBtn' + (t===active?' active':'');
+      b.textContent = t;
+      b.addEventListener('click', ()=> renderType(t));
+      grid.appendChild(b);
+    }
+  }
+
+  function renderType(t){
+    renderGrid(t);
+    const T = TYPES[t];
+    const order = ['sp','so','sx'];
+    const labels = {sp:'Survival', so:'Social', sx:'One-to-One'};
+
+    let cards = '';
+    order.forEach(k=>{
+      const s = T[k];
+      cards += `
+        <div class="subCard ${k}">
+          <span class="label">${labels[k]}</span>
+          <h4>${s.title}</h4>
+          ${s.counter ? `<span class="counter">Countertype</span>` : ''}
+          <p>${s.desc}</p>
+          <p class="meta">${s.distinct}</p>
+        </div>`;
+    });
+
+    detail.innerHTML = `
+      <p class="typeName"><small>Type ${t}</small>${T.name}</p>
+      <div class="subCards">${cards}</div>
+    `;
+    detail.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // On load, no type is shown as selected (the user chooses)
+  renderGrid(null);
+  </script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

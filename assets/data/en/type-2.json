@@ -1,0 +1,150 @@
+{
+  "type": 2,
+  "name": "The Helper",
+  "tagline": "The Helper, the Caregiver or the Giver",
+  "quick": {
+    "center": "Emotional",
+    "wings": "1 and 3",
+    "integr": "→ 4",
+    "disint": "→ 8"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, core issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Emotional (Heart)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Emotional." },
+            { "label": "Support center", "value": "Instinctive or Mental." },
+            { "label": "Repressed center", "value": "Mental or Instinctive." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Outward: focuses on the needs and feelings of others to define their identity." },
+        { "label": "Core issue", "value": "Identity and Image: the need to be loved and appreciated in order to feel they exist." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, ego pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoiding acknowledgment of their own needs." },
+        { "label": "Passion (Vice)", "value": "Pride: believing oneself indispensable and without needs." },
+        { "label": "Fixation", "value": "Flattery: giving compliments and attention to ensure they are loved." },
+        { "label": "Defense mechanism", "value": "Repression: pushing down feelings or needs deemed unlovable." },
+        { "label": "Ego pride", "value": "I love, I help." },
+        { "label": "Basic fear", "value": "Being unworthy of love for who they are." },
+        { "label": "Basic desire", "value": "Feeling loved." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Privilege (Me First): childlike charm to attract protection and advantages." },
+            { "label": "Social", "value": "Ambition: being indispensable/influential within groups or with powerful people." },
+            { "label": "One-to-one (Sexual)", "value": "Conquest: intense charm to captivate specific individuals." }
+          ]
+        },
+        { "label": "Social style (Horneyan)", "value": "Compliant: approaches people according to the superego (one must help)." },
+        { "label": "Conflict management (Harmonic)", "value": "Optimism: avoiding pain by focusing on the positive and on helping." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 1 (more rigorous) and wing 3 (more ambitious and image-focused)." },
+        { "label": "Integration (Growth)", "value": "→ 4: more honest about their needs, introspective, authentic." },
+        { "label": "Disintegration (Stress)", "value": "→ 8: angry, aggressive, domineering, vindictive." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Will and Holy Freedom: the universe supports every being without manipulation." },
+        { "label": "Virtue", "value": "Humility: acknowledging one's limits and rightful place." },
+        { "label": "Idealized aspect", "value": "Merging Love / Merging Gold: an uninterrupted, nourishing divine connection." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Humiliating castration: not getting the support one needs." },
+            { "label": "Specific reaction", "value": "Willful action: wanting to do things one's own way to compensate." },
+            { "label": "Specific illusion", "value": "Separate will: believing in a will independent from the universe." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner Little 4: a feeling of abandonment/specialness, learning to please in order to be loved." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, miscommunication.",
+      "items": [
+        { "label": "Speaking style", "value": "Help-advice / Saga: unsolicited advice, relational stories." },
+        { "label": "Communication miscommunication", "value": "Love-Intrusion: what the 2 experiences as a gift can be perceived as an invasion." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Growth and relationships",
+      "desc": "Warning signs, practices, mix-ups, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Feeling indispensable, intrusive, complaints of exhaustion (martyrdom)." },
+        { "label": "Growth practices", "value": "Saying no, solitude, identifying one's own needs before helping, accepting not being loved by everyone." },
+        { "label": "Frequent mix-ups", "value": "4 (emotionality), 7 (optimism), 9 (merging)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Very devoted; can become possessive and jealous when lacking recognition." },
+            { "label": "At work", "value": "Very good at support/networking; risk of favoritism." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and awareness",
+      "desc": "Levels 1–9, awareness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Selfless altruist, warm and nurturing presence." },
+            { "n": 2, "text": "Caring, generous, helps spontaneously." },
+            { "n": 3, "text": "Kind but starts to expect recognition." },
+            { "n": 4, "text": "Effusive friend, gets very involved, makes themselves indispensable." },
+            { "n": 5, "text": "Possessive intimate, intrusive, gives in order to receive." },
+            { "n": 6, "text": "Self-important saint, guilt-trips others, holds grudges." },
+            { "n": 7, "text": "Deceptive manipulator, emotional control, emotional blackmail." },
+            { "n": 8, "text": "Coercive dominator, open aggressiveness, vindictiveness." },
+            { "n": 9, "text": "Psychosomatic victim, collapse, despair/hostility." }
+          ]
+        },
+        { "label": "Awareness", "value": "Moving from the helper's trance to self-remembering." },
+        { "label": "Spiral Dynamics", "value": "Often aligned with GREEN: empathy, consensus, the importance of relationships." },
+        { "label": "Analogy", "value": "An emotional gas station: fills others up while forgetting to refuel, until running on empty." }
+      ]
+    }
+  ]
+}

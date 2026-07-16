@@ -1,0 +1,354 @@
+{
+  "type": 3,
+  "nom": "The Performer",
+  "centre": {
+    "prefere": "emotionnel",
+    "support": "instinctif",
+    "reprime": "emotionnel-profond",
+    "prefere_libelle": "Emotional (cut off in order to function)",
+    "reprime_libelle": "True feeling",
+    "reprime_invitation": "Today, the center you are working with is the deep Emotional: feeling what is, not what presents well. Stop functioning for a few minutes — in order to exist."
+  },
+  "dynamique_ego": {
+    "passion": "Vanity",
+    "passion_explication": "A functional vanity, almost invisible: 'I am what I do, what I project, what I achieve.' The image fits so well that it gets mistaken for the self.",
+    "fixation": "Self-deception (about one's intrinsic worth)",
+    "compulsion_evitement": "Avoiding failure, stagnation, invisibility.",
+    "peur_de_base": "Being worthless apart from what one does.",
+    "desir_de_base": "Having worth, being validated, being someone."
+  },
+  "essence": {
+    "qualite_principale": "Being before doing",
+    "qualite_phrase": "You are of worth before having proven it — you are before you do.",
+    "horizons": [
+      "Feeling what is, behind what shows",
+      "Stopping without having to produce",
+      "Recognizing the image as image — without hating it, without clinging to it",
+      "Touching the worth that depends on no achievement"
+    ]
+  },
+  "intentions_du_matin": [
+    "Do something that will not be seen",
+    "Slow down — truly, not as a performance of slowness",
+    "Feel what is, without optimizing it",
+    "Not answer an email today",
+    "Accept being ordinary for an hour",
+    "Honor an emotion without turning it into action",
+    "Receive a compliment without bouncing to the next one",
+    "Fail at one small thing without hiding it",
+    "Be present without having to shine"
+  ],
+  "pratiques_du_matin": [
+    "Before noon, produce nothing for 15 minutes. Just sit.",
+    "When someone asks 'how are you?', give the true answer, not the social one.",
+    "Drink a tea with no phone, no podcast, nothing to 'extract' from the moment.",
+    "Feel a bodily signal (fatigue, hunger, tension) instead of pushing through it.",
+    "Check off nothing on today's to-do list — see what happens.",
+    "Cancel something that isn't essential. Liberation is the practice."
+  ],
+  "niveaux": {
+    "zones": [
+      {
+        "id": "lumineux",
+        "icon": "☀",
+        "nom": "Luminous",
+        "description": "Presence before performance. You touch your intrinsic worth. What you do serves the soul, not the image. Authenticity is savored as a gift.",
+        "niveaux_riso": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "fonctionnel",
+        "icon": "🌤",
+        "nom": "Functional",
+        "description": "You function, you perform — but you feel when the image is taking up too much room. You can slow down.",
+        "niveaux_riso": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "reactif",
+        "icon": "🌫",
+        "nom": "Reactive",
+        "description": "The image drives. You run. You compare. Fatigue is denied. Feeling becomes a cost you can't afford.",
+        "niveaux_riso": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "enseveli",
+        "icon": "🌑",
+        "nom": "Buried",
+        "description": "Burnout, dissociation, inner emptiness behind the impeccable facade. A very heavy day that calls for a true stop, not a photogenic pause.",
+        "niveaux_riso": [
+          8,
+          9
+        ]
+      }
+    ],
+    "details_riso": [
+      {
+        "n": 1,
+        "titre": "Liberated",
+        "texte": "Authentic, accepting, without a facade. You are yourself, in success as in failure. Worth lies in being."
+      },
+      {
+        "n": 2,
+        "titre": "Healthy",
+        "texte": "Self-assured, accomplished, confident. You perform out of vocation, not to fill a void."
+      },
+      {
+        "n": 3,
+        "titre": "Competent",
+        "texte": "Adaptable, ambitious, inspiring. You embody what you represent."
+      },
+      {
+        "n": 4,
+        "titre": "Average-high",
+        "texte": "Competitive, image-conscious. You compare. You calibrate your appearance."
+      },
+      {
+        "n": 5,
+        "titre": "Average",
+        "texte": "Calculating, narcissistic. The image takes up all the room. Feeling drifts away."
+      },
+      {
+        "n": 6,
+        "titre": "Average-low",
+        "texte": "Arrogant, hostile, expedient. You see others as obstacles or resources."
+      },
+      {
+        "n": 7,
+        "titre": "Unhealthy",
+        "texte": "Deceitful, manipulative, false. You lie to yourself first."
+      },
+      {
+        "n": 8,
+        "titre": "Very unhealthy",
+        "texte": "Vengeful, sabotaging others' success, inner emptiness."
+      },
+      {
+        "n": 9,
+        "titre": "Pathological",
+        "texte": "Collapse, relational psychopathy. Asking for help is vital here."
+      }
+    ]
+  },
+  "ego_du_jour": {
+    "passions": [
+      {
+        "id": "image",
+        "label": "I managed my image",
+        "detail": "More than my aliveness."
+      },
+      {
+        "id": "compare",
+        "label": "I silently compared myself",
+        "detail": "My invisible measuring stick."
+      },
+      {
+        "id": "trop-vite",
+        "label": "I did too much, too fast",
+        "detail": "Doing in order not to feel."
+      },
+      {
+        "id": "nie-fatigue",
+        "label": "I denied my fatigue",
+        "detail": "It forbids performance."
+      },
+      {
+        "id": "valeur-faire",
+        "label": "I weighed myself by what I had produced",
+        "detail": "Without that, what am I?"
+      },
+      {
+        "id": "convertir",
+        "label": "I converted an emotion into action",
+        "detail": "So as not to feel it."
+      }
+    ],
+    "pieges": [
+      {
+        "id": "mail-reflexe",
+        "label": "I answered quickly to show I was present",
+        "detail": "Without saying anything true."
+      },
+      {
+        "id": "social-face",
+        "label": "I put on a social face to hide my real state",
+        "detail": "No one saw."
+      },
+      {
+        "id": "trop-prod",
+        "label": "I over-produced",
+        "detail": "Quantity instead of presence."
+      },
+      {
+        "id": "selfie-vie",
+        "label": "I lived my life as something to narrate",
+        "detail": "More than as something to live."
+      },
+      {
+        "id": "rebondit",
+        "label": "I bounced off a compliment toward the next one",
+        "detail": "Without having received it."
+      }
+    ]
+  },
+  "essence_du_jour": {
+    "moments": [
+      {
+        "id": "non-fait",
+        "label": "I did nothing — and it was enough"
+      },
+      {
+        "id": "vraie-reponse",
+        "label": "I gave the true answer"
+      },
+      {
+        "id": "fatigue-sentie",
+        "label": "I felt my fatigue and honored it"
+      },
+      {
+        "id": "valeur-rien",
+        "label": "I felt worthy without producing anything"
+      },
+      {
+        "id": "echec-doux",
+        "label": "I failed and it was human"
+      },
+      {
+        "id": "presence-vide",
+        "label": "I was present without having to shine"
+      },
+      {
+        "id": "ordinaire-bon",
+        "label": "The ordinary felt good to me"
+      },
+      {
+        "id": "perle",
+        "label": "I touched who I am, beneath what I do"
+      }
+    ]
+  },
+  "evenements_a_relire": [
+    {
+      "id": "image-pris-pas",
+      "label": "The image took over"
+    },
+    {
+      "id": "sur-produit",
+      "label": "I over-produced"
+    },
+    {
+      "id": "vrai-arrete",
+      "label": "I truly stopped"
+    },
+    {
+      "id": "vrai-dit",
+      "label": "I spoke the truth"
+    },
+    {
+      "id": "echec-cache",
+      "label": "I hid a failure"
+    },
+    {
+      "id": "echec-montre",
+      "label": "I let a failure be seen"
+    },
+    {
+      "id": "compare-en-cachette",
+      "label": "I silently compared myself"
+    },
+    {
+      "id": "valeur-sentie",
+      "label": "I felt my worth independent of doing"
+    },
+    {
+      "id": "obscur",
+      "label": "I don't understand yet"
+    }
+  ],
+  "remedes": [
+    {
+      "id": "etre",
+      "label": "Being — before doing"
+    },
+    {
+      "id": "ralentir",
+      "label": "Slowing down — truly"
+    },
+    {
+      "id": "sentir-vrai",
+      "label": "Feeling — what is, not what shows"
+    },
+    {
+      "id": "authentique",
+      "label": "Authenticity — the true answer"
+    },
+    {
+      "id": "ordinaire",
+      "label": "The ordinary — as enough"
+    },
+    {
+      "id": "perle",
+      "label": "The pearl — who I am beneath the image"
+    },
+    {
+      "id": "echec-honore",
+      "label": "Honored failure — which makes one human"
+    }
+  ],
+  "ressources_site": [
+    {
+      "label": "My full profile",
+      "href": "/en/profils/type3.html",
+      "icon": "📖"
+    },
+    {
+      "label": "The diamond of essence",
+      "href": "/en/diamant-essence.html",
+      "icon": "💎"
+    },
+    {
+      "label": "Restoring the forgotten center",
+      "href": "/en/restaurer-centre-oublie.html",
+      "icon": "🌀"
+    },
+    {
+      "label": "The journey through the type",
+      "href": "/en/voyage-enneagramme.html",
+      "icon": "🛤"
+    },
+    {
+      "label": "Confusions between types",
+      "href": "/en/confusions-entre-types.html",
+      "icon": "🔍"
+    }
+  ],
+  "ouverture_du_jour": {
+    "matin": [
+      "The morning begins. What do you want to *be*, more than do?",
+      "A day opens — what could simply remain undone?",
+      "What do you want to feel, behind what will present itself?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Have you felt your body?",
+      "Here you are. What did you truly do — for yourself?",
+      "A possible pause. Set it down, truly."
+    ],
+    "soir": [
+      "The day is fading. What can be left unfinished?",
+      "You can simply arrive, without bringing back anything to report.",
+      "The evening is gentle. One true thing is just fine."
+    ],
+    "nuit": [
+      "The night watches. One true word, then sleep.",
+      "You are still here, without having to prove it."
+    ]
+  }
+}

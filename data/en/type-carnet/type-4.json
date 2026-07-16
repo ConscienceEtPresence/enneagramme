@@ -1,0 +1,156 @@
+{
+  "type": 4,
+  "nom": "The Individualist",
+  "centre": {
+    "prefere": "emotionnel",
+    "support": "mental",
+    "reprime": "instinctif",
+    "prefere_libelle": "Emotional",
+    "reprime_libelle": "Instinctive",
+    "reprime_invitation": "Today, the center you are working with is the instinctive: returning to the body, to action, to the ordinary. Feeling already has its place — the point is not to let it occupy everything."
+  },
+
+  "dynamique_ego": {
+    "passion": "Envy",
+    "passion_explication": "The feeling that something is missing in you that others possess. This generates either comparison, or withdrawal, or a fascination with what wounds.",
+    "fixation": "Melancholy",
+    "compulsion_evitement": "Avoiding the ordinary, the banal, the common.",
+    "peur_de_base": "Having no identity of one's own, being no one, being indistinct from others.",
+    "desir_de_base": "Being fully oneself, creating a unique identity out of inner experience."
+  },
+
+  "essence": {
+    "qualite_principale": "The sense of Origin",
+    "qualite_phrase": "You do not have to become someone — you already are, since before you knew it.",
+    "horizons": [
+      "Recognizing the ordinary as sufficient",
+      "Touching the simple without belittling it",
+      "Inhabiting the present without amplifying it",
+      "Feeling identity at rest, without having to prove it"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Honor the ordinary — not flee it as if it were inferior",
+    "Finish something — not perfectly, just finish",
+    "Come out of withdrawal — answer when spoken to, without a mask",
+    "Take a concrete action — act before feeling",
+    "Not amplify — let what is stay its true size",
+    "Touch the simple — a tea, a face, a gesture",
+    "Stay when the urge to flee rises",
+    "Let come without grasping — welcome, don't identify",
+    "See an ordinary beauty and keep it for yourself"
+  ],
+
+  "pratiques_du_matin": [
+    "Before 10am, finish a single task — small, concrete, ordinary. Savor it as accomplished.",
+    "When the urge rises, breathe three times and name what is already here, present, in me.",
+    "Do a routine act (a coffee, making the bed) with full attention — as if it were new.",
+    "Write three lines by hand, not for beauty, for the trace.",
+    "Go outside for 10 minutes without a phone, just to inhabit the world.",
+    "Choose one thing not to amplify today, and return to it if it rises."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Luminous",    "description": "Clear presence. You see your mechanisms without identifying with them. The ordinary touches you without engulfing you. Creation from what is, not from lack.", "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Functional", "description": "You stand upright, you do what's needed. The patterns are active but manageable — you feel them rise and you can choose.",                                  "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Reactive",     "description": "The ego drives, you are a spectator. Mood seizes you. Comparison or withdrawal settle in without your being able to undo them.",                                  "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Buried",    "description": "Everything is heavy, you are engulfed. The lack is total. It's a hard day — it calls for gentleness, not combat.",                                          "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Liberated",        "texte": "Creation from being. Identity rests in itself, has nothing left to prove. The ordinary is honored, the simple touches deeply." },
+      { "n": 2, "titre": "Healthy",          "texte": "Self-aware, you recognize the envy that rises without following it. Sensitivity in service of the real, not of image." },
+      { "n": 3, "titre": "Competent",     "texte": "Your creations honor what is. Singularity expresses itself without needing to be validated." },
+      { "n": 4, "titre": "Average-high",    "texte": "Romantic. You seize your mood as identity (\"I am sad, therefore this is who I am\"). Aestheticization of feeling." },
+      { "n": 5, "titre": "Average",         "texte": "Self-awareness that becomes self-absorption. Constant comparison, fantasy of a life elsewhere, cultivated melancholy." },
+      { "n": 6, "titre": "Average-low",     "texte": "Inhibition, withdrawal, moodiness. You cultivate suffering as distinction. Active envy, jealousy." },
+      { "n": 7, "titre": "Unhealthy",       "texte": "Self-rejection, destructive envy, self-disgust. Loop of self-accusation. Cut off from the world." },
+      { "n": 8, "titre": "Very unhealthy",  "texte": "Depression, paralysis, deep despair. Everything seems useless. Feeling irreparable." },
+      { "n": 9, "titre": "Pathological",  "texte": "Collapse, self-destruction, suicidal ideation. Asking for help is vital here." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "envie",        "label": "I felt envy rising",           "detail": "Someone had what I lack." },
+      { "id": "comparaison",  "label": "I compared myself",               "detail": "My inner world lost its value." },
+      { "id": "amplifie",     "label": "I amplified what I lacked",     "detail": "The lack took up all the space." },
+      { "id": "intensite",    "label": "I cultivated intensity",             "detail": "Drama, melancholy, fascination with the tragic." },
+      { "id": "incompris",    "label": "I felt misunderstood",    "detail": "No one sees who I truly am." },
+      { "id": "fuite",        "label": "I fled the ordinary",                 "detail": "The mundane felt unbearable." }
+    ],
+    "pieges": [
+      { "id": "retrait",      "label": "I withdrew instead of responding",      "detail": "Silence as protection." },
+      { "id": "attente",      "label": "I waited for the perfect inspiration",            "detail": "I didn't start." },
+      { "id": "saisi_humeur", "label": "I seized my mood as an identity",       "detail": "\"I am sad, therefore this is who I am.\"" },
+      { "id": "romantise",    "label": "I romanticized what wounded me",            "detail": "Pain as distinction." },
+      { "id": "noblesse",     "label": "I looked for what made my suffering noble", "detail": "Finding meaning in what may have none." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "simple",       "label": "I was simply there, without needing more" },
+      { "id": "ordinaire",    "label": "Something ordinary felt right, sufficient" },
+      { "id": "fini",         "label": "I finished something without drama, peacefully" },
+      { "id": "contact",      "label": "I reached out to someone without a mask" },
+      { "id": "accueil",      "label": "I welcomed what was, without transforming it" },
+      { "id": "sansmanque",   "label": "Lack had no hold on me" },
+      { "id": "presence",     "label": "I felt a presence in me that was not the mood" },
+      { "id": "origine",      "label": "I touched something that seemed to have always been there" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "amplifie",   "label": "I amplified what I lacked" },
+    { "id": "compare",    "label": "I compared myself" },
+    { "id": "retrait",    "label": "I stayed in withdrawal" },
+    { "id": "intensite",  "label": "I sought intensity" },
+    { "id": "ordinaire",  "label": "I found the ordinary" },
+    { "id": "fini",       "label": "I finished something" },
+    { "id": "laisse",     "label": "I let come without grasping" },
+    { "id": "ouvert",     "label": "I opened up to someone" },
+    { "id": "obscur",     "label": "I don't understand yet" }
+  ],
+
+  "remedes": [
+    { "id": "origine",       "label": "Origin — who I am before the story" },
+    { "id": "simple",        "label": "The simple — the sacred ordinary" },
+    { "id": "equilibre",     "label": "Balance — stepping out of oscillation" },
+    { "id": "ancrage",       "label": "Grounding — the body before the mood" },
+    { "id": "presence",      "label": "Presence — inhabiting what is" },
+    { "id": "achevement",    "label": "Completion — finishing, without drama" },
+    { "id": "douceur",       "label": "Gentleness toward oneself" }
+  ],
+
+  "ressources_site": [
+    { "label": "My full profile",          "href": "/en/profils/type4.html",          "icon": "📖" },
+    { "label": "The diamond of essence",     "href": "/en/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restoring the forgotten center",  "href": "/en/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "The journey through the type", "href": "/en/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions between types",      "href": "/en/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Morning begins. What would you like to honor?",
+      "A day opens — what can simply be?",
+      "The ordinary awaits you. What do you want to place there?"
+    ],
+    "midi": [
+      "You are in the middle of the day. What is the state of things?",
+      "Here you are. How is your heart doing?",
+      "A pause is possible. What do you want to look at?"
+    ],
+    "soir": [
+      "The day fades. What do you want to keep?",
+      "You can just come, without saying anything.",
+      "The evening is gentle. A sentence, if it comes."
+    ],
+    "nuit": [
+      "The night watches. One single thing to set down, then sleep.",
+      "You are still here. That is already a lot."
+    ]
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "type": 8,
+  "name": "The Boss",
+  "tagline": "The Protector, the Leader, or the Challenger",
+  "quick": {
+    "center": "Instinctive",
+    "wings": "7 and 9",
+    "integr": "→ 2",
+    "disint": "→ 5"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, central issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Instinctive (body/gut)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Instinctive." },
+            { "label": "Support center", "value": "Mental or Emotional." },
+            { "label": "Repressed center", "value": "Emotional or Mental." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Outward: energy to impact, transform, or dominate the environment." },
+        { "label": "Central issue", "value": "Managing anger and the need for autonomy in the face of a reality perceived as resistant or unjust." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoid weakness, vulnerability, and dependence at all costs." },
+        { "label": "Passion (Vice)", "value": "Lust: a need for excess, intensity, and constant stimulation." },
+        { "label": "Fixation", "value": "Vengeance / punitive resentment: a will to settle scores with a world perceived as harsh." },
+        { "label": "Defense mechanism", "value": "Denial (of vulnerability/pain) and negation (rejection of limits/authority)." },
+        { "label": "Egotic pride", "value": "I am strong, I am just." },
+        { "label": "Basic fear", "value": "Being harmed, controlled, dominated, or violated by others." },
+        { "label": "Basic desire", "value": "Protecting oneself and determining one's own path." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Survival / satisfaction: mastery of material resources and personal territory." },
+            { "label": "Social", "value": "Friendship / complicity: protector of the clan, alliances with the loyal and the strong." },
+            { "label": "One-to-one (Sexual)", "value": "Possession / surrender: fusional intensity while keeping control." }
+          ]
+        },
+        { "label": "Social style", "value": "Assertive (moving against): insists on its needs, moves against to get what it wants." },
+        { "label": "Conflict management", "value": "Reactive: immediate responses, frankness, open expression of frustration." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 7 (energetic, adventurous) and wing 9 (calm, protective, grounded)." },
+        { "label": "Integration (Growth)", "value": "→ 2: a more open heart, generosity, attentiveness, owned tenderness." },
+        { "label": "Disintegration (Stress)", "value": "→ 5: withdrawal, secrecy, coldness, cynicism, strategizing in the shadows." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Truth: the perception of the fundamental unity of reality (nothing is separate)." },
+        { "label": "Virtue", "value": "Innocence: undefended openness, a fresh response to the moment." },
+        { "label": "Idealized aspect", "value": "True strength (Red): vitality and the capacity to act without fear, grounded in Being." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Guilt / badness: feeling bad or excluded from grace." },
+            { "label": "Specific reaction", "value": "Blaming: casting fault onto others to avoid feeling one's own defect." },
+            { "label": "Specific illusion", "value": "Duality: the world experienced as a battlefield between the strong and the weak." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner little 2: tender and affectionate, learned to hide its needs in order to survive." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, misunderstanding.",
+      "items": [
+        { "label": "Speaking style", "value": "Imperatives: direct, blunt, authoritative, gets to the point." },
+        { "label": "Communication misunderstanding", "value": "Force-Brutality: frankness/power perceived as gratuitous aggression." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Evolution and relationships",
+      "desc": "Warning signs, growth practices, confusions, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Growing belligerence, enemies everywhere, the posture of an arrogant dictator." },
+        { "label": "Growth practices", "value": "Waiting before acting, recognizing physical limits, accepting that true strength includes vulnerability." },
+        { "label": "Common confusions", "value": "Counterphobic 6, 1 (justice), 3 (competition), sexual 4 (intensity)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Protective and passionate; can be smothering/jealous if it fears betrayal." },
+            { "label": "At work", "value": "Natural leader, effective decision-maker; hates indecision/hypocrisy; delegation is difficult due to a need for control." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and consciousness",
+      "desc": "Levels 1–9, consciousness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Magnanimous heart: noble protection, power in service of the true." },
+            { "n": 2, "text": "Self-confident person: calm strength, presence, courage." },
+            { "n": 3, "text": "Constructive leader: protective leadership, justice, useful action." },
+            { "n": 4, "text": "Enterprising adventurer: intensity, taste for challenge, increased control." },
+            { "n": 5, "text": "Dominating power broker: imposes, tests, hardens relationships." },
+            { "n": 6, "text": "Provocative adversary: confrontation, intimidation, escalation." },
+            { "n": 7, "text": "Ruthless outlaw: transgression, defensive cruelty." },
+            { "n": 8, "text": "Omnipotent megalomaniac: paranoia of control, omnipotence." },
+            { "n": 9, "text": "Violent destroyer: rampage, total rupture, devastation." }
+          ]
+        },
+        { "label": "Consciousness", "value": "Moving from the ego's fight to Self-Surrender to a strength greater than one's own will." },
+        { "label": "Spiral Dynamics", "value": "RED (power, force, immediate action)." },
+        { "label": "Analogy", "value": "A volcano ready to erupt, or a lion that moves only when hungry: massive energy, decisive action." }
+      ]
+    }
+  ]
+}

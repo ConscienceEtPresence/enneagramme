@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Understand your type — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1180px;margin:18px auto 40px;padding:0 14px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+    .topBar .title{
+      font-size:13px;letter-spacing:1.4px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;
+    }
+    .topBar .badge{
+      font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;
+      padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(252,211,77,.4);background:rgba(252,211,77,.10);
+      color:#fde68a;font-weight:800;
+    }
+
+    /* Progress dots */
+    .progress{
+      display:flex;justify-content:center;align-items:center;gap:8px;
+      margin:0 auto 18px;flex-wrap:wrap;
+    }
+    .progress .dot{
+      width:30px;height:6px;border-radius:3px;
+      background:rgba(255,255,255,.10);
+      transition:background .3s ease, width .3s ease;
+    }
+    .progress .dot.done{background:rgba(125,211,252,.55)}
+    .progress .dot.cur{background:#7dd3fc;width:46px;box-shadow:0 0 12px rgba(125,211,252,.5)}
+
+    /* Layout */
+    .stage{
+      display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;
+      align-items:start;
+    }
+    @media(max-width:980px){
+      .stage{grid-template-columns:1fr}
+    }
+
+    /* SVG container */
+    .diagram{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.02);box-shadow:var(--shadow);
+      padding:18px;
+    }
+    .diagram svg{width:100%;height:auto;max-width:680px;margin:0 auto;display:block}
+
+    /* SVG styles */
+    .ring{stroke:rgba(147,197,253,.4);stroke-width:2;fill:none}
+    .hex{stroke:rgba(255,255,255,.07);stroke-width:1.5;fill:none;
+      transition:opacity .4s ease}
+    .tri{stroke:rgba(255,255,255,.05);stroke-width:1.5;fill:none;
+      transition:opacity .4s ease}
+    .node{cursor:pointer;transition:all .35s ease}
+    .node circle{
+      fill:rgba(15,26,51,.85);
+      stroke:rgba(255,255,255,.22);stroke-width:2;
+      transition:all .35s ease;
+    }
+    .node text{
+      fill:#e8eeff;font-size:18px;font-weight:850;
+      text-anchor:middle;dominant-baseline:middle;
+      transition:all .35s ease;pointer-events:none;
+    }
+    .node.dim{opacity:.28}
+    .node.dim circle{stroke:rgba(255,255,255,.10)}
+    .node.selected circle{
+      fill:rgba(125,211,252,.18);
+      stroke:#7dd3fc;stroke-width:3.5;
+      r:30;
+      filter:drop-shadow(0 0 16px rgba(125,211,252,.5));
+    }
+    .node.selected text{font-size:22px;fill:#fff}
+    .node.wing circle{
+      stroke:#fcd34d;stroke-width:3;
+      animation:wingPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes wingPulse{
+      0%,100%{stroke-opacity:1;r:24}
+      50%{stroke-opacity:.5;r:27}
+    }
+    .node.integration circle{
+      stroke:#86efac;stroke-width:3;
+      filter:drop-shadow(0 0 10px rgba(134,239,172,.4));
+    }
+    .node.disintegration circle{
+      stroke:#fda4af;stroke-width:3;
+      filter:drop-shadow(0 0 10px rgba(253,164,175,.4));
+    }
+
+    /* Arrows */
+    .arrow{stroke-width:2.5;fill:none;stroke-dasharray:6 4;opacity:0;transition:opacity .5s ease}
+    .arrow.show{opacity:.9;animation:arrowDraw 1.2s ease forwards}
+    .arrow.green{stroke:#86efac;marker-end:url(#arrowGreen)}
+    .arrow.red{stroke:#fda4af;marker-end:url(#arrowRed)}
+    @keyframes arrowDraw{
+      from{stroke-dashoffset:200;opacity:0}
+      to{stroke-dashoffset:0;opacity:.9}
+    }
+
+    /* Wing lines */
+    .wingLine{stroke:rgba(252,211,77,.6);stroke-width:2;opacity:0;transition:opacity .5s ease}
+    .wingLine.show{opacity:.7}
+
+    /* Levels overlay */
+    .levelGradient{opacity:0;transition:opacity .6s ease}
+    .levelGradient.show{opacity:.85}
+
+    /* Instinct rings */
+    .instinctRing{fill:none;stroke-width:2.5;opacity:0;transition:opacity .6s ease}
+    .instinctRing.show{opacity:.9}
+    .instinctRing.sp{stroke:#fcd34d}
+    .instinctRing.so{stroke:#86efac}
+    .instinctRing.sx{stroke:#fda4af}
+
+    /* Side panel */
+    .panel{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);box-shadow:var(--shadow);
+      padding:22px 22px;
+      display:flex;flex-direction:column;
+      min-height:540px;
+    }
+    .panel .step{
+      font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;
+      color:#7dd3fc;font-weight:800;margin:0 0 6px;
+    }
+    .panel h2{
+      margin:0 0 12px;font-size:24px;letter-spacing:.2px;line-height:1.15;color:#fff;
+    }
+    .panel .intro{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.55}
+    .panel .body{flex:1;overflow:auto}
+    .panel .body p{margin:0 0 10px;font-size:15px;line-height:1.65;color:#e8eeff}
+    .panel .body ul{margin:6px 0 12px;padding-left:20px}
+    .panel .body li{margin:4px 0;font-size:14.5px;line-height:1.55}
+
+    .nav{
+      display:flex;justify-content:space-between;gap:8px;
+      margin-top:18px;padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .nav button{
+      flex:1;padding:11px 16px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);font-weight:700;font-size:14px;cursor:pointer;
+      transition:background .14s ease, border-color .14s ease, transform .06s ease;
+    }
+    .nav button:hover:not(:disabled){background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+    .nav button:active{transform:translateY(1px)}
+    .nav button:disabled{opacity:.4;cursor:not-allowed}
+    .nav button.primary{
+      background:linear-gradient(135deg,rgba(125,211,252,.20),rgba(196,181,253,.10));
+      border-color:rgba(125,211,252,.45);color:#fff;
+    }
+    .nav button.primary:hover:not(:disabled){
+      background:linear-gradient(135deg,rgba(125,211,252,.28),rgba(196,181,253,.18));
+    }
+
+    /* Sub-sections */
+    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 14px}
+    @media(max-width:520px){.twoCol{grid-template-columns:1fr}}
+    .miniCard{
+      padding:12px 14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.16);
+    }
+    .miniCard .lbl{
+      font-size:11px;letter-spacing:.8px;text-transform:uppercase;
+      color:#fde68a;font-weight:800;margin:0 0 4px;
+    }
+    .miniCard h4{margin:0 0 6px;font-size:14.5px;color:#fff}
+    .miniCard p{margin:0;font-size:13px;line-height:1.5;color:#e8eeff}
+
+    .levelStack{display:flex;flex-direction:column;gap:6px;margin:8px 0 12px}
+    .levelRow{
+      display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:center;
+      padding:10px 12px;border-radius:10px;
+      border-left:3px solid currentColor;
+      background:rgba(255,255,255,.03);font-size:13.5px;line-height:1.45;
+    }
+    .levelRow.healthy{color:#86efac}
+    .levelRow.average{color:#fcd34d}
+    .levelRow.unhealthy{color:#fda4af}
+    .levelRow .tag{font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:.6px}
+    .levelRow .desc{color:#e8eeff;font-style:italic}
+
+    .instinctCol{
+      padding:11px 13px;border-radius:11px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left:3px solid currentColor;
+    }
+    .instinctCol.sp{color:#fde68a}
+    .instinctCol.so{color:#bbf7d0}
+    .instinctCol.sx{color:#fecdd3}
+    .instinctCol h4{margin:0 0 4px;font-size:13.5px;color:#fff}
+    .instinctCol p{margin:0;font-size:12.8px;line-height:1.45;color:#e8eeff}
+
+    .portraitBox{
+      padding:14px 16px;border-radius:12px;
+      border:1px solid rgba(125,211,252,.30);
+      background:linear-gradient(135deg, rgba(125,211,252,.10), rgba(196,181,253,.05));
+      margin:10px 0;
+    }
+    .portraitBox h4{margin:0 0 6px;color:#bae6fd;font-size:13px;letter-spacing:.4px}
+    .portraitBox p{margin:0;font-size:14.5px;line-height:1.55;color:#fff}
+    .portraitBox em{color:#cfe9ff;font-style:normal;font-weight:600}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/comprendre-son-type.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/comprendre-son-type.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/comprendre-son-type.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="title" href="/en/index.html" style="text-decoration:none;color:var(--muted)">← Home</a>
+      <span class="badge">6 steps</span>
+    </div>
+
+    <div class="progress" id="progress" aria-label="Progress"></div>
+
+    <div class="stage">
+      <!-- Diagram -->
+      <div class="diagram">
+        <svg id="ennea" viewBox="0 0 700 700" aria-label="Enneagram diagram">
+          <defs>
+            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#86efac"/>
+            </marker>
+            <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#fda4af"/>
+            </marker>
+            <radialGradient id="levelGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#86efac" stop-opacity=".0"/>
+              <stop offset=".3" stop-color="#86efac" stop-opacity=".0"/>
+              <stop offset="1" stop-color="#fda4af" stop-opacity=".0"/>
+            </radialGradient>
+            <linearGradient id="levelVert" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#86efac" stop-opacity=".40"/>
+              <stop offset=".5" stop-color="#fcd34d" stop-opacity=".30"/>
+              <stop offset="1" stop-color="#fda4af" stop-opacity=".40"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Outer circle -->
+          <circle class="ring" cx="350" cy="350" r="250"/>
+
+          <!-- Inner lines (static, for structure) -->
+          <polygon class="tri" id="triPath" points="350,100 566,475 134,475"/>
+          <polygon class="hex" id="hexPath" points="511,159 435,585 596,307 189,159 104,307 566,475"/>
+
+          <!-- Arrows layer (one path per type drawn on demand) -->
+          <g id="arrowsLayer"></g>
+
+          <!-- Wing lines layer -->
+          <g id="wingLinesLayer"></g>
+
+          <!-- Levels overlay -->
+          <g class="levelGradient" id="levelOverlay">
+            <!-- rendered dynamically near selected node -->
+          </g>
+
+          <!-- Instinct rings layer -->
+          <g id="instinctsLayer"></g>
+
+          <!-- Nodes -->
+          <g id="nodesLayer">
+            <g class="node" data-n="9" tabindex="0"><circle cx="350" cy="100" r="24"/><text x="350" y="100">9</text></g>
+            <g class="node" data-n="1" tabindex="0"><circle cx="511" cy="159" r="24"/><text x="511" y="159">1</text></g>
+            <g class="node" data-n="2" tabindex="0"><circle cx="596" cy="307" r="24"/><text x="596" y="307">2</text></g>
+            <g class="node" data-n="3" tabindex="0"><circle cx="566" cy="475" r="24"/><text x="566" y="475">3</text></g>
+            <g class="node" data-n="4" tabindex="0"><circle cx="435" cy="585" r="24"/><text x="435" y="585">4</text></g>
+            <g class="node" data-n="5" tabindex="0"><circle cx="265" cy="585" r="24"/><text x="265" y="585">5</text></g>
+            <g class="node" data-n="6" tabindex="0"><circle cx="134" cy="475" r="24"/><text x="134" y="475">6</text></g>
+            <g class="node" data-n="7" tabindex="0"><circle cx="104" cy="307" r="24"/><text x="104" y="307">7</text></g>
+            <g class="node" data-n="8" tabindex="0"><circle cx="189" cy="159" r="24"/><text x="189" y="159">8</text></g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Content panel -->
+      <aside class="panel">
+        <p class="step" id="step">Step 0 / 6</p>
+        <h2 id="panelTitle">Choose your type</h2>
+        <p class="intro" id="panelIntro">Click a point on the diagram to begin the discovery journey.</p>
+        <div class="body" id="panelBody"></div>
+        <div class="nav">
+          <button id="btnPrev" disabled>← Previous</button>
+          <button id="btnNext" class="primary" disabled>Next →</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+  // Node coordinates
+  const POS = {
+    1:{x:511,y:159}, 2:{x:596,y:307}, 3:{x:566,y:475},
+    4:{x:435,y:585}, 5:{x:265,y:585}, 6:{x:134,y:475},
+    7:{x:104,y:307}, 8:{x:189,y:159}, 9:{x:350,y:100}
+  };
+
+  // Classic relationships
+  const WINGS = {1:[9,2],2:[1,3],3:[2,4],4:[3,5],5:[4,6],6:[5,7],7:[6,8],8:[7,9],9:[8,1]};
+  // Integration : growth / Disintegration : stress
+  const INTEGRATION =    {1:7, 2:4, 3:6, 4:1, 5:8, 6:9, 7:5, 8:2, 9:3};
+  const DISINTEGRATION = {1:4, 2:8, 3:9, 4:2, 5:7, 6:3, 7:1, 8:5, 9:6};
+
+  // Data per type — Type 2 complete, others as placeholder
+  const TYPES = {
+    1:{
+      name:"The Perfectionist",
+      short:"oriented toward the right, toward rectitude, toward ethical improvement.",
+      wings:{
+        a:{n:9, name:"1 with a 9 wing — The Idealist", desc:"More detached, contemplative, accommodating. Strong inner standards but a gentler expression. A philosophical tendency."},
+        b:{n:2, name:"1 with a 2 wing — The Advocate", desc:"Warmer, more militant, engaged with others. Moral standards they want to pass on. A more interpersonal tendency."}
+      },
+      arrows:{
+        int:{n:7, label:"Toward 7 (in growth)", desc:"When you grow, you become more joyful, spontaneous, open. You accept your impulses, let go of moral control, savor life without guilt."},
+        dis:{n:4, label:"Toward 4 (in stress)", desc:"When you crack, you become melancholic, withdrawn, hyper-critical of yourself. Anger turns back on you, shame rises."}
+      },
+      levels:{
+        healthy:"Wise and discerning. Accepts imperfection as part of reality. Their serenity radiates and inspires.",
+        average:"Perpetual critic. Judges whatever doesn't match their standards. Tense, irritable, controlling.",
+        unhealthy:"Punitive, obsessive, rigid. Becomes cruel toward self and others in the name of the “good.”"
+      },
+      instincts:{
+        sp:{name:"1 SP — Anxiety (of the home)", desc:"Control of the environment, hygiene, meticulous order. “Everything must be in its place.” The most anxious 1."},
+        so:{name:"1 SO — Non-Adaptability (the reformer)", desc:"Social reformer, moral militant. Wants to correct society, the organization, the group. An exemplary posture."},
+        sx:{name:"1 SX — Zeal (jealousy)", desc:"Seeks the morally ideal partner. Moral intensity in intimacy. The warmest, most jealous 1."}
+      }
+    },
+    2:{
+      name:"The Giver",
+      short:"oriented toward others, their needs, and their own desire to be loved.",
+      wings:{
+        a:{n:1, name:"2 with a 1 wing — The Servant", desc:"More discreet, more ethical, more contained. Gives with moral rigor, a sense of duty. A more introverted tendency."},
+        b:{n:3, name:"2 with a 3 wing — The Host", desc:"More charming, more ambitious, more socially visible. Gives in order to shine and be recognized. A more extroverted tendency."}
+      },
+      arrows:{
+        int:{n:4, label:"Toward 4 (in growth)", desc:"When you grow, you again become attentive to your own emotions, your inner life. You dare creativity, authenticity. You stop giving everything away and turn back toward yourself."},
+        dis:{n:8, label:"Toward 8 (in stress)", desc:"When you crack, you become demanding, authoritarian, accusatory. The softness falls away: “after everything I've done for you!” You explode what you had held contained."}
+      },
+      levels:{
+        healthy:"Loves freely, knows how to receive, can say no. Their generosity is unconditional, without calculation.",
+        average:"Gives while hoping to be recognized. Guesses others' needs and forgets themselves. Frustration lies beneath the surface.",
+        unhealthy:"Manipulates through giving, makes themselves indispensable, plays the victim. “Without me everything would fall apart.”"
+      },
+      instincts:{
+        sp:{name:"2 SP — Privilege", desc:"Gives in the concrete, the home, the practical. Seeks to earn a special place, discreet privileges in return."},
+        so:{name:"2 SO — Ambition", desc:"Gives to the group, animates, brings people together. Becomes the leader's mentor, the indispensable one of the collective."},
+        sx:{name:"2 SX — Seduction", desc:"Gives by intensely seducing a chosen partner. Energy of fascination, possessiveness, one-to-one intensity."}
+      }
+    },
+    3:{
+      name:"The Performer",
+      short:"oriented toward success, image, the admiration of others.",
+      wings:{
+        a:{n:2, name:"3 with a 2 wing — The Charmer", desc:"Warmer, sociable, courting. Works the relationship in order to succeed. The most engaging, most seductive 3."},
+        b:{n:4, name:"3 with a 4 wing — The Professional", desc:"More introverted, composed, artistically demanding. Serious, ambitious in creative or technical fields."}
+      },
+      arrows:{
+        int:{n:6, label:"Toward 6 (in growth)", desc:"When you grow, you become loyal, cooperative, trusting. You commit to others, beyond your own personal success."},
+        dis:{n:9, label:"Toward 9 (in stress)", desc:"When you crack, you become apathetic, disconnected, unmotivated. You abandon your goals, as if nothing mattered anymore."}
+      },
+      levels:{
+        healthy:"Authentic. Accepts their intrinsic worth without having to prove it. Sincerely inspires others.",
+        average:"Obsessed with image, success, comparison. Poses, presents a facade, measures everything against others' regard.",
+        unhealthy:"Deceptive, hollow inside, can destroy whatever threatens their image. Hostile, arrogant."
+      },
+      instincts:{
+        sp:{name:"3 SP — Material Security", desc:"Wants to be the model of the good, well-organized professional. Discreet about their success. Works hard, without bragging."},
+        so:{name:"3 SO — Prestige", desc:"Seeks titles, public recognition, social status. The most political, most visible 3."},
+        sx:{name:"3 SX — Charisma", desc:"The image of perfect seduction, attracts the ideal partner. Performance in intimacy, magnetic charm."}
+      }
+    },
+    4:{
+      name:"The Romantic",
+      short:"oriented toward the unique, the deep, the authentic, the expressive.",
+      wings:{
+        a:{n:3, name:"4 with a 3 wing — The Aristocrat", desc:"More extroverted, ambitious, cultivates their artistic image. Seeks recognition for their originality."},
+        b:{n:5, name:"4 with a 5 wing — The Bohemian", desc:"More introverted, contemplative, marginal. A solitary creative, indifferent to outside recognition."}
+      },
+      arrows:{
+        int:{n:1, label:"Toward 1 (in growth)", desc:"When you grow, you become disciplined, principled. You put your gifts at the service of the world, step out of emotional self-absorption."},
+        dis:{n:2, label:"Toward 2 (in stress)", desc:"When you crack, you become clingy, self-sacrificing. You seek to merge with someone so as not to feel abandoned."}
+      },
+      levels:{
+        healthy:"Deep, creative, transforms experience into meaning. Lives their singularity without isolating from others.",
+        average:"Melancholic. Constant comparison with others, a feeling of lack. Self-referential, dramatic.",
+        unhealthy:"Depressive, self-destructive. Rejects what could help them. Deep shame, can sink further."
+      },
+      instincts:{
+        sp:{name:"4 SP — Endurance (Tenacity)", desc:"A stoic style. Suffers in silence, disdains comfort. The “stoic” of the triad — paradoxically the 4 who complains the least."},
+        so:{name:"4 SO — Shame", desc:"Hyperaware of their social difference. A feeling of inferiority or superiority in relation to the group."},
+        sx:{name:"4 SX — Competition", desc:"Wants to be the only one in the eyes of the beloved. Intensity, jealousy, romantic drama. The most passionate 4."}
+      }
+    },
+    5:{
+      name:"The Observer",
+      short:"oriented toward knowledge, autonomy, mental mastery.",
+      wings:{
+        a:{n:4, name:"5 with a 4 wing — The Iconoclast", desc:"Creative, intuitive, a rich and eccentric inner world. Unconventional thought, an aesthete."},
+        b:{n:6, name:"5 with a 6 wing — The Problem-Solver", desc:"More analytical, wary, theoretical. Systematic thought, cautious, an expert in a discipline."}
+      },
+      arrows:{
+        int:{n:8, label:"Toward 8 (in growth)", desc:"When you grow, you become assertive, confident, embodied. You take your place with strength, step out of the ivory tower."},
+        dis:{n:7, label:"Toward 7 (in stress)", desc:"When you crack, you become scattered, mentally hyperactive. You flee into distractions, can no longer sit still."}
+      },
+      levels:{
+        healthy:"Visionary, lucid, a generous expert of their knowledge. Inhabits their body, contributes to the world.",
+        average:"Theoretical, withdrawn. Accumulates knowledge, conserves their energy and emotions. Distant.",
+        unhealthy:"Isolated, nihilistic, sometimes paranoid. Hostile to the world, suffocated by their own mental constructions."
+      },
+      instincts:{
+        sp:{name:"5 SP — Refuge / Castle", desc:"Wants a space of their own, untouchable. Materially minimalist, frugal. The most withdrawn 5."},
+        so:{name:"5 SO — Totem", desc:"Seeks groups of experts, intellectual niches. A recognized specialist in a rare discipline."},
+        sx:{name:"5 SX — Confidence", desc:"Seeks a partner to confide their secret inner world to. Intensity through mental complicity."}
+      }
+    },
+    6:{
+      name:"The Loyal Skeptic",
+      short:"oriented toward security, reliability, anticipating danger.",
+      wings:{
+        a:{n:5, name:"6 with a 5 wing — The Defender", desc:"More intellectual, independent, serious. A cautious, technical tendency, an expert in some domain of security."},
+        b:{n:7, name:"6 with a 7 wing — The Companion", desc:"More extroverted, jovial, seeking affiliation. A sociable, charming tendency, loyal to their group."}
+      },
+      arrows:{
+        int:{n:9, label:"Toward 9 (in growth)", desc:"When you grow, you become calm, confident, you trust life. Anxiety gives way to a quiet peace."},
+        dis:{n:3, label:"Toward 3 (in stress)", desc:"When you crack, you become high-performing, competitive. You polish your image to reassure yourself, flee into action."}
+      },
+      levels:{
+        healthy:"Courageous, loyal, reliable. Faith in themselves and beyond themselves. A pillar for others.",
+        average:"Anxious, doubting. Catastrophic scenarios. Oscillates between submission to authority and rebellion against it.",
+        unhealthy:"Paranoid, self-destructive. Sees threats everywhere, can tip into panic or aggression."
+      },
+      instincts:{
+        sp:{name:"6 SP — Warmth", desc:"Seeks close alliances, home, solid family ties. Defuses anxiety through human warmth."},
+        so:{name:"6 SO — Duty", desc:"Very aware of rules, hierarchies. Loyal to the institution. The “good student” 6, the good citizen."},
+        sx:{name:"6 SX — Strength/Beauty (counterphobic)", desc:"Confronts their fears through intensity, seduction, audacity. Provocative. The 6 who resembles an 8."}
+      }
+    },
+    7:{
+      name:"The Epicure",
+      short:"oriented toward pleasure, stimulation, freedom, possibilities.",
+      wings:{
+        a:{n:6, name:"7 with a 6 wing — The Entertainer", desc:"More loyal, anxious, sociable and faithful. A more relational tendency, a sense of group and humor."},
+        b:{n:8, name:"7 with an 8 wing — The Realist", desc:"More assertive, materialistic, ambitious and pragmatic. An entrepreneurial tendency, bold, conquering."}
+      },
+      arrows:{
+        int:{n:5, label:"Toward 5 (in growth)", desc:"When you grow, you become deep, focused. You stay with one single thing, step out of scattering, you probe."},
+        dis:{n:1, label:"Toward 1 (in stress)", desc:"When you crack, you become critical, perfectionistic, irritable. You moralize, turn rigid, attack the lack in others."}
+      },
+      levels:{
+        healthy:"Joyful, satisfied, savors what is. Fully present to the moment. Grateful, generous.",
+        average:"Excited, scattered. Multiplies options, flees boredom and discomfort. Over-consumes, flits about.",
+        unhealthy:"Compulsive, manic. Frantic flight. Collapse when distractions no longer suffice."
+      },
+      instincts:{
+        sp:{name:"7 SP — Sharing Tribe", desc:"Cultivates a support network, pleasant indulgence. A family of friends, the pleasures of everyday life."},
+        so:{name:"7 SO — Sacrifice", desc:"Paradoxically the most “serious” 7, aware of limits. Sacrifices their own pleasures to help the collective."},
+        sx:{name:"7 SX — Fascination", desc:"Seeks the experience that dazzles. A romantic idealist, propels the other into the dream. The most intense 7."}
+      }
+    },
+    8:{
+      name:"The Protector",
+      short:"oriented toward strength, control, protecting one's own.",
+      wings:{
+        a:{n:7, name:"8 with a 7 wing — The Maverick", desc:"More adventurous, entrepreneurial, bold. An extroverted, energetic tendency, ambitious in the world."},
+        b:{n:9, name:"8 with a 9 wing — The Bear", desc:"Calmer, more contained, a composed authority. A more down-to-earth tendency, quiet strength, less explosive."}
+      },
+      arrows:{
+        int:{n:2, label:"Toward 2 (in growth)", desc:"When you grow, you become tender, caring. You open your heart, sincerely take care of others."},
+        dis:{n:5, label:"Toward 5 (in stress)", desc:"When you crack, you become withdrawn, secretive, paranoid. You plan your revenge in isolation, lose your energy."}
+      },
+      levels:{
+        healthy:"Magnanimous, heroic. Protects and inspires. Open and vulnerable despite their apparent strength.",
+        average:"Intimidating, controlling. Goes toward confrontation. Holds the environment through their strength, doesn't bend.",
+        unhealthy:"Tyrannical, destructive, merciless. Sees the other as an obstacle to crush. Vengeance."
+      },
+      instincts:{
+        sp:{name:"8 SP — Satisfactory Survival", desc:"Wants control of their material territory, their concrete security. Sensual, demanding about comfort."},
+        so:{name:"8 SO — Solidarity / Friendship", desc:"The pack leader. Loyal to their group, protects their own against injustice. The most social 8."},
+        sx:{name:"8 SX — Possession", desc:"Intense fusion with the chosen partner. Possessiveness, conquest, jealousy. The most passionate 8."}
+      }
+    },
+    9:{
+      name:"The Mediator",
+      short:"oriented toward peace, harmony, avoiding conflict.",
+      wings:{
+        a:{n:8, name:"9 with an 8 wing — The Arbitrator", desc:"More assertive, down-to-earth. Can plant their feet, take a stand when necessary. An authoritative mediator."},
+        b:{n:1, name:"9 with a 1 wing — The Dreamer", desc:"More idealistic, contained, orderly. A more contemplative tendency, discreet moral values."}
+      },
+      arrows:{
+        int:{n:3, label:"Toward 3 (in growth)", desc:"When you grow, you become motivated, productive. You take your place, your desires matter, you accomplish."},
+        dis:{n:6, label:"Toward 6 (in stress)", desc:"When you crack, you become anxious, distrustful. Catastrophic scenarios, permanent doubt, you lose your calm."}
+      },
+      levels:{
+        healthy:"Present, grounded. A natural mediator. Their peace comes from within, not from avoiding reality.",
+        average:"Accommodating, complacent. Puts things off, dissolves into others, avoids their own priorities.",
+        unhealthy:"Dissociated, depressive. Neglects their own life. Passive-aggressive, stubborn. Extinguishes inwardly."
+      },
+      instincts:{
+        sp:{name:"9 SP — Appetite", desc:"Melts into physical comfort, routines, food, TV. “Inertia of the body.” The most earthbound 9."},
+        so:{name:"9 SO — Participation", desc:"The invisible member of the group. Accompanies, supports, doesn't shine. Sociable but without imposing themselves."},
+        sx:{name:"9 SX — Union / Merging", desc:"Blends into the beloved, loses their own contours. Lives through the other. The most passionate 9."}
+      }
+    }
+  };
+
+  // State
+  let state = { type:null, stage:0 };
+  const STAGES = 6; // 0=pick, 1=position, 2=wing, 3=arrows, 4=levels, 5=instincts, 6=portrait
+
+  // Initialize progress
+  function renderProgress(){
+    const wrap = document.getElementById('progress');
+    wrap.innerHTML = '';
+    for(let i=0; i<=STAGES; i++){
+      const d = document.createElement('div');
+      d.className = 'dot' + (i<state.stage?' done':'') + (i===state.stage?' cur':'');
+      wrap.appendChild(d);
+    }
+  }
+
+  // Click on nodes (stage 0 only)
+  document.querySelectorAll('.node').forEach(n=>{
+    n.addEventListener('click', ()=>{
+      if(state.stage !== 0) return;
+      const t = Number(n.dataset.n);
+      selectType(t);
+    });
+    n.addEventListener('keydown', e=>{
+      if((e.key==='Enter'||e.key===' ') && state.stage===0){
+        e.preventDefault();
+        selectType(Number(n.dataset.n));
+      }
+    });
+  });
+
+  function selectType(t){
+    state.type = t;
+    state.stage = 1;
+    render();
+  }
+
+  // Render diagram for current stage
+  function renderDiagram(){
+    const t = state.type;
+    const stage = state.stage;
+
+    // Reset all node classes
+    document.querySelectorAll('.node').forEach(n=>{
+      n.classList.remove('selected','dim','wing','integration','disintegration');
+    });
+
+    // Reset arrows
+    document.getElementById('arrowsLayer').innerHTML = '';
+    document.getElementById('wingLinesLayer').innerHTML = '';
+    document.getElementById('instinctsLayer').innerHTML = '';
+    document.getElementById('levelOverlay').classList.remove('show');
+    document.getElementById('levelOverlay').innerHTML = '';
+
+    if(!t) return;
+
+    const selNode = document.querySelector(`.node[data-n="${t}"]`);
+    selNode.classList.add('selected');
+
+    // Dim others (except in stage 0)
+    document.querySelectorAll('.node').forEach(n=>{
+      const num = Number(n.dataset.n);
+      if(num !== t) n.classList.add('dim');
+    });
+
+    // Stage 2 : wings
+    if(stage >= 2){
+      const [w1, w2] = WINGS[t];
+      [w1, w2].forEach(w=>{
+        const wn = document.querySelector(`.node[data-n="${w}"]`);
+        wn.classList.remove('dim');
+        wn.classList.add('wing');
+        // Wing line
+        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1', POS[t].x);
+        line.setAttribute('y1', POS[t].y);
+        line.setAttribute('x2', POS[w].x);
+        line.setAttribute('y2', POS[w].y);
+        line.setAttribute('class','wingLine show');
+        document.getElementById('wingLinesLayer').appendChild(line);
+      });
+    }
+
+    // Stage 3 : arrows
+    if(stage >= 3){
+      const intT = INTEGRATION[t];
+      const disT = DISINTEGRATION[t];
+      const intNode = document.querySelector(`.node[data-n="${intT}"]`);
+      const disNode = document.querySelector(`.node[data-n="${disT}"]`);
+      intNode.classList.remove('dim'); intNode.classList.add('integration');
+      disNode.classList.remove('dim'); disNode.classList.add('disintegration');
+
+      const al = document.getElementById('arrowsLayer');
+      // green : t -> intT
+      const aG = arrowLine(POS[t], POS[intT], 'green');
+      al.appendChild(aG);
+      const aR = arrowLine(POS[t], POS[disT], 'red');
+      al.appendChild(aR);
+    }
+
+    // Stage 4 : levels overlay (vertical gradient bar near node)
+    if(stage >= 4){
+      const ov = document.getElementById('levelOverlay');
+      const p = POS[t];
+      ov.innerHTML = `
+        <rect x="${p.x+40}" y="${p.y-80}" width="14" height="160" rx="7"
+              fill="url(#levelVert)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <text x="${p.x+62}" y="${p.y-66}" fill="#86efac" font-size="10" font-weight="800" letter-spacing=".6">HEALTHY</text>
+        <text x="${p.x+62}" y="${p.y+4}" fill="#fcd34d" font-size="10" font-weight="800" letter-spacing=".6">AVERAGE</text>
+        <text x="${p.x+62}" y="${p.y+76}" fill="#fda4af" font-size="10" font-weight="800" letter-spacing=".6">LOW</text>
+      `;
+      ov.classList.add('show');
+    }
+
+    // Stage 5 : instinct rings
+    if(stage >= 5){
+      const il = document.getElementById('instinctsLayer');
+      const p = POS[t];
+      ['sp','so','sx'].forEach((inst,i)=>{
+        const r = 38 + i*10;
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx', p.x);
+        c.setAttribute('cy', p.y);
+        c.setAttribute('r', r);
+        c.setAttribute('class', 'instinctRing show ' + inst);
+        c.style.transitionDelay = (i*120) + 'ms';
+        il.appendChild(c);
+      });
+    }
+  }
+
+  function arrowLine(from, to, color){
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    // Shorten the arrows so they don't overlap the circles
+    const dx = to.x - from.x, dy = to.y - from.y;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    const offset = 28;
+    const x1 = from.x + (dx*offset)/len;
+    const y1 = from.y + (dy*offset)/len;
+    const x2 = to.x - (dx*offset)/len;
+    const y2 = to.y - (dy*offset)/len;
+    line.setAttribute('x1', x1);
+    line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.setAttribute('class', `arrow show ${color}`);
+    return line;
+  }
+
+  // Render panel content for current stage
+  function renderPanel(){
+    const t = state.type;
+    const data = t ? TYPES[t] : null;
+    const stepEl = document.getElementById('step');
+    const titleEl = document.getElementById('panelTitle');
+    const introEl = document.getElementById('panelIntro');
+    const bodyEl = document.getElementById('panelBody');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    stepEl.textContent = `Step ${state.stage} / ${STAGES}`;
+    bodyEl.innerHTML = '';
+
+    btnPrev.disabled = state.stage <= 0;
+    btnNext.disabled = state.stage === 0 || state.stage >= STAGES;
+    if(state.stage === STAGES) btnNext.textContent = 'Done';
+    else btnNext.textContent = 'Next →';
+
+    if(state.stage === 0){
+      titleEl.textContent = 'Choose your type';
+      introEl.textContent = 'Click a point on the diagram to begin the discovery journey.';
+      return;
+    }
+
+    // Stage 1 : your point
+    if(state.stage === 1){
+      titleEl.textContent = `You are Type ${t} — ${data.name}`;
+      introEl.textContent = `Type ${t} is ${data.short}`;
+      bodyEl.innerHTML = `
+        <p>Here is your point on the diagram. Each type is defined by a <em>deep motivation</em>, a specific way of entering into relationship with life. But a type is never a single label: it has several dimensions that nuance it.</p>
+        <p>In the following steps, you'll discover these dimensions.</p>
+      `;
+      return;
+    }
+
+    // Stage 2 : wing
+    if(state.stage === 2){
+      titleEl.textContent = 'Your wing';
+      introEl.innerHTML = `The wing is the <em>secondary nuance</em> that colors your type. It's one of the two neighbors on the diagram.`;
+      if(data.wings){
+        bodyEl.innerHTML = `
+          <div class="twoCol">
+            <div class="miniCard"><div class="lbl">Wing ${data.wings.a.n}</div><h4>${data.wings.a.name}</h4><p>${data.wings.a.desc}</p></div>
+            <div class="miniCard"><div class="lbl">Wing ${data.wings.b.n}</div><h4>${data.wings.b.name}</h4><p>${data.wings.b.desc}</p></div>
+          </div>
+          <p>Everyone has a dominant wing, sometimes a subtle one. It explains why two people of the same type can seem different: one leans more toward ${data.wings.a.n}, the other toward ${data.wings.b.n}.</p>
+        `;
+      } else {
+        bodyEl.innerHTML = `<p>Detailed content for this type isn't yet available in this prototype. Choose type 2 to see the full version.</p>`;
+      }
+      return;
+    }
+
+    // Stage 3 : arrows
+    if(state.stage === 3){
+      titleEl.textContent = 'Your inner movements';
+      introEl.innerHTML = `Under stress and in growth, you move toward two other types. That's why you sometimes recognize yourself elsewhere.`;
+      if(data.arrows){
+        bodyEl.innerHTML = `
+          <div class="miniCard" style="border-left:3px solid #86efac;margin-bottom:8px">
+            <div class="lbl" style="color:#bbf7d0">${data.arrows.int.label}</div>
+            <p>${data.arrows.int.desc}</p>
+          </div>
+          <div class="miniCard" style="border-left:3px solid #fda4af">
+            <div class="lbl" style="color:#fecdd3">${data.arrows.dis.label}</div>
+            <p>${data.arrows.dis.desc}</p>
+          </div>
+          <p style="margin-top:12px">This doesn't change your type: you remain ${t}. But you temporarily take on some of the colors of the other point.</p>
+        `;
+      } else {
+        bodyEl.innerHTML = `<p>Detailed content for this type isn't yet available in this prototype. Choose type 2 to see the full version.</p>`;
+      }
+      return;
+    }
+
+    // Stage 4 : levels
+    if(state.stage === 4){
+      titleEl.textContent = 'Your current tone';
+      introEl.innerHTML = `Within a single type, one can be more or less “healthy.” This explains why you sometimes don't recognize yourself in the description.`;
+      if(data.levels){
+        bodyEl.innerHTML = `
+          <div class="levelStack">
+            <div class="levelRow healthy"><span class="tag">Healthy</span><span class="desc">${data.levels.healthy}</span></div>
+            <div class="levelRow average"><span class="tag">Average</span><span class="desc">${data.levels.average}</span></div>
+            <div class="levelRow unhealthy"><span class="tag">Low</span><span class="desc">${data.levels.unhealthy}</span></div>
+          </div>
+          <p>You oscillate between these levels depending on your life, your fatigue, your stress. Recognizing where you are is already the beginning of rising back up.</p>
+        `;
+      } else {
+        bodyEl.innerHTML = `<p>Detailed content for this type isn't yet available in this prototype.</p>`;
+      }
+      return;
+    }
+
+    // Stage 5 : instincts
+    if(state.stage === 5){
+      titleEl.textContent = 'Your instinctive flavor';
+      introEl.innerHTML = `Three basic energies orient your attention. That's why two people of the same type can live very different lives.`;
+      if(data.instincts){
+        bodyEl.innerHTML = `
+          <div class="instinctCol sp"><h4>${data.instincts.sp.name}</h4><p>${data.instincts.sp.desc}</p></div>
+          <div style="height:8px"></div>
+          <div class="instinctCol so"><h4>${data.instincts.so.name}</h4><p>${data.instincts.so.desc}</p></div>
+          <div style="height:8px"></div>
+          <div class="instinctCol sx"><h4>${data.instincts.sx.name}</h4><p>${data.instincts.sx.desc}</p></div>
+          <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">Everyone has a dominant instinct, a second one in support, and a third that is more repressed.</p>
+        `;
+      } else {
+        bodyEl.innerHTML = `<p>Detailed content for this type isn't yet available in this prototype.</p>`;
+      }
+      return;
+    }
+
+    // Stage 6 : portrait
+    if(state.stage === 6){
+      titleEl.textContent = 'Your complete portrait';
+      introEl.innerHTML = `Here are all the dimensions brought together on the diagram.`;
+      if(data.wings){
+        bodyEl.innerHTML = `
+          <div class="portraitBox">
+            <h4>Summary</h4>
+            <p>You are a <em>Type ${t}</em> — ${data.name}. You carry the influence of your neighbors <em>${data.wings.a.n}</em> and <em>${data.wings.b.n}</em>. In growth you touch the qualities of <em>${data.arrows.int.n}</em>, in stress you slide toward <em>${data.arrows.dis.n}</em>. And depending on your dominant instinct (self-preservation, social, or sexual), your type will be lived in a very different way.</p>
+          </div>
+          <p>To go further:</p>
+          <ul>
+            <li>Notice which neighbor (your wing) speaks to you the most.</li>
+            <li>Watch your moments of stress — where do you really slide toward?</li>
+            <li>Ask yourself: which instinct dominates my life right now?</li>
+          </ul>
+        `;
+      } else {
+        bodyEl.innerHTML = `<p>Simplified summary for this type in this prototype.</p>`;
+      }
+      return;
+    }
+  }
+
+  function render(){
+    renderProgress();
+    renderDiagram();
+    renderPanel();
+  }
+
+  // Navigation
+  document.getElementById('btnPrev').addEventListener('click', ()=>{
+    if(state.stage > 0){
+      state.stage--;
+      if(state.stage === 0) state.type = null;
+      render();
+    }
+  });
+  document.getElementById('btnNext').addEventListener('click', ()=>{
+    if(state.type && state.stage < STAGES){
+      state.stage++;
+      render();
+    }
+  });
+
+  // First render
+  render();
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

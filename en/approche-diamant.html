@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Diamond Approach — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    .head{text-align:center;max-width:820px;margin:0 auto 22px}
+    .head .diamond{
+      display:inline-block;font-size:18px;color:#7dd3fc;
+      letter-spacing:8px;margin-bottom:14px;
+      text-shadow:0 0 20px rgba(125,211,252,.35);
+    }
+    .head h1{
+      margin:0;font-size:clamp(30px,4.6vw,46px);letter-spacing:.3px;line-height:1.08;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 50%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .head .sub{margin:14px auto 0;color:var(--muted);font-size:16.5px;line-height:1.55;max-width:72ch}
+    .head .author{
+      margin:8px 0 0;color:#9fb1da;font-size:13px;
+      letter-spacing:1.2px;text-transform:uppercase;font-weight:700;
+    }
+
+    /* Intro */
+    .intro{
+      margin:28px auto 26px;max-width:880px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(96,165,250,.07), rgba(196,181,253,.04));
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:24px 26px;
+    }
+    .intro p{margin:0 0 12px;line-height:1.7;font-size:15.5px}
+    .intro p:last-child{margin-bottom:0}
+    .intro strong{color:#fff}
+    .intro em{color:#cfe9ff;font-style:normal;font-weight:600}
+
+    /* Schéma visuel : ego → essence */
+    .schema{
+      max-width:880px;margin:0 auto 36px;
+      padding:24px;border-radius:var(--radius);
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .schema h3{
+      margin:0 0 16px;text-align:center;
+      font-size:13px;letter-spacing:1.2px;text-transform:uppercase;
+      color:var(--muted);font-weight:700;
+    }
+    .schema svg{width:100%;height:auto;display:block;max-width:720px;margin:0 auto}
+
+    .sectionTitle{
+      text-align:center;font-size:13px;letter-spacing:1.2px;
+      text-transform:uppercase;color:var(--muted);font-weight:700;
+      margin:0 0 18px;
+    }
+
+    /* Cards des œuvres */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:14px;max-width:1000px;margin:0 auto 30px;
+    }
+    .card{
+      display:flex;flex-direction:column;gap:10px;
+      padding:20px 20px 18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      color:var(--text);text-decoration:none;
+      transition:transform .15s ease, background .18s ease, border-color .18s ease;
+      position:relative;overflow:hidden;
+      border-left-width:4px;
+    }
+    .card.active{border-left-color:#7dd3fc}
+    .card.soon{opacity:.55;cursor:default;border-left-color:rgba(255,255,255,.18)}
+    .card:not(.soon):hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(125,211,252,.35);
+      box-shadow:0 14px 40px rgba(125,211,252,.10);
+    }
+    .card .icon{
+      width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+      background:linear-gradient(135deg,rgba(125,211,252,.10),rgba(196,181,253,.06));
+      border:1px solid rgba(125,211,252,.25);
+      font-size:20px;font-weight:850;letter-spacing:.5px;color:#7dd3fc;
+    }
+    .card.soon .icon{
+      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.12);color:var(--muted);
+    }
+    .card .meta{
+      font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;
+      color:var(--muted);font-weight:700;
+    }
+    .card h2{margin:2px 0 0;font-size:17px;letter-spacing:.2px;line-height:1.3}
+    .card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55}
+    .card .more{
+      margin-top:auto;font-size:13px;font-weight:700;
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .card.active .more{color:#7dd3fc}
+    .card.soon .more{color:var(--muted)}
+    .badge{
+      position:absolute;top:14px;right:14px;
+      font-size:10.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+      padding:4px 9px;border-radius:999px;
+      background:rgba(125,211,252,.12);color:#bae6fd;
+      border:1px solid rgba(125,211,252,.30);
+    }
+    .card.soon .badge{background:rgba(255,255,255,.06);color:var(--muted);border-color:rgba(255,255,255,.16)}
+
+    .sectionGroup{margin:30px auto 0;max-width:1000px}
+    .sectionGroup h2{
+      margin:0 0 6px;font-size:22px;letter-spacing:.3px;
+      text-align:center;
+    }
+    .sectionGroup .lead{
+      text-align:center;color:var(--muted);font-size:14px;margin:0 0 18px;
+    }
+
+    .footnote{
+      margin:32px auto 0;max-width:880px;padding:18px 22px;
+      border:1px solid rgba(125,211,252,.20);border-radius:var(--radius);
+      background:rgba(125,211,252,.04);
+      color:var(--muted);font-size:13.5px;line-height:1.6;text-align:center;
+    }
+    .footnote strong{color:#bae6fd}
+
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/approche-diamant.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/approche-diamant.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/approche-diamant.html" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/index.html">← Home</a>
+      <a class="btn" href="/en/approches.html">Paths of transformation</a>
+    </div>
+
+    <header class="head">
+      <div class="diamond">◆ ◆ ◆</div>
+      <h1>The Diamond Approach</h1>
+      <p class="author">A.H. Almaas</p>
+      <p class="sub">A contemplative exploration of the Enneagram and the inner path, for those who wish to move beyond understanding their type toward a direct encounter with what, within, is not the ego.</p>
+    </header>
+
+    <section class="intro">
+      <p>The <strong>Diamond Approach</strong> offers a profound reading of human nature. It distinguishes <strong>personality</strong> — the set of strategies we have built to survive, which crystallize into the nine types of the Enneagram — from <strong>Essence</strong> — what exists in us before and beyond any construction.</p>
+      <p>This approach is neither a religion, nor a belief, nor a closed school. It is a <strong>method of inner investigation</strong> that draws on phenomenology (what is actually lived), depth psychology, and the contemplative wisdom of several traditions, to foster a direct encounter with what is. This method has a name: <em>inquiry</em> — an intimate, open questioning, without agenda.</p>
+      <p>For the Enneagram, its contribution is precious: each type is not only a defensive mechanism, but also the <strong>veil</strong> of an essential quality, of a <em>true perception of reality</em>. Recognizing your type is also beginning to glimpse the Holy Idea it conceals — and the Virtue that comes when this Idea awakens within us.</p>
+    </section>
+
+    <!-- Schéma visuel -->
+    <section class="schema">
+      <h3>The inner movement of the Diamond Approach</h3>
+      <svg viewBox="0 0 720 240" aria-label="From the veil to Essence">
+        <defs>
+          <linearGradient id="gradPers" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#fda4af" stop-opacity=".7"/>
+            <stop offset="1" stop-color="#fda4af" stop-opacity=".2"/>
+          </linearGradient>
+          <linearGradient id="gradEss" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#7dd3fc" stop-opacity=".25"/>
+            <stop offset="1" stop-color="#c4b5fd" stop-opacity=".7"/>
+          </linearGradient>
+          <radialGradient id="diam" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+            <stop offset=".5" stop-color="#cfe9ff" stop-opacity=".7"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity=".15"/>
+          </radialGradient>
+        </defs>
+        <!-- Bloc Personnalité (gauche) -->
+        <rect x="40" y="80" width="180" height="80" rx="14" fill="url(#gradPers)" stroke="rgba(253,164,175,.5)" stroke-width="1.5"/>
+        <text x="130" y="115" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" letter-spacing=".5">Personality</text>
+        <text x="130" y="138" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="12">the type · the defenses</text>
+
+        <!-- Flèche vers la pratique -->
+        <path d="M 230 120 L 290 120" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+        <polygon points="290,120 282,116 282,124" fill="rgba(255,255,255,.4)"/>
+
+        <!-- Diamant central : Inquiry -->
+        <polygon points="360,60 420,120 360,180 300,120" fill="url(#diam)" stroke="rgba(125,211,252,.6)" stroke-width="2"/>
+        <text x="360" y="116" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" letter-spacing=".5">Inquiry</text>
+        <text x="360" y="135" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="11">open inner</text>
+        <text x="360" y="150" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="11">questioning</text>
+
+        <!-- Flèche vers Essence -->
+        <path d="M 430 120 L 490 120" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+        <polygon points="490,120 482,116 482,124" fill="rgba(255,255,255,.4)"/>
+
+        <!-- Bloc Essence (droite) -->
+        <rect x="500" y="80" width="180" height="80" rx="14" fill="url(#gradEss)" stroke="rgba(196,181,253,.5)" stroke-width="1.5"/>
+        <text x="590" y="115" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" letter-spacing=".5">Essence</text>
+        <text x="590" y="138" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="12">the Ideas · the Virtues</text>
+
+        <!-- Soubassement : Basic Trust -->
+        <line x1="60" y1="210" x2="660" y2="210" stroke="rgba(125,211,252,.25)" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="360" y="226" text-anchor="middle" fill="rgba(125,211,252,.7)" font-size="11" font-style="italic" letter-spacing=".5">Basic Trust · Living Daylight</text>
+      </svg>
+    </section>
+
+    <p class="sectionTitle">The teachings</p>
+
+    <div class="sectionGroup">
+      <h2>The foundation</h2>
+      <p class="lead">The five teachings that form the heart of the approach.</p>
+      <div class="grid">
+
+        <a class="card active" href="/en/diamant-facettes-unite.html">
+          <span class="badge">Available</span>
+          <div class="icon">◆</div>
+          <h2>Holy Ideas &amp; essential keys</h2>
+          <p>The nine true perceptions of reality, their loss which forms each type's fixation, and the quality of Being that opens the way back.</p>
+          <span class="more">Discover →</span>
+        </a>
+
+        <a class="card active" href="/en/diamant-essence.html">
+          <span class="badge">Available</span>
+          <div class="icon">◆</div>
+          <h2>What is Essence?</h2>
+          <p>Distinguishing Essence from personality, and opening the way to its direct recognition.</p>
+          <span class="more">Discover →</span>
+        </a>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>The Pearl — becoming a true person</h2>
+          <p>The articulation between personality, Being, and Essence. The “Pearl” as authentic identity beyond the false self.</p>
+          <span class="more">Soon</span>
+        </div>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>The inner return — an overview</h2>
+          <p>A systematic presentation of the whole path proposed by the approach.</p>
+          <span class="more">Soon</span>
+        </div>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>Inquiry — the inner questioning</h2>
+          <p>The practical method: how to actually conduct <em>inquiry</em> — the inner exploration that dissolves fixations.</p>
+          <span class="more">Soon</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sectionGroup">
+      <h2>Going further</h2>
+      <p class="lead">Further explorations of specific dimensions of the path.</p>
+      <div class="grid">
+
+        <a class="card active" href="/en/diamant-amour.html">
+          <span class="badge">Available</span>
+          <div class="icon">◆</div>
+          <h2>Love — its many faces</h2>
+          <p>Almaas's trilogy on love: essential presence, the non-dual dimension of reality, and the way of the heart toward the Beloved.</p>
+          <span class="more">Discover →</span>
+        </a>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>Essential identity and narcissism</h2>
+          <p>On the “point” at the heart of the soul, the narcissistic dynamic, and the encounter with the true self beyond the image.</p>
+          <span class="more">Soon</span>
+        </div>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>Freeing yourself from the superego</h2>
+          <p>A precious entry point: recognizing the inner critical voice and disidentifying from it.</p>
+          <span class="more">Soon</span>
+        </div>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>Presence in the moment</h2>
+          <p>The <em>now</em> as an essential passage: how full presence in the moment opens inner flourishing.</p>
+          <span class="more">Soon</span>
+        </div>
+
+        <div class="card soon" aria-disabled="true">
+          <span class="badge">Coming soon</span>
+          <div class="icon">◇</div>
+          <h2>Diamond Heart — transmissions</h2>
+          <p>A series of transmissions on the approach's major themes, accessible to any inner seeker.</p>
+          <span class="more">Soon</span>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

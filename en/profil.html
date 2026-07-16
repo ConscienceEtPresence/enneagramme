@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <title>Enneagram Profile</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1XYJK71TC4');
+</script>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --muted:#9fb0d6;
+      --text:#eef2ff;
+      --line:rgba(255,255,255,.10);
+      --chip:rgba(255,255,255,.08);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      /* Palette de couleurs améliorée pour la lisibilité */
+      --accent: #4ade80; /* Vert pour les éléments d'interface standard */
+      --blue-title: #60a5fa; /* Bleu clair éclatant pour les titres */
+      --blue-label: #93c5fd; /* Bleu un peu plus doux pour les sous-titres/labels */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 20% 10%, rgba(99,102,241,.08), transparent 55%),
+        radial-gradient(900px 450px at 80% 10%, rgba(16,185,129,.05), transparent 55%),
+        radial-gradient(1100px 600px at 50% 110%, rgba(244,63,94,.04), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 100px}
+    .top{
+      display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .hero{
+      flex:1 1 540px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 6px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+      color: var(--blue-title);
+    }
+    .hero .sub{
+      color:var(--muted);
+      margin:0 0 10px;
+      font-size:14px;
+      display: none;
+    }
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      background:var(--chip);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:15px;
+      color: var(--blue-title);
+      letter-spacing:.2px;
+    }
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .select{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    }
+    select, input[type=search]{
+      appearance:none;
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:10px 12px;
+      color:var(--text);
+      outline:none;
+      width:100%;
+    }
+    .inline{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .inline > *{flex:1}
+    .hint{margin:8px 0 0;color:var(--muted);font-size:12px; display: none;}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumTitle{
+      display:flex;flex-direction:column;gap:2px
+    }
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color: var(--blue-title);
+    }
+    .sumTitle span{
+      font-size:12px;color:var(--muted)
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+    .content{
+      padding:0 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    /* CSS pour le formatage du texte riche */
+    .rich-text {
+      font-family: inherit;
+      font-size: 14px;
+      color: rgba(255,255,255,.92);
+      line-height: 1.7; /* Interligne légèrement augmenté */
+    }
+    /* Style pour les titres de section dans le texte (ex: "1. Présentation...") */
+    .highlight-title {
+      color: var(--blue-title);
+      font-weight: bold;
+      display: block;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    /* Style pour les labels devant les définitions (ex: "Passion :") */
+    .highlight-label {
+      color: var(--blue-label);
+      font-weight: 600;
+    }
+    /* Style pour les éléments de liste */
+    .highlight-list-item {
+      margin-bottom: 6px;
+      display: block;
+    }
+    /* Petits séparateurs discrets entre les paragraphes */
+    .rich-text .p {
+        margin-bottom: 10px;
+    }
+
+    .levelsWrap{
+      display:grid;
+      gap:10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+
+    .rangeLine{
+      width:100%;
+      padding:10px 10px 8px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:14px;
+    }
+    input[type=range]{
+      width:100%;
+      margin:8px 0 0;
+      accent-color: #22c55e;
+    }
+    .trackLabel{
+      display:flex;justify-content:space-between;gap:10px;
+      font-size:11px;color:var(--muted);
+      margin-top:6px;
+    }
+    .legend{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.82);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap}
+    button, .btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:600;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+    }
+    button:hover, .btn:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    button:active, .btn:active{transform:translateY(0)}
+    .barInfo{color:var(--muted);font-size:12px}
+
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+
+    /* === VISUAL REFINEMENT PATCH === */
+    :root{
+      --line: rgba(255,255,255,.16);
+      --text:#e8eeff;
+      --muted:#9fb1da;
+      --shadow:0 26px 72px rgba(2,10,28,.42);
+      --motion-fast:.14s;
+      --motion-ease:cubic-bezier(.22,.61,.36,1);
+    }
+    body{line-height:1.5}
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.5;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 4px);
+      mix-blend-mode:soft-light;
+    }
+    body > *{position:relative;z-index:1}
+    .hero,.card,details{
+      border-color:var(--line);
+      box-shadow:var(--shadow);
+    }
+    .hero{background:linear-gradient(180deg, rgba(21,31,58,.78), rgba(12,19,36,.74))}
+    .card,details{background:rgba(14,21,40,.74)}
+    .top{gap:16px;margin-bottom:18px}
+    .side{gap:14px}
+    .grid{gap:18px;margin-top:14px}
+    .hero h1,.sumTitle b{color:rgba(248,250,255,.98)}
+    .card h2{color:rgba(242,246,255,.96)}
+    .rich-text{
+      max-width:70ch;
+      color:rgba(228,236,255,.86);
+      line-height:1.82;
+    }
+    .rich-text .p,.rich-text p,.rich-text li{color:rgba(231,239,255,.88)}
+    summary:hover{background:linear-gradient(90deg, rgba(96,165,250,.10), rgba(255,255,255,0))}
+    button,.btn,summary{
+      transition:
+        transform var(--motion-fast) var(--motion-ease),
+        background-color var(--motion-fast) var(--motion-ease),
+        border-color var(--motion-fast) var(--motion-ease),
+        color var(--motion-fast) var(--motion-ease),
+        box-shadow var(--motion-fast) var(--motion-ease);
+    }
+
+
+    /* === READABILITY TYPO PATCH === */
+    .grid{gap:20px}
+    details + details{margin-top:2px}
+    summary{padding:15px 16px 14px}
+    .sumTitle b{font-size:16px;line-height:1.28}
+    .sumTitle span{font-size:12px;line-height:1.35;color:rgba(255,255,255,.66)}
+    .content{padding:0 16px 18px}
+    .card h2{font-size:15px;letter-spacing:.35px}
+    .rich-text{
+      max-width:68ch;
+      font-size:15.5px;
+      line-height:1.9;
+      letter-spacing:.005em;
+    }
+    .rich-text .p,.rich-text p{margin-bottom:12px}
+    .highlight-title{font-size:16px;line-height:1.34;margin-top:18px;margin-bottom:8px}
+    .highlight-list-item{margin-bottom:8px}
+    @media (max-width:640px){
+      summary{padding:14px 14px 12px}
+      .content{padding:0 14px 16px}
+      .rich-text{max-width:100%;font-size:15px;line-height:1.84}
+    }
+
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/profil.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/profil.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/profil.html" />
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Profile</h1>
+        <p class="sub" id="pageSub"></p>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Choose a type</h2>
+          <div class="inline">
+            <select id="typeSelect" aria-label="Choose a type"></select>
+            <button id="goBtn" type="button">Open</button>
+          </div>
+          <p class="hint">URL tip: /en/profil.html?type=1 to 9</p>
+        </div>
+
+        <div class="card" id="levelsCard">
+          <h2>Levels of development</h2>
+          <div class="levelsWrap">
+            <div class="badge" id="levelBadge"><span class="dot" id="levelDot"></span><span id="levelLabel">Level</span></div>
+            <div class="rangeLine">
+              <div class="trackLabel"><span>1</span><span>9</span></div>
+              <input id="levelRange" type="range" min="1" max="9" step="1" value="1">
+              <div class="legend">
+                <span class="pill"><span class="dot" style="background:#22c55e"></span>Healthy (1 to 3)</span>
+                <span class="pill"><span class="dot" style="background:#f59e0b"></span>Average (4 to 6)</span>
+                <span class="pill"><span class="dot" style="background:#ef4444"></span>Unhealthy (7 to 9)</span>
+              </div>
+            </div>
+            <div class="card" style="padding:12px;border-radius:14px;margin:0;background:rgba(0,0,0,.18)">
+              <pre id="levelText" style="white-space: pre-wrap; font-family: inherit; font-size: 14px; margin: 0;"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="sections"></div>
+
+    </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <button id="backBtn" type="button">Back</button>
+        <a class="btn" id="exploreBtn" href="/en/explore.html">Back to Explore the Enneagram</a>
+        <a class="btn" id="indexBtn" href="/en/index.html">Go to the index</a>
+      </div>
+      <div class="barInfo" id="barInfo"></div>
+    </div>
+  </div>
+
+  <script>
+    // VOS DONNÉES INTACTES
+    const PROFILES = {
+      1: {
+        title: `Type 1 - The Reformer / The Perfectionist`,
+        aliases: [`The Reformer`,`The Idealist`,`The Organizer`],
+        sub: `Complete profile + slider for the 9 levels of development`,
+        sections: [
+          {k:`Presentation and Identification`, d:``, t:`Type 1 - The Reformer / The Perfectionist
+
+1. Presentation and Identification
+Title and Identity : Type 1 is called the Reformer or the Perfectionist. This is a rational, idealistic personality type, characterized by solid principles, great self-control, and a constant pursuit of perfection. They are perceived as serious, upright people with a keen sense of right and wrong.
+Overall Definition : Type 1 is characterized by a deep desire to be a morally good person. Their energy is directed toward upholding high ideals and practicing great personal rigor. Convinced that there is always room for improvement, they constantly evaluate their own actions and those of others against standards of excellence. The 1 is driven by a desire for improvement, seeking to correct the disorder in their environment through practical, ethical action. They have a natural talent for organization, teaching, and championing noble causes, feeling invested with a life mission.
+Social Role : The Educator or the Teacher.`},
+
+          {k:`Structure and Psychological Dynamics`, d:``, t:`2. Structure and Psychological Dynamics
+Center of intelligence
+Type 1 belongs to the Instinctive center, which they use mainly turned inward, to act upon themselves.
+Hierarchy of centers:
+* Preferred Center : Instinctive (inward use)
+* Support Center : Emotional
+* Repressed Center : Mental
+Orientation
+Personal rigor and high ideals.
+Compulsion
+Avoiding anger at all costs (their own and other people's).
+Passion and Fixation
+* Passion (Heart) : Anger, which arises from the constant awareness of imperfection in the world and in oneself. It is often experienced as a permanent resentment in the face of imperfection.
+* Fixation (Head) : Perfectionism, which drives them to work ever harder to reach an absolute that is often out of reach. Endless checking and correcting of details.
+Defense mechanism
+Reaction formation. This mechanism consists of turning an unacceptable emotion (such as anger or the desire for pleasure) into its opposite (advice, help, or increased tension) in order to remain “perfect.” It involves taking an unacceptable emotion (such as anger) and expressing it through its opposite (such as well-meaning advice or constant support), while repressing the original impulse.
+Basic fears and desires
+* Basic fear : Being bad, corrupt, depraved, or defective.
+* Basic desire : Being good, virtuous, balanced, and possessing integrity.
+* Superego message : “You are good or right if you do what is right.”`},
+
+          {k:`Origins and Variants`, d:``, t:`3. Origins and Variants
+The Childhood Pattern
+The 1 has often felt the need to justify their existence by being a “good child” and taking on responsibilities early. They experienced a disconnection from the protective figure (often the father), which pushed them to become their own moral guide and to rigorously self-discipline in order to earn their independence.
+The Wing Subtypes
+* 1w9 (The Idealist) : More detached, calm, scholarly, and often reserved. They seek to improve things with a gentler, more philosophical touch.
+* 1w2 (The Advocate) : Warmer, more other-directed, persuasive, and active in social reform.
+The Three Instinctual Subtypes
+* Self-preservation (Anxiety) : Focused on self-control, health, budget, and domestic order. This person believes that the smallest mistake can compromise their security. They obsessively try to do everything right to avoid any danger. Often anxious about mistakes.
+* Social (Non-adaptability) : The “Crusader,” who represents objective values and seeks to reform society or their group. This subtype has a rigid view of how social interactions should unfold. They seek to correct and reform the group so it follows the rules.
+* Sexual (Jealousy) : Seeks a perfect relationship with an idealized partner and can become very critical if standards are not shared. The sexual 1 fears that their partner will reject them for someone more “beyond reproach.” They are extremely attentive to the details of the relationship and can be very critical of the other person so that they measure up to the ideal.`},
+
+          {k:`In the Workplace`, d:``, t:`4. Type 1 in the Workplace
+Professional profile
+Type 1 favors quality and ethics. They scrupulously follow procedures and discipline, viewing their work as a moral contract. They take their time deciding in order to avoid any mistake, favoring the concrete over abstractions.
+Management style
+They build rational, precise projects. Once the plan is approved, they give rigorous instructions and do not take well to having them questioned. Their difficulty delegating often stems from their fear of others' mistakes.
+Communication style
+Their communication is often calm, precise, and informative, favoring advice over direct confrontation. However, an underlying anger can be perceived by others through physical tension or a curt tone.
+Points of caution
+Type 1 can get lost in details, which risks slowing projects down. Their rigidity and excessive criticism can frustrate their colleagues.`},
+
+          {k:`Arrow Dynamics`, d:``, t:`5. Arrow Dynamics
+Stress Reaction (Disintegration)
+Toward Type 4. The 1 then becomes melancholic, irrational, feels lonely and misunderstood, and can lose themselves in romantic fantasies to escape their burdens.
+Integration Path (Growth)
+Toward Type 7. The 1 learns to relax, becomes more spontaneous, joyful, curious, and accepts a wider range of possibilities without judging.`},
+
+          {k:`Growth and Development`, d:``, t:`6. Growth and Development
+Areas for improvement to work on
+* Learning to be less perfectionistic by accepting that to err is human.
+* Focusing attention on the positive aspects of a situation before criticizing.
+* Practicing relaxation to release physical tension.
+* Being less demanding of others and valuing their abilities.
+* Developing a sense of humor.
+* Complimenting others and learning to listen to one's own emotional needs.
+Suggested Practices and Healing Attitudes
+Tell yourself : “Maybe others are right. Maybe I have done everything that could be done.”
+Integration (Higher Idea and Virtue)
+By freeing themselves from their compulsion, Type 1 integrates toward Type 7 (or Type 4).
+* Essence : This is the “true personality” freed from the automatisms of the ego, allowing connection to one's full potential.
+* Higher idea : Perfection. They realize that perfection is the best compromise between the ideal and reality here and now.
+* Virtue : Patience, accepting the pace of things and the world's imperfection with indulgence.`},
+
+          {k:`Spiritual Approach`, d:``, t:`7. Approach to the Holy Ideas (Spiritual Perspective)
+The Holy Idea
+Holy Perfection. This is the perception that reality is a complete and just process in every instant. Understanding that reality is already perfect as it is.
+The Specific Illusion
+Comparative Judgment. Believing that good and evil are absolutes and that some things are intrinsically better than others at the level of Being.
+The Specific Difficulty
+The feeling of being “bad,” a deep conviction of having an intrinsic manufacturing flaw.
+The Specific Reaction
+Improving oneself. An endless mental and practical activity aimed at correcting what is wrong.
+The Core of the Fixation
+The constellation formed by the sense of an intrinsic flaw (difficulty) and the obsessive activity of self-improvement (reaction).`},
+
+          {k:`Energetic Foundation`, d:``, t:`8. Energetic Foundation
+Basic Trust
+An innate, preverbal certainty that the universe is benevolent and that everything will ultimately turn out well.
+The Living Daylight
+The quality of Being that resembles a loving, universal awareness, perceived as the very substance of everything that exists.`},
+
+          {k:`Perspective and Solution`, d:``, t:`9. Perspective and Solution
+The Holy Idea as Psycho-catalyst
+It acts as a mirror that reveals and dissolves the ego's cognitive distortions.
+Restoring Basic Trust
+This comes through accepting one's existential powerlessness and discovering that reality supports us without any effort on our part.
+Surrender
+Ceasing to manipulate one's inner experience and letting Being unfold without interference.
+The Optimizing Force
+Recognizing that the dynamism of reality naturally tends toward harmony once we stop trying to “fix” it.`},
+
+          {k:`Analogy`, d:``, t:`10. Analogy
+Type 1 can be compared to a rigorous sculptor who, instead of contemplating the finished work, sees only the tiny rough patches in the stone that must be polished relentlessly. Their inner “little judge” is a constant voice reminding them that the work is never truly finished as long as a single imperfection remains.
+The gold analogy : A gold ring may be well or poorly shaped (relative perfection), but its deep nature remains pure gold (absolute, sacred perfection).`}
+        ],
+        levels: [
+          `Level 1 : Acceptance and Wisdom. At this stage, the 1 abandons the conviction that they are in a position to judge reality. They become deeply wise, discerning, and able to accept life as it is without emotional reaction, thereby reaching their basic desire: having total integrity.`,
+          `Level 2 : Evaluation and Reason. The person focuses on the directives of their superego to guide and protect themselves from the “disorderly” parts of themselves. Their self-image is that of a sensible, moderate, objective person.`,
+          `Level 3 : Integrity and Responsibility. The 1 reinforces their self-image by living according to their conscience and reason. They are highly ethical, disciplined, and teach by example, setting aside their personal desires for the good of all.`,
+          `Level 4 : Obligation and Effort. The 1 begins to fear that others are indifferent to their principles. They become serious, feel obligated to correct everything they see, and begin arguing with others to convince them of the rightness of their views.`,
+          `Level 5 : Self-control and Order. The fear of being condemned for any deviation from their ideals grows. The 1 forces themselves to live permanently by their own standards, organizing themselves rigorously. They become punctual and methodical, but also tense and irritable.`,
+          `Level 6 : Judgment and Criticism. They fear that others will spoil the order they have established and grow angry about it. They react by blaming others for failing to live up to their standards. They become perfectionistic, opinionated, and often sarcastic.`,
+          `Level 7 : Self-justification and Inflexibility. The 1 fears their ideals may be false, which makes them bitter and misanthropic. To save their self-image, they become extremely closed-minded, refuse all compromise, and become highly moralistic.`,
+          `Level 8 : Obsession and Contradiction. Desperate to control their irrational desires, they become obsessed with the parts of themselves they wanted to tame. Paradoxically, they begin acting on their repressed desires while continuing to publicly condemn them.`,
+          `Level 9 : Condemnation and Punishment. Realizing that they have lost control and are committing the very acts they cannot tolerate in others, the 1 becomes punitive. They try to eliminate the “cause” of their obsessions in themselves or in others, which can lead to self-mutilation, murder, or suicide.`
+        ],
+        levelsIntro: `The level of development is defined as a measure of how identified a person is with their personality structure, thereby serving as an indicator of their degree of freedom, awareness, and psychological health. At their simplest, they form a scale for assessing whether an individual is defensive and closed, or on the contrary, liberated and open.
+
+The levels of development of Type 1 (the Reformer) describe a continuum ranging from spiritual liberation and ethical wisdom to an obsessive and potentially destructive rigidity. According to the sources, these levels measure the degree to which a person is identified with their personality structure: the further down the levels one goes, the more the ego takes control and the more freedom of choice diminishes.`
+      },
+
+      2: {
+        title: `Type 2 - The Giver / The Helper`,
+        aliases: [`The Giver`,`The Helper`,`The One Who Helps`],
+        sub: `Complete profile + slider for the 9 levels of development`,
+        sections: [
+          {k:`Presentation and Identification`, d:``, t:`Type 2 - The Giver / The Helper
+1. Presentation and Identification
+Title and Identity : Type 2 is called the Giver, the Helper, or the One Who Helps. They are defined as the caring, generous, demonstrative, and possessive type. This is a relationship-centered person, seeking to be loved and appreciated for their kindness.
+Overall Definition : Type 2, often called the Helper or the Giver, places love and helping at the center of their existence. This is a warm person with a natural ability to perceive the needs and qualities of others in order to encourage them to fulfill themselves. They seek to be loved by making themselves indispensable through concrete help, often acting as a power behind the throne. The 2 is driven by an orientation toward love and helping. They have a natural talent for perceiving other people's needs, encouraging them, and acting as a warm confidant. They seek to build an image of being an indispensable, selfless person.
+Social Role : The “Special Friend” or the Confidant.`},
+
+          {k:`Structure and Psychological Dynamics`, d:``, t:`2. Structure and Psychological Dynamics
+Center of intelligence
+Type 2 belongs to the Emotional center, which they use mainly turned outward.
+Hierarchy of centers:
+* Preferred Center : Emotional (outward use)
+* Support Center : Instinctive
+* Repressed Center : Mental
+Orientation
+Love and helping.
+Compulsion
+Avoiding acknowledging their own needs.
+Passion and Fixation
+* Passion (Heart) : Pride, which shows up as pride in helping without needing help oneself. Seeing oneself as the source of help without needing anything oneself.
+* Fixation (Head) : Flattery (to charm) and Disdain (toward those who do not seem to need them, or who are “selfish”).
+Defense mechanism
+Repression. They suppress their own needs and the feelings that would not earn them the approval of others, in order to project an image of absolute generosity. They unconsciously suppress their own needs and feelings (such as aggression) that could harm their image as a loving person, in order to gain other people's approval.
+Basic fears and desires
+* Basic fear : Being unworthy of love, or not being wanted for themselves.
+* Basic desire : Feeling loved.
+* Superego message : “You are good or right if you are loved by others and if you are close to them.” `},
+
+          {k:`Origins and Variants`, d:``, t:`3. Origins and Variants
+The Childhood Pattern
+The 2 child has often felt that love was not free and that it had to be earned by being helpful and putting others' needs before their own. They learned to become a “little parent” or a mediator in order to get the attention of the nurturing figure.
+The Wing Subtypes
+* 2w1 (The Servant) : More serious, moralizing, and drawn to thankless tasks or public service.
+* 2w3 (The Host/Hostess) : More extraverted, charming, ambitious, and concerned with their social image.
+The Three Instinctual Subtypes
+* Self-preservation (Privilege) : Feels entitled. This subtype excessively sacrifices their own needs but expects, in return, the right to special treatment and to feel privileged. They expect special treatment in return for their extreme sacrifices.
+* Social (Ambition) : The ambitious one. They have a knack for spotting powerful or high-status people. They seek to assist them in order to gain indirect influence and protection. They seek influence and prestige by attaching themselves to powerful people.
+* Sexual (Aggressive Seduction) : A seducer who actively uses their charm to establish a strong, intimate relationship, often with people of power. They use their charm intensely to merge with a target person.`},
+
+          {k:`Warning Signs and Challenges`, d:``, t:`Warning Signs
+* Awakening Signal : “People-pleasing” (the compulsive tendency to want to please everyone).
+* Alarm Signal : The fear that their efforts to get closer to people are, in reality, only driving them away.
+Growth Challenges
+Learning to nurture themselves, set clear boundaries, and dare to say “no” without guilt.`},
+
+          {k:`In the Workplace`, d:``, t:`4. Type 2 in the Workplace
+Professional profile
+In the workplace, the 2 favors human relationships. They are positive, friendly, and have a vast internal network of relationships. However, they struggle to work alone and need their superiors' approval in order to be effective.
+Management style
+They are a mentoring manager who seeks to develop the potential of their colleagues. They favor improvisation over planning and can sometimes “smother” their team with excessive help.
+Communication style
+Their communication is warm and modulated. They use a “Help / Advice” style, often staying close to the other person to reinforce the bond.
+Points of caution
+They may neglect their own work priorities to help others, end up overloaded with tasks, or manipulate indirectly to gain recognition.`},
+
+          {k:`Arrow Dynamics`, d:``, t:`5. Arrow Dynamics
+Stress Reaction (Disintegration)
+Toward Type 8. The 2 then becomes abrupt, aggressive, angry, and demanding, openly blaming others for their lack of gratitude.
+Integration Path (Growth)
+Toward Type 4. The 2 learns to connect with their own deep emotions, becomes more authentic, and allows themselves to be creative for their own sake.`},
+
+          {k:`Growth and Development`, d:``, t:`6. Growth and Development
+Areas for improvement to work on
+* Learning to set boundaries and to say “No.”
+* Only helping when expressly asked to.
+* Separating rational factors from human factors when making decisions.
+* Accepting objective criticism without seeing it as a personal rejection.
+* Noting their own daily needs and not helping someone who has not explicitly asked for help.
+Suggested Practices and Healing Attitudes
+Practicing relaxation. Tell yourself : “Maybe I could let someone else do this. Maybe I could do something good for myself too.”
+Integration (Higher Idea and Virtue)
+By freeing themselves from their compulsion, Type 2 integrates toward Type 4 (or Type 8).
+* Essence : This is the state of the personality freed from the automatisms of the ego, accessing its full potential.
+* Higher idea : Freedom. They realize that their worth does not depend on their usefulness to others. Being freed from the need for approval.
+* Virtue : Humility, which consists of recognizing one's limits and caring for others while respecting their autonomy. Recognizing that love is not earned through effort.`},
+
+          {k:`Spiritual Approach`, d:``, t:`7. Approach to the Holy Ideas (Spiritual Perspective)
+The Holy Idea
+Holy Will / Holy Freedom. This is the perception that everything that happens is the functioning of the one reality, and that true freedom consists of surrendering to this flow.
+The Specific Illusion
+Separate Will. The conviction that there exists a separate “self” capable of making independent choices and manipulating reality at will.
+The Specific Difficulty
+Humiliating Castration. The feeling of being diminished and powerless when environmental support is lacking, experienced as a wound to pride.
+The Specific Reaction
+Obstinate Action. A stubborn, prideful attempt to “do it my way” to compensate for the feeling of powerlessness.
+The Core of the Fixation
+The constellation formed by the feeling of castration (difficulty) and the activity of obstinacy/manipulation (reaction).`},
+
+          {k:`Energetic Foundation`, d:``, t:`8. Energetic Foundation
+Basic Trust
+An innate certainty that the universe is benevolent and that everything ultimately turns out well without any personal manipulation.
+The Living Daylight
+The quality of Being perceived as an ever-present Universal Love that supports the soul at all times.`},
+
+          {k:`Perspective and Solution`, d:``, t:`9. Perspective and Solution
+The Holy Idea as Psycho-catalyst
+Understanding Holy Will dissolves the ego's cognitive error (the feeling of separation).
+Restoring Basic Trust
+This comes through recognizing that we do not have to “earn” our place or love, since we are already carried by reality.
+Surrender
+Ceasing to manipulate one's own states or those of others, and letting oneself be carried by the natural unfolding of life.
+The Optimizing Force
+Recognizing that reality spontaneously tends toward harmony once the ego stops interfering.`},
+
+          {k:`Analogy`, d:``, t:`10. Analogy
+Type 2 can be compared to the devoted host of a grand reception: they make sure every guest has everything they need, anticipate everyone's wishes, and seem to be everywhere at once to ensure everyone's comfort. Yet, in their zeal to serve, they often forget to sit down at the table themselves, secretly waiting for someone to notice their empty plate without having to ask.
+The Essence of the 2 : Like a flow of natural warmth that needs no direction in order to be felt.
+Type 2 is like a traveler on a train who keeps their heavy suitcase on their lap, afraid that if they set it down, the train will not be able to carry it; they must learn that the train (reality) is already carrying all the weight without them needing to make any effort.`}
+        ],
+        levelsIntro: `The level of development is defined as a measure of how identified a person is with their personality structure, thereby serving as an indicator of their degree of freedom, awareness, and psychological health. At their simplest, they form a scale for assessing whether an individual is defensive and closed, or on the contrary, liberated and open.
+
+The levels of development of Type 2 (the Helper) describe a continuum that measures how identified a person is with their personality structure. This continuum ranges from freedom and unconditional love (healthy levels) to dependency and a sense of victimization (unhealthy levels).`,
+        levels: [
+          `Level 1 : Self-care and Unconditional Love. The 2 abandons the belief that they have no right to attend to their own needs. They access their basic desire (to be loved) and feel unconditional love for themselves and for others. They become joyful, gracious, and humble.`,
+          `Level 2 : Empathy and Attentiveness. They focus on other people's feelings with loving concern to protect themselves from their fear of not being loved. Their self-image is: “I am loving, caring, and selfless.”`,
+          `Level 3 : Generosity and Support. They reinforce their self-image by concretely doing good things for others. They are encouraging, openly express their feelings, and share their talents enthusiastically.`,
+          `Level 4 : Wanting to Please. The 2 begins to fear that their efforts are not enough and that others do not want them around. They try to win people over through flattery, excessive support, and by trying to be indispensable.`,
+          `Level 5 : Possessiveness and Intrusiveness. They worry that their loved ones love someone else more than them. To make themselves necessary, they put others' needs before their own so as to have a “claim” on them. They become proud but demanding, never letting others out of their sight.`,
+          `Level 6 : Self-importance and Domination. They are angry at being taken for granted but cannot express their pain directly. They complain about their health, point out their good deeds, and remind others of everything they owe them. Repressed feelings cause physical problems.`,
+          `Level 7 : Self-justification and Manipulation. They fear driving people away, which is often the case. To save their self-image, they see others as “selfish ingrates.” They use pity to create dependency and prevent others from leaving.`,
+          `Level 8 : Entitlement and Coercion. Desperate, they pursue affection obsessively. They feel entitled to get everything they want because they have “suffered so much,” and may act unpredictably or inappropriately.`,
+          `Level 9 : Victimization and Burden. They realize they may have been selfish or even harmed others. They collapse physically and emotionally, playing the martyr to force others to take care of them.`
+        ]
+      },
+
+      3: {
+        title: `Type 3 - The Achiever / The Performer`,
+        aliases: [`The Achiever`,`The Performer`,`The One Who Succeeds`],
+        sub: `Complete profile + slider for the 9 levels of development`,
+        sections: [
+          {k:`Presentation and Identification`, d:``, t:`Type 3 - The Achiever / The Performer
+1. Presentation and Identification
+Title and Identity : Type 3 is called the Achiever or the Performer. This is the adaptable, success-oriented type, characterized by pragmatism, ambition, and concern for image. They are often called the “stars” of human nature because they embody the qualities valued by their culture.
+Overall Definition : Type 3, often called the Achiever or the One Who Succeeds, is a personality centered on the ability to accomplish and to succeed. This is a dynamic individual, highly relational, and especially attentive to their social image. They seek to be admired for their skills and concrete successes, often identifying entirely with their work. The 3 is driven by the need to feel effective and outstanding. They have a natural talent for organization, communication, and motivating others. They tend to confuse their identity with their work and their accomplishments.
+Social Role : “The Best.” `},
+
+          {k:`Structure and Psychological Dynamics`, d:``, t:`2. Structure and Psychological Dynamics
+Center of intelligence
+Type 3 belongs to the Emotional center, which they use both inward and outward in search of balance. Paradoxically, they repress this same center, which leads them to poorly know their own emotions. They favor the Emotional center (used to maintain the balance between inner and outer), but paradoxically repress it so as not to hinder their productivity.
+Hierarchy of centers:
+* Preferred Center : Emotional (inward/outward use)
+* Support Center : Instinctive
+* Repressed Center : Mental (Note : The Emotional center is also considered repressed in the 3, since they seek to keep it in balance)
+Orientation
+The ability to accomplish and to succeed.
+Compulsion
+Avoiding failure.
+Passion and Fixation
+* Passion (Heart) : Deceit (or Deception). This is a “sincere” lie to oneself, in which one ends up believing in the social role one plays, at the expense of one's real being. It is, above all, a lie to oneself, convincing oneself that one is the image of success one projects.
+* Fixation (Head) : Vanity and Success. They chase after admiration and outward marks of success. Vanity and the pursuit of success as proof of one's worth.
+Defense mechanism
+Identification. The 3 identifies with social norms and their professional role in order to mask their doubts or painful feelings. The 3 identifies so completely with their social role and their successes that they forget their true being, so as not to feel painful feelings such as fear or uncertainty.
+Basic fears and desires
+* Basic fear : Being worthless or of no intrinsic interest apart from their achievements.
+* Basic desire : Feeling valued, accepted, and desirable.
+* Superego message : “You are good or right if you succeed and others have a good opinion of you.” `},
+
+          {k:`Origins and Variants`, d:``, t:`3. Origins and Variants
+The Childhood Pattern
+The 3 child has often felt that they were valued not for themselves but for what they did. They developed a deep bond with the nurturing figure (often the mother) by seeking to meet her expectations in order to be loved. They learned to play the role of the “family hero.”
+The Wing Subtypes
+* 3w2 (The Charmer) : More extraverted, friendly, encouraging, and concerned with being loved.
+* 3w4 (The Professional) : More serious, focused on work, competence, and professional integrity.
+The Three Instinctual Subtypes
+* Self-preservation (Accumulation) : The “Workhorse.” They seek to secure their safety by accumulating money and costly or luxurious objects that symbolize their success. Seeks security through financial and material accumulation.
+* Social (Prestige) : The “Status Seeker.” They place supreme importance on prestige and on belonging to groups or companies that inspire admiration. Wants to be recognized as the best in their group or profession.
+* Sexual (Masculinity / Femininity) : The “Star” or the rare gem. They seek to embody the masculine or feminine ideal according to prevailing social standards, in order to be seen as an ideal partner. Seeks to embody the ideal of desirability in order to attract a partner.`},
+
+          {k:`Warning Signs and Challenges`, d:``, t:`Warning Signs
+* Awakening Signal : Beginning to believe that their worth depends exclusively on their success.
+* Alarm Signal : The fear that their successes are empty, or that their claims will be exposed as fraudulent.
+Growth Challenges
+Learning to slow down, take an interest in the long term, be attentive to others, and identify their true personal goals.`},
+
+          {k:`In the Workplace`, d:``, t:`4. Type 3 in the Workplace
+Professional profile
+The 3 is a hardworking, efficient, pragmatic worker. They handle pressure very well and know how to juggle several tasks at once. They often favor quantity and visible results at the expense of details or procedures.
+Management style
+A natural leader who carries their team along with their enthusiasm. They set clear goals and delegate easily, but may foster internal competition to boost productivity.
+Communication style
+Their style is best described as “Propaganda.” They are persuasive, warm, and adapt like a chameleon to whoever they are speaking with, in order to “sell” their projects or their image.
+Points of caution
+They risk burnout through hyperactivity and may neglect their health or their private life. Their excessive competitiveness can also create rivalries within their team.`},
+
+          {k:`Arrow Dynamics`, d:``, t:`5. Arrow Dynamics
+Stress Reaction (Disintegration)
+Toward Type 9. The 3 then becomes apathetic, disengaged, procrastinating, and loses themselves in pointless routines.
+Integration Path (Growth)
+Toward Type 6. The 3 learns to commit to others, becomes more loyal and cooperative, and finds an inner security instead of seeking admiration.`},
+
+          {k:`Growth and Development`, d:``, t:`6. Growth and Development
+Areas for improvement to work on
+* Learning to slow down and respect other people's pace.
+* Taking an interest in the long term rather than immediate profit.
+* Recognizing others' part in their successes and being more attentive to their needs.
+* Identifying their true personal goals beyond social recognition.
+* Developing their creativity without an audience and sharing their vulnerabilities with trusted friends.
+Suggested Practices and Healing Attitudes
+Practicing meditation to “simply be.” Tell yourself : “Maybe I do not need to be the best. Maybe people will accept me as I am.”
+Integration (Higher Idea and Virtue)
+By freeing themselves from their compulsion, Type 3 integrates toward Type 6 (or Type 9).
+* Essence : The state in which the personality expresses its real potential, freed from the pursuit of image.
+* Higher idea : Hope (or Holy Harmony, Holy Law). They realize that they do not need to force everything themselves and that success can come about naturally. This is the awareness that the whole universe functions as a dynamic, interconnected unity. Trust that the universe unfolds harmoniously.
+* Virtue : Truthfulness. They become able to be authentic and show who they truly are, accepting their failures as ordinary parts of life. Total authenticity.`},
+
+          {k:`Spiritual Approach`, d:``, t:`7. Approach to the Holy Ideas (Spiritual Perspective)
+The Holy Idea
+Holy Harmony, Holy Law, or Holy Hope. This is the awareness that the whole universe functions as a dynamic, interconnected unity.
+The Specific Illusion
+The Separate Actor. The conviction that one can act independently, in isolation from the rest of the universe.
+The Specific Difficulty
+Powerlessness. A deep sense of inadequacy and incapacity resulting from a lack of environmental support, filtered through the illusion of autonomy.
+The Specific Reaction
+Struggle. A restless, compulsive, reactive activity meant to prove one's capability and hide one's powerlessness.
+The Core of the Fixation
+The complex formed by the feeling of powerlessness and the reaction of endless struggle to succeed.`},
+
+          {k:`Energetic Foundation`, d:``, t:`8. Energetic Foundation
+Basic Trust
+The certainty that the flow of reality is intrinsically optimal and that one does not need to “force” things.
+The Living Daylight
+The perception of reality as a fluid, real-time flow, in which every moment is a new and harmonious creation.`},
+
+          {k:`Perspective and Solution`, d:``, t:`9. Perspective and Solution
+The Holy Idea as Psycho-catalyst
+It dissolves vanity by showing that action is a universal process of which the individual is only one part.
+Restoring Basic Trust
+This comes through accepting one's existential powerlessness, which is in fact a form of humility that opens the door to the action of Being.
+Surrender
+Ceasing to manipulate one's experience in order to “appear” a certain way, and letting oneself be carried by the natural movement of life.
+The Optimizing Force
+Recognizing that reality possesses an intrinsic intelligence that naturally guides the soul toward harmony once one stops trying to struggle.`},
+
+          {k:`Analogy`, d:``, t:`10. Analogy
+Type 3 is often compared to a chameleon. Just as this animal changes color according to its environment, the 3 changes their appearance, their speech, and their attitudes according to their audience's expectations, always trying to appear in their best light and ensure their success.
+The 3's ego : Like an actor so convinced by their role that they have forgotten their real name; Essence is the return to the simplicity of being oneself.
+Type 3 is like the pixels on a television screen: one believes one sees a person running (the separate actor), but in reality, it is the whole screen changing its configuration at once, harmoniously (Holy Law).`}
+        ],
+        levelsIntro: `The level of development is defined as a measure of how identified a person is with their personality structure, thereby serving as an indicator of their degree of freedom, awareness, and psychological health. At their simplest, they form a scale for assessing whether an individual is defensive and closed, or on the contrary, liberated and open.
+
+The levels of development of Type 3 (the Achiever) measure how identified a person is with their personality structure and their self-image. This continuum represents a scale of psychological freedom: the higher one goes, the more authentic and free one is; the lower one goes, the more one becomes an “automaton” of one's own image of success.`,
+        levels: [
+          `Level 1 : Inner-directed and Authentic. The 3 abandons the belief that their worth depends on other people's admiration. They discover their real identity and their deep desires, becoming authentic, modest, and kind.`,
+          `Level 2 : Adaptable and Admirable. They focus on the qualities valued by those around them in order to feel “worthwhile.” Their self-image is: “I am exceptional, competent, and have unlimited potential.”`,
+          `Level 3 : Goal-oriented and Self-improving. They reinforce their image by genuinely developing their talents. They become an inspiring, effective, disciplined role model, able to motivate others by example.`,
+          `Level 4 : Success-oriented and High-performing. They fear being outshone by others. They begin pushing themselves relentlessly to stand out and get attention through constant one-upmanship.`,
+          `Level 5 : Image-conscious and Expedient. They are afraid of losing others' esteem. They work frantically to cultivate the most appealing image possible, hiding their doubts behind a mask of being a “cool professional.”`,
+          `Level 6 : Self-promoting and Grandiose. They fear going unnoticed if they are not “huge.” They begin bragging, becoming competitive and arrogant to protect a self-esteem that has grown fragile and narcissistic.`,
+          `Level 7 : Unprincipled and Deceptive. They fear that their successes may be empty or fraudulent. To keep up appearances, they begin brazenly lying to themselves and to others, feeling empty and depressed inside.`,
+          `Level 8 : Duplicity and Opportunism. Desperate to get attention, they invent stories or schemes to hide their psychological deterioration. They will do anything to keep anyone from seeing their mistakes.`,
+          `Level 9 : Monomaniacal and Relentless. They feel they can no longer regain the admiration of those close to them. They may lose control of their repressed rage and seek revenge on those who, in their eyes, rejected or “humiliated” them.`
+        ]
+      },
+
+      4: { title:`Type 4 - The Romantic / The Individualist / The Artist`, aliases:[`The Romantic`,`The Individualist`,`The Artist`], sub:`Complete profile + slider for the 9 levels of development`, sections:[], levelsIntro:``, levels:[] },
+      5: { title:`Type 5 - The Observer / The Investigator / The Thinker`, aliases:[`The Observer`,`The Investigator`,`The Thinker`], sub:`Complete profile + slider for the 9 levels of development`, sections:[], levelsIntro:``, levels:[] },
+      6: { title:`Type 6 - The Loyalist / The Guardian / The Skeptic`, aliases:[`The Loyalist`,`The Guardian`,`The Skeptic`], sub:`Complete profile + slider for the 9 levels of development`, sections:[], levelsIntro:``, levels:[] },
+      7: { title:`Type 7 - The Enthusiast / The Epicure / The Generalist`, aliases:[`The Enthusiast`,`The Epicure`,`The Generalist`], sub:`Complete profile + slider for the 9 levels of development`, sections:[], levelsIntro:``, levels:[] },
+      8: { title:`Type 8 - The Leader / The Challenger / The Boss`, aliases:[`The Leader`,`The Challenger`,`The Boss`], sub:`Complete profile + slider for the 9 levels of development`, sections:[], levelsIntro:``, levels:[] },
+      9: { title:`Type 9 - The Mediator / The Peacemaker / The Conciliator`, aliases:[`The Mediator`,`The Peacemaker`,`The Conciliator`], sub:`Complete profile + slider for the 9 levels of development`, sections:[], levelsIntro:``, levels:[] }
+    };
+
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+
+    function esc(s){
+      return String(s||'')
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;');
+    }
+
+    function formatText(raw){
+      const lines = String(raw||'').replaceAll('\r','').split('\n');
+      const out = [];
+      let inList = false;
+
+      const flushList = ()=>{
+        if(inList){
+          out.push('</ul>');
+          inList=false;
+        }
+      };
+
+      const isMainTitle = (ln)=> /^Type\s+\d+\s+-\s+/.test(ln.trim()) || /^\d+\.\s+/.test(ln.trim());
+      const isKeyVal = (ln)=> {
+        const t = ln.trim();
+        if(!t) return false;
+        if(t.startsWith('* ')) return false;
+        if(isMainTitle(t)) return false;
+        const i = t.indexOf(' : ');
+        if(i<=0) return false;
+        const k = t.slice(0,i);
+        if(k.length>42) return false;
+        return true;
+      };
+
+      for(let i=0;i<lines.length;i++){
+        const ln0 = lines[i];
+        const ln = ln0.trim();
+
+        if(!ln){
+          flushList();
+          continue;
+        }
+
+        if(isMainTitle(ln)){
+          flushList();
+          out.push(`<div class="highlight-title">${esc(ln)}</div>`);
+          continue;
+        }
+
+        if(ln.startsWith('* ')){
+          if(!inList){
+            out.push('<ul>');
+            inList=true;
+          }
+          const content = ln.slice(2);
+          if (content.includes(' : ')) {
+             const [k, v] = content.split(' : ');
+             out.push(`<li class="highlight-list-item"><span class="highlight-label">${esc(k)}</span> : ${esc(v)}</li>`);
+          } else {
+             out.push(`<li class="highlight-list-item">${esc(content)}</li>`);
+          }
+          continue;
+        }
+
+        if(isKeyVal(ln)){
+          flushList();
+          const [k,v] = ln.split(' : ');
+          out.push(`<div class="p"><span class="highlight-label">${esc(k)}</span> : ${esc(v)}</div>`);
+          continue;
+        }
+
+        flushList();
+        out.push(`<div class="p">${esc(ln)}</div>`);
+      }
+
+      flushList();
+      return `<div class="rich-text">${out.join('')}</div>`;
+    }
+
+    function buildTypeSelect(){
+      const sel = qs('#typeSelect');
+      sel.innerHTML = '';
+      Object.keys(PROFILES).sort((a,b)=>+a-+b).forEach(k=>{
+        const p = PROFILES[k];
+        const opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = p.title || `Type ${k}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('details');
+      if(!t){
+        blocks.forEach(b=>b.style.display='');
+        return;
+      }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function renderProfile(typeId){
+      const p = PROFILES[typeId];
+      if(!p) return;
+
+      qs('#pageTitle').textContent = p.title || `Type ${typeId}`;
+      qs('#pageSub').textContent = '';
+
+      const chips = qs('#chips');
+      chips.innerHTML = '';
+      (p.aliases||[]).forEach(a=>{
+        const s = document.createElement('span');
+        s.className = 'chip';
+        s.textContent = a;
+        chips.appendChild(s);
+      });
+
+      const sec = qs('#sections');
+      sec.innerHTML = '';
+
+      /* J'ai masqué ce bloc car il encombrait et vous vouliez nettoyer */
+      /*
+      if(p.levelsIntro){
+        const det = document.createElement('details');
+        det.open = false;
+        det.innerHTML = `
+          <summary>
+            <div class=sumTitle>
+              <b>Définition des niveaux</b>
+            </div>
+            <span class=chev></span>
+          </summary>
+          <div class=content>${formatText(p.levelsIntro)}</div>
+        `;
+        sec.appendChild(det);
+      }
+      */
+
+      (p.sections||[]).forEach((s, idx)=>{
+        const det = document.createElement('details');
+        det.open = idx < 2;
+
+        det.innerHTML = `
+          <summary>
+            <div class=sumTitle>
+              <b>${esc(s.k)}</b>
+              <span>${esc(s.d || 'Expand to read')}</span>
+            </div>
+            <span class=chev></span>
+          </summary>
+          <div class=content>${formatText(String(s.t||'').replaceAll('Perspective Almaas','Perspective spirituelle'))}</div>
+        `;
+        sec.appendChild(det);
+      });
+
+      qs('#barInfo').textContent = `Type ${typeId}`;
+      qs('#typeSelect').value = String(typeId);
+
+      const hasLevels = Array.isArray(p.levels) && p.levels.length === 9;
+      qs('#levelsCard').style.display = hasLevels ? '' : 'none';
+
+      if(hasLevels){
+        const r = qs('#levelRange');
+
+        const updateLvlText = (val) => {
+           const idx = parseInt(val) - 1;
+           if(p.levels[idx]) {
+             qs('#levelText').textContent = p.levels[idx];
+             qs('#levelLabel').textContent = "Level " + val;
+
+             const dot = qs('#levelDot');
+             if(val <= 3) dot.style.background = '#22c55e';
+             else if(val <= 6) dot.style.background = '#f59e0b';
+             else dot.style.background = '#ef4444';
+           }
+        };
+
+        r.value = "1";
+        updateLvlText(1);
+
+        r.oninput = (e) => {
+          updateLvlText(e.target.value);
+        };
+      }
+    }
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+
+    function goToType(typeId){
+      typeId = String(typeId);
+      if(!PROFILES[typeId]){
+        typeId = Object.keys(PROFILES).sort((a,b)=>+a-+b)[0];
+      }
+      renderProfile(typeId);
+      window.scrollTo({top:0, behavior:'smooth'});
+
+      const u = new URL(location.href);
+      u.searchParams.set('type', typeId);
+      history.replaceState(null, '', u.toString());
+    }
+
+    buildTypeSelect();
+    const initial = getParam('type') || Object.keys(PROFILES).sort((a,b)=>+a-+b)[0];
+    goToType(initial);
+
+    qs('#goBtn').addEventListener('click', ()=>goToType(qs('#typeSelect').value));
+    qs('#typeSelect').addEventListener('change', ()=>goToType(qs('#typeSelect').value));
+    qs('#backBtn').addEventListener('click', ()=>history.back());
+
+    // Navigation clavier supprimée ici comme demandé.
+
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>My Journal — The Inner Mirror</title>
+  <style>html{background:#070b14}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/carnet.css?v=8">
+  <style>
+    .mc-card{padding:1.2rem 1.3rem;margin:1rem 0;border:1px solid rgba(168,182,220,.22);border-radius:14px;background:rgba(255,255,255,.02)}
+    .mc-label{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#8aa0c8;font-weight:600;margin-bottom:.5rem}
+    .mc-type{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#f5d77b;margin:.1rem 0}
+    .mc-prenom{color:#a8b6dc;margin:.1rem 0 .8rem;font-style:italic;font-family:'Cormorant Garamond',serif}
+    .mc-help{color:#a8b6dc;font-size:.92rem;line-height:1.55;margin:.2rem 0 .9rem}
+    .mc-linkrow{display:flex;gap:.5rem;flex-wrap:wrap}
+    .mc-linkrow .miroir-input{flex:1;min-width:12rem;font-size:.82rem;color:#cdd8f0}
+    .mc-warn{color:#f5d77b;font-style:italic}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/pages/carnet/mon-carnet/" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/pages/carnet/mon-carnet/" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/pages/carnet/mon-carnet/" />
+</head>
+<body class="miroir">
+  <div class="miroir-wrap" id="mount">
+    <p style="text-align:center;color:#a8b6dc">…</p>
+  </div>
+
+  <script type="module">
+    import { getSession, recoveryUrl } from '/assets/js/en/carnet/session.js';
+
+    const NOMS = {1:"The Idealist",2:"The Giver",3:"The Performer",4:"The Individualist",5:"The Observer",6:"The Loyalist",7:"The Enthusiast",8:"The Leader",9:"The Mediator"};
+    const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+    const s = getSession();
+    const mount = document.getElementById('mount');
+
+    if (!s || !s.type) {
+      window.location.replace('/en/pages/carnet/entrer/');
+    } else {
+      const url = recoveryUrl(s);
+      mount.innerHTML = `
+        <header class="miroir-header">
+          <a href="/en/pages/carnet/aujourdhui/" class="miroir-brand">
+            <span class="miroir-brand__mark"></span>
+            <span>The <em>Inner Mirror</em></span>
+          </a>
+          <div class="miroir-header__nav"><a href="/en/pages/carnet/aujourdhui/">Today</a></div>
+        </header>
+
+        <h1 class="miroir-h1 fade-in-up">My <em>journal</em></h1>
+        <p class="miroir-sub fade-in-up delay-1">Your type, and how to never lose your journal.</p>
+
+        <div class="mc-card fade-in-up delay-2">
+          <span class="mc-label">Your type</span>
+          <p class="mc-type">Type ${esc(s.type)} — ${esc(NOMS[s.type] || '')}</p>
+          ${s.prenom ? `<p class="mc-prenom">${esc(s.prenom)}</p>` : ''}
+          <a href="/en/pages/carnet/entrer/" class="miroir-btn miroir-btn--ghost">Change my type</a>
+        </div>
+
+        <div class="mc-card fade-in-up delay-3">
+          <span class="mc-label">Save / recover my journal</span>
+          <p class="mc-help">
+            This link reopens your journal on <strong>any device</strong>, with no code.
+            Keep it safe (bookmark it, or email it to yourself).
+            <span class="mc-warn">Don't share it: it gives access to your journal.</span>
+          </p>
+          <div class="mc-linkrow">
+            <input id="rlink" class="miroir-input" readonly value="${esc(url)}" onclick="this.select()">
+            <button id="copy" class="miroir-btn" type="button">Copy the link</button>
+          </div>
+          <span class="miroir-ok" id="ok">✓ copied</span>
+        </div>
+
+        <a href="/en/pages/carnet/aujourdhui/" class="miroir-back">← Back to the journal</a>
+      `;
+
+      document.getElementById('copy').addEventListener('click', async () => {
+        const inp = document.getElementById('rlink');
+        try {
+          await navigator.clipboard.writeText(inp.value);
+        } catch {
+          inp.focus(); inp.select();
+          try { document.execCommand('copy'); } catch {}
+        }
+        const ok = document.getElementById('ok');
+        ok.classList.add('is-visible');
+        setTimeout(() => ok.classList.remove('is-visible'), 2000);
+      });
+    }
+  </script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

@@ -72,6 +72,9 @@
       100%{stroke-opacity:1;stroke-width:2.2}
     }
   </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/" />
 </head>
 
 <body>
@@ -84,6 +87,10 @@
           ce qui nous porte, ce qui nous piège, et par où l'on peut s'en libérer pour toucher son essence.
         </p>
         <p id="subtitle" class="mi-sub-hint">Cliquez sur un type du diagramme pour explorer son fonctionnement.</p>
+        <div class="mi-langChoice" role="navigation" aria-label="Choix de langue — Language choice">
+          <a class="mi-langBtn on" href="/" aria-current="true" lang="fr">Français</a>
+          <a class="mi-langBtn" href="/en/" lang="en" onclick="try{localStorage.setItem('mi_lang','en')}catch(e){}">English</a>
+        </div>
       </div>
       <div class="actions">
         <button id="btnReset" type="button">Réinitialiser</button>
@@ -122,6 +129,23 @@
         opacity:.85;
       }
       .mi-top .actions { display:flex; justify-content:center; margin-top:.4rem; }
+      .mi-langChoice {
+        display:flex; justify-content:center; gap:.6rem; margin-top:1rem;
+      }
+      .mi-langBtn {
+        display:inline-block; padding:.5rem 1.35rem; border-radius:999px;
+        font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600;
+        color:#a8b6dc; text-decoration:none;
+        border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.03);
+        transition:all .18s ease; letter-spacing:.02em;
+      }
+      .mi-langBtn:hover { color:#f1f5ff; border-color:rgba(125,211,252,.5); transform:translateY(-1px); }
+      .mi-langBtn.on {
+        color:#f5d77b; border-color:rgba(245,215,123,.65);
+        background:linear-gradient(135deg,rgba(245,215,123,.14),rgba(245,215,123,.05));
+        box-shadow:0 0 14px rgba(245,215,123,.15);
+        pointer-events:none;
+      }
     </style>
 
     <main class="grid">
@@ -551,5 +575,6 @@
 
   <!-- 🫧 Pulse — compteur anonyme léger -->
   <script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
 </body>
 </html>

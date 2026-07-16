@@ -1,0 +1,150 @@
+{
+  "type": 3,
+  "name": "The Achiever",
+  "tagline": "The Achiever or the Performer",
+  "quick": {
+    "center": "Emotional",
+    "wings": "2 and 4",
+    "integr": "→ 6",
+    "disint": "→ 9"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, core issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Emotional (Heart)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Emotional." },
+            { "label": "Support center", "value": "Mental or Instinctive." },
+            { "label": "Repressed center", "value": "Emotional: the paradox of type 3, often disconnected from their authentic feelings in favor of functioning." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Used both inward and outward." },
+        { "label": "Core issue", "value": "The need for value and identity through achievement and the admiration of others." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, ego pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoiding failure at all costs." },
+        { "label": "Passion (Vice)", "value": "Deceit: self-deception, identifying with an image of success to mask an inner emptiness." },
+        { "label": "Fixation", "value": "Vanity: investing energy in a flattering facade and adapting to social expectations." },
+        { "label": "Defense mechanism", "value": "Identification: becoming the role, function, or projected image in order to succeed." },
+        { "label": "Ego pride", "value": "I succeed, I am effective." },
+        { "label": "Basic fear", "value": "Being worthless, without intrinsic value apart from their accomplishments." },
+        { "label": "Basic desire", "value": "Feeling valuable, admired and accepted." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            { "label": "Self-preservation", "value": "Security / Accumulation (workaholic): security through material success and hard work; often the most modest of the 3s." },
+            { "label": "Social", "value": "Prestige: shining and being recognized as the best within the group/society." },
+            { "label": "One-to-one (Sexual)", "value": "Masculinity-Femininity / Attractiveness (the pearl): success through appeal, the ideal partner, supporting the other's success." }
+          ]
+        },
+        { "label": "Social style", "value": "Assertive (ego-expansive): approaches people by taking center stage and setting the pace of the action." },
+        { "label": "Conflict management", "value": "Competency: sets feelings aside to stay effective and solution-oriented." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 2 (more sociable and encouraging) and wing 4 (more serious, introspective, style-oriented)." },
+        { "label": "Integration (Growth)", "value": "→ 6: cooperative, loyal, committed to the common good, accepts their vulnerabilities." },
+        { "label": "Disintegration (Stress)", "value": "→ 9: apathetic, disengaged, pointless routines, becomes robotic under pressure." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Hope, Holy Law, Holy Harmony: the universe unfolds according to a harmonious order, one is not alone in the doing." },
+        { "label": "Virtue", "value": "Truthfulness / Authenticity: being oneself without a mask, beyond performance." },
+        { "label": "Idealized aspect", "value": "Personal essence (the pearl): being a real person whose action flows from Being." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Helplessness (dismay)." },
+            { "label": "Specific reaction", "value": "Striving / constant effort." },
+            { "label": "Specific illusion", "value": "Separate doer: believing one must do everything oneself in order to exist." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner Little 6: fearful, seeking support, which performance tries to reassure." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, miscommunication.",
+      "items": [
+        { "label": "Speaking style", "value": "Propaganda / Self-promotion: presenting facts and oneself in the best light to motivate and convince." },
+        { "label": "Communication miscommunication", "value": "Motivation-Bragging: enthusiasm can be perceived as insincerity or arrogance." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Growth and relationships",
+      "desc": "Warning signs, practices, mix-ups, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Basing their worth on successes, workaholism, fleeing moments of inactivity/emptiness." },
+        { "label": "Growth practices", "value": "Slowing down, welcoming emotions, practicing non-doing, admitting their failures." },
+        { "label": "Frequent mix-ups", "value": "7 (energy); 1 (efficiency). Difference: 7 flees pain, 3 aims for results; 1 follows principles, 3 follows goals." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Devoted and effective; may sacrifice intimacy for status/career; fears not being loved if they aren't perfect." },
+            { "label": "At work", "value": "A leader and motivator, results-oriented; can become impatient with those judged to be slow." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and awareness",
+      "desc": "Levels 1–9, awareness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Authentic: shines naturally, acts truly, inspires effortlessly." },
+            { "n": 2, "text": "Role model: effective and humble, success in service of reality." },
+            { "n": 3, "text": "Self-assured: performs without betraying themselves, grounded in their values." },
+            { "n": 4, "text": "Competitor: seeks to win, optimizes image, compares." },
+            { "n": 5, "text": "Image-conscious pragmatist: adapts everything to the outcome and to others' perceptions." },
+            { "n": 6, "text": "Self-promoting narcissist: oversells, puts on a show, depends on approval." },
+            { "n": 7, "text": "Dishonest opportunist: manipulates appearances, bypasses ethics." },
+            { "n": 8, "text": "Malicious deceiver: lies, exploits others, cynicism." },
+            { "n": 9, "text": "Vindictive psychopath: coldness, exploitation, destruction to preserve the ego." }
+          ]
+        },
+        { "label": "Awareness", "value": "Moving from doing mode to being mode: worth is intrinsic and does not depend on achievements." },
+        { "label": "Spiral Dynamics", "value": "Strongly aligned with ORANGE: success, strategy, efficiency, materialism." },
+        { "label": "Analogy", "value": "A peacock: spreads its feathers to impress, forgetting that its beauty does not depend on others' gaze." }
+      ]
+    }
+  ]
+}

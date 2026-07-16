@@ -1,0 +1,159 @@
+{
+  "type": 4,
+  "name": "The Individualist",
+  "tagline": "The Romantic or the Tragic Romantic",
+  "quick": {
+    "center": "Emotional",
+    "wings": "3 and 5",
+    "integr": "→ 1",
+    "disint": "→ 2"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Fundamental structure and centers",
+      "desc": "Center, hierarchy, direction, core issue.",
+      "items": [
+        { "label": "Center of intelligence", "value": "Emotional (Heart center)." },
+        {
+          "label": "Hierarchy of centers",
+          "children": [
+            { "label": "Preferred center", "value": "Emotional." },
+            { "label": "Support center", "value": "Mental or Instinctive." },
+            { "label": "Repressed center", "value": "Instinctive/Action or Mental." }
+          ]
+        },
+        { "label": "Direction of use", "value": "Inward: focusing on their own feelings to define their identity." },
+        { "label": "Core issue", "value": "Identity (Who am I), personal worth, managing shame." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Ego dynamics",
+      "desc": "Compulsion, passion, fixation, defense, ego pride, fear, desire.",
+      "items": [
+        { "label": "Compulsion (Avoidance)", "value": "Avoiding banality or the ordinary at all costs." },
+        { "label": "Passion (Vice)", "value": "Envy: a feeling that others have something fundamental that is missing in oneself." },
+        { "label": "Fixation", "value": "Melancholy (Spleen), sometimes experienced as an aesthetic refinement of suffering." },
+        { "label": "Defense mechanisms", "value": "Introjection (absorbing outer affects to feel one exists) and artistic sublimation." },
+        { "label": "Ego pride", "value": "I am different, I am sensitive." },
+        { "label": "Basic fear", "value": "Having no real identity or personal significance." },
+        { "label": "Basic desire", "value": "Being themselves: creating a unique identity from inner experience." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Subtypes and social styles",
+      "desc": "Instincts, social style, conflict management.",
+      "items": [
+        {
+          "label": "Instincts / Subtypes",
+          "children": [
+            {
+              "label": "Self-preservation",
+              "value": "Fearlessness / Tenacity (the Sensualist): endures in silence, may take risks to feel alive or deny their vulnerability."
+            },
+            {
+              "label": "Social",
+              "value": "Shame (the Outsider): feels unable to fit in, exposes their sensitivity and sadness in order to be accepted."
+            },
+            {
+              "label": "One-to-one (Sexual)",
+              "value": "Competition / Hate: refuses shame through competition and arrogance, wants to be the most special for their partner."
+            }
+          ]
+        },
+        { "label": "Social style", "value": "Withdrawn: withdraws to protect their inner world." },
+        { "label": "Conflict management", "value": "Reactive: reacts intensely to losses and demands a strong emotional response." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Movement dynamics",
+      "desc": "Wings, integration, disintegration.",
+      "items": [
+        { "label": "Wings", "value": "Wing 3 (more extroverted, image-focused) and wing 5 (more solitary, intellectual, eccentric)." },
+        { "label": "Integration (Growth)", "value": "→ 1: more objective, disciplined, grounded in action, less a slave to moods." },
+        { "label": "Disintegration (Stress)", "value": "→ 2: dependent, manipulative, seeks attention through favors or emotional scenes." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Spiritual identity and core",
+      "desc": "Holy Idea, virtue, aspect, core, child of the soul.",
+      "items": [
+        { "label": "Holy Idea", "value": "Holy Origin: the soul is inseparable from its source, everything emanates from Being." },
+        { "label": "Virtue", "value": "Equanimity: staying present without being swept away by the waves of imagination." },
+        { "label": "Idealized aspect", "value": "Essential identity (the Point): a luminous, unique, irreplaceable presence." },
+        {
+          "label": "Core of the fixation",
+          "children": [
+            { "label": "Specific difficulty", "value": "Abandonment / Disconnection: feeling like a stranger to reality." },
+            { "label": "Specific reaction", "value": "Control: managing one's inner experience to mask the fear of loss." },
+            { "label": "Specific illusion", "value": "Separate identity: believing the self is an isolated entity." }
+          ]
+        },
+        { "label": "Child of the soul", "value": "The inner Little 1: felt defective, learned to use drama in order to exist." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Speaking style, miscommunication.",
+      "items": [
+        { "label": "Speaking style", "value": "Sad stories / Drama: vivid, symbolic, intense language." },
+        { "label": "Communication miscommunication", "value": "Authenticity-Affectation: the quest for truth can be perceived as artificial theatrics." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Growth and relationships",
+      "desc": "Warning signs, practices, mix-ups, interactions.",
+      "items": [
+        { "label": "Warning signs", "value": "Imagination used heavily to intensify feelings." },
+        { "label": "Growth practices", "value": "Not identifying with feelings, grounding in the present, daily discipline: doing before feeling." },
+        { "label": "Frequent mix-ups", "value": "1 (idealism), 2 (connection), 6 (anxiety), 9 (withdrawal)." },
+        {
+          "label": "Interactions and relationships",
+          "children": [
+            { "label": "In love", "value": "Intense, push-pull: draws in then pushes away out of fear of being overwhelmed or abandoned." },
+            { "label": "At work", "value": "Intuition and creativity, but possible inconsistency depending on inner weather." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Levels and awareness",
+      "desc": "Levels 1–9, awareness, spiral, analogy.",
+      "items": [
+        {
+          "label": "Levels of development",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Inspired creator: authentic, revealing presence, clear depth." },
+            { "n": 2, "text": "Self-aware and intuitive: fine sensibility, creativity in service of the truth." },
+            { "n": 3, "text": "Authentic: expresses their uniqueness without dramatizing, grounded in reality." },
+            { "n": 4, "text": "Imaginative aesthete: seeks intensity, strong emotional coloring." },
+            { "n": 5, "text": "Self-absorbed romantic: rumination, comparison, nostalgia." },
+            { "n": 6, "text": "Capricious exception: hypersensitivity, emotional demands, moodiness." },
+            { "n": 7, "text": "Alienated depressive: a feeling of lack, withdrawal, helplessness." },
+            { "n": 8, "text": "Emotionally tormented: amplified pain, instability, despair." },
+            { "n": 9, "text": "Self-destructive: collapse, self-sabotage, loss of bearings." }
+          ]
+        },
+        { "label": "Awareness", "value": "Moving from the trance of subjective emotion to self-remembering." },
+        { "label": "Spiral Dynamics", "value": "Often in tune with GREEN: empathy, respect for human uniqueness." },
+        { "label": "Analogy", "value": "A deep-sea diver: brings back treasures of meaning from the depths of human suffering." }
+      ]
+    }
+  ]
+}

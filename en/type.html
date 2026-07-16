@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Full profile</title>
+  <link rel="stylesheet" href="/assets/css/app.css?v=12" />
+  <link rel="stylesheet" href="/assets/css/type.css?v=12" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1XYJK71TC4');
+</script>
+
+  <style>
+    .siteFooter{margin:18px 0 10px;font-size:12px;opacity:.9}
+    .siteFooterInner{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .siteFooterLink{color:#fff;text-decoration:none}
+    .siteFooterLink:visited{color:#fff}
+    .siteFooterLink:hover{text-decoration:underline}
+
+    /* Masquer le Sommaire et passer en 1 colonne */
+    .navPanel{display:none !important;}
+    .typeGrid{grid-template-columns:1fr !important;}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/type.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/type.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/type.html" />
+</head>
+<body>
+  <div class="wrap typeWrap">
+    <header class="typeTop">
+      <a class="backBtn" href="/en/index.html">Back</a>
+
+      <div class="typeHead">
+        <h1 id="typeTitle">Full profile</h1>
+        <p id="typeSubtitle">—</p>
+      </div>
+
+      <div class="typeTools">
+        <input id="searchBox" type="search" placeholder="Search the profile…" />
+        <button id="btnExpandAll" type="button">Expand all</button>
+        <button id="btnCollapseAll" type="button">Collapse all</button>
+      </div>
+    </header>
+
+    <section class="quickBar">
+      <div class="qChip"><span class="qK">Type</span><span class="qV" id="qType">—</span></div>
+      <div class="qChip"><span class="qK">Center</span><span class="qV" id="qCenter">—</span></div>
+      <div class="qChip"><span class="qK">Wings</span><span class="qV" id="qWings">—</span></div>
+      <div class="qChip"><span class="qK">Integration</span><span class="qV" id="qIntegr">—</span></div>
+      <div class="qChip"><span class="qK">Disintegration</span><span class="qV" id="qDisint">—</span></div>
+    </section>
+
+    <main class="typeGrid">
+      <section class="sectionsPanel">
+        <h2 class="panelTitle">Categories</h2>
+        <p class="panelHint">Click a card to open it. You can reorder the cards by dragging them.</p>
+
+        <div id="sectionsGrid" class="sectionsGrid"></div>
+      </section>
+
+      <aside class="navPanel">
+        <h2 class="panelTitle">Contents</h2>
+        <div id="toc" class="toc"></div>
+      </aside>
+    </main>
+
+    <footer class="siteFooter">
+      <div class="siteFooterInner">
+        <span>Brams — All rights reserved</span>
+        <a class="siteFooterLink" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=dialog" target="_blank" rel="noopener">✉️ Write to Brahms</a>
+      </div>
+    </footer>
+  </div>
+
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawerOverlay" id="drawerOverlay"></div>
+
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Section content">
+      <div class="drawerTop">
+        <div class="drawerTitleRow">
+          <div class="drawerIcon" id="drawerIcon">📌</div>
+          <div class="drawerTitles">
+            <div class="drawerTitle" id="drawerTitle">—</div>
+            <div class="drawerSub" id="drawerSub">—</div>
+          </div>
+        </div>
+        <div class="drawerActions">
+          <button id="btnPin" type="button">Pin</button>
+          <button id="btnClose" type="button">Close</button>
+        </div>
+      </div>
+
+      <div class="drawerBody">
+        <div id="drawerContent" class="drawerContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/en/type.js?v=12"></script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>

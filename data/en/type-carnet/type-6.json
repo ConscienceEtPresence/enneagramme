@@ -1,0 +1,156 @@
+{
+  "type": 6,
+  "nom": "The Loyalist",
+  "centre": {
+    "prefere": "mental",
+    "support": "emotionnel",
+    "reprime": "instinctif-autorite",
+    "prefere_libelle": "Mental (anticipation, vigilance)",
+    "reprime_libelle": "The inner authority",
+    "reprime_invitation": "Today, the center you are working with is your inner authority: trusting your own knowledge, without confirming it with others. You know more than you believe."
+  },
+
+  "dynamique_ego": {
+    "passion": "Fear",
+    "passion_explication": "A dull, mental fear: fear of danger, of support giving way, of error, of what is hidden. It feeds permanent doubt — about others, about oneself, about what one believes one knows.",
+    "fixation": "Doubt, vigilance, scenarios",
+    "compulsion_evitement": "Avoiding finding oneself alone, without support, without a framework.",
+    "peur_de_base": "Being without support, without a guide, lost.",
+    "desir_de_base": "Having a safe framework, a reliable authority, a compass."
+  },
+
+  "essence": {
+    "qualite_principale": "Living Faith",
+    "qualite_phrase": "You don't have to foresee everything — you are already carried.",
+    "horizons": [
+      "Trusting your own inner knowledge",
+      "Recognizing support when it comes — without doubting it",
+      "Feeling the inner foundation that cannot be seen",
+      "Acting despite fear, not against it"
+    ]
+  },
+
+  "intentions_du_matin": [
+    "Trust my own judgment once",
+    "Not ask for one more opinion — decide alone",
+    "Recognize a support without testing it",
+    "Act despite fear, gently",
+    "Suspend the catastrophe scenario for a few hours",
+    "Find my own voice in a situation",
+    "See the real danger, not the imagined danger",
+    "Honor my loyalty to something that deserves it",
+    "Receive a compliment as true"
+  ],
+
+  "pratiques_du_matin": [
+    "Before noon, make a decision without consulting anyone.",
+    "When a catastrophe scenario rises, tell it: 'thank you, noted. Now back to the present.'",
+    "Feel the ground under your feet. You are carried — it's a fact, not a promise.",
+    "Ask for support clearly — and accept that it's given to you.",
+    "Identify one thing you are certain of. Return to it as a foothold.",
+    "Do one small new thing — to train courage."
+  ],
+
+  "niveaux": {
+    "zones": [
+      { "id": "lumineux",   "icon": "☀",  "nom": "Luminous",    "description": "Living faith. You have your own compass. Fear passes without taking hold of you. You are reliable because you rely on what doesn't change.", "niveaux_riso": [1, 2, 3] },
+      { "id": "fonctionnel", "icon": "🌤", "nom": "Functional", "description": "You doubt, you anticipate, but you function. You recognize fear when it speaks — you don't always follow it.",                              "niveaux_riso": [4, 5] },
+      { "id": "reactif",    "icon": "🌫", "nom": "Reactive",     "description": "Fear drives. You test endlessly, you script scenarios, you oscillate between dependence and defiance. Doubt paralyzes.",                                                   "niveaux_riso": [6, 7] },
+      { "id": "enseveli",   "icon": "🌑", "nom": "Buried",    "description": "Panic, paranoia, blockage. The ground seems to have disappeared. A very heavy day that calls for a simple, solid support.",                                                          "niveaux_riso": [8, 9] }
+    ],
+    "details_riso": [
+      { "n": 1, "titre": "Liberated",        "texte": "Courageous, confident, living faith. You are your own support — so you can be one for others." },
+      { "n": 2, "titre": "Healthy",          "texte": "Reliable, faithful, engaged. You work for cohesion without depending on approval." },
+      { "n": 3, "titre": "Competent",     "texte": "Cooperative, responsible, organized. Fear makes you vigilant, not paralyzed." },
+      { "n": 4, "titre": "Average-high",    "texte": "Ambivalent, you seek the authority of reference. Doubt begins." },
+      { "n": 5, "titre": "Average",         "texte": "Anxious, reactive, distrustful. You test endlessly. Catastrophe scenarios abound." },
+      { "n": 6, "titre": "Average-low",     "texte": "Defensive, aggressive or over-dependent. You oscillate between counterphobic and over-compliant." },
+      { "n": 7, "titre": "Unhealthy",       "texte": "Panicked, desperate, self-destructive behaviors to escape anxiety." },
+      { "n": 8, "titre": "Very unhealthy",  "texte": "Paranoia, hysteria, masochistic ideas. You attack what you fear losing." },
+      { "n": 9, "titre": "Pathological",  "texte": "Total collapse, self-sabotage. Asking for help is vital here." }
+    ]
+  },
+
+  "ego_du_jour": {
+    "passions": [
+      { "id": "scenario",    "label": "I played out the catastrophe scenario",     "detail": "And it came into my flesh." },
+      { "id": "teste",       "label": "I tested a loved one's loyalty",      "detail": "To verify they were there." },
+      { "id": "doute-savoir","label": "I doubted what I knew",          "detail": "To the point of doing nothing anymore." },
+      { "id": "consulte",    "label": "I consulted too many opinions",               "detail": "To the point of losing my own." },
+      { "id": "anticipe-pire","label": "I anticipated the worst",                  "detail": "Faster than the present." },
+      { "id": "defie-autorite","label": "I dug in against an authority", "detail": "More to resist than for any other reason." }
+    ],
+    "pieges": [
+      { "id": "non-decide",  "label": "I didn't decide — I let it pass", "detail": "Doubt won." },
+      { "id": "valide",      "label": "I sought outside validation",  "detail": "For something I already knew." },
+      { "id": "vigilant-vide","label": "I stayed vigilant for no reason","detail": "The danger wasn't there." },
+      { "id": "refus-soutien","label": "I refused real support",             "detail": "Too hard to believe in it." },
+      { "id": "minimise",    "label": "I minimized an achievement",               "detail": "So as not to tempt fate." }
+    ]
+  },
+
+  "essence_du_jour": {
+    "moments": [
+      { "id": "decide-seul",  "label": "I decided alone, without consulting" },
+      { "id": "confiance",    "label": "I trusted a support" },
+      { "id": "foi",          "label": "I felt a quiet faith in myself" },
+      { "id": "courage",      "label": "I acted despite fear" },
+      { "id": "present-vrai", "label": "The present felt safe, not threatening" },
+      { "id": "soutien-recu", "label": "I recognized a support and welcomed it" },
+      { "id": "voix-propre",  "label": "My own voice made itself heard" },
+      { "id": "porte",        "label": "I felt that I was carried, not alone" }
+    ]
+  },
+
+  "evenements_a_relire": [
+    { "id": "scenario",     "label": "I played out the catastrophe scenario" },
+    { "id": "consulte",     "label": "I consulted too much or too little" },
+    { "id": "doute",        "label": "Doubt paralyzed me" },
+    { "id": "courage",      "label": "I had courage" },
+    { "id": "soutien-vu",   "label": "I recognized a support" },
+    { "id": "decide",       "label": "I decided alone" },
+    { "id": "teste",        "label": "I tested someone" },
+    { "id": "voix",         "label": "I made my voice heard" },
+    { "id": "obscur",       "label": "I don't understand yet" }
+  ],
+
+  "remedes": [
+    { "id": "foi",         "label": "Faith — without content, just the support" },
+    { "id": "courage",     "label": "Courage — acting with fear" },
+    { "id": "autorite-int","label": "Inner authority — your compass" },
+    { "id": "presence",    "label": "Presence — the true antidote to the scenario" },
+    { "id": "soutien",     "label": "Support — welcoming it when it comes" },
+    { "id": "decider",     "label": "Deciding — without confirming" },
+    { "id": "humour",      "label": "Humor — defusing fear" }
+  ],
+
+  "ressources_site": [
+    { "label": "My full profile",          "href": "/en/profils/type6.html",          "icon": "📖" },
+    { "label": "The diamond of essence",     "href": "/en/diamant-essence.html",        "icon": "💎" },
+    { "label": "Restoring the forgotten center",  "href": "/en/restaurer-centre-oublie.html","icon": "🌀" },
+    { "label": "The journey through the type", "href": "/en/voyage-enneagramme.html",     "icon": "🛤" },
+    { "label": "Confusions between types",      "href": "/en/confusions-entre-types.html", "icon": "🔍" }
+  ],
+
+  "ouverture_du_jour": {
+    "matin": [
+      "Morning begins. What is certain today, truly?",
+      "A day opens — what courage already dwells in you?",
+      "What do you want to decide — without consulting?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Has fear been a guide or a cage?",
+      "Here you are. What support was there, that you didn't see?",
+      "A pause is possible. Feel your footholds."
+    ],
+    "soir": [
+      "The day fades. What do you know, that you knew without knowing it?",
+      "You can just come, without anticipating anything.",
+      "The evening is gentle. The ground is still there."
+    ],
+    "nuit": [
+      "The night watches. One thing to entrust, then sleep.",
+      "You are still here — that is already faith."
+    ]
+  }
+}

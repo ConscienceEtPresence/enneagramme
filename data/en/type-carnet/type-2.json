@@ -1,0 +1,354 @@
+{
+  "type": 2,
+  "nom": "The Giver",
+  "centre": {
+    "prefere": "emotionnel",
+    "support": "instinctif",
+    "reprime": "mental",
+    "prefere_libelle": "Emotional (turned toward the other)",
+    "reprime_libelle": "Mental",
+    "reprime_invitation": "Today, the center you are working with is the Mental: thinking of yourself, seeing your own needs, planning for yourself. This is not selfishness — it is the soul returning to its own place."
+  },
+  "dynamique_ego": {
+    "passion": "Pride",
+    "passion_explication": "Not a loud pride. A silent pride: 'I am the one who helps, who sees, who senses.' It disguises itself as generosity, but it maintains an asymmetry: I give, the other receives, never the reverse.",
+    "fixation": "Flattery, seduction, emotional dependency",
+    "compulsion_evitement": "Avoiding acknowledging one's own needs.",
+    "peur_de_base": "Not being loved, being unwanted, being alone.",
+    "desir_de_base": "Feeling loved, needed, indispensable."
+  },
+  "essence": {
+    "qualite_principale": "Love that flows freely",
+    "qualite_phrase": "You don't have to buy love — it is already there, waiting to be received.",
+    "horizons": [
+      "Feeling what you truly need",
+      "Receiving without giving anything in return",
+      "Loving without calculating the return",
+      "Touching the connection that depends on no behavior"
+    ]
+  },
+  "intentions_du_matin": [
+    "Feel my own needs before those of others",
+    "Receive something, without giving anything back",
+    "Say 'no' once — without justifying myself",
+    "Ask for something for myself",
+    "Not anticipate anyone else's need today",
+    "Be alone with myself for fifteen minutes",
+    "Choose an activity for myself, that serves no one",
+    "Acknowledge help received, without returning it",
+    "Love without an agenda"
+  ],
+  "pratiques_du_matin": [
+    "Before noon, ask for a favor — small, concrete — without guilt.",
+    "Eat without checking who else is hungry.",
+    "When someone thanks you, receive the thanks without 'oh, it's nothing'.",
+    "One activity just for yourself, invisible to others.",
+    "When the reflex to help arises, check first: 'was I asked?'",
+    "Sit down and feel your body. Not to move — just to inhabit it."
+  ],
+  "niveaux": {
+    "zones": [
+      {
+        "id": "lumineux",
+        "icon": "☀",
+        "nom": "Luminous",
+        "description": "Free love. You give because it is right, not to obtain something. You receive without needing to compensate. Connection is nourishment, not ruin.",
+        "niveaux_riso": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "fonctionnel",
+        "icon": "🌤",
+        "nom": "Functional",
+        "description": "You help, you give — you feel pride creeping in sometimes but you see it. You manage your needs, in part.",
+        "niveaux_riso": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "reactif",
+        "icon": "🌫",
+        "nom": "Reactive",
+        "description": "You give in order to get, you accumulate resentment. Active codependency. Your own needs disappear into the fog.",
+        "niveaux_riso": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "enseveli",
+        "icon": "🌑",
+        "nom": "Buried",
+        "description": "Manipulation, victimhood, somatization. The body carries what the heart refuses to admit. A very heavy day that calls for help.",
+        "niveaux_riso": [
+          8,
+          9
+        ]
+      }
+    ],
+    "details_riso": [
+      {
+        "n": 1,
+        "titre": "Liberated",
+        "texte": "Unconditionally loving, generous with no agenda. Love comes and goes freely."
+      },
+      {
+        "n": 2,
+        "titre": "Healthy",
+        "texte": "Empathetic, attuned to others AND to yourself. Nourishing giving, return possible."
+      },
+      {
+        "n": 3,
+        "titre": "Competent",
+        "texte": "Attentive to the needs of the world, able to love actively, an organizer of care."
+      },
+      {
+        "n": 4,
+        "titre": "Average-high",
+        "texte": "Eager to please, sustained attention toward others. You begin to anticipate their needs."
+      },
+      {
+        "n": 5,
+        "titre": "Average",
+        "texte": "Possessive, hidden agenda behind the giving. Emotional dependency rises."
+      },
+      {
+        "n": 6,
+        "titre": "Average-low",
+        "texte": "Prideful, manipulative, hurt when you are not acknowledged."
+      },
+      {
+        "n": 7,
+        "titre": "Unhealthy",
+        "texte": "Coercive, self-victimizing, whiny. You extort love."
+      },
+      {
+        "n": 8,
+        "titre": "Very unhealthy",
+        "texte": "Hysterical, somatization, despair. The body speaks what you won't admit."
+      },
+      {
+        "n": 9,
+        "titre": "Pathological",
+        "texte": "Collapse, total dependency, pathological lying. Asking for help is vital here."
+      }
+    ]
+  },
+  "ego_du_jour": {
+    "passions": [
+      {
+        "id": "anticipe",
+        "label": "I anticipated someone else's need",
+        "detail": "Without being asked for anything."
+      },
+      {
+        "id": "agenda",
+        "label": "I gave with a hidden agenda",
+        "detail": "Expecting something in return."
+      },
+      {
+        "id": "indispensable",
+        "label": "I sought to be indispensable",
+        "detail": "So as not to be alone."
+      },
+      {
+        "id": "flatte",
+        "label": "I flattered to stay in the light",
+        "detail": "Buying esteem."
+      },
+      {
+        "id": "etouffe",
+        "label": "I smothered the other with care",
+        "detail": "Their freedom worries me."
+      },
+      {
+        "id": "vexation",
+        "label": "I felt hurt at getting nothing back",
+        "detail": "Pride beneath the love."
+      }
+    ],
+    "pieges": [
+      {
+        "id": "oubli-besoin",
+        "label": "I did not feel my own needs",
+        "detail": "Vanished into the fog."
+      },
+      {
+        "id": "refus-recevoir",
+        "label": "I refused help that was offered",
+        "detail": "Receiving is hard."
+      },
+      {
+        "id": "auto-effacement",
+        "label": "I erased myself for the sake of someone else",
+        "detail": "Without even thinking about it."
+      },
+      {
+        "id": "play-victim",
+        "label": "I half-cast myself as a victim",
+        "detail": "To draw out tenderness."
+      },
+      {
+        "id": "controle-doux",
+        "label": "I controlled through gentleness",
+        "detail": "A velvet grip."
+      }
+    ]
+  },
+  "essence_du_jour": {
+    "moments": [
+      {
+        "id": "recu",
+        "label": "I received, simply"
+      },
+      {
+        "id": "besoin-vu",
+        "label": "I felt one of my needs, and honored it"
+      },
+      {
+        "id": "seul-bien",
+        "label": "I felt good, alone with myself"
+      },
+      {
+        "id": "sans-agenda",
+        "label": "I helped without expecting anything in return"
+      },
+      {
+        "id": "non-doux",
+        "label": "I gently said 'no', without justifying myself"
+      },
+      {
+        "id": "demande",
+        "label": "I asked for something for myself"
+      },
+      {
+        "id": "amour-libre",
+        "label": "I felt a connection that depended on nothing"
+      },
+      {
+        "id": "or-fondant",
+        "label": "A love came and melted something in me"
+      }
+    ]
+  },
+  "evenements_a_relire": [
+    {
+      "id": "donne-trop",
+      "label": "I gave too much"
+    },
+    {
+      "id": "agenda-cache",
+      "label": "I had a hidden agenda"
+    },
+    {
+      "id": "ecoute-besoin",
+      "label": "I listened to my need for the first time"
+    },
+    {
+      "id": "non-dit",
+      "label": "I said no"
+    },
+    {
+      "id": "demande-aide",
+      "label": "I asked for help"
+    },
+    {
+      "id": "vexe",
+      "label": "I felt hurt"
+    },
+    {
+      "id": "recu-simple",
+      "label": "I received without giving back"
+    },
+    {
+      "id": "solitude-bien",
+      "label": "My solitude felt good"
+    },
+    {
+      "id": "obscur",
+      "label": "I don't understand yet"
+    }
+  ],
+  "remedes": [
+    {
+      "id": "humilite",
+      "label": "Humility — accepting that you have needs"
+    },
+    {
+      "id": "recevoir",
+      "label": "Receiving — without giving anything back"
+    },
+    {
+      "id": "soi-d-abord",
+      "label": "Self first — so as to give truly"
+    },
+    {
+      "id": "limites",
+      "label": "Boundaries — saying no out of love"
+    },
+    {
+      "id": "solitude",
+      "label": "Solitude — as nourishment"
+    },
+    {
+      "id": "or-libre",
+      "label": "Free love — without an agenda"
+    },
+    {
+      "id": "demander",
+      "label": "Asking — instead of extorting"
+    }
+  ],
+  "ressources_site": [
+    {
+      "label": "My full profile",
+      "href": "/en/profils/type2.html",
+      "icon": "📖"
+    },
+    {
+      "label": "The diamond of love",
+      "href": "/en/diamant-amour.html",
+      "icon": "💎"
+    },
+    {
+      "label": "Restoring the forgotten center",
+      "href": "/en/restaurer-centre-oublie.html",
+      "icon": "🌀"
+    },
+    {
+      "label": "The journey through the type",
+      "href": "/en/voyage-enneagramme.html",
+      "icon": "🛤"
+    },
+    {
+      "label": "Confusions between types",
+      "href": "/en/confusions-entre-types.html",
+      "icon": "🔍"
+    }
+  ],
+  "ouverture_du_jour": {
+    "matin": [
+      "The morning begins. What do you need today?",
+      "A day opens — can you put your name on it?",
+      "What do you want to ask for today?"
+    ],
+    "midi": [
+      "You are in the middle of the day. Have you eaten for yourself?",
+      "Here you are. What need lives in you, right now?",
+      "A possible pause. What do you want to receive?"
+    ],
+    "soir": [
+      "The day is fading. Was something received, for you?",
+      "You can simply arrive, without giving anything.",
+      "The evening is gentle. A request, if it comes."
+    ],
+    "nuit": [
+      "The night watches. One single thing for you, then sleep.",
+      "You are still here. That is already a great deal."
+    ]
+  }
+}

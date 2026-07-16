@@ -1,0 +1,354 @@
+{
+  "type": 1,
+  "nom": "The Idealist",
+  "centre": {
+    "prefere": "instinctif",
+    "support": "mental",
+    "reprime": "emotionnel",
+    "prefere_libelle": "Instinctive (contained, controlled)",
+    "reprime_libelle": "Emotional",
+    "reprime_invitation": "Today, the center you are working with is the Emotional: letting what arises be felt without evaluating it, without correcting it. Emotion is neither right nor wrong — it simply is."
+  },
+  "dynamique_ego": {
+    "passion": "Contained anger",
+    "passion_explication": "An anger at imperfection — in the world, in others, in oneself. It is rarely explosive. It gets swallowed, turning into resentment, tension, over-control.",
+    "fixation": "Resentment",
+    "compulsion_evitement": "Avoiding error, excess, imperfection at all costs.",
+    "peur_de_base": "Being bad, defective, corrupt.",
+    "desir_de_base": "Being good, upright, of integrity — and feeling it."
+  },
+  "essence": {
+    "qualite_principale": "Perfect Presence",
+    "qualite_phrase": "You don't have to become good — you already are, at the deepest level. All that remains is to feel it.",
+    "horizons": [
+      "Letting imperfection be, without correcting it",
+      "Feeling before evaluating",
+      "Receiving grace without earning it",
+      "Seeing perfection as already present, not something to build"
+    ]
+  },
+  "intentions_du_matin": [
+    "Leave one thing imperfect — without correcting it",
+    "Recognize the anger rising without swallowing it back",
+    "Be gentle with myself before being fair to the world",
+    "Feel before evaluating",
+    "Choose the pleasure of an ordinary thing",
+    "Give my rigor a little room to play",
+    "Welcome a mistake without condemning it",
+    "Ask before criticizing",
+    "Suspend the inner judge for an hour"
+  ],
+  "pratiques_du_matin": [
+    "Before noon, welcome a small failure without fixing it.",
+    "When the inner critic wakes up, tell it gently: 'thank you, it's alright.'",
+    "One activity just for pleasure — with no assessment afterward.",
+    "Drink a tea and savor it. Without improving your posture, without refining the gesture.",
+    "Feel an emotion that isn't held-back anger. Let it circulate.",
+    "Trust someone close to you to do things their own way, even if it isn't yours."
+  ],
+  "niveaux": {
+    "zones": [
+      {
+        "id": "lumineux",
+        "icon": "☀",
+        "nom": "Luminous",
+        "description": "Accepting serenity. You see perfection as already present, not something to manufacture. Reality touches you without outraging you. Your ideals serve the living.",
+        "niveaux_riso": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "fonctionnel",
+        "icon": "🌤",
+        "nom": "Functional",
+        "description": "You hold your principles, but they don't hold you. The 'must' speaks, you feel it, you can choose whether or not to listen.",
+        "niveaux_riso": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "reactif",
+        "icon": "🌫",
+        "nom": "Reactive",
+        "description": "The inner critic drives. You judge everything, you swallow your anger, resentment builds. Rigidity settles in.",
+        "niveaux_riso": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "enseveli",
+        "icon": "🌑",
+        "nom": "Buried",
+        "description": "Total self-condemnation, intolerance, even obsessive collapse. A very heavy day that calls for gentleness, not a fight.",
+        "niveaux_riso": [
+          8,
+          9
+        ]
+      }
+    ],
+    "details_riso": [
+      {
+        "n": 1,
+        "titre": "Liberated",
+        "texte": "Serene, accepting, wise. Perfection reveals itself already there — you are the expression of what is right, without imposing it."
+      },
+      {
+        "n": 2,
+        "titre": "Healthy",
+        "texte": "Rational, balanced, of integrity. Your ideals serve reality, not the reverse. You see imperfection without suffering over it."
+      },
+      {
+        "n": 3,
+        "titre": "Competent",
+        "texte": "A teacher, fair, orderly without rigidity. You carry living principles."
+      },
+      {
+        "n": 4,
+        "titre": "Average-high",
+        "texte": "Idealistic, dutiful. The 'must' speaks loudly. You struggle to do things right."
+      },
+      {
+        "n": 5,
+        "titre": "Average",
+        "texte": "Critical, perfectionistic, demanding. Anger becomes resentment. The superego weighs heavy."
+      },
+      {
+        "n": 6,
+        "titre": "Average-low",
+        "texte": "Condescending, austere, intolerant. You judge everything, yourself first."
+      },
+      {
+        "n": 7,
+        "titre": "Unhealthy",
+        "texte": "Rigid, dogmatic. Self-justifying. Resentment dominates."
+      },
+      {
+        "n": 8,
+        "titre": "Very unhealthy",
+        "texte": "Obsessive, masochistic, depressive. Active self-punishment."
+      },
+      {
+        "n": 9,
+        "titre": "Pathological",
+        "texte": "Compulsive explosion. Contained anger does damage. Asking for help is vital here."
+      }
+    ]
+  },
+  "ego_du_jour": {
+    "passions": [
+      {
+        "id": "ravale",
+        "label": "I swallowed some anger",
+        "detail": "Resentment takes its place."
+      },
+      {
+        "id": "juge",
+        "label": "I silently judged someone",
+        "detail": "And it's eating at me."
+      },
+      {
+        "id": "dur-soi",
+        "label": "I was hard on myself",
+        "detail": "Harder than I would be with a friend."
+      },
+      {
+        "id": "corrige",
+        "label": "I wanted to correct something that didn't need correcting",
+        "detail": "Small detail, heavy battle."
+      },
+      {
+        "id": "monde-faux",
+        "label": "The world seemed imperfect to me, in need of repair",
+        "detail": "Too heavy to carry alone."
+      },
+      {
+        "id": "seul-idees",
+        "label": "I felt alone in my principles",
+        "detail": "No one sees what I see."
+      }
+    ],
+    "pieges": [
+      {
+        "id": "il-faut",
+        "label": "I said 'we should' instead of 'I would like'",
+        "detail": "Duty erased desire."
+      },
+      {
+        "id": "refus-plaisir",
+        "label": "I refused an unearned pleasure",
+        "detail": "The rule killed the joy."
+      },
+      {
+        "id": "sur-controle",
+        "label": "I over-controlled a detail",
+        "detail": "Reality didn't call for it."
+      },
+      {
+        "id": "juge-emotion",
+        "label": "I judged an emotion as 'not proper'",
+        "detail": "It just wanted to pass through."
+      },
+      {
+        "id": "crispe",
+        "label": "I tensed up instead of opening",
+        "detail": "Rigidity took over."
+      }
+    ]
+  },
+  "essence_du_jour": {
+    "moments": [
+      {
+        "id": "imparfait",
+        "label": "I left something imperfect, in peace"
+      },
+      {
+        "id": "compliment",
+        "label": "I welcomed a compliment without dissecting it"
+      },
+      {
+        "id": "rire",
+        "label": "Laughter passed through me without control"
+      },
+      {
+        "id": "vivant",
+        "label": "Something wobbly felt alive to me"
+      },
+      {
+        "id": "tendre",
+        "label": "I was tender with myself"
+      },
+      {
+        "id": "beau-desordre",
+        "label": "I recognized a beauty in disorder"
+      },
+      {
+        "id": "deja-la",
+        "label": "Perfection revealed itself as already present, not something to attain"
+      },
+      {
+        "id": "bon-rien",
+        "label": "I felt good without having proved anything"
+      }
+    ]
+  },
+  "evenements_a_relire": [
+    {
+      "id": "emporte-silence",
+      "label": "I lost my temper in silence"
+    },
+    {
+      "id": "critique-tete",
+      "label": "I criticized someone in my head"
+    },
+    {
+      "id": "sur-corrige",
+      "label": "I over-corrected"
+    },
+    {
+      "id": "laisse-passer",
+      "label": "I let imperfection through"
+    },
+    {
+      "id": "accueille-echec",
+      "label": "I welcomed my own failure"
+    },
+    {
+      "id": "ma-pensee",
+      "label": "I gently spoke my true thought"
+    },
+    {
+      "id": "lache",
+      "label": "I let go of some control"
+    },
+    {
+      "id": "sens-sans-juger",
+      "label": "I felt an emotion without judging it"
+    },
+    {
+      "id": "obscur",
+      "label": "I don't understand yet"
+    }
+  ],
+  "remedes": [
+    {
+      "id": "serenite",
+      "label": "Serenity — accepting what is"
+    },
+    {
+      "id": "tendresse",
+      "label": "Tenderness — toward oneself first"
+    },
+    {
+      "id": "lache",
+      "label": "Letting go — allowing play"
+    },
+    {
+      "id": "sentir",
+      "label": "Feeling — instead of judging"
+    },
+    {
+      "id": "spontanee",
+      "label": "Spontaneity — without self-censoring"
+    },
+    {
+      "id": "grace",
+      "label": "Grace — receiving, without earning it"
+    },
+    {
+      "id": "confiance",
+      "label": "Trust — in the course of things"
+    }
+  ],
+  "ressources_site": [
+    {
+      "label": "My full profile",
+      "href": "/en/profils/type1.html",
+      "icon": "📖"
+    },
+    {
+      "label": "The diamond of essence",
+      "href": "/en/diamant-essence.html",
+      "icon": "💎"
+    },
+    {
+      "label": "Restoring the forgotten center",
+      "href": "/en/restaurer-centre-oublie.html",
+      "icon": "🌀"
+    },
+    {
+      "label": "The journey through the type",
+      "href": "/en/voyage-enneagramme.html",
+      "icon": "🛤"
+    },
+    {
+      "label": "Confusions between types",
+      "href": "/en/confusions-entre-types.html",
+      "icon": "🔍"
+    }
+  ],
+  "ouverture_du_jour": {
+    "matin": [
+      "The morning begins. Is there one thing you could let be?",
+      "A day opens — which demand could you soften?",
+      "What do you want to welcome, rather than correct?"
+    ],
+    "midi": [
+      "You are in the middle of the day. What do you truly feel?",
+      "Here you are. What anger is brewing, that deserves to be named?",
+      "A possible pause. What do you want to let go of?"
+    ],
+    "soir": [
+      "The day is fading. What can remain unresolved?",
+      "You can simply arrive, without evaluating anything.",
+      "The evening is gentle. An imperfect note is just fine."
+    ],
+    "nuit": [
+      "The night watches. One single thing to set down, then sleep.",
+      "You are still here. That is already a great deal."
+    ]
+  }
+}

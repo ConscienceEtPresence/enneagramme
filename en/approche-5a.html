@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The 5A Approach — Enneagram</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="/assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    .head{text-align:center;max-width:820px;margin:0 auto 22px}
+    .head h1{margin:0;font-size:clamp(30px,4.6vw,46px);letter-spacing:.3px;line-height:1.08}
+    .head .sub{margin:12px auto 0;color:var(--muted);font-size:16.5px;line-height:1.55;max-width:72ch}
+
+    .intro{
+      margin:22px auto 26px;max-width:880px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(96,165,250,.06), rgba(134,239,172,.04));
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:22px;
+    }
+    .intro p{margin:0 0 12px;line-height:1.65;font-size:15.5px}
+    .intro p:last-child{margin-bottom:0}
+    .intro strong{color:#fff}
+
+    /* Les 5 étapes — bloc explicatif */
+    .steps{
+      max-width:920px;margin:0 auto 32px;
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;
+    }
+    .step{
+      padding:16px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .step .num{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:28px;height:28px;border-radius:50%;
+      font-weight:850;font-size:13px;margin-right:8px;
+      border:1.5px solid currentColor;
+    }
+    .step h3{margin:0 0 8px;font-size:15px;letter-spacing:.3px;display:flex;align-items:center}
+    .step p{margin:0 0 8px;font-size:14px;line-height:1.55;color:#e8eeff}
+    .step .q{margin:8px 0 0;font-size:13px;font-style:italic;color:var(--muted);border-top:1px solid rgba(255,255,255,.08);padding-top:8px}
+    .step.s1{border-left-color:#93c5fd;color:#bfdbfe}
+    .step.s2{border-left-color:#fcd34d;color:#fde68a}
+    .step.s3{border-left-color:#f9a8d4;color:#fbcfe8}
+    .step.s4{border-left-color:#86efac;color:#bbf7d0}
+    .step.s5{border-left-color:#c4b5fd;color:#ddd6fe}
+    .step h3, .step p{color:#e8eeff}
+    .step h3{color:inherit}
+    .step .num{color:inherit}
+
+    /* Sélecteur de type */
+    .selector{margin:30px auto 18px;max-width:880px}
+    .selectorTitle{text-align:center;color:var(--muted);font-size:13px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin:0 0 14px}
+    .pills{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px}
+    @media(max-width:640px){.pills{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    .pill{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background:rgba(15,26,51,.72);color:var(--text);
+      border-radius:14px;padding:12px 6px 10px;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      transition:transform .12s ease, border-color .14s ease, background .14s ease;
+      min-height:64px;
+    }
+    .pill:hover{transform:translateY(-2px);background:rgba(255,255,255,.06)}
+    .pill .num{font-size:22px;font-weight:850;line-height:1}
+    .pill .lbl{font-size:11px;color:var(--muted);font-weight:600;text-align:center}
+    .pill.instinctif{border-color:rgba(251,191,36,.55)}
+    .pill.emotionnel{border-color:rgba(244,114,182,.55)}
+    .pill.mental{border-color:rgba(96,165,250,.55)}
+    .pill.active{background:rgba(255,255,255,.10);border-width:2px;transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .pill.instinctif.active{box-shadow:0 8px 22px rgba(251,191,36,.18)}
+    .pill.emotionnel.active{box-shadow:0 8px 22px rgba(244,114,182,.18)}
+    .pill.mental.active{box-shadow:0 8px 22px rgba(96,165,250,.18)}
+    .legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:12.5px}
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+    .legend .i-inst{background:#fbbf24}
+    .legend .i-emo{background:#f472b6}
+    .legend .i-ment{background:#60a5fa}
+
+    /* Type card */
+    .typeCard{
+      margin:24px auto 0;max-width:920px;
+      border:1px solid var(--line);background:var(--card);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      overflow:hidden;animation:fadeUp .35s ease;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .typeHead{
+      padding:22px 24px 18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+    }
+    .typeHead .num{
+      width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+      font-size:30px;font-weight:850;border:2px solid rgba(255,255,255,.2);
+      background:rgba(15,26,51,.7);flex:0 0 auto;
+    }
+    .typeHead .titles{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .typeHead h2{margin:0;font-size:clamp(22px,3vw,30px);letter-spacing:.2px}
+    .typeHead .nick{color:var(--muted);font-weight:600;font-size:14.5px;letter-spacing:.5px;text-transform:uppercase}
+    .typeHead .arc{
+      margin-left:auto;padding:6px 12px;border-radius:999px;
+      font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.18);color:#bbf7d0;background:rgba(134,239,172,.08);border-color:rgba(134,239,172,.35);
+    }
+
+    .typeBody{padding:22px 26px 26px}
+    .section{
+      margin:0 0 14px;padding:16px 18px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);
+      border-left-width:4px;
+    }
+    .section:last-child{margin-bottom:0}
+    .section h3{
+      margin:0 0 10px;font-size:13px;letter-spacing:.8px;text-transform:uppercase;
+      font-weight:800;display:inline-flex;align-items:center;gap:8px;
+      padding:5px 12px;border-radius:999px;
+    }
+    .section .stepNum{
+      display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;
+      border:1.5px solid currentColor;font-size:12px;font-weight:850;
+    }
+    .section p, .section li{font-size:15px;line-height:1.65;color:#e8eeff}
+    .section p{margin:0 0 8px}
+    .section ul{margin:6px 0 8px;padding-left:20px}
+    .section li{margin:2px 0}
+    .section .qPrat{
+      margin-top:10px;padding:10px 14px;border-radius:10px;
+      background:rgba(255,255,255,.04);font-style:italic;font-size:14.5px;
+      border-left:2px solid rgba(255,255,255,.4);
+    }
+    .section .qPrat b{font-style:normal;color:#fff;display:block;margin-bottom:3px;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+    .section .phrase{
+      margin-top:10px;padding:10px 14px;border-radius:10px;
+      background:rgba(255,255,255,.05);font-style:italic;font-size:15px;
+      border-left:2px solid currentColor;
+    }
+    .section .phrase b{font-style:normal;display:block;margin-bottom:3px;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;opacity:.85}
+
+    /* Couleurs des 5 étapes */
+    .section.s1{border-left-color:#93c5fd;background:rgba(96,165,250,.05)}
+    .section.s1 h3{background:rgba(96,165,250,.14);color:#bfdbfe}
+    .section.s2{border-left-color:#fcd34d;background:rgba(252,211,77,.05)}
+    .section.s2 h3{background:rgba(252,211,77,.14);color:#fde68a}
+    .section.s3{border-left-color:#f9a8d4;background:rgba(249,168,212,.05)}
+    .section.s3 h3{background:rgba(249,168,212,.14);color:#fbcfe8}
+    .section.s4{border-left-color:#86efac;background:rgba(134,239,172,.05)}
+    .section.s4 h3{background:rgba(134,239,172,.14);color:#bbf7d0}
+    .section.s5{border-left-color:#c4b5fd;background:rgba(196,181,253,.05)}
+    .section.s5 h3{background:rgba(196,181,253,.14);color:#ddd6fe}
+
+    .arcBox{
+      margin:0 0 16px;padding:14px 18px;border-radius:14px;
+      border:1px solid rgba(134,239,172,.32);
+      background:rgba(134,239,172,.06);
+      display:flex;flex-direction:column;gap:4px;
+    }
+    .arcBox .lbl{font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:800}
+    .arcBox .val{font-size:16px;line-height:1.5;color:#bbf7d0;font-weight:700}
+
+    .navTypes{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:14px 22px;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+    .navTypes .btn{font-size:13px;padding:9px 14px}
+
+    /* Synthèse */
+    .synth{margin:36px auto 0;max-width:920px;border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:var(--radius);padding:22px 24px}
+    .synth h2{margin:0 0 8px;font-size:22px;letter-spacing:.3px}
+    .synth .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+    .synthGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+    .synthItem{
+      display:flex;gap:12px;align-items:flex-start;
+      padding:14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18);cursor:pointer;
+      transition:background .14s ease, border-color .14s ease;
+    }
+    .synthItem:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.22)}
+    .synthItem .n{
+      flex:0 0 auto;width:32px;height:32px;border-radius:50%;
+      display:grid;place-items:center;font-weight:850;font-size:14px;
+      border:1.5px solid rgba(255,255,255,.22);
+    }
+    .synthItem .txt{font-size:13.5px;line-height:1.5}
+    .synthItem .txt b{display:block;margin-bottom:4px;color:#fff}
+    .synthItem ul{margin:4px 0 0;padding-left:16px;color:var(--muted)}
+    .synthItem li{margin:1px 0;font-size:13px}
+    .synthItem.instinctif .n{border-color:rgba(251,191,36,.7);color:#fde68a}
+    .synthItem.emotionnel .n{border-color:rgba(244,114,182,.7);color:#fbcfe8}
+    .synthItem.mental .n{border-color:rgba(96,165,250,.7);color:#bfdbfe}
+
+    /* Formule finale */
+    .formula{
+      margin:30px auto 0;max-width:880px;padding:22px 24px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(196,181,253,.05), rgba(96,165,250,.04));
+    }
+    .formula h2{margin:0 0 6px;font-size:20px}
+    .formula .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+    .formula ol{margin:0;padding-left:22px}
+    .formula li{margin:6px 0;line-height:1.6;font-size:15px}
+    .formula .end{
+      margin-top:16px;padding:14px 16px;border-radius:12px;
+      background:rgba(255,255,255,.04);border-left:3px solid rgba(196,181,253,.6);
+      font-size:15px;line-height:1.65;
+    }
+    .formula .end strong{color:#fff}
+
+    .placeholder{max-width:880px;margin:8px auto 0;text-align:center;color:var(--muted);font-size:14.5px;padding:14px}
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Bandeau Pause + Citation */
+    .pauseBanner{
+      max-width:920px;margin:0 auto 28px;
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    }
+    @media(max-width:720px){.pauseBanner{grid-template-columns:1fr}}
+    .pauseBox, .quoteBox{
+      padding:20px 22px;border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .pauseBox{
+      border-left:4px solid #93c5fd;
+      background:linear-gradient(180deg, rgba(96,165,250,.08), rgba(96,165,250,.02));
+    }
+    .pauseBox .lbl, .quoteBox .lbl{
+      font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;
+    }
+    .pauseBox .lbl{color:#bfdbfe}
+    .pauseBox h3{margin:0;font-size:18px;letter-spacing:.3px}
+    .pauseBox p{margin:0;font-size:14.5px;line-height:1.55;color:#e8eeff}
+    .pauseBox .breath{
+      display:flex;gap:14px;font-size:12.5px;color:var(--muted);
+      margin-top:4px;align-items:center;flex-wrap:wrap;
+    }
+    .pauseBox .breath span{display:inline-flex;align-items:center;gap:5px}
+    .pauseBox .breath i{
+      width:8px;height:8px;border-radius:50%;display:inline-block;
+      background:#93c5fd;box-shadow:0 0 8px rgba(147,197,253,.7);
+    }
+    .quoteBox{
+      border-left:4px solid #c4b5fd;
+      background:linear-gradient(180deg, rgba(196,181,253,.08), rgba(196,181,253,.02));
+      justify-content:center;
+    }
+    .quoteBox .lbl{color:#ddd6fe}
+    .quoteBox blockquote{
+      margin:0;font-size:18px;line-height:1.45;font-style:italic;font-weight:600;
+      color:#fff;
+    }
+    .quoteBox cite{
+      font-style:normal;font-size:13px;color:var(--muted);font-weight:700;
+      display:block;margin-top:6px;
+    }
+
+    /* Outils transverses */
+    .tools{
+      max-width:920px;margin:0 auto 32px;
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    }
+    @media(max-width:720px){.tools{grid-template-columns:1fr}}
+    .tool{
+      padding:18px 20px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .tool h3{
+      margin:0 0 8px;font-size:15.5px;letter-spacing:.3px;
+      display:flex;align-items:center;gap:8px;
+    }
+    .tool h3 .ico{
+      display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;
+      font-size:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);
+    }
+    .tool p{margin:0 0 8px;font-size:14.5px;line-height:1.6;color:#e8eeff}
+    .tool p:last-child{margin-bottom:0}
+    .tool .micro{
+      margin-top:8px;padding:10px 12px;border-radius:10px;
+      background:rgba(255,255,255,.04);font-size:13.5px;line-height:1.5;
+      font-style:italic;border-left:2px solid currentColor;
+    }
+    .tool.curiosity{border-left-color:#fcd34d;color:#fde68a}
+    .tool.coach{border-left-color:#86efac;color:#bbf7d0}
+    .tool h3, .tool p{color:#e8eeff}
+    .tool h3{color:inherit}
+
+    .toolsTitle{
+      text-align:center;font-size:13px;letter-spacing:1.2px;
+      text-transform:uppercase;color:var(--muted);font-weight:700;
+      margin:0 0 14px;
+    }
+
+    /* Trigger encadré dans Awareness */
+    .trigger{
+      margin-top:10px;padding:12px 14px;border-radius:10px;
+      background:rgba(253,164,175,.08);border:1px solid rgba(253,164,175,.30);
+      border-left:3px solid #fda4af;font-size:14.5px;line-height:1.55;
+    }
+    .trigger b{
+      display:block;color:#fecdd3;
+      font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;
+      margin-bottom:4px;
+    }
+
+    /* Ce qui bloque l'adhésion */
+    .blockers{
+      margin:30px auto 0;max-width:920px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+      padding:22px 24px;
+      border-left:4px solid #fcd34d;
+    }
+    .blockers h2{margin:0 0 6px;font-size:20px}
+    .blockers .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+    .blockerGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:14px}
+    .blockerCard{
+      padding:14px 16px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+    }
+    .blockerCard h4{margin:0 0 6px;font-size:14.5px;color:#fde68a;letter-spacing:.3px}
+    .blockerCard p{margin:0;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .blockers .will{
+      margin-top:14px;padding:14px 16px;border-radius:12px;
+      background:rgba(134,239,172,.06);border:1px solid rgba(134,239,172,.30);
+      border-left:3px solid #86efac;
+    }
+    .blockers .will h4{margin:0 0 6px;color:#bbf7d0;font-size:14.5px;letter-spacing:.3px}
+    .blockers .will p{margin:0;font-size:14px;line-height:1.6;color:#e8eeff}
+  </style>
+  <link rel="alternate" hreflang="fr" href="https://lemiroirinterieur.fr/approche-5a.html" />
+  <link rel="alternate" hreflang="en" href="https://lemiroirinterieur.fr/en/approche-5a.html" />
+  <link rel="alternate" hreflang="x-default" href="https://lemiroirinterieur.fr/approche-5a.html" />
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="/en/index.html">← Home</a>
+      <a class="btn" href="/en/approches.html">← Paths of transformation</a>
+    </div>
+
+    <header class="head">
+      <h1>The 5A Approach</h1>
+      <p class="sub">Awareness, Acceptance, Appreciation, Action, Adherence — a universal growth process for transforming the ego's automaticity into conscious presence.</p>
+    </header>
+
+    <section class="intro">
+      <p>The <strong>5A</strong> form a method called the <em>Universal Growth Process</em> (UGP), built on five steps: <strong>Awareness, Acceptance, Appreciation, Action, Adherence</strong>. This method is used to transform the ego's automatic patterns into conscious presence. It doesn't aim to change your type, but to observe your mechanism, understand it, accept it, and then take a freer action.</p>
+      <p>Content alone isn't enough. Reading about the Enneagram doesn't automatically transform you. It takes a <strong>repeated, embodied practice</strong>, one that engages the body, the emotions, attention, and behavior. The 5A method exists precisely to move from intellectual understanding to a lived transformation.</p>
+      <p>Each type has a central belief, a deep fear, and an essential quality that recedes into the background. The 5A work makes it possible to spot the type's automatic belief, see how it triggers reactivity, and then gradually return to the type's essential quality: <strong>serenity</strong> for Type 1, <strong>humility</strong> for Type 2, <strong>veracity</strong> for Type 3, <strong>equanimity</strong> for Type 4, <strong>non-attachment</strong> for Type 5, <strong>courage</strong> for Type 6, <strong>sobriety</strong> for Type 7, <strong>innocence</strong> for Type 8, <strong>right action</strong> for Type 9.</p>
+    </section>
+
+    <section class="pauseBanner">
+      <div class="pauseBox">
+        <span class="lbl">The founding gesture</span>
+        <h3>The Pause</h3>
+        <p>A single deep breath is enough to disperse cortisol — the hormone of reactivity. Every conscious action is born from a tiny but decisive pause: <strong>breathe in (wait)</strong>, <strong>breathe out (assess)</strong>, <strong>then decide</strong>. Without this pause, we react; with it, we respond.</p>
+        <div class="breath">
+          <span><i></i> Breathe in — wait</span>
+          <span><i></i> Breathe out — assess</span>
+          <span><i></i> Decide — act</span>
+        </div>
+      </div>
+      <div class="quoteBox">
+        <span class="lbl">Quote</span>
+        <blockquote>“Awareness without action isn't really awareness.”</blockquote>
+        <cite>— David Daniels, M.D.</cite>
+      </div>
+    </section>
+
+    <h2 style="text-align:center;font-size:22px;letter-spacing:.3px;margin:0 0 14px">The 5 steps</h2>
+    <section class="steps">
+      <div class="step s1">
+        <h3><span class="num">1</span>Awareness</h3>
+        <p>Observe what's happening within you, without immediate judgment. Notice your thoughts, emotions, bodily sensations, tensions, fears, automatic reactions, inner scenarios. Become a witness to the mechanism instead of being possessed by it.</p>
+        <p class="q"><b>Question:</b> What is happening within me, right now?</p>
+      </div>
+      <div class="step s2">
+        <h3><span class="num">2</span>Acceptance</h3>
+        <p>Be honest about what is really there. Recognize: yes, I'm angry; yes, I'm afraid; yes, I'm seeking to be loved; yes, I want to control. This is neither approving nor resigning yourself — it's coming out of denial and shame.</p>
+        <p class="q"><b>Question:</b> Can I acknowledge what's there without judging myself?</p>
+      </div>
+      <div class="step s3">
+        <h3><span class="num">3</span>Appreciation</h3>
+        <p>See the value in what appears. Even a defensive mechanism once served a function: to protect, to survive, to obtain love, to keep safety, to avoid pain. Understand with gratitude what this mechanism tried to do for us.</p>
+        <p class="q"><b>Question:</b> What is this mechanism trying to protect in me?</p>
+      </div>
+      <div class="step s4">
+        <h3><span class="num">4</span>Action — Conscious action</h3>
+        <p>Do something new. Awareness without action isn't enough. Once the mechanism is seen, choose a more conscious response: speak differently, breathe, slow down, ask, set a limit, stay present, listen, repair, act instead of react.</p>
+        <p class="q"><b>Question:</b> What truer, freer, more conscious action can I take right now?</p>
+      </div>
+      <div class="step s5">
+        <h3><span class="num">5</span>Adherence</h3>
+        <p>Commitment over the long term. This isn't a one-time realization but a regular practice. A form of self-love: I commit to returning to myself, to practicing, to not abandoning my inner development.</p>
+        <p class="q"><b>Question:</b> What will I concretely commit to, so as not to fall back into my old mechanism?</p>
+      </div>
+    </section>
+
+    <p class="toolsTitle">Two cross-cutting tools that run through the 5 steps</p>
+    <section class="tools">
+      <div class="tool curiosity">
+        <h3><span class="ico">🔍</span>Curiosity &amp; Gentle Inquiry</h3>
+        <p><strong>Curiosity</strong> is one of our greatest resources: neutral, non-judging, like a childlike quality. It neither agrees nor disagrees with what it discovers — it is simply interested. It opens, where judgment closes.</p>
+        <p><strong>Gentle Inquiry</strong> is its extension: a kind, agenda-free questioning that goes beneath the surface of reactivity. It lets vulnerability emerge — sometimes shame, pride, disappointment, or rationalization — without attacking them.</p>
+        <div class="micro"><b>To ask yourself:</b> “Am I being triggered by something from within (an old pattern), or by something external (a real present violation) that requires my attention?”</div>
+      </div>
+      <div class="tool coach">
+        <h3><span class="ico">🧭</span>The inner coach</h3>
+        <p>Within each of us lies an <strong>inner coach</strong>: a kind, non-judging voice made of truth, encouragement, and loving discipline. It is this voice that guides us from <em>automatic</em> mode to <em>conscious conduct</em>.</p>
+        <p>The goal isn't to fight the type's central belief, but to learn to <strong>use it more consciously</strong>. How can I express my talents and abilities — those organized around my central belief — in the way they are <em>designed</em> to be offered to the world? This takes discipline: the discipline to practice, to stay curious, to start again after a setback.</p>
+        <div class="micro"><b>To ask yourself:</b> “Which side of my higher qualities am I embodying right now? Am I expressing them broadly and with dignity — or narrowly, with contempt? How can I return to my best self?”</div>
+      </div>
+    </section>
+
+    <section class="selector" aria-label="Type selection">
+      <p class="selectorTitle">Applying the 5A — Choose a type</p>
+      <div class="pills" id="pills"></div>
+      <div class="legend">
+        <span><i class="i-inst"></i> Instinctive (8·9·1)</span>
+        <span><i class="i-emo"></i> Emotional (2·3·4)</span>
+        <span><i class="i-ment"></i> Mental (5·6·7)</span>
+      </div>
+    </section>
+
+    <p class="placeholder" id="placeholder">↑ Select a type above to see the concrete application of the 5A.</p>
+
+    <article class="typeCard" id="typeCard" hidden></article>
+
+    <section class="synth">
+      <h2>Educational summary of the 5A by type</h2>
+      <p class="sub">An overview to compare the 9 types at a glance.</p>
+      <div class="synthGrid" id="synthGrid"></div>
+    </section>
+
+    <section class="blockers">
+      <h2>What blocks Adherence</h2>
+      <p class="sub">Long-term commitment is the most demanding step. Here is what most often sabotages the practice — so you can better recognize it when it happens.</p>
+      <div class="blockerGrid">
+        <div class="blockerCard">
+          <h4>The "visible" reasons</h4>
+          <p>We're too busy. We burn out. We forget. Something more immediate or pleasant distracts us. We don't see results fast enough and lose interest. All these reasons are real — but they're often only the surface.</p>
+        </div>
+        <div class="blockerCard">
+          <h4>The parts of ourselves that resist</h4>
+          <p>More deeply, a <strong>part of ourselves</strong> may oppose change because it fears what we will become, or the vulnerability this work exposes. These parts are old strategies put in place to protect us; they are not the enemy — they need to be understood and listened to.</p>
+        </div>
+        <div class="blockerCard">
+          <h4>Unclear intention</h4>
+          <p>Without a clear intention, energy scatters. Before the practice: name the resistances, take stock of what this work can bring (less pain, more joy, better communication, more presence), and root the intention in that promise.</p>
+        </div>
+        <div class="blockerCard">
+          <h4>The absence of loving discipline</h4>
+          <p>Self-mastery calls for a <strong>tender discipline</strong>: the discipline to try again after failure, to breathe your way into the pause, to return to the practice without condemning yourself. This is not harsh rigor — it is self-respect in action.</p>
+        </div>
+      </div>
+      <div class="will">
+        <h4>Adherence as an expression of free will</h4>
+        <p>Adherence is the expression of our <strong>will</strong> — that inner force which directs our conscious choices and fuels our <em>self-agency</em>. Choosing to respond rather than react, choosing "for the greater good of oneself and others": this is the mark of self-mastery. Life itself then becomes our meditation: pause, centering, observation, gentle inquiry, and conscious conduct.</p>
+      </div>
+    </section>
+
+    <section class="formula">
+      <h2>Final formula for putting it into practice</h2>
+      <p class="sub">To use in a real situation:</p>
+      <ol>
+        <li>What is my type doing automatically right now?</li>
+        <li>What am I really feeling in my body, my heart, and my head?</li>
+        <li>Can I accept this without judging myself?</li>
+        <li>What is this mechanism trying to protect?</li>
+        <li>Which essential quality of my type is being forgotten right now?</li>
+        <li>What conscious action can I take now?</li>
+        <li>What concrete commitment will I renew tomorrow?</li>
+      </ol>
+      <div class="end">
+        This is the heart of the method: <strong>no longer being only your type</strong>, but becoming able to observe it, welcome it, understand it, and move beyond it through more conscious action.
+      </div>
+    </section>
+
+    <footer class="siteFooter">All rights reserved</footer>
+  </div>
+
+  <script>
+  const TYPES = [
+    {
+      n:1, name:"The Perfectionist", center:"instinctif",
+      arc:"From judgment to serenity",
+      trigger:"Type 1 reacts strongly when someone has “dropped the ball” and they find themselves unfairly responsible for fixing it or taking the blame.",
+      synth:["I see my judgment","I accept imperfection","I recognize my desire for justice","I act without hardening","I practice serenity"],
+      objectif:"Moving from “I must correct” to “I can welcome and act fairly.”",
+      preface:"Type 1 is built around the belief: I must be good, right, correct, beyond reproach. They deeply avoid being bad, at fault, incorrect, or morally condemnable. Their attention goes to mistakes, imperfections, injustices, responsibilities, and whatever needs correcting. Their forgotten essential quality is serenity: the ability to accept reality without constantly needing to improve it.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 1 begins by observing their inner judge. They notice the internal phrases:</p>
+               <ul><li>This isn't good enough.</li><li>I have to do better.</li><li>This needs to be corrected.</li><li>This isn't fair.</li><li>I shouldn't have felt that.</li></ul>
+               <p>They also observe bodily tension: a clenched jaw, a rigid back, short breathing, irritation, moral fatigue. The essential point is to notice that the urge to improve things may be hiding a fear of being bad, or of letting something unacceptable slide.</p>
+               <div class="qPrat"><b>Practical question</b>What am I judging right now — in myself, in someone else, or in the situation?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 1 must accept that they are not only fair, responsible, and moral. They are also, at times, angry, frustrated, tired, imperfect, contradictory, human.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that I'm irritated.</li><li>I accept that not everything is perfect.</li><li>I accept that I can't correct everything.</li><li>I accept that my need to do things right is sometimes excessive.</li></ul>
+               <p>The trap is believing that accepting imperfection means encouraging it. For Type 1, acceptance is difficult because they often confuse acceptance with moral slackening. Yet accepting is exactly what allows for calmer action.</p>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 1 can appreciate the nobility of their mechanism: they seek justice, integrity, quality, responsibility. Their inner judge wanted to protect what is good, to avoid chaos, to avoid wrongdoing.</p>
+               <p>But they can also recognize:</p>
+               <ul><li>My high standards have value, but they don't need to become harshness.</li><li>My sense of fairness is precious, but it doesn't need to crush what is alive.</li><li>My desire to improve things is good, but it must be balanced by serenity.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 1:</b></p>
+               <ul><li>relax the body before correcting;</li><li>delay criticism;</li><li>name a feeling instead of stating a judgment;</li><li>ask before correcting someone;</li><li>accept a good-enough solution;</li><li>give yourself permission for pleasure and rest;</li><li>turn repressed anger into clear speech.</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can act for the good without hardening my heart.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I notice a situation where I want to correct something immediately, and I breathe before acting.</li><li>I practice a phrase: it's imperfect, and it can still be alive.</li><li>I train myself to feel before I judge.</li></ul>`}
+      ]
+    },
+    {
+      n:2, name:"The Giver", center:"emotionnel",
+      arc:"From indispensability to humility",
+      trigger:"Type 2 reacts strongly when they give and give, and end up not feeling appreciated, recognized, or thanked.",
+      synth:["I see my need to be useful","I accept my own needs","I recognize my capacity for love","I ask and I receive","I practice humility"],
+      objectif:"Moving from “I must give in order to be loved” to “I can give and receive freely.”",
+      preface:"Type 2 is built around the belief: I must give, help, be useful, and take care of others in order to receive love. They deeply avoid being seen as selfish, useless, needy, or dispensable. Their attention goes to the needs and desires of others, often at the expense of their own. Their forgotten essential quality is humility — the simple, reciprocal flow between giving and receiving.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 2 begins by observing their movement toward others. They notice:</p>
+               <ul><li>I guess what the other person wants;</li><li>I give before being asked;</li><li>I want to be appreciated;</li><li>I make myself indispensable;</li><li>I say yes when I feel no;</li><li>I wait for the other person to notice my efforts;</li><li>I feel hurt when I'm not thanked.</li></ul>
+               <div class="qPrat"><b>Fundamental question</b>Am I giving freely, or giving in order to be loved?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 2 must accept that they have needs. They must accept that they can want to receive, to be recognized, to be chosen, to be desired, to be supported.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that I need love.</li><li>I accept that I'm expecting something.</li><li>I accept that I can be hurt when I'm not recognized.</li><li>I accept that my giving isn't always completely free of expectation.</li></ul>
+               <p>This step is very important, because Type 2 can feel ashamed of their needs. They often prefer to see themselves as generous rather than needy.</p>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 2 can appreciate the beauty of their heart: they know how to love, support, sense others, and create connection. Their mechanism comes from a real relational gift.</p>
+               <p>But they must also understand:</p>
+               <ul><li>My generosity is beautiful, but it shouldn't erase who I am.</li><li>My attention to others is precious, but my own needs matter too.</li><li>I am not superior because I give.</li><li>I am not inferior because I receive.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 2:</b></p>
+               <ul><li>wait before helping;</li><li>ask: do you really want my help?;</li><li>express a need directly;</li><li>say no without over-justifying;</li><li>receive without immediately giving back;</li><li>stop guessing;</li><li>let the other person do their part;</li><li>return to the body and ask: what am I feeling?</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can love without making myself indispensable.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I name at least one personal need.</li><li>Before saying yes, I check whether it's a real yes.</li><li>I let someone give me something without trying to compensate for it.</li></ul>`}
+      ]
+    },
+    {
+      n:3, name:"The Performer", center:"emotionnel",
+      arc:"From performance to truth",
+      trigger:"Type 3 reacts strongly when they've exhausted themselves at work and a colleague gets the recognition instead — the fear of their efforts going unseen.",
+      synth:["I see my performing","I accept my real feelings","I recognize my drive to accomplish","I choose truth over image","I practice veracity"],
+      objectif:"Moving from “my worth comes from my success” to “I can be genuine and worthy of love without performing.”",
+      preface:"Type 3 is built around the belief: I must succeed, do, accomplish, be efficient, be recognized. They deeply avoid failure, uselessness, incompetence, or being worthless. Their attention goes to goals, results, image, expectations, and success. Their forgotten essential quality is veracity: contact with their true feelings and their real being.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 3 begins by observing their identification with image. They notice:</p>
+               <ul><li>I want to succeed;</li><li>I want to be seen as competent;</li><li>I adapt to whatever will please;</li><li>I hide my flaws;</li><li>I move quickly into action to avoid feeling;</li><li>I confuse personal worth with results;</li><li>I no longer know what I truly feel.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I being genuine right now, or being efficient?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 3 must accept that they are not only what they do. They must accept their feelings, their fatigue, their doubts, their needs, their limits.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept not being high-performing right now.</li><li>I accept being afraid of failing.</li><li>I accept needing rest.</li><li>I accept not knowing what to show.</li><li>I accept that my image isn't the whole truth of who I am.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 3 can appreciate their drive to accomplish, their courage, their ability to act, to build, to inspire. Their mechanism wanted to give them a place, recognition, and effectiveness in the world.</p>
+               <p>But they must understand:</p>
+               <ul><li>My effectiveness is valuable, but it shouldn't replace my heart.</li><li>My image can help me, but it shouldn't imprison me.</li><li>I can succeed without losing myself.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 3:</b></p>
+               <ul><li>slow down before acting;</li><li>name a real emotion;</li><li>say I don't know;</li><li>show vulnerability;</li><li>do something without any goal of success;</li><li>ask: what is true for me?;</li><li>choose authenticity over the impression produced.</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can be loved for who I am, not only for what I achieve.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I distinguish what I do from what I feel.</li><li>I take time without performing, without a goal, without an image to maintain.</li><li>I practice speaking truthfully, even simply.</li></ul>`}
+      ]
+    },
+    {
+      n:4, name:"The Romantic", center:"emotionnel",
+      arc:"From lack to equanimity",
+      trigger:"Type 4 reacts strongly when something falls short of what they expected, short of the ideal they had imagined or fantasized about.",
+      synth:["I see my attachment to what's missing","I accept what's real","I recognize my depth","I return to what is present","I practice equanimity"],
+      objectif:"Moving from “something is missing” to “I can fully inhabit what is here.”",
+      preface:"Type 4 is built around the belief: I must be special, deep, unique, complete, intensely connected. They deeply avoid being ordinary, deficient, incomplete, abandoned, or without identity. Their attention goes to what is missing, what could be, what is lost, unattainable, or idealized. Their forgotten essential quality is equanimity: standing on equal footing with reality, without placing oneself above or below it.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 4 begins by observing their relationship to lack. They notice:</p>
+               <ul><li>this isn't intense enough;</li><li>something is missing;</li><li>others have what I don't;</li><li>I'm not enough;</li><li>what's far away seems more beautiful;</li><li>I dramatize things internally;</li><li>I cling to melancholy.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I present to what is here, or absorbed in what is missing?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 4 must accept the present experience, even when it's simple, imperfect, ordinary. They must also accept their longing, their sadness, their nostalgia, their desire for intensity.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that I feel a sense of lack.</li><li>I accept that I compare.</li><li>I accept that I long for something more intense.</li><li>I accept that the real moment is simpler than my ideal.</li><li>I accept that I don't need to be different to deserve love.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 4 can appreciate their depth, their sensitivity, their ability to perceive beauty, nuance, emotion, symbolism. Their mechanism comes from an authentic desire for connection and inner truth.</p>
+               <p>But they must understand:</p>
+               <ul><li>My depth is precious, but it shouldn't separate me from reality.</li><li>My longing for the absolute is beautiful, but it can blind me to what's present.</li><li>I can be unique without identifying with what's missing.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 4:</b></p>
+               <ul><li>name three good things that are present;</li><li>stop the comparison the moment it appears;</li><li>return to the body;</li><li>do something simple and concrete;</li><li>express a need without dramatizing;</li><li>give thanks for what exists;</li><li>stay with the ordinary without devaluing it.</li></ul>
+               <div class="phrase"><b>Action phrase</b>What is here can be enough to be loved and alive.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I practice gratitude for what is present.</li><li>When I feel the lack, I also look for what is real, available, alive.</li><li>I train myself not to build my identity around the wound.</li></ul>`}
+      ]
+    },
+    {
+      n:5, name:"The Observer", center:"mental",
+      arc:"From withdrawal to non-attachment",
+      trigger:"Type 5 reacts strongly when someone isn't interested in what they're about to share, and instead wants to talk about something they perceive as pointless, too personal, or intrusive.",
+      synth:["I see my withdrawal","I accept my need for connection","I recognize my clarity of mind","I participate without cutting myself off","I practice non-attachment"],
+      objectif:"Moving from “I must protect myself from the world” to “I can participate without being drained.”",
+      preface:"Type 5 is built around the belief: I must be autonomous, self-sufficient, protected, competent, un-intruded-upon. They deeply avoid being drained, intruded on, dependent, or unable to cope. Their attention goes to whatever demands too much, intrudes, or consumes their energy, as well as toward observation, understanding, and distance. Their forgotten essential quality is non-attachment: the ability to let energy flow without clenching around the fear of running out.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 5 begins by observing their withdrawal. They notice:</p>
+               <ul><li>I cut myself off;</li><li>I retreat into my head;</li><li>I want to understand before participating;</li><li>I reduce my needs;</li><li>I hold on to my resources;</li><li>I flee from requests;</li><li>I feel invaded;</li><li>I prefer to observe rather than get involved.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I present in my body, or taking refuge in observation?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 5 must accept that they need connection, embodiment, affection, support, even though they often prefer to believe they are self-sufficient.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that I'm afraid of being drained.</li><li>I accept that I withdraw.</li><li>I accept that I limit my desires to feel safe.</li><li>I accept that I need others.</li><li>I accept that understanding is not a substitute for living.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 5 can appreciate their intelligence, their clarity of mind, their capacity for observation, their depth, their autonomy. Their mechanism wanted to preserve their energy and inner freedom.</p>
+               <p>But they must understand:</p>
+               <ul><li>My distance has protected me, but it can also isolate me.</li><li>My knowledge is valuable, but it's no substitute for participating.</li><li>I can share without disappearing.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 5:</b></p>
+               <ul><li>stay a few more minutes in the exchange;</li><li>express a personal thought;</li><li>name a bodily sensation;</li><li>ask for time without cutting the connection;</li><li>share a resource instead of keeping it all;</li><li>accept a reasonable request;</li><li>act before having understood everything.</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can step into life without losing my center.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I make a small act of relational commitment.</li><li>I notice when I withdraw, and I consciously choose whether this withdrawal is necessary or automatic.</li><li>I practice returning to the body: breath, sensations, presence.</li></ul>`}
+      ]
+    },
+    {
+      n:6, name:"The Loyal Skeptic", center:"mental",
+      arc:"From doubt to courage",
+      trigger:"Type 6 reacts strongly when they think someone can't be trusted, and might take advantage of their kindness and loyalty.",
+      synth:["I see my doubt","I accept uncertainty","I recognize my vigilance","I move forward despite fear","I practice courage"],
+      objectif:"Moving from “I must be certain before moving forward” to “I can move forward courageously within uncertainty.”",
+      preface:"Type 6 is built around the belief: I must be certain, vigilant, prepared, secure. They deeply avoid being powerless, dependent, betrayed, or without support. Their attention goes to what could go wrong, dangers, scenarios, trust, betrayal, and guarantees. Their forgotten essential quality is courage, tied to faith in oneself, in others, and in life.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 6 begins by observing their anticipatory mind. They notice:</p>
+               <ul><li>what if it goes wrong?;</li><li>how can I be sure?;</li><li>can I trust this?;</li><li>who is reliable?;</li><li>I need to prepare;</li><li>I doubt myself;</li><li>I test the other person;</li><li>I look for an authority, or I challenge one.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I seeking real prudence, or an impossible certainty?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 6 must accept fear without submitting to it. They must recognize their anxiety, their doubt, their need for security, their oscillation between dependence and mistrust.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept being afraid.</li><li>I accept not being certain.</li><li>I accept that my mind is trying to protect me.</li><li>I accept that I can doubt without having to obey the doubt.</li><li>I accept not being in control of everything.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 6 can appreciate their vigilance, their loyalty, their sense of danger, their ability to anticipate and to protect. Their mechanism seeks security and reliability.</p>
+               <p>But they must understand:</p>
+               <ul><li>My prudence is useful, but it shouldn't govern my whole life.</li><li>My doubt can inform me, but it shouldn't decide for me.</li><li>I can move forward even without total certainty.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 6:</b></p>
+               <ul><li>name the fear instead of accusing;</li><li>ask for clarification without testing the other person;</li><li>make a decision despite the uncertainty;</li><li>check once, not ten times;</li><li>feel your bodily support;</li><li>choose a reliable person and trust them progressively;</li><li>act with courage rather than wait for the perfect guarantee.</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can be afraid and move forward anyway.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I take a small action without complete certainty.</li><li>I distinguish between intuition, fear, and a mental scenario.</li><li>I train myself to return to my body when my mind races.</li></ul>`}
+      ]
+    },
+    {
+      n:7, name:"The Epicure", center:"mental",
+      arc:"From stimulation to sobriety",
+      trigger:"Type 7 reacts strongly when they can't do what they want to do, and feel trapped, boxed in, by someone or by a situation.",
+      synth:["I see my flight toward stimulation","I accept limits and discomfort","I recognize my joy","I stay present","I practice sobriety"],
+      objectif:"Moving from “I must avoid pain and multiply my options” to “I can fully savor what is here.”",
+      preface:"Type 7 is built around the belief: I must keep life stimulating, positive, open, full of options. They deeply avoid limitation, boredom, suffering, frustration, or being boxed in. Their attention goes to possibilities, pleasures, plans, ideas, alternatives, and emergency exits. Their forgotten essential quality is sobriety, or steadiness: the ability to stay present to the whole of experience, joy as well as sadness.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 7 begins by observing their flight toward the future. They notice:</p>
+               <ul><li>I want something else;</li><li>I'm bored;</li><li>I'm looking for a more exciting option;</li><li>I joke to avoid discomfort;</li><li>I minimize the pain;</li><li>I plan instead of feeling;</li><li>I move quickly on to something else.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I really living this moment, or already looking for the next one?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 7 must accept limits, frustrations, uncomfortable emotions, empty time, the simple pains of existence.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that this moment is limited.</li><li>I accept feeling sadness.</li><li>I accept that I can't experience everything.</li><li>I accept boredom without fleeing immediately.</li><li>I accept that depth requires staying.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 7 can appreciate their joy, their creativity, their enthusiasm, their ability to open up new possibilities. Their mechanism seeks to preserve life, momentum, hope.</p>
+               <p>But they must understand:</p>
+               <ul><li>My joy is precious, but it shouldn't avoid the truth.</li><li>My options are exciting, but they can scatter me.</li><li>I can stay present without losing my freedom.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 7:</b></p>
+               <ul><li>finish what has been started;</li><li>stay with an unpleasant emotion;</li><li>slow down the pace;</li><li>choose one option and let go of the others;</li><li>listen all the way through;</li><li>breathe before joking;</li><li>turn excitement into presence.</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can stay here, even when it's not immediately exciting.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I stay a few minutes with a sensation or an emotion without transforming it.</li><li>I deliberately limit my options in order to go deeper into an experience.</li><li>I practice steadiness: finishing, staying, deepening.</li></ul>`}
+      ]
+    },
+    {
+      n:8, name:"The Protector", center:"instinctif",
+      arc:"From control to innocence",
+      trigger:"Type 8 reacts strongly when they are ignored, or when they see someone weaker being crushed, intimidated, or mistreated without being able to defend themselves.",
+      synth:["I see my need for control","I accept my vulnerability","I recognize my strength","I open up without dominating","I practice innocence"],
+      objectif:"Moving from “I must be strong so nothing can touch me” to “I can be open without losing my power.”",
+      preface:"Type 8 is built around the belief: I must be strong, powerful, sovereign, invulnerable. They deeply avoid weakness, powerlessness, dependency, submission, or humiliation. Their attention goes to injustice, control, protection, power, imposed truth, and power struggles. Their forgotten essential quality is innocence: meeting a situation without an agenda of domination, with a fresh and open presence.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 8 begins by observing their intensity. They notice:</p>
+               <ul><li>I take control;</li><li>I push too hard;</li><li>I want to impose my truth;</li><li>I hide my vulnerability;</li><li>I look down on weakness;</li><li>I react to injustice;</li><li>I test how solid the other person is;</li><li>I'd rather attack than show that I'm affected.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I protecting something vulnerable behind my strength?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 8 must accept that they can be affected, hurt, sensitive, sometimes dependent, vulnerable. They must accept that openness is not weakness.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that I'm affected.</li><li>I accept that I'm afraid of being controlled.</li><li>I accept that my strength can hide a wound.</li><li>I accept that I don't always need to be in charge.</li><li>I accept receiving.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 8 can appreciate their power, their courage, their protectiveness, their vitality, their refusal of injustice. Their mechanism wanted to preserve dignity and prevent being crushed.</p>
+               <p>But they must understand:</p>
+               <ul><li>My strength is valuable, but it shouldn't crush others.</li><li>My truth matters, but it isn't the whole truth.</li><li>My vulnerability can make my strength more human.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 8:</b></p>
+               <ul><li>deliberately lower the intensity;</li><li>listen without interrupting;</li><li>ask instead of demanding;</li><li>say I'm affected;</li><li>apologize when they've crushed someone;</li><li>let the other person take the initiative;</li><li>express a fear instead of forcing things through.</li></ul>
+               <div class="phrase"><b>Action phrase</b>I can be strong without dominating, vulnerable without being weak.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I notice a moment where I could impose myself, and I choose to listen instead.</li><li>I practice speaking vulnerably.</li><li>I train myself to feel a gentle, non-defensive strength.</li></ul>`}
+      ]
+    },
+    {
+      n:9, name:"The Mediator", center:"instinctif",
+      arc:"From self-erasure to right action",
+      trigger:"Type 9 reacts strongly when they are pushed to do something they don't want to do, yet don't want to — or can't find a way to — say “no.”",
+      synth:["I see my self-erasure","I accept my own importance","I recognize my peace","I differentiate myself and act","I practice right action"],
+      objectif:"Moving from “I must merge in order to belong” to “I can be fully myself and stay connected.”",
+      preface:"Type 9 is built around the belief: I must maintain harmony, adapt, not rock the boat, belong by merging into the whole. They deeply avoid conflict, separation, differentiation, or disturbing others. Their attention goes to other people's agendas, the environment, outside demands, and secondary activities. Their forgotten essential quality is right action: honoring their own presence and appearing as an equal among others.",
+      sections:[
+        {k:"s1", h:"Awareness",
+         body:`<p>Type 9 begins by observing their self-erasure. They notice:</p>
+               <ul><li>I don't know what I want;</li><li>it doesn't matter;</li><li>I'll just go along;</li><li>I put things off;</li><li>I scatter myself in secondary things;</li><li>I avoid conflict;</li><li>I go numb inside;</li><li>I say yes to keep the peace.</li></ul>
+               <div class="qPrat"><b>Practical question</b>Am I really present, or simply adapting?</div>`},
+        {k:"s2", h:"Acceptance",
+         body:`<p>Type 9 must accept that they have a will, a desire, an anger, a limit, an importance of their own. They must accept that differentiating oneself doesn't necessarily destroy the connection.</p>
+               <p><b>Possible acceptance:</b></p>
+               <ul><li>I accept that my opinion matters.</li><li>I accept that I'm angry.</li><li>I accept that I want something else.</li><li>I accept that saying no can be necessary.</li><li>I accept existing as a distinct self.</li></ul>`},
+        {k:"s3", h:"Appreciation",
+         body:`<p>Type 9 can appreciate their peace, their capacity for welcoming others, their gentleness, their patience, their sense of unity. Their mechanism seeks harmony and connection.</p>
+               <p>But they must understand:</p>
+               <ul><li>My peace is precious, but it shouldn't erase me.</li><li>My adapting can help, but it shouldn't replace my own desire.</li><li>I can belong without disappearing.</li></ul>`},
+        {k:"s4", h:"Action — Conscious action",
+         body:`<p><b>Conscious action for Type 9:</b></p>
+               <ul><li>name a preference;</li><li>say no clearly;</li><li>start an important task before secondary ones;</li><li>express anger without exploding;</li><li>make a decision;</li><li>get physically moving;</li><li>say: here's what I want.</li></ul>
+               <div class="phrase"><b>Action phrase</b>My presence matters just as much as anyone else's.</div>`},
+        {k:"s5", h:"Adherence",
+         body:`<p><b>Practice commitment:</b></p>
+               <ul><li>Every day, I take one priority action for myself.</li><li>I name a preference, even a small one.</li><li>I notice when I scatter myself to avoid taking action.</li></ul>`}
+      ]
+    }
+  ];
+
+  const STEP_LABELS = ["Awareness","Acceptance","Appreciation","Action","Adherence"];
+
+  const pillsEl = document.getElementById('pills');
+  TYPES.forEach(t=>{
+    const b = document.createElement('button');
+    b.className = `pill ${t.center}`;
+    b.dataset.n = t.n;
+    b.innerHTML = `<span class="num">${t.n}</span><span class="lbl">${t.name.replace(/^The /, '')}</span>`;
+    b.addEventListener('click', ()=> selectType(t.n));
+    pillsEl.appendChild(b);
+  });
+
+  const synthEl = document.getElementById('synthGrid');
+  TYPES.forEach(t=>{
+    const d = document.createElement('div');
+    d.className = `synthItem ${t.center}`;
+    const items = t.synth.map((s,i)=>`<li><b style="color:#fff">${STEP_LABELS[i]}:</b> ${s}.</li>`).join('');
+    d.innerHTML = `<div class="n">${t.n}</div>
+                   <div class="txt"><b>Type ${t.n} — ${t.name}</b><ul>${items}</ul></div>`;
+    d.addEventListener('click', ()=> selectType(t.n));
+    synthEl.appendChild(d);
+  });
+
+  function selectType(n){
+    const t = TYPES.find(x=>x.n===n);
+    if(!t) return;
+    document.querySelectorAll('.pill').forEach(p=>{
+      p.classList.toggle('active', Number(p.dataset.n)===n);
+    });
+
+    const card = document.getElementById('typeCard');
+    document.getElementById('placeholder').hidden = true;
+    card.hidden = false;
+
+    const stepNumbers = {s1:1,s2:2,s3:3,s4:4,s5:5};
+    const sectionsHtml = t.sections.map(s=>`
+      <div class="section ${s.k}">
+        <h3><span class="stepNum">${stepNumbers[s.k]}</span>${s.h}</h3>
+        ${s.body}
+      </div>
+    `).join('');
+
+    const prev = n===1 ? 9 : n-1;
+    const next = n===9 ? 1 : n+1;
+
+    card.innerHTML = `
+      <div class="typeHead">
+        <div class="num">${t.n}</div>
+        <div class="titles">
+          <h2>Type ${t.n} — ${t.name}</h2>
+          <span class="nick">Applying the 5A</span>
+        </div>
+        <span class="arc">${t.arc}</span>
+      </div>
+      <div class="typeBody">
+        <div class="arcBox">
+          <span class="lbl">Preface</span>
+          <span class="val" style="color:#e8eeff;font-weight:500;font-size:15px;line-height:1.6">${t.preface}</span>
+        </div>
+        ${t.trigger ? `<div class="trigger"><b>Typical trigger for Type ${t.n}</b>${t.trigger}</div>` : ''}
+        ${sectionsHtml}
+        <div class="arcBox" style="margin-top:14px">
+          <span class="lbl">Objective for Type ${t.n}</span>
+          <span class="val">${t.objectif}</span>
+        </div>
+      </div>
+      <div class="navTypes">
+        <button class="btn" type="button" data-go="${prev}">← Type ${prev}</button>
+        <a class="btn" href="/en/profils/type${t.n}.html">See the full profile for Type ${t.n} →</a>
+        <button class="btn" type="button" data-go="${next}">Type ${next} →</button>
+      </div>
+    `;
+
+    card.querySelectorAll('[data-go]').forEach(b=>{
+      b.addEventListener('click', ()=> selectType(Number(b.dataset.go)));
+    });
+
+    requestAnimationFrame(()=>{
+      const y = card.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({top: Math.max(0, y), behavior:'smooth'});
+    });
+  }
+
+  const m = (location.hash||'').match(/type([1-9])/i);
+  if(m) selectType(Number(m[1]));
+  </script>
+<script type="module" src="/assets/js/pulse.js?v=3"></script>
+  <script defer src="/assets/js/lang.js"></script>
+</body>
+</html>
