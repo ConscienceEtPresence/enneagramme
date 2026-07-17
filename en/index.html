@@ -272,8 +272,33 @@
             </div>
           </details>
 
+          <a class="btnCarnet" href="/en/pages/carnet/" title="My journal — for working on your type every day">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="12" rx="7" ry="9"/>
+              <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
+              <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+            </svg>
+            My journal
+          </a>
+
           <style>
             .primaryRow{margin-top:14px;justify-content:center}
+            .btnCarnet{
+              margin-top:14px;display:flex;align-items:center;justify-content:center;gap:.55rem;
+              padding:13px 16px;border-radius:14px;
+              border:1px solid rgba(245,215,123,.55);
+              background:linear-gradient(135deg,rgba(245,215,123,.10),rgba(245,215,123,.03));
+              color:#f5d77b;text-decoration:none;
+              font-family:'Cormorant Garamond',serif;font-style:italic;
+              font-size:1.08rem;font-weight:600;letter-spacing:.02em;
+              box-shadow:0 4px 16px rgba(245,215,123,.10);
+              transition:all .22s ease;
+            }
+            .btnCarnet:hover{
+              background:linear-gradient(135deg,#f5d77b,#fbbf24);
+              color:#0e1528;transform:translateY(-2px);
+              box-shadow:0 8px 24px rgba(245,215,123,.35);
+            }
             .btnHero{
               border:1px solid rgba(125,211,252,.5);
               background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.14));
@@ -535,43 +560,6 @@
   })();
   </script>
 
-  <!-- 🪞 Pastille flottante — accès discret au carnet de bord, pour qui veut le travailler -->
-  <a href="/en/pages/carnet/" id="quick-carnet" title="My journal — for working on your type every day">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <ellipse cx="12" cy="12" rx="7" ry="9"/>
-      <ellipse cx="12" cy="12" rx="4" ry="6" stroke-opacity=".5"/>
-      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-    </svg>
-    <span class="qc-label">My journal</span>
-  </a>
-  <style>
-    #quick-carnet {
-      position:fixed;bottom:20px;right:20px;z-index:950;
-      display:flex;align-items:center;gap:.5rem;
-      padding:.55rem .9rem .55rem .7rem;
-      background:linear-gradient(135deg,#1a2540,#0e1528);
-      border:1px solid rgba(245,215,123,.55);
-      border-radius:999px;
-      color:#f5d77b;
-      text-decoration:none;
-      box-shadow:0 6px 20px rgba(245,215,123,.22),0 2px 6px rgba(0,0,0,.35);
-      transition:all .25s ease;
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic;
-      font-size:.95rem;
-    }
-    #quick-carnet .qc-label { font-weight:500; }
-    #quick-carnet:hover {
-      background:linear-gradient(135deg,#f5d77b,#fbbf24);
-      color:#0e1528;
-      transform:translateY(-2px);
-      box-shadow:0 10px 28px rgba(245,215,123,.45);
-      border-color:#f5d77b;
-    }
-    @media (max-width:480px) {
-      #quick-carnet { padding:.5rem .75rem .5rem .6rem; font-size:.88rem; }
-    }
-  </style>
 
   <!-- 🫧 Pulse — compteur anonyme léger -->
   <script type="module" src="/assets/js/pulse.js?v=3"></script>
