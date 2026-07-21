@@ -61,6 +61,18 @@ function visitMoment() {
   return { hour: String(hour).padStart(2, '0'), period };
 }
 
+function deviceKind() {
+  const ua = navigator.userAgent || '';
+  if (/iPad|Tablet|PlayBook|Silk/i.test(ua) || (/Android/i.test(ua) && !/Mobile/i.test(ua))) return 'tablette';
+  if (/Mobi|iPhone|Android|iPod|Windows Phone/i.test(ua)) return 'mobile';
+  return 'ordinateur';
+}
+
+/* fr / en, déduit du chemin (les pages anglaises vivent sous /en/) */
+function langKey(pathKey) {
+  return (pathKey === 'en' || pathKey.startsWith('en_')) ? 'en' : 'fr';
+}
+
 function sourceKey() {
   try {
     if (!document.referrer) return 'direct';
@@ -96,6 +108,10 @@ async function pulse() {
     if (localStorage.getItem('pulse_last_day') !== date) {
       dayUpd.uniques = increment(1);
       dayUpd[`sources.${sourceKey()}`] = increment(1);
+      dayUpd[`devices.${deviceKind()}`] = increment(1);
+      dayUpd[`langs.${langKey(pathKey)}`] = increment(1);
+      dayUpd[`visitors.${localStorage.getItem('pulse_seen') ? 'back' : 'new'}`] = increment(1);
+      localStorage.setItem('pulse_seen', '1');
       localStorage.setItem('pulse_last_day', date);
     }
   } catch {}
@@ -139,6 +155,26 @@ async function pulse() {
 
   try { await setDoc(doc(db, 'analytics', SITE, 'jours', date), dayUpd, { merge: true }); } catch (e) { console.warn('pulse day failed', e); }
   try { await setDoc(doc(db, 'analytics', SITE, 'jours', '_mois_' + month), moUpd, { merge: true }); } catch (e) { console.warn('pulse month failed', e); }
+
+  // ---- Lecture attentive : au plus UNE écriture, à la sortie ----
+  // engaged = resté > 20 s sur la page ; deep = a fait défiler jusqu'au bas (≥ 70 %).
+  const eng = {}; let engData = false, engSent = false;
+  const markDwell = () => { if (!('engaged' in eng)) { eng.engaged = increment(1); engData = true; } };
+  const markDeep  = () => { if (!('deep' in eng)) { eng.deep = increment(1); eng[`deeppages.${pathKey}`] = increment(1); engData = true; } };
+  const dwellTimer = setTimeout(markDwell, 20000);
+  const onScroll = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const st = window.scrollY || document.documentElement.scrollTop || 0;
+    if (h > 240 && st / h >= 0.7) { markDeep(); window.removeEventListener('scroll', onScroll); }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  const flush = () => {
+    if (engSent || !engData) return; engSent = true;
+    clearTimeout(dwellTimer);
+    setDoc(doc(db, 'analytics', SITE, 'jours', date), eng, { merge: true }).catch(() => {});
+  };
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+  window.addEventListener('pagehide', flush);
 }
 
 // déclenche sans attendre (non bloquant)
