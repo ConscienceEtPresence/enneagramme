@@ -73,6 +73,15 @@ function langKey(pathKey) {
   return (pathKey === 'en' || pathKey.startsWith('en_')) ? 'en' : 'fr';
 }
 
+/* Région estimée d'après le fuseau horaire du navigateur (ex. "Europe/Paris").
+   Aucune adresse IP, aucune géolocalisation : juste un réglage local, anonyme. */
+function zoneKey() {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    return tz.replace(/[^A-Za-z0-9]+/g, '_').substring(0, 60) || 'inconnu';
+  } catch { return 'inconnu'; }
+}
+
 function sourceKey() {
   try {
     if (!document.referrer) return 'direct';
@@ -111,6 +120,7 @@ async function pulse() {
       dayUpd[`devices.${deviceKind()}`] = increment(1);
       dayUpd[`langs.${langKey(pathKey)}`] = increment(1);
       dayUpd[`visitors.${localStorage.getItem('pulse_seen') ? 'back' : 'new'}`] = increment(1);
+      dayUpd[`zones.${zoneKey()}`] = increment(1);
       localStorage.setItem('pulse_seen', '1');
       localStorage.setItem('pulse_last_day', date);
     }
