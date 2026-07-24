@@ -153,6 +153,34 @@ function pulseSidePanel(){
   }, 180);
 }
 
+const openFullType = document.getElementById("openFullType");
+const HERO_IDLE_LABEL = openFullType ? openFullType.textContent : "";
+
+// Met en évidence le type choisi dans le bouton « Voir la fiche complète ».
+function setHeroLabel(t, name){
+  if(!openFullType) return;
+  openFullType.textContent = name ? `du Type ${t} · ${name}` : `du Type ${t}`;
+  if(openFull){
+    openFull.classList.remove("is-fresh");
+    void openFull.offsetWidth; // rejoue l'animation à chaque changement de type
+    openFull.classList.add("is-fresh");
+  }
+}
+
+// En colonne unique (< 1060px), le panneau passe sous le diagramme :
+// on l'amène à l'écran pour que le choix du type se voie tout de suite.
+function revealPanelOnNarrowScreens(){
+  if(window.matchMedia("(min-width:1061px)").matches) return;
+  const target = sidePanel || openFull;
+  target?.scrollIntoView({block:"start"}); // douceur assurée par scroll-behavior en CSS
+}
+
+function resetHeroLabel(){
+  if(!openFullType) return;
+  openFullType.textContent = HERO_IDLE_LABEL;
+  openFull?.classList.remove("is-fresh");
+}
+
 let typesData = null;
 
 async function loadData(){
@@ -190,6 +218,8 @@ function selectType(t){
 
   openFull.setAttribute("href", `type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
+  setHeroLabel(t, data?.name);
+  revealPanelOnNarrowScreens();
 
   highlightKeyNodes(t, it, dt);
   showOnlyTypeArrows(t);
@@ -212,6 +242,7 @@ document.getElementById("btnReset").addEventListener("click", ()=>{
   moveHealthText.textContent = "—";
   moveStressText.textContent = "—";
   openFull.setAttribute("aria-disabled","true");
+  resetHeroLabel();
   clearAllArrows();
 });
 

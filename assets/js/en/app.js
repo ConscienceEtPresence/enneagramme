@@ -153,6 +153,34 @@ function pulseSidePanel(){
   }, 180);
 }
 
+const openFullType = document.getElementById("openFullType");
+const HERO_IDLE_LABEL = openFullType ? openFullType.textContent : "";
+
+// Highlights the selected type inside the "View full profile" button.
+function setHeroLabel(t, name){
+  if(!openFullType) return;
+  openFullType.textContent = name ? `of Type ${t} · ${name}` : `of Type ${t}`;
+  if(openFull){
+    openFull.classList.remove("is-fresh");
+    void openFull.offsetWidth; // replay the animation on every type change
+    openFull.classList.add("is-fresh");
+  }
+}
+
+// In single-column layout (< 1060px) the panel sits below the diagram:
+// bring it into view so the selected type is visible right away.
+function revealPanelOnNarrowScreens(){
+  if(window.matchMedia("(min-width:1061px)").matches) return;
+  const target = sidePanel || openFull;
+  target?.scrollIntoView({block:"start"}); // smoothness comes from the CSS scroll-behavior
+}
+
+function resetHeroLabel(){
+  if(!openFullType) return;
+  openFullType.textContent = HERO_IDLE_LABEL;
+  openFull?.classList.remove("is-fresh");
+}
+
 let typesData = null;
 
 async function loadData(){
@@ -190,6 +218,8 @@ function selectType(t){
 
   openFull.setAttribute("href", `/en/type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
+  setHeroLabel(t, data?.name);
+  revealPanelOnNarrowScreens();
 
   highlightKeyNodes(t, it, dt);
   showOnlyTypeArrows(t);
@@ -212,6 +242,7 @@ document.getElementById("btnReset").addEventListener("click", ()=>{
   moveHealthText.textContent = "—";
   moveStressText.textContent = "—";
   openFull.setAttribute("aria-disabled","true");
+  resetHeroLabel();
   clearAllArrows();
 });
 

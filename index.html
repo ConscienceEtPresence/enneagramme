@@ -239,7 +239,11 @@
 
           <!-- Action principale toujours visible -->
           <div class="ctaRow primaryRow">
-            <a id="openFull" class="btn btnHero" href="profils/type1.html" aria-disabled="true">Voir la fiche complète →</a>
+            <a id="openFull" class="btnHero" href="profils/type1.html" aria-disabled="true">
+              <span class="btnHero__eyebrow">Voir la fiche complète</span>
+              <span class="btnHero__type" id="openFullType">Choisissez un type sur le diagramme</span>
+              <span class="btnHero__arrow" aria-hidden="true">→</span>
+            </a>
           </div>
 
           <!-- Trois chemins, regroupés et pliables -->
@@ -299,15 +303,69 @@
               color:#0e1528;transform:translateY(-2px);
               box-shadow:0 8px 24px rgba(245,215,123,.35);
             }
+            /* ── Action principale : voir la fiche complète ── */
             .btnHero{
-              border:1px solid rgba(125,211,252,.5);
-              background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.14));
-              color:#fff;font-weight:800;font-size:15px;padding:13px 26px;
-              text-decoration:none;border-radius:999px;letter-spacing:.2px;
-              transition:transform .12s ease, background .18s ease;
+              position:relative;width:100%;
+              display:flex;flex-direction:column;align-items:center;gap:3px;
+              padding:17px 44px 18px;border-radius:18px;
+              text-align:center;text-decoration:none;
+              border:1px dashed rgba(255,255,255,.20);
+              background:rgba(255,255,255,.03);color:#93a5c6;
+              transition:transform .2s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
             }
-            .btnHero:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.22))}
-            .btnHero[aria-disabled="true"]{opacity:.45;cursor:not-allowed;pointer-events:none}
+            .btnHero__eyebrow{
+              font-size:10.5px;font-weight:800;letter-spacing:.2em;
+              text-transform:uppercase;opacity:.85;
+            }
+            .btnHero__type{
+              font-family:'Cormorant Garamond',serif;
+              font-size:1.5rem;font-weight:700;line-height:1.15;letter-spacing:.01em;
+            }
+            .btnHero__arrow{
+              position:absolute;right:20px;top:50%;transform:translateY(-50%);
+              font-size:1.35rem;opacity:0;transition:opacity .25s ease, transform .25s ease;
+            }
+            /* État « en attente » : aucun type sélectionné */
+            .btnHero[aria-disabled="true"]{cursor:default;pointer-events:none}
+            .btnHero[aria-disabled="true"] .btnHero__type{
+              font-style:italic;font-size:1.08rem;font-weight:600;opacity:.8;
+            }
+            /* État actif : un type est sélectionné */
+            .btnHero[aria-disabled="false"]{
+              border:1px solid rgba(245,215,123,.9);
+              background:linear-gradient(135deg,#f7dc8a,#f0b429);
+              color:#101a30;
+              box-shadow:0 12px 34px rgba(240,180,41,.30), 0 0 0 6px rgba(245,215,123,.07);
+            }
+            .btnHero[aria-disabled="false"] .btnHero__eyebrow{opacity:.7}
+            .btnHero[aria-disabled="false"] .btnHero__arrow{opacity:.75}
+            .btnHero[aria-disabled="false"]:hover{
+              transform:translateY(-3px);
+              box-shadow:0 18px 44px rgba(240,180,41,.45), 0 0 0 6px rgba(245,215,123,.12);
+            }
+            .btnHero[aria-disabled="false"]:hover .btnHero__arrow{transform:translateY(-50%) translateX(4px);opacity:1}
+            .btnHero:focus-visible{outline:2px solid #f5d77b;outline-offset:3px}
+            /* Éclat bref à chaque changement de type */
+            .btnHero.is-fresh{animation:heroReveal .5s ease}
+            @keyframes heroReveal{
+              0%{transform:scale(.985);box-shadow:0 0 0 0 rgba(245,215,123,.55)}
+              60%{transform:scale(1.012);box-shadow:0 0 0 14px rgba(245,215,123,0)}
+              100%{transform:scale(1)}
+            }
+            @media (prefers-reduced-motion:reduce){
+              .btnHero,.btnHero.is-fresh{animation:none;transition:none}
+            }
+            @media (max-width:520px){
+              .btnHero{padding:15px 34px 16px}
+              .btnHero__type{font-size:1.28rem}
+              .btnHero__arrow{right:14px}
+            }
+            /* En colonne unique, le bouton passe en tête du panneau :
+               sinon il se retrouve hors écran, sous toutes les fiches. */
+            @media (max-width:1060px){
+              #sidePanel .card{display:flex;flex-direction:column}
+              #sidePanel .primaryRow{order:-1;margin-top:0;margin-bottom:16px}
+            }
 
             .pathGroup{
               margin:14px 0 0;border:1px solid rgba(255,255,255,.08);
